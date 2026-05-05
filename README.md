@@ -91,6 +91,62 @@ cp .env.example .env
 .venv/bin/python scripts/99_tamper_demo.py --restore 41
 ```
 
+## Sharing evidence packs
+
+A "PromptSeal evidence pack" is the canonical artifact a customer hands to
+counsel, an auditor, or a counterparty. v0.2 supports three share modes —
+**you can pick one without re-anchoring or regenerating any cryptography**.
+The receipts and the on-chain anchor are the same in all three.
+
+### Mode 1 — Self-contained HTML (recommended default · D7)
+
+A single ~334 KB HTML file. Recipient double-clicks → browser opens →
+dashboard auto-verifies all receipts against Base Sepolia (one RPC call
+for the whole run). Nothing to host, nothing to trust on the sender's
+side.
+
+```bash
+# Bundle one run as a single HTML file (writes evidence-bundle-<run_id>.html)
+.venv/bin/python scripts/build_self_contained.py run-e8b202cfc898
+# → ./evidence-bundle-run-e8b202cfc898.html
+```
+
+### Mode 2 — Hosted JSON + dashboard
+
+Host the canonical JSON pack (PLAN §7) at any HTTPS URL. The recipient
+opens your dashboard with `?evidence=<URL>`. Useful when you already
+operate a static-host like Cloudflare Pages or GitHub Pages.
+
+```bash
+# Just the JSON
+.venv/bin/python scripts/04_export_evidence_pack.py run-e8b202cfc898
+# → ./evidence-pack-run-e8b202cfc898.json
+```
+
+### Mode 3 — GitHub Release artifact (orchestrator)
+
+`scripts/06_publish_evidence.py` is the all-in-one publisher: it generates
+the JSON, optionally builds the self-contained HTML, optionally uploads
+both to a GitHub Release as assets, and writes a `share-info-<run>.md`
+with a copy-pasteable share message. Requires `gh` CLI authenticated for
+the upload step (`gh auth login`).
+
+```bash
+# JSON only, written to ./published/
+.venv/bin/python scripts/06_publish_evidence.py run-e8b202cfc898
+
+# JSON + self-contained HTML
+.venv/bin/python scripts/06_publish_evidence.py run-e8b202cfc898 --build-html
+
+# Full publish to a GitHub Release
+.venv/bin/python scripts/06_publish_evidence.py run-e8b202cfc898 \
+    --build-html --upload-github-release v0.2-evidence-bob
+```
+
+The published files plus the markdown share sheet land under
+`--output-dir <path>` (default `./published/`). See PLAN §6 C2 for the
+orchestrator design and §7 for the evidence-pack schema.
+
 ## Project structure
 
 ```
