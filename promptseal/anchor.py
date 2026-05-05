@@ -12,9 +12,13 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
+from pathlib import Path
+from typing import Any
 
 from eth_account import Account
 from web3 import Web3
+
+from .run_summary import load_run_summary
 
 logger = logging.getLogger(__name__)
 
@@ -32,6 +36,31 @@ class AnchorResult:
     chain_id: int
     sender: str             # checksum address of from/to (self-send)
     gas_used: int
+
+
+def build_run_leaves(
+    run_id: str,
+    receipts: list[dict[str, Any]],
+    *,
+    db_path: Path | None = None,
+) -> list[str]:
+    """Compute the Merkle leaf list for a run.
+
+    Default behavior (matches v0.1): returns `[r["event_hash"] for r in receipts]`.
+
+    If a run_summaries row exists for `run_id` AND its `included_in_merkle`
+    flag is True (Tier 3 opt-in per D2), append `summary_hash` as an extra
+    leaf at the end of the list. Otherwise behavior is identical to v0.1 —
+    existing anchored runs (no summaries) are unaffected.
+
+    Centralized so any caller (anchoring, evidence-pack export, dashboard
+    proof generation) computes the same leaf set for the same run.
+    """
+    leaves = [r["event_hash"] for r in receipts]
+    summary = load_run_summary(run_id, db_path=db_path)
+    if summary is not None and summary["included_in_merkle"]:
+        leaves.append(summary["summary_hash"])
+    return leaves
 
 
 def _root_to_bytes(root_hex: str) -> bytes:

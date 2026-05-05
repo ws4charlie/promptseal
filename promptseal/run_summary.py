@@ -153,3 +153,24 @@ def delete_run_summary(run_id: str, *, db_path: Path | None = None) -> bool:
         return cur.rowcount > 0
     finally:
         conn.close()
+
+
+def update_summary_merkle_flag(
+    run_id: str, included: bool, *, db_path: Path | None = None,
+) -> bool:
+    """Flip the `included_in_merkle` flag for `run_id`. Returns True on update.
+
+    Per D2, this is a separate explicit operation — never a side effect of
+    insert. Anchoring/export code reads this flag (via anchor.build_run_leaves)
+    to decide whether to add the summary's hash as an extra Merkle leaf.
+    """
+    conn = _open(db_path)
+    try:
+        cur = conn.execute(
+            "UPDATE run_summaries SET included_in_merkle = ? WHERE run_id = ?",
+            (1 if included else 0, run_id),
+        )
+        conn.commit()
+        return cur.rowcount > 0
+    finally:
+        conn.close()
