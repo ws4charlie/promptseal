@@ -11,6 +11,10 @@
 import { useMemo, useState } from "react";
 import type { EvidencePack, Receipt } from "../lib/evidencePack";
 
+// Per-receipt verification status — RunPage owns the map; the tree just
+// reflects it as a small icon next to each row.
+export type ReceiptVerifyStatus = "pending" | "verifying" | "ok" | "fail";
+
 // ---------------------------------------------------------------------------
 // tree model
 
@@ -177,9 +181,50 @@ interface RowProps {
   hasChildren: boolean;
   onToggle: () => void;
   onClick: () => void;
+  verifyStatus?: ReceiptVerifyStatus;
 }
 
-function NodeRow({ node, expanded, hasChildren, onToggle, onClick }: RowProps) {
+function VerifyStatusIcon({ status }: { status: ReceiptVerifyStatus }) {
+  // Tooltip text reads as the receipt's verify status when the user hovers.
+  switch (status) {
+    case "pending":
+      return (
+        <span className="text-muted/50 text-xs" title="not verified yet">
+          ○
+        </span>
+      );
+    case "verifying":
+      return (
+        <span
+          className="text-running text-xs animate-pulse"
+          title="verifying…"
+        >
+          ◐
+        </span>
+      );
+    case "ok":
+      return (
+        <span className="text-ok text-xs" title="verified end-to-end">
+          ✓
+        </span>
+      );
+    case "fail":
+      return (
+        <span className="text-fail text-xs font-bold" title="verification failed">
+          ✗
+        </span>
+      );
+  }
+}
+
+function NodeRow({
+  node,
+  expanded,
+  hasChildren,
+  onToggle,
+  onClick,
+  verifyStatus,
+}: RowProps) {
   const family = familyOf(node.start.event_type);
   const styles = FAMILY_STYLES[family];
   const indent = node.depth * 20;
@@ -236,8 +281,11 @@ function NodeRow({ node, expanded, hasChildren, onToggle, onClick }: RowProps) {
           <span className="text-muted text-xs">· {dur}</span>
         )}
 
-        <span className="text-muted text-xs ml-auto">
-          #{recipientId} {shortHash(node.start.event_hash)}
+        <span className="text-muted text-xs ml-auto flex items-center gap-2">
+          {verifyStatus && <VerifyStatusIcon status={verifyStatus} />}
+          <span>
+            #{recipientId} {shortHash(node.start.event_hash)}
+          </span>
         </span>
       </div>
       <Tooltip node={node} />
@@ -250,13 +298,21 @@ interface SubtreeProps {
   expandedSet: Set<string>;
   toggle: (key: string) => void;
   onSelectReceipt?: (id: number) => void;
+  verifications?: Map<number, ReceiptVerifyStatus>;
 }
 
-function Subtree({ node, expandedSet, toggle, onSelectReceipt }: SubtreeProps) {
+function Subtree({
+  node,
+  expandedSet,
+  toggle,
+  onSelectReceipt,
+  verifications,
+}: SubtreeProps) {
   const key = node.start.event_hash;
   const expanded = expandedSet.has(key);
   const hasChildren = node.children.length > 0;
   const targetReceiptId = node.end ? node.end.id : node.start.id;
+  const verifyStatus = verifications?.get(targetReceiptId);
 
   return (
     <div>
@@ -266,6 +322,7 @@ function Subtree({ node, expandedSet, toggle, onSelectReceipt }: SubtreeProps) {
         hasChildren={hasChildren}
         onToggle={() => toggle(key)}
         onClick={() => onSelectReceipt?.(targetReceiptId)}
+        verifyStatus={verifyStatus}
       />
       {expanded && hasChildren && (
         <div>
@@ -276,6 +333,7 @@ function Subtree({ node, expandedSet, toggle, onSelectReceipt }: SubtreeProps) {
               expandedSet={expandedSet}
               toggle={toggle}
               onSelectReceipt={onSelectReceipt}
+              verifications={verifications}
             />
           ))}
         </div>
@@ -290,11 +348,13 @@ function Subtree({ node, expandedSet, toggle, onSelectReceipt }: SubtreeProps) {
 interface RunTreeViewProps {
   pack: EvidencePack;
   onSelectReceipt?: (id: number) => void;
+  verifications?: Map<number, ReceiptVerifyStatus>;
 }
 
 export default function RunTreeView({
   pack,
   onSelectReceipt,
+  verifications,
 }: RunTreeViewProps) {
   const tree = useMemo(() => buildTree(pack.receipts), [pack.receipts]);
 
@@ -369,6 +429,7 @@ export default function RunTreeView({
             expandedSet={expanded}
             toggle={toggle}
             onSelectReceipt={onSelectReceipt}
+            verifications={verifications}
           />
         ))}
       </div>

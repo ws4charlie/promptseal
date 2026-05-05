@@ -235,12 +235,17 @@ export interface VerifyOrchestratorArgs {
   proof: MerkleProofStep[];
   txHash: string;
   onUpdate: (state: VerifyState) => void;
+  // Optional cached on-chain anchor root (hex, no "sha256:" prefix). When
+  // provided, step 4 skips the live RPC fetch and reuses this value. Lets
+  // RunPage verify N receipts with 1 RPC call total instead of N. The
+  // cached value still flows through step 5's comparison.
+  cachedAnchorRootHex?: string;
 }
 
 export async function verifyEventStepwise(
   args: VerifyOrchestratorArgs,
 ): Promise<VerifyState> {
-  const { receipt, proof, txHash, onUpdate } = args;
+  const { receipt, proof, txHash, onUpdate, cachedAnchorRootHex } = args;
   const state = emptyVerifyState();
 
   const setStep = (i: 0 | 1 | 2 | 3 | 4, r: StepResult) => {
@@ -269,21 +274,48 @@ export async function verifyEventStepwise(
   setStep(2, s3.result);
   if (s3.result.status === "fail" || s3.reconstructedHex === null) return state;
 
-  // Step 4
+  // Step 4 — skip the RPC fetch if a cached root was passed in.
   setStep(3, { status: "running" });
-  const s4 = await step4FetchAnchorRoot(txHash);
-  setStep(3, s4.result);
-  if (s4.result.status === "fail" || s4.onChainHex === null) return state;
+  let onChainHex: string;
+  if (cachedAnchorRootHex !== undefined) {
+    onChainHex = cachedAnchorRootHex;
+    setStep(3, {
+      status: "ok",
+      message: "anchor TX root (cached, fetched once for the run)",
+      detail: HASH_PREFIX + onChainHex,
+    });
+  } else {
+    const s4 = await step4FetchAnchorRoot(txHash);
+    setStep(3, s4.result);
+    if (s4.result.status === "fail" || s4.onChainHex === null) return state;
+    onChainHex = s4.onChainHex;
+  }
 
   // Step 5
   setStep(4, { status: "running" });
-  const s5 = step5CompareRoots(s3.reconstructedHex, s4.onChainHex);
+  const s5 = step5CompareRoots(s3.reconstructedHex, onChainHex);
   setStep(4, s5);
   if (s5.status === "fail") return state;
 
   state.done = true;
   onUpdate({ ...state, steps: [...state.steps] as VerifyState["steps"] });
   return state;
+}
+
+// ---------------------------------------------------------------------------
+// one-shot anchor root fetch — for callers that want to verify N receipts
+// without paying for N RPC fetches. Returns the on-chain root as hex (no
+// "sha256:" prefix) or throws on RPC failure / unexpected tx shape.
+
+export async function fetchAnchorRootOnce(txHash: string): Promise<string> {
+  const inputHex = await fetchAnchorTxInputData(txHash);
+  if (inputHex.length !== 64) {
+    throw new Error(
+      `tx.input is ${inputHex.length / 2} bytes, expected 32 (a SHA-256 root). ` +
+        `Wrong tx? Tx hash: ${txHash}`,
+    );
+  }
+  return inputHex;
 }
 
 // ---------------------------------------------------------------------------
