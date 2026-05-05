@@ -62,6 +62,17 @@ CREATE TABLE IF NOT EXISTS anchors (
   anchored_at   TEXT NOT NULL,
   FOREIGN KEY (run_id) REFERENCES runs(run_id)
 );
+
+CREATE TABLE IF NOT EXISTS run_summaries (
+  run_id              TEXT PRIMARY KEY,
+  summary_text        TEXT NOT NULL,
+  summary_hash        TEXT NOT NULL,
+  generated_at        TEXT NOT NULL,
+  llm_provider        TEXT NOT NULL,
+  llm_model           TEXT NOT NULL,
+  included_in_merkle  INTEGER NOT NULL DEFAULT 0,
+  FOREIGN KEY (run_id) REFERENCES runs(run_id)
+);
 """
 
 
