@@ -4,6 +4,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import EventDetailPanel from "../components/EventDetailPanel";
 import RunTreeView from "../components/RunTreeView";
 import {
   EvidencePackValidationError,
@@ -33,6 +34,7 @@ interface LoadState {
 export default function RunPage() {
   const { runId } = useParams<{ runId: string }>();
   const [state, setState] = useState<LoadState>({ status: "loading" });
+  const [selectedReceiptId, setSelectedReceiptId] = useState<number | null>(null);
 
   useEffect(() => {
     const url = new URLSearchParams(window.location.search).get("evidence");
@@ -156,14 +158,12 @@ export default function RunPage() {
         </div>
       </section>
 
-      <RunTreeView
+      <RunTreeView pack={pack} onSelectReceipt={setSelectedReceiptId} />
+
+      <EventDetailPanel
+        receiptId={selectedReceiptId}
         pack={pack}
-        onSelectReceipt={(id) => {
-          // B4 will open the EventDetailPanel here.
-          // For B3 we just signal that the tree is interactive.
-          // eslint-disable-next-line no-console
-          console.log("clicked receipt id:", id);
-        }}
+        onClose={() => setSelectedReceiptId(null)}
       />
     </div>
   );

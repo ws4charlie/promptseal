@@ -8,8 +8,21 @@
 //
 // We intentionally avoid zod/yup — a hand-rolled validator keeps deps thin
 // (D8 spirit) and fails loudly on the few keys we actually depend on.
+//
+// Numbers are loaded via parseJsonPreservingNumbers so that float source
+// representation ("0.0" stays "0.0") survives into verification. That means
+// every numeric value in the wire JSON arrives as a NumberToken instance,
+// not a JS number primitive. The validator normalizes top-level/metadata
+// numbers back to plain numbers so the rest of the dashboard can use them
+// directly; payload_excerpt is left untouched (its NumberTokens are what
+// canonicalize() needs to byte-equal Python's signed bytes).
 
 import JSZip from "jszip";
+
+import {
+  NumberToken,
+  parseJsonPreservingNumbers,
+} from "../../../verifier/canonical.js";
 
 // --- canonical types (match scripts/04_export_evidence_pack.py output) ---
 
@@ -71,7 +84,19 @@ export class EvidencePackValidationError extends Error {
 }
 
 function isObject(v: unknown): v is Record<string, unknown> {
-  return typeof v === "object" && v !== null && !Array.isArray(v);
+  return typeof v === "object" && v !== null && !Array.isArray(v) && !(v instanceof NumberToken);
+}
+
+function asNumber(v: unknown): number | null {
+  // parseJsonPreservingNumbers wraps every JSON number as NumberToken. Top-
+  // level metadata fields (block_number, chain_id, ids) need to be plain JS
+  // numbers for display + lookup; this helper does that conversion.
+  if (typeof v === "number" && Number.isFinite(v)) return v;
+  if (v instanceof NumberToken) {
+    const n = Number(v.src);
+    return Number.isFinite(n) ? n : null;
+  }
+  return null;
 }
 
 function requireString(obj: Record<string, unknown>, key: string): string {
@@ -83,20 +108,23 @@ function requireString(obj: Record<string, unknown>, key: string): string {
 }
 
 function requireNumber(obj: Record<string, unknown>, key: string): number {
-  const v = obj[key];
-  if (typeof v !== "number" || !Number.isFinite(v)) {
-    throw new EvidencePackValidationError(`field '${key}' must be finite number, got ${typeof v}`);
+  const n = asNumber(obj[key]);
+  if (n === null) {
+    throw new EvidencePackValidationError(
+      `field '${key}' must be finite number, got ${typeof obj[key]}`,
+    );
   }
-  return v;
+  return n;
 }
 
 function requireIntOrNull(obj: Record<string, unknown>, key: string): number | null {
   const v = obj[key];
   if (v === null) return null;
-  if (typeof v !== "number" || !Number.isInteger(v)) {
+  const n = asNumber(v);
+  if (n === null || !Number.isInteger(n)) {
     throw new EvidencePackValidationError(`field '${key}' must be integer or null`);
   }
-  return v;
+  return n;
 }
 
 function validateAnchor(v: unknown): AnchorTx {
@@ -114,13 +142,21 @@ function validateReceipt(v: unknown, ix: number): Receipt {
   if (!isObject(v)) {
     throw new EvidencePackValidationError(`receipts[${ix}] must be object`);
   }
-  // We don't deep-validate every receipt field — verifier/verify.js will
-  // re-derive event_hash + signature itself. Just check the keys we route on.
-  const id = requireNumber(v, "id");
-  if (!Number.isInteger(id)) {
+  // We don't deep-validate every receipt field — verify.js / inlineVerifier
+  // will re-derive event_hash + signature themselves. Just check the keys
+  // the dashboard routes on, and normalize their NumberTokens to numbers.
+  const id = asNumber(v.id);
+  if (id === null || !Number.isInteger(id)) {
     throw new EvidencePackValidationError(`receipts[${ix}].id must be integer`);
   }
-  return v as unknown as Receipt;
+  // Return a shallow copy with normalized id + token id. payload_excerpt is
+  // copied by reference — its NumberTokens are needed by verification.
+  const out: Record<string, unknown> = { ...v, id };
+  if (v.agent_erc8004_token_id !== null) {
+    const tid = asNumber(v.agent_erc8004_token_id);
+    if (tid !== null) out.agent_erc8004_token_id = tid;
+  }
+  return out as unknown as Receipt;
 }
 
 function validateProofs(v: unknown): Record<string, MerkleProofStep[]> {
@@ -212,7 +248,10 @@ export async function loadFromURL(url: string): Promise<EvidencePack> {
   }
   let parsed: unknown;
   try {
-    parsed = await res.json();
+    // Use the source-preserving parser so float receipts (e.g. temperature:
+    // 0.0) stay byte-equal to what Python signed.
+    const text = await res.text();
+    parsed = parseJsonPreservingNumbers(text);
   } catch (err) {
     throw new EvidencePackValidationError(
       `response from ${url} was not valid JSON: ${err instanceof Error ? err.message : String(err)}`,
@@ -239,7 +278,7 @@ export async function loadFromZip(file: File): Promise<EvidencePack> {
   const text = await entry.async("string");
   let parsed: unknown;
   try {
-    parsed = JSON.parse(text);
+    parsed = parseJsonPreservingNumbers(text);
   } catch (err) {
     throw new EvidencePackValidationError(
       `evidence-pack.json inside ZIP is not valid JSON: ${err instanceof Error ? err.message : String(err)}`,
