@@ -1,8 +1,15 @@
 // B1 placeholder + B3 dev link. B2 wired the loaders; the URL-paste
 // and drag-drop UIs that USE them are still B-something-later (probably
 // B5 or whenever we run out of "open via URL param" mileage).
+//
+// B6: when the page boots in self-contained mode (window.__PROMPTSEAL_EVIDENCE__
+// is set by build_self_contained.py's injected script), we redirect straight
+// to /run/<embedded.run_id> so the recipient lands on the verifier UI without
+// having to click anything. In hosted mode this is a no-op.
 
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { loadFromEmbedded } from "../lib/evidencePack";
 
 // dashboard/public/sample-pack.json is a dev-only fixture (gitignored).
 // Generate it with:
@@ -12,6 +19,22 @@ const DEV_RUN_ID = "run-e8b202cfc898";
 const DEV_HREF = `/run/${DEV_RUN_ID}?evidence=/sample-pack.json`;
 
 export default function LandingPage() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let pack;
+    try {
+      pack = loadFromEmbedded();
+    } catch {
+      // Bad embedded payload — fall through to landing UI; the user will
+      // see the regular landing page and can use the manual verifier.
+      return;
+    }
+    if (pack) {
+      navigate(`/run/${pack.run_id}`, { replace: true });
+    }
+  }, [navigate]);
+
   return (
     <div className="space-y-6">
       <section>

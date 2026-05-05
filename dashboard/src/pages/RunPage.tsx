@@ -16,6 +16,7 @@ import RunTreeView, {
 } from "../components/RunTreeView";
 import {
   EvidencePackValidationError,
+  loadFromEmbedded,
   loadFromURL,
   type EvidencePack,
 } from "../lib/evidencePack";
@@ -88,6 +89,30 @@ export default function RunPage() {
   // ---------- 1. load evidence pack from ?evidence=<url> ------------------
 
   useEffect(() => {
+    let cancelled = false;
+    setState({ status: "loading" });
+    setVerifications(new Map());
+    setOverall({ kind: "idle" });
+
+    // B6: prefer embedded mode (self-contained HTML) over URL fetch.
+    try {
+      const embedded = loadFromEmbedded();
+      if (embedded) {
+        setState({ status: "ok", pack: embedded });
+        return () => {
+          cancelled = true;
+        };
+      }
+    } catch (err) {
+      setState({
+        status: "error",
+        error: err instanceof Error ? err.message : String(err),
+      });
+      return () => {
+        cancelled = true;
+      };
+    }
+
     const url = new URLSearchParams(window.location.search).get("evidence");
     if (!url) {
       setState({
@@ -96,13 +121,10 @@ export default function RunPage() {
           "no ?evidence=<url> query param. " +
           "Try the dev link from the landing page.",
       });
-      return;
+      return () => {
+        cancelled = true;
+      };
     }
-
-    let cancelled = false;
-    setState({ status: "loading" });
-    setVerifications(new Map());
-    setOverall({ kind: "idle" });
 
     loadFromURL(url)
       .then((pack) => {

@@ -293,3 +293,35 @@ export async function loadFromUrlParam(): Promise<EvidencePack | null> {
   if (!url) return null;
   return loadFromURL(url);
 }
+
+// Self-contained HTML mode (D7). build_self_contained.py injects:
+//   <script>window.__PROMPTSEAL_EVIDENCE__ = "<base64-of-pack-json>";</script>
+// before the bundled JS executes. We decode + validate synchronously; this
+// is the fastest path because there's no network or zip parsing.
+export function loadFromEmbedded(): EvidencePack | null {
+  if (typeof window === "undefined") return null;
+  const w = window as unknown as { __PROMPTSEAL_EVIDENCE__?: string };
+  const b64 = w.__PROMPTSEAL_EVIDENCE__;
+  if (typeof b64 !== "string" || b64.length === 0) return null;
+  let json: string;
+  try {
+    json = atob(b64);
+  } catch (err) {
+    throw new EvidencePackValidationError(
+      `embedded __PROMPTSEAL_EVIDENCE__ is not valid base64: ${
+        err instanceof Error ? err.message : String(err)
+      }`,
+    );
+  }
+  let parsed: unknown;
+  try {
+    parsed = parseJsonPreservingNumbers(json);
+  } catch (err) {
+    throw new EvidencePackValidationError(
+      `embedded evidence is not valid JSON: ${
+        err instanceof Error ? err.message : String(err)
+      }`,
+    );
+  }
+  return validateEvidencePack(parsed);
+}
