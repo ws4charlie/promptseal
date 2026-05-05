@@ -1,0 +1,36 @@
+# Env / secrets
+.env*
+!.env.example
+agent_key.pem
+agent_id.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# SQLite + demo artifacts
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+evidence_pack_*.zip
+.tamper_backup_*.json
+verifier/e2e_sample.json
+verifier/test_fixtures.json
+
+# Node (cross-language test scratch)
+node_modules/
+
+# Logs
+*.log
+
+# Internal / session notes (not for public release)
+notes/
+
+# OS
+.DS_Store
