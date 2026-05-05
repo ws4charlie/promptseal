@@ -4,6 +4,9 @@
 agent_key.pem
 agent_id.json
 
+# Demo cheat sheet
+demo_cheat_sheet.md
+
 # Python
 __pycache__/
 *.py[cod]
