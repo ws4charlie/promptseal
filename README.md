@@ -147,6 +147,69 @@ The published files plus the markdown share sheet land under
 `--output-dir <path>` (default `./published/`). See PLAN §6 C2 for the
 orchestrator design and §7 for the evidence-pack schema.
 
+## Operator dashboard (v0.3)
+
+The dashboard at `dashboard/` is the operator-facing UI for browsing your
+own runs (different from the verifier-paste flow). v0.3 made the runs
+list the default landing page; the verifier (paste URL / drag ZIP) moved
+to `/load`.
+
+### One-command data refresh
+
+```bash
+.venv/bin/python scripts/07_runs_list.py
+```
+
+Generates `dashboard/public/runs-index.json` (the runs table) **and**
+`dashboard/public/sample-pack-<run_id>.json` for every anchored run (the
+per-run evidence packs the dashboard loads when you click into a row).
+Both are gitignored. Re-run after each new agent run + anchor.
+
+Skip the per-run packs with `--no-export-packs` if you only need the
+index.
+
+### Local dev
+
+```bash
+cd dashboard
+npm install        # first time only
+npm run dev        # serves at http://localhost:5173
+```
+
+Visit `/` for the runs list, `/run/<id>?evidence=/sample-pack-<id>.json`
+for a specific run, `/load` for the paste-a-URL verifier, `/manual` for
+the vanilla verifier embed.
+
+Layout is responsive: ≥1280px viewport renders split-pane (tree left,
+detail panel right, both always visible); narrower viewports fall back
+to drawer overlay. Keyboard navigation: ↑/↓/←/→ moves between events,
+Esc deselects.
+
+### Optional: subject alias map (D16)
+
+Operators recognize candidates by name, not by `res_NNN` codes. Drop a
+small JSON file at `dashboard/public/subject-aliases.json`:
+
+```json
+{
+  "res_001": "Alice Chen",
+  "res_002": "Bob Martinez",
+  "res_003": "Carol Singh"
+}
+```
+
+The runs list and the run detail title will show the alias as primary
+text with the raw `res_NNN` in parens. The file is gitignored — alias
+data stays local. Without it, the UI gracefully falls back to raw refs.
+
+### Sharing a self-contained build (D7)
+
+If you want to send a recipient a single HTML file with everything
+baked in (dashboard + one run's evidence pack), see
+[Mode 1 — Self-contained HTML](#mode-1--self-contained-html-recommended-default--d7)
+above. The build pipeline is unchanged in v0.3; the bundled dashboard
+just renders the new split-pane layout.
+
 ## Project structure
 
 ```

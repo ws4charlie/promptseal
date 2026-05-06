@@ -5,19 +5,27 @@ the dashboard's RunsListPage renders. Newest-first by started_at. Excludes
 runs without a confirmed anchor (no anchor row, or anchor.block_number IS
 NULL — i.e. an in-flight TX).
 
+E6a (v0.3): also exports per-run evidence packs to
+`dashboard/public/sample-pack-<run_id>.json` by default, so the dashboard
+can resolve the click-row → /run/<id>?evidence=/sample-pack-<id>.json
+flow with a single command. Use --no-export-packs to skip.
+
 Usage:
     python scripts/07_runs_list.py
     python scripts/07_runs_list.py --output /tmp/runs.json
+    python scripts/07_runs_list.py --no-export-packs   # skip per-run exports
 """
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import os
 import sqlite3
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from types import ModuleType
 from typing import Any
 
 from dotenv import load_dotenv
@@ -135,6 +143,60 @@ def write_runs_index(index: dict[str, Any], output_path: Path) -> Path:
     return output_path
 
 
+def _load_export_module() -> ModuleType:
+    """Lazily load `scripts/04_export_evidence_pack.py`.
+
+    The leading-digit filename prevents a regular `import`. Mirrors the
+    spec_from_file_location pattern that tests/test_evidence_pack.py and
+    tests/test_runs_list.py already use to load these scripts.
+    """
+    script = Path(__file__).resolve().parent / "04_export_evidence_pack.py"
+    spec = importlib.util.spec_from_file_location(
+        "promptseal_export_evidence_pack_lazy", script,
+    )
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"could not load {script}")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def export_sample_packs(
+    runs: list[dict[str, Any]],
+    db_path: Path,
+    output_dir: Path,
+) -> tuple[int, int]:
+    """For each anchored run in `runs`, write a per-run evidence pack to
+    `output_dir/sample-pack-<run_id>.json` via the canonical export path
+    (scripts/04_export_evidence_pack.py).
+
+    Per-run failures don't abort the loop — they're logged and counted.
+    Returns (success_count, failure_count). Caller decides what to do
+    with the failure count; for v0.3 we just print the totals and return
+    exit code 0 either way (pack export is best-effort enrichment, not
+    a fatal step).
+    """
+    if not runs:
+        return (0, 0)
+    mod = _load_export_module()
+    output_dir.mkdir(parents=True, exist_ok=True)
+    ok = 0
+    fail = 0
+    for run in runs:
+        run_id = run["run_id"]
+        out = output_dir / f"sample-pack-{run_id}.json"
+        try:
+            mod.export_evidence_pack(run_id, db_path, output_path=out, as_zip=False)
+        except Exception as e:  # broad on purpose: any single-run failure is
+            # non-fatal and we want to surface the message verbatim.
+            rprint(f"  [yellow]✗ failed for {run_id}: {e}[/yellow]")
+            fail += 1
+            continue
+        rprint(f"  [green]✓ exported {out.name}[/green]")
+        ok += 1
+    return (ok, fail)
+
+
 def main(argv: list[str] | None = None) -> int:
     load_dotenv()
     parser = argparse.ArgumentParser(
@@ -145,6 +207,17 @@ def main(argv: list[str] | None = None) -> int:
         type=Path,
         default=None,
         help=f"Output path (default: {DEFAULT_OUTPUT}).",
+    )
+    parser.add_argument(
+        "--export-packs",
+        dest="export_packs",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help=(
+            "Also export per-run evidence packs to "
+            "<output_dir>/sample-pack-<run_id>.json. "
+            "Use --no-export-packs to skip. Default: enabled."
+        ),
     )
     args = parser.parse_args(argv)
 
@@ -162,6 +235,22 @@ def main(argv: list[str] | None = None) -> int:
             f"    · {run['run_id']}  {run['agent_id']}  "
             f"{subj}  {decision}  {run['event_count']} events",
         )
+
+    if args.export_packs and index["runs"]:
+        # Co-locate sample packs with runs-index.json (same dashboard/public/
+        # directory by default; honors --output's parent if redirected).
+        sample_pack_dir = output_path.parent
+        rprint("[bold]exporting per-run evidence packs[/bold]")
+        ok, fail = export_sample_packs(index["runs"], db_path, sample_pack_dir)
+        if fail > 0:
+            rprint(
+                f"  packs: [green]{ok} ok[/green], "
+                f"[yellow]{fail} failed[/yellow] (non-fatal — index still written)",
+            )
+        else:
+            rprint(f"  packs: [green]{ok} ok[/green]")
+
+    # Per E6a contract: even single-run export failures don't change exit code.
     return 0
 
 

@@ -330,3 +330,70 @@ def test_runs_index_round_trip(
     assert run["anchor_tx"].startswith("0x")
     assert isinstance(run["anchor_block"], int)
     assert run["has_summary"] is True
+
+
+# --- 7. --export-packs (default) emits per-run evidence packs --------------
+
+
+def test_runs_list_exports_packs_when_flag_set(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+):
+    """E6a: default --export-packs writes one sample-pack-<run_id>.json per
+    anchored run alongside runs-index.json. Each pack is the same canonical
+    schema scripts/04_export_evidence_pack.py emits (PLAN §7)."""
+    monkeypatch.chdir(tmp_path)
+    db = tmp_path / "promptseal.sqlite"
+    monkeypatch.setenv("PROMPTSEAL_DB_PATH", str(db))
+    _seed_run(
+        db, run_id="run-aaa",
+        started_at="2026-05-05T10:00:00Z", ended_at="2026-05-05T10:00:05Z",
+        final_decision={"candidate_id": "res_001", "decision": "hire"},
+    )
+    _seed_run(
+        db, run_id="run-bbb",
+        started_at="2026-05-05T11:00:00Z", ended_at="2026-05-05T11:00:05Z",
+        final_decision={"candidate_id": "res_002", "decision": "reject"},
+    )
+
+    rc = runs_list_mod.main([])  # default --export-packs True
+    assert rc == 0
+
+    public = tmp_path / "dashboard" / "public"
+    pack_a = public / "sample-pack-run-aaa.json"
+    pack_b = public / "sample-pack-run-bbb.json"
+    assert pack_a.exists(), "sample-pack-run-aaa.json should be exported"
+    assert pack_b.exists(), "sample-pack-run-bbb.json should be exported"
+
+    for path, run_id in [(pack_a, "run-aaa"), (pack_b, "run-bbb")]:
+        data = json.loads(path.read_text())
+        assert data["version"] == "0.2"
+        assert data["run_id"] == run_id
+        assert data["agent_id"] == "hr-screener-v1"
+        assert isinstance(data["receipts"], list) and len(data["receipts"]) >= 3
+        assert "anchor" in data and data["anchor"]["tx_hash"].startswith("0x")
+
+
+# --- 8. --no-export-packs skips per-run exports ----------------------------
+
+
+def test_runs_list_no_export_packs_when_flag_unset(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+):
+    """--no-export-packs writes only runs-index.json; no sample-pack files."""
+    monkeypatch.chdir(tmp_path)
+    db = tmp_path / "promptseal.sqlite"
+    monkeypatch.setenv("PROMPTSEAL_DB_PATH", str(db))
+    _seed_run(
+        db, run_id="run-zzz",
+        started_at="2026-05-05T10:00:00Z", ended_at="2026-05-05T10:00:05Z",
+        final_decision={"candidate_id": "res_003", "decision": "hire"},
+    )
+
+    rc = runs_list_mod.main(["--no-export-packs"])
+    assert rc == 0
+
+    public = tmp_path / "dashboard" / "public"
+    assert (public / "runs-index.json").exists(), "runs-index.json must be written"
+
+    pack_files = list(public.glob("sample-pack-*.json"))
+    assert pack_files == [], f"unexpected pack files: {pack_files}"
