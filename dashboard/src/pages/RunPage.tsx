@@ -11,6 +11,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import EventDetailPanel from "../components/EventDetailPanel";
+import RunSummaryCard from "../components/RunSummaryCard";
 import RunTreeView, {
   type ReceiptVerifyStatus,
 } from "../components/RunTreeView";
@@ -26,12 +27,7 @@ import {
   verifyEventStepwise,
 } from "../lib/inlineVerifier";
 
-const ERC8004_REGISTRY = "0x7177a6867296406881E20d6647232314736Dd09A";
 const VERIFY_CONCURRENCY = 4; // tune to balance throughput vs RPC fairness
-
-function basescanTokenUrl(tokenId: number): string {
-  return `https://sepolia.basescan.org/token/${ERC8004_REGISTRY}?a=${tokenId}`;
-}
 
 function basescanTxUrl(tx: string, chainId: number): string {
   // We only support Base Sepolia in v0.2 — chain_id 84532. Other ids fall
@@ -263,68 +259,27 @@ export default function RunPage() {
   const pack = state.pack;
   const isDone = overall.kind === "all_ok" || overall.kind === "failed";
 
+  // Project the multi-state OverallStatus into the simpler 4-state pill
+  // RunSummaryCard renders. "error" collapses to "fail" (the user-visible
+  // outcome is the same: verification didn't succeed; click re-run to retry).
+  const cardVerifyStatus: ReceiptVerifyStatus = (() => {
+    switch (overall.kind) {
+      case "idle":    return "pending";
+      case "running": return "verifying";
+      case "all_ok":  return "ok";
+      case "failed":  return "fail";
+      case "error":   return "fail";
+    }
+  })();
+
   return (
     <div className="space-y-6">
-      <section className="bg-panel border border-border rounded-lg p-5 space-y-2">
-        <div className="flex items-baseline justify-between gap-4 flex-wrap">
-          <h1 className="text-xl font-semibold">
-            Run <span className="text-muted">/</span> {pack.run_id}
-          </h1>
-          <span className="text-muted text-sm">{pack.receipts.length} events</span>
-        </div>
-        <div className="text-sm text-muted space-y-1">
-          <div>
-            <span className="text-muted">agent_id:</span>{" "}
-            <code className="bg-bg px-1.5 py-0.5 rounded border border-border text-text">
-              {pack.agent_id}
-            </code>
-          </div>
-          {pack.agent_erc8004_token_id !== null && (
-            <div>
-              <span className="text-muted">ERC-8004 token:</span>{" "}
-              <a
-                href={basescanTokenUrl(pack.agent_erc8004_token_id)}
-                target="_blank"
-                rel="noreferrer"
-                className="text-accent"
-              >
-                #{pack.agent_erc8004_token_id}
-              </a>
-            </div>
-          )}
-          <div>
-            <span className="text-muted">merkle_root:</span>{" "}
-            <code className="bg-bg px-1.5 py-0.5 rounded border border-border text-text break-all">
-              {pack.merkle_root}
-            </code>
-          </div>
-          <div>
-            <span className="text-muted">anchor:</span>{" "}
-            <a
-              href={basescanTxUrl(pack.anchor.tx_hash, pack.anchor.chain_id)}
-              target="_blank"
-              rel="noreferrer"
-              className="text-accent break-all"
-            >
-              {pack.anchor.tx_hash}
-            </a>{" "}
-            <span className="text-muted text-xs">
-              (block {pack.anchor.block_number} · chain {pack.anchor.chain_id})
-            </span>
-          </div>
-          {pack.summary && (
-            <div className="pt-2 mt-2 border-t border-border">
-              <span className="text-muted">summary:</span>{" "}
-              <span className="text-text">{pack.summary.text}</span>
-              {pack.summary.included_in_merkle && (
-                <span className="ml-2 text-yellow-300 text-xs uppercase">
-                  in merkle
-                </span>
-              )}
-            </div>
-          )}
-        </div>
-      </section>
+      <RunSummaryCard
+        pack={pack}
+        summary={pack.summary ?? null}
+        onReverify={() => void runVerifyAll(pack)}
+        verifyStatus={cardVerifyStatus}
+      />
 
       <VerifyAllBanner
         overall={overall}
