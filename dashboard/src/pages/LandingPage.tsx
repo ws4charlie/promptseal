@@ -37,6 +37,12 @@ export default function LandingPage() {
 
   return (
     <div className="space-y-6">
+      <div className="text-sm">
+        <Link to="/" className="text-muted no-underline hover:underline">
+          ← Back to runs list
+        </Link>
+      </div>
+
       <section>
         <h1 className="text-2xl font-semibold mb-2">Load an evidence pack</h1>
         <p className="text-muted">

@@ -2,6 +2,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import RunPage from "./pages/RunPage";
 import ManualVerifier from "./pages/ManualVerifier";
+import RunsListPage from "./pages/RunsListPage";
 
 export default function App() {
   return (
@@ -21,7 +22,8 @@ export default function App() {
       </header>
       <main className="flex-1 max-w-5xl w-full mx-auto px-6 py-8">
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<RunsListPage />} />
+          <Route path="/load" element={<LandingPage />} />
           <Route path="/run/:runId" element={<RunPage />} />
           <Route path="/manual" element={<ManualVerifier />} />
         </Routes>
