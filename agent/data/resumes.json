@@ -2,46 +2,55 @@
   {
     "id": "res_001",
     "name": "Alice Chen",
-    "yoe_react": 7,
-    "yoe_python": 5,
-    "education": "BS Computer Science, Stanford",
-    "highlights": "Led frontend team at unicorn fintech; OSS contributor (15k stars)",
+    "yoe_react": 6,
+    "yoe_python": 7,
+    "education": "PhD Computer Science, Stanford University (2020). BS Electrical Engineering & Computer Science, MIT (2014). Thesis: 'Distributed consensus protocols for byzantine-tolerant ML systems'.",
+    "highlights": "Currently Staff Engineer at Anthropic (2023-present), leading platform infrastructure for Claude API serving 100M+ daily requests. Previously Senior SWE at Stripe (2017-2023), where she designed the rate-limiting tier serving 100M+ requests/day. Open-source contributor to React Suspense (3 merged PRs) and FastAPI (core team alumna). Patents: 2 on distributed transaction reconciliation. Co-author of 4 papers on serverless ML inference, cited 120+ times. References available from Stripe CTO and Anthropic infra lead.",
     "expected_decision": "hire"
   },
   {
     "id": "res_002",
     "name": "Bob Martinez",
-    "yoe_react": 0,
+    "yoe_react": 1,
     "yoe_python": 1,
-    "education": "Self-taught, bootcamp 2025",
-    "highlights": "1 personal project, no production experience",
+    "education": "BA English Literature, San Francisco State University (2018). General Assembly fullstack web development bootcamp (3 months, 2023). No formal CS coursework.",
+    "highlights": "Currently transitioning from a successful 4-year customer support and account management career at IBM Cloud. Self-taught web development since January 2024 - built 2 portfolio projects: a personal blog (Next.js, 200 LOC) and a recipe-tracking app (React + Firebase, deployed via Vercel). Active in #100DaysOfCode and aspires to reach junior fullstack within 18 months. Looking for an entry-level opportunity that values motivation over credentials. Strong communication skills from 4 years of B2B customer-facing work. Available for full-time start within 4 weeks.",
     "expected_decision": "reject"
   },
   {
     "id": "res_003",
     "name": "Carol Singh",
-    "yoe_react": 4,
-    "yoe_python": 6,
-    "education": "MS Data Science, MIT",
-    "highlights": "Senior ML engineer at FAANG; 3 published papers",
-    "expected_decision": "hire"
+    "yoe_react": 2,
+    "yoe_python": 2,
+    "education": "BS Computer Science, UC Davis (2022). 3.6 GPA. Coursework: Data Structures, Algorithms, Database Systems, Operating Systems, Mobile Application Development. Senior project: real-time chat app with WebSocket + React.",
+    "highlights": "Currently Software Engineer II at Plaid (1.5 years), Identity Verification team. Built and shipped 3 React features in the user dashboard, reduced load time of one critical view by 40%. Previous internship at Asana (summer 2021) on the iOS team. Side project: open-source contributions to MUI (1 merged PR for accessibility). Comfortable with React + TypeScript + REST APIs; growing Python skills via internal data tooling. Interested in moving to a smaller, faster-paced startup environment.",
+    "expected_decision": "reject"
   },
   {
     "id": "res_004",
     "name": "David Kim",
-    "yoe_react": 2,
-    "yoe_python": 3,
-    "education": "BA English Literature, state school",
-    "highlights": "Career switcher; strong portfolio but no formal CS background",
-    "expected_decision": "ambiguous"
+    "yoe_react": 5,
+    "yoe_python": 8,
+    "education": "MS Computer Science, UC Berkeley (2018). BS Computer Science, Carnegie Mellon University (2016). Thesis: 'GPU-accelerated graph neural networks for recommendation systems'. CMU Dean's List 6/8 semesters.",
+    "highlights": "Senior Software Engineer at Anthropic (2023-present), platform team. Previously Senior MLE at Meta Reality Labs (2020-2023), built recommendation pipeline serving 50M users. Earlier Tech Lead Manager at Google Search (2018-2020), led team of 5 building search ranking inference infrastructure (Python + TensorFlow). Open-source maintainer of pytorch-geometric (3.5k stars). 6 publications at NeurIPS and ICLR, h-index 9. Author of 'Practical ML Systems' (O'Reilly 2022). Looking for a senior IC role at a technically ambitious AI startup.",
+    "expected_decision": "hire"
   },
   {
     "id": "res_005",
-    "name": "Eva Petrov",
-    "yoe_react": 8,
-    "yoe_python": 2,
-    "education": "PhD Mathematics (incomplete)",
-    "highlights": "Frontend specialist; minimal backend; expects $250k",
-    "expected_decision": "ambiguous"
+    "name": "Emma Walsh",
+    "yoe_react": 4,
+    "yoe_python": 3,
+    "education": "BS Computer Science, Cornell University (2019). Cornell College of Engineering, GPA 3.5. Coursework: Operating Systems, Compilers, Distributed Systems, Machine Learning.",
+    "highlights": "Senior Software Engineer at Notion (2023-present), payments and billing team. Previously Software Engineer at Brex (2019-2023, 4 years), where she shipped the merchant analytics dashboard from prototype to 50K MAU. Strong React + TypeScript practitioner; introduced TanStack Query as the data layer standard across the eng org. Comfortable with Python for data tooling and internal scripts. Mentored 2 junior engineers, both promoted under her tenure. Public speaker at React Summit 2024. Looking for a senior role with more ownership of architecture decisions and a path to staff IC. Available within 6 weeks.",
+    "expected_decision": "hire"
+  },
+  {
+    "id": "res_006",
+    "name": "Frank Liu",
+    "yoe_react": 0,
+    "yoe_python": 1,
+    "education": "MS Computer Science, California Institute of Technology (2014). BS Computer Engineering, Tsinghua University (2012). Caltech Honors. Research focus: distributed systems and concurrent programming.",
+    "highlights": "Principal Engineer at Oracle Cloud Infrastructure (2018-present, 6 years), tech lead for the global VPC networking layer. Previously Senior Engineer at IBM Cloud (2014-2018, 4 years), worked on Bluemix platform services in Java/Spring. Deep expertise in distributed systems (multi-region consensus, CAP trade-offs, Paxos variants), low-level networking, and high-throughput backend services. Has shipped Java, C++, and Go in production at scale. Currently exploring fullstack web development as a side interest (built a personal portfolio site in HTML/CSS, no JS framework). Looking to broaden into product engineering and consumer-facing work.",
+    "expected_decision": "reject"
   }
 ]

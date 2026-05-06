@@ -25,7 +25,7 @@ from promptseal.crypto import (
 )
 from promptseal.handler import PromptSealCallbackHandler
 
-ALL_RESUME_IDS = ["res_001", "res_002", "res_003", "res_004", "res_005"]
+ALL_RESUME_IDS = ["res_001", "res_002", "res_003", "res_004", "res_005", "res_006"]
 
 
 def _load_or_create_key(path: Path):

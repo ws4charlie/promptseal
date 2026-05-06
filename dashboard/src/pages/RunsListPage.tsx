@@ -11,7 +11,7 @@
 // the dashboard if they're seeing this page.
 
 import { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { /* Link, */ useNavigate } from "react-router-dom";
 import { loadFromEmbedded } from "../lib/evidencePack";
 import {
   formatSubject,
@@ -174,12 +174,15 @@ function PageHeader({ agentId }: { agentId: string | null }) {
         PromptSeal
         {agentId && <span className="text-muted"> · {agentId}</span>}
       </h1>
+      {/* Q1 demo prep: hidden for cleaner demo flow. /load route still works. */}
+      {/*
       <Link
         to="/load"
         className="text-sm text-accent no-underline hover:underline"
       >
         load pack ↗
       </Link>
+      */}
     </div>
   );
 }

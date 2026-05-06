@@ -109,7 +109,7 @@ def decide(
     culture = int(culture_score or 0)
     ambiguity = int(ambiguity_score or 10)
 
-    if tech >= 7 and culture >= 6 and ambiguity <= 5:
+    if tech >= 7 and culture >= 6 and ambiguity <= 7:
         decision = "hire"
         reasoning = (
             f"Strong technical ({tech}/10) and culture ({culture}/10), "
