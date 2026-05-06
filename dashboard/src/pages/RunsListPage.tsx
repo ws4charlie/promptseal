@@ -233,63 +233,55 @@ interface RowProps {
 }
 
 function RunsTableRow({ run, aliases }: RowProps) {
+  // E7 Issue 1: row is a single click target. v0.3 originally wrapped each
+  // cell in <Link>, which made the row look like 7 stacked hyperlinks
+  // instead of one navigable unit. Switched to one onClick on <tr>; the
+  // Anchored ✓ stays a real <a> (so middle/cmd-click opens basescan in a
+  // new tab) and stopPropagation guards against the row click hijacking
+  // its navigation. Trade-off: middle/cmd-click on the row no longer
+  // opens /run/<id> in a new tab. Acceptable for v0.3 — operators iterate
+  // in a single tab.
+  const navigate = useNavigate();
   const subject = formatSubject(run.subject_ref, aliases);
-  // Per IA §2.1: click row → /run/<run_id>?evidence=/sample-pack-<run_id>.json.
-  // The evidence file is gitignored; operators generate it via 04_export.
-  // RunPage handles missing-file errors gracefully (its own error banner).
   const href = `/run/${run.run_id}?evidence=/sample-pack-${run.run_id}.json`;
+  const goToRun = () => navigate(href);
   return (
     <tr
-      className="border-b border-border last:border-b-0 hover:bg-bg/50 transition-colors"
+      className="border-b border-border last:border-b-0 cursor-pointer hover:bg-bg/50 transition-colors"
+      onClick={goToRun}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          goToRun();
+        }
+      }}
     >
-      <td className="px-3 py-2.5 text-sm">
-        <Link
-          to={href}
-          title={run.started_at}
-          className="text-text no-underline hover:underline"
-        >
-          {formatStartedAt(run.started_at)}
-        </Link>
+      <td className="px-3 py-2.5 text-sm text-text" title={run.started_at}>
+        {formatStartedAt(run.started_at)}
       </td>
-      <td className="px-3 py-2.5 text-sm">
-        <Link to={href} className="text-text no-underline hover:underline">
-          {run.agent_id}
-        </Link>
-      </td>
-      <td className="px-3 py-2.5 text-sm">
-        <Link to={href} className="text-text no-underline hover:underline">
-          {subject ? (
-            <>
-              {subject.primary}
-              {subject.secondary && (
-                <span className="text-muted text-xs ml-1">
-                  ({subject.secondary})
-                </span>
-              )}
-            </>
-          ) : (
-            <span className="text-muted">—</span>
-          )}
-        </Link>
+      <td className="px-3 py-2.5 text-sm text-text">{run.agent_id}</td>
+      <td className="px-3 py-2.5 text-sm text-text">
+        {subject ? (
+          <>
+            {subject.primary}
+            {subject.secondary && (
+              <span className="text-muted text-xs ml-1">
+                ({subject.secondary})
+              </span>
+            )}
+          </>
+        ) : (
+          <span className="text-muted">—</span>
+        )}
       </td>
       <td className={`px-3 py-2.5 text-sm uppercase ${decisionClasses(run.final_decision)}`}>
-        <Link
-          to={href}
-          className="no-underline hover:underline"
-          style={{ color: "inherit" }}
-        >
-          {run.final_decision ?? "—"}
-        </Link>
+        {run.final_decision ?? "—"}
       </td>
+      <td className="px-3 py-2.5 text-sm text-text">{run.event_count}</td>
       <td className="px-3 py-2.5 text-sm text-text">
-        <Link to={href} className="text-text no-underline hover:underline">
-          {run.event_count}
-        </Link>
-      </td>
-      <td className="px-3 py-2.5 text-sm text-text">
-        <Link to={href} className="text-text no-underline hover:underline">
-          {formatDuration(run.duration_ms)}
-        </Link>
+        {formatDuration(run.duration_ms)}
       </td>
       <td className="px-3 py-2.5 text-sm">
         <a

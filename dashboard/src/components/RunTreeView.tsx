@@ -263,7 +263,13 @@ export function deriveTooltipLine2(node: TreeNode): string {
 }
 
 // ---------------------------------------------------------------------------
-// tooltip (mouse-over detail) — IA §4. 2 lines, no Tier 3 fields.
+// tooltip (mouse-over detail) — IA §4 originally specified 2 lines (timestamp
+// + plain-English description). E7 / D19: description moves Tier 1 inline on
+// the row, so the tooltip collapses to a single line — full ISO timestamp
+// only. The timestamp is forensic precision (ms) that the row's shortClock
+// (HH:MM:SS.mmm) already truncates the date from; the tooltip remains
+// useful for full-date confirmation. deriveTooltipLine2 stays exported
+// (DetailPanel description still derives from it).
 
 interface TooltipProps {
   node: TreeNode;
@@ -273,7 +279,6 @@ interface TooltipProps {
 
 function Tooltip({ node, visible, flipY }: TooltipProps) {
   const placement = flipY ? "bottom-full mb-1" : "top-full mt-1";
-  const line2 = deriveTooltipLine2(node);
   return (
     <div
       role="tooltip"
@@ -289,7 +294,6 @@ function Tooltip({ node, visible, flipY }: TooltipProps) {
       <div className="text-[11px] text-muted whitespace-nowrap">
         {node.start.timestamp}
       </div>
-      <div className="text-xs text-text mt-0.5 break-words">{line2}</div>
     </div>
   );
 }
@@ -472,20 +476,38 @@ function NodeRow({
           {styles.label}
         </span>
 
-        <span className="text-text">
+        <span className="text-text shrink-0">
           Event {sequenceNumber}
           {inFlight && (
             <span className="text-muted text-xs italic ml-1">(in flight)</span>
           )}
         </span>
 
-        <span className="text-muted text-xs">
+        <span className="text-muted text-xs shrink-0">·</span>
+
+        {/* E7 Issue 2 / D19: description Tier 1 inline. Operators want to
+            scan the row list without hovering each event — the human-readable
+            "what did the agent do here" identifier (model / tool name /
+            decision / error preamble) belongs on the row itself, not in a
+            tooltip. Reuses deriveTooltipLine2() (which DetailPanel's
+            description section also derives from). flex-1 + min-w-0 +
+            text-ellipsis truncates when the row narrows (drawer mode at
+            <1280px especially). title= surfaces full text on hover when
+            truncated. */}
+        <span
+          className="flex-1 min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-text"
+          title={deriveTooltipLine2(node)}
+        >
+          {deriveTooltipLine2(node)}
+        </span>
+
+        <span className="text-muted text-xs shrink-0">
           {shortClock(node.start.timestamp)}
         </span>
 
-        {dur && <span className="text-muted text-xs">· {dur}</span>}
+        {dur && <span className="text-muted text-xs shrink-0">· {dur}</span>}
 
-        <span className="text-muted text-xs ml-auto">
+        <span className="text-muted text-xs shrink-0">
           {verifyStatus && <VerifyStatusIcon status={verifyStatus} />}
         </span>
       </div>
