@@ -505,7 +505,15 @@ function NodeRow({
           {shortClock(node.start.timestamp)}
         </span>
 
-        {dur && <span className="text-muted text-xs shrink-0">· {dur}</span>}
+        {/* E8 Issue 1: single-receipt events (final_decision, error) have no
+            paired _end and therefore no duration. Originally the whole "·
+            duration" span was conditionally rendered, which left the row
+            ending at the timestamp and made the verify icon column shift
+            left for that row only. Em dash (—, U+2014) is rendered as a
+            placeholder so column alignment stays stable across all rows
+            and operators read "no duration applies here", not "duration
+            missing / error". */}
+        <span className="text-muted text-xs shrink-0">· {dur ?? "—"}</span>
 
         <span className="text-muted text-xs shrink-0">
           {verifyStatus && <VerifyStatusIcon status={verifyStatus} />}
@@ -648,6 +656,29 @@ export default function RunTreeView({
 
   const collapseAll = () => setExpanded(new Set());
 
+  // E8 Issue 2: state-aware toggle. Two separate "expand all · collapse all"
+  // buttons forced operators to read both labels and pick the right one;
+  // a single button that flips based on current state is one decision
+  // instead of two. Derived state — recomputed on every render is cheap
+  // (event_hash Set lookup × small tree). Vacuous truth: trees with no
+  // expandable nodes (no children anywhere) report allExpanded=true and
+  // the button reads "collapse all" but does nothing useful when clicked;
+  // acceptable since runs without nesting are rare and the click is a no-op.
+  const expandableNodes = useMemo<TreeNode[]>(() => {
+    const out: TreeNode[] = [];
+    const walk = (nodes: TreeNode[]) => {
+      for (const n of nodes) {
+        if (n.children.length > 0) out.push(n);
+        walk(n.children);
+      }
+    };
+    walk(tree);
+    return out;
+  }, [tree]);
+  const allExpanded = expandableNodes.every((n) =>
+    expanded.has(n.start.event_hash),
+  );
+
   return (
     <div className="bg-panel border border-border rounded-lg overflow-visible">
       <div className="flex items-center justify-between px-4 py-2 border-b border-border">
@@ -657,18 +688,10 @@ export default function RunTreeView({
         <div className="flex gap-2 text-xs text-muted">
           <button
             type="button"
-            onClick={expandAll}
+            onClick={allExpanded ? collapseAll : expandAll}
             className="hover:text-text"
           >
-            expand all
-          </button>
-          <span>·</span>
-          <button
-            type="button"
-            onClick={collapseAll}
-            className="hover:text-text"
-          >
-            collapse all
+            {allExpanded ? "collapse all" : "expand all"}
           </button>
         </div>
       </div>
