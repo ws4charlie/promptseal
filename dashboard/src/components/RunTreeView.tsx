@@ -27,8 +27,17 @@ export type ReceiptVerifyStatus = "pending" | "verifying" | "ok" | "fail";
 
 // ---------------------------------------------------------------------------
 // tree model
+//
+// E5 update: TreeNode and buildTree are exported so RunPage can compute the
+// DFS-ordered receipt-id list for keyboard navigation (←/→/↑/↓ moves to the
+// next or previous rendered block) and EventDetailPanel can derive its
+// "Description" section + tooltip-grade fallbacks. Helpers below
+// (asNumber, durationMs, pickPayloadString, pickTokenCount, findNestedLlm,
+// deriveTooltipLine2) are exported for the same reason — the file becomes
+// dual-purpose: tree component + tree-shape utilities. Cleaner option would
+// be a separate dashboard/src/lib/tree.ts; deferred to keep E5 changes scoped.
 
-interface TreeNode {
+export interface TreeNode {
   kind: "pair" | "single";
   // For "pair": start of the _start/_end pair (always present).
   // For "single": the lone receipt (final_decision, error, or orphan _end).
@@ -38,7 +47,7 @@ interface TreeNode {
   depth: number;
 }
 
-function buildTree(receipts: Receipt[]): TreeNode[] {
+export function buildTree(receipts: Receipt[]): TreeNode[] {
   const roots: TreeNode[] = [];
   const stack: TreeNode[] = [];
 
@@ -103,7 +112,7 @@ function shortClock(iso: string): string {
   return m ? m[1]! : iso;
 }
 
-function durationMs(start: string, end: string): string | null {
+export function durationMs(start: string, end: string): string | null {
   const a = Date.parse(start);
   const b = Date.parse(end);
   if (Number.isNaN(a) || Number.isNaN(b)) return null;
@@ -116,7 +125,7 @@ function durationMs(start: string, end: string): string | null {
 // payload_excerpt fields are NumberToken instances when numeric (the loader
 // preserves source repr so canonicalize() can byte-equal Python's signature
 // bytes). Tooltip text needs plain numbers.
-function asNumber(v: unknown): number | null {
+export function asNumber(v: unknown): number | null {
   if (typeof v === "number" && Number.isFinite(v)) return v;
   if (v instanceof NumberToken) {
     const n = Number(v.src);
@@ -172,7 +181,7 @@ const FAMILY_STYLES: Record<Family, { badge: string; row: string; label: string 
 // parent_hash, paired_event_hash, signature, public_key, agent_erc8004_token_id,
 // or receipt id (regression guard, IA §4.4).
 
-function pickTokenCount(node: TreeNode): number | null {
+export function pickTokenCount(node: TreeNode): number | null {
   // Look in the _end's payload first (token_usage is an output-side field),
   // then the _start as a fallback. token_usage may be null when the LLM
   // adapter didn't capture it (Bifrost path, ancient runs, etc.).
@@ -191,19 +200,22 @@ function pickTokenCount(node: TreeNode): number | null {
   return null;
 }
 
-function pickString(payload: unknown, key: string): string | null {
+export function pickPayloadString(payload: unknown, key: string): string | null {
   if (!payload || typeof payload !== "object") return null;
   const v = (payload as Record<string, unknown>)[key];
   return typeof v === "string" ? v : null;
 }
+// Local alias for backward compat within this module — will be folded after
+// E5 once both names are no longer used in the same file.
+const pickString = pickPayloadString;
 
-function findNestedLlm(node: TreeNode): TreeNode | undefined {
+export function findNestedLlm(node: TreeNode): TreeNode | undefined {
   return node.children.find(
     (c) => c.kind === "pair" && c.start.event_type === "llm_start",
   );
 }
 
-function deriveTooltipLine2(node: TreeNode): string {
+export function deriveTooltipLine2(node: TreeNode): string {
   const r = node.start;
   const t = r.event_type;
   try {
@@ -320,6 +332,18 @@ interface RowProps {
   expanded: boolean;
   hasChildren: boolean;
   sequenceNumber: number;
+  isSelected: boolean;
+  // Roving tabindex (WAI-ARIA pattern): when a selection exists, only the
+  // selected row is tab-focusable (tabIndex=0); other rows are tabIndex=-1
+  // (programmatically focusable but not in the Tab order). When no selection
+  // exists, all rows are tabIndex=0 so the user can Tab into the tree from
+  // outside without us hijacking focus.
+  isFocusable: boolean;
+  // data-receipt-id is used by RunPage's focus-follows-selection effect to
+  // locate the row in the DOM (querySelector by attribute) when keyboard
+  // navigation moves selectedReceiptId. Mirrors the click flow's
+  // targetReceiptId so a click and a keyboard nav both land on the same row.
+  dataReceiptId: number;
   onToggle: () => void;
   onClick: () => void;
   verifyStatus?: ReceiptVerifyStatus;
@@ -363,6 +387,9 @@ function NodeRow({
   expanded,
   hasChildren,
   sequenceNumber,
+  isSelected,
+  isFocusable,
+  dataReceiptId,
   onToggle,
   onClick,
   verifyStatus,
@@ -374,6 +401,13 @@ function NodeRow({
     node.end ? durationMs(node.start.timestamp, node.end.timestamp) : null;
   const inFlight =
     !node.end && node.start.event_type.endsWith("_start");
+  // App-level selection styling — distinct from the browser's :focus-visible
+  // ring so the user can tell "the row I clicked vs. the row that ends up
+  // focused after I tabbed". Selection wins over family hover; the accent
+  // ring + tinted bg overrides styles.row.
+  const rowVisualClass = isSelected
+    ? "bg-accent/15 ring-1 ring-accent ring-inset"
+    : styles.row;
 
   // Hover state is JS-driven instead of CSS group-hover so we can compute
   // the tooltip's flip-Y placement *before* the fade-in transition starts.
@@ -403,11 +437,13 @@ function NodeRow({
     >
       <div
         className={`flex items-center gap-3 py-1.5 px-2 rounded text-sm
-                    cursor-pointer ${styles.row}`}
+                    cursor-pointer ${rowVisualClass}`}
         style={{ paddingLeft: `${indent + 8}px` }}
         onClick={onClick}
         role="button"
-        tabIndex={0}
+        tabIndex={isFocusable ? 0 : -1}
+        aria-selected={isSelected}
+        data-receipt-id={dataReceiptId}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
@@ -465,6 +501,7 @@ interface SubtreeProps {
   onSelectReceipt?: (id: number) => void;
   verifications?: Map<number, ReceiptVerifyStatus>;
   sequenceNumbers: Map<string, number>;
+  selectedReceiptId: number | null;
 }
 
 function Subtree({
@@ -474,6 +511,7 @@ function Subtree({
   onSelectReceipt,
   verifications,
   sequenceNumbers,
+  selectedReceiptId,
 }: SubtreeProps) {
   const key = node.start.event_hash;
   const expanded = expandedSet.has(key);
@@ -481,6 +519,20 @@ function Subtree({
   const targetReceiptId = node.end ? node.end.id : node.start.id;
   const verifyStatus = verifications?.get(targetReceiptId);
   const sequenceNumber = sequenceNumbers.get(key) ?? 0;
+  // Match selectedReceiptId against either start.id or end.id — banner
+  // jump-to-failed may land on a _start id while row clicks land on the
+  // primary (end-or-start) id.
+  const isSelected =
+    selectedReceiptId !== null &&
+    (node.start.id === selectedReceiptId ||
+      node.end?.id === selectedReceiptId);
+  // Roving tabindex with a "no selection → all rows tabbable" fallback:
+  // without the fallback, an empty tree (selectedReceiptId === null) would
+  // have ZERO tab-focusable rows, making it inaccessible from keyboard
+  // navigation. With the fallback, the user can Tab into any row to start.
+  // Once a selection exists, only that row is in the Tab order — pressing
+  // Tab again leaves the tree (the next focusable element on the page).
+  const isFocusable = selectedReceiptId === null || isSelected;
 
   return (
     <div>
@@ -489,6 +541,9 @@ function Subtree({
         expanded={expanded}
         hasChildren={hasChildren}
         sequenceNumber={sequenceNumber}
+        isSelected={isSelected}
+        isFocusable={isFocusable}
+        dataReceiptId={targetReceiptId}
         onToggle={() => toggle(key)}
         onClick={() => onSelectReceipt?.(targetReceiptId)}
         verifyStatus={verifyStatus}
@@ -504,6 +559,7 @@ function Subtree({
               onSelectReceipt={onSelectReceipt}
               verifications={verifications}
               sequenceNumbers={sequenceNumbers}
+              selectedReceiptId={selectedReceiptId}
             />
           ))}
         </div>
@@ -519,12 +575,14 @@ interface RunTreeViewProps {
   pack: EvidencePack;
   onSelectReceipt?: (id: number) => void;
   verifications?: Map<number, ReceiptVerifyStatus>;
+  selectedReceiptId?: number | null;
 }
 
 export default function RunTreeView({
   pack,
   onSelectReceipt,
   verifications,
+  selectedReceiptId = null,
 }: RunTreeViewProps) {
   const tree = useMemo(() => buildTree(pack.receipts), [pack.receipts]);
   const sequenceNumbers = useMemo(() => assignSequenceNumbers(tree), [tree]);
@@ -603,6 +661,7 @@ export default function RunTreeView({
             onSelectReceipt={onSelectReceipt}
             verifications={verifications}
             sequenceNumbers={sequenceNumbers}
+            selectedReceiptId={selectedReceiptId}
           />
         ))}
       </div>

@@ -8,12 +8,14 @@
 // on-chain root is cached and passed to every per-receipt verifier. Without
 // this, N receipts would mean N RPC calls — wasteful and rate-limit-prone.
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, type Dispatch, type SetStateAction } from "react";
 import { useParams } from "react-router-dom";
 import EventDetailPanel from "../components/EventDetailPanel";
 import RunSummaryCard from "../components/RunSummaryCard";
 import RunTreeView, {
+  buildTree,
   type ReceiptVerifyStatus,
+  type TreeNode,
 } from "../components/RunTreeView";
 import {
   EvidencePackValidationError,
@@ -273,6 +275,184 @@ export default function RunPage() {
   })();
 
   return (
+    <RunPageLoaded
+      pack={pack}
+      verifications={verifications}
+      cardVerifyStatus={cardVerifyStatus}
+      isDone={isDone}
+      overall={overall}
+      runVerifyAll={runVerifyAll}
+      selectedReceiptId={selectedReceiptId}
+      setSelectedReceiptId={setSelectedReceiptId}
+    />
+  );
+}
+
+// ---------------------------------------------------------------------------
+// RunPageLoaded — pulled out so the tree-derived useMemo hooks aren't
+// conditional (i.e. they only run when `pack` is known). Keeps the hooks
+// rule honest without nesting a giant ternary in the parent.
+
+interface RunPageLoadedProps {
+  pack: EvidencePack;
+  verifications: Map<number, ReceiptVerifyStatus>;
+  cardVerifyStatus: ReceiptVerifyStatus;
+  isDone: boolean;
+  overall: OverallStatus;
+  runVerifyAll: (pack: EvidencePack) => Promise<void>;
+  selectedReceiptId: number | null;
+  // Full Dispatch<SetStateAction<…>> so the functional updater form works:
+  // navigate calls setSelectedReceiptId((currentId) => …) to read fresh state.
+  setSelectedReceiptId: Dispatch<SetStateAction<number | null>>;
+}
+
+function RunPageLoaded({
+  pack,
+  verifications,
+  cardVerifyStatus,
+  isDone,
+  overall,
+  runVerifyAll,
+  selectedReceiptId,
+  setSelectedReceiptId,
+}: RunPageLoadedProps) {
+  // Tree shape — drives both rendering (RunTreeView re-builds internally,
+  // matching the same algorithm) and keyboard navigation (us, here). The
+  // duplicate buildTree() call in RunTreeView is cheap; can dedupe later if
+  // it shows up in profiles.
+  const tree = useMemo(() => buildTree(pack.receipts), [pack]);
+  const orderedNodes = useMemo(() => {
+    const out: TreeNode[] = [];
+    const walk = (ns: TreeNode[]) => {
+      for (const n of ns) {
+        out.push(n);
+        walk(n.children);
+      }
+    };
+    walk(tree);
+    return out;
+  }, [tree]);
+  // Mirrors RunTreeView's onClick mapping: end.id when paired, start.id
+  // for singles. The selectedReceiptId state always lands on one of these.
+  const orderedReceiptIds = useMemo(
+    () => orderedNodes.map((n) => (n.end ? n.end.id : n.start.id)),
+    [orderedNodes],
+  );
+  // selected-node lookup — match either start.id or end.id (the user might
+  // click the row, which sets primary id, OR jump to a failed receipt from
+  // the banner via setSelectedReceiptId(failedId), which could be a _start
+  // for an early-failed pair).
+  const selectedNode = useMemo<TreeNode | null>(() => {
+    if (selectedReceiptId === null) return null;
+    return (
+      orderedNodes.find(
+        (n) => n.start.id === selectedReceiptId || n.end?.id === selectedReceiptId,
+      ) ?? null
+    );
+  }, [orderedNodes, selectedReceiptId]);
+  const selectedSeqNumber = useMemo<number | null>(() => {
+    if (!selectedNode) return null;
+    return orderedNodes.indexOf(selectedNode) + 1; // 1-based for "Event N of M"
+  }, [orderedNodes, selectedNode]);
+  const totalEvents = orderedNodes.length;
+
+  const detailVerifyStatus: ReceiptVerifyStatus =
+    selectedReceiptId !== null
+      ? verifications.get(selectedReceiptId) ?? "pending"
+      : "pending";
+
+  const canPrev =
+    selectedNode !== null && orderedNodes.indexOf(selectedNode) > 0;
+  const canNext =
+    selectedNode !== null &&
+    orderedNodes.indexOf(selectedNode) < orderedNodes.length - 1;
+
+  // Functional setState reads the current selectedReceiptId from React's
+  // own state machinery — no closure, no stale capture. The previous version
+  // depended on `selectedNode` in deps; navigate recreated on every selection
+  // change, useEffect re-attached the listener, and (per user repro) somewhere
+  // in that churn keypresses landed on a stale closure → state didn't move.
+  // This version makes navigate stable for the lifetime of the pack: deps are
+  // `orderedNodes` + `orderedReceiptIds`, which only change when the pack
+  // changes. The listener attaches once and stays.
+  const navigate = useCallback(
+    (delta: number) => {
+      if (orderedReceiptIds.length === 0) return;
+      setSelectedReceiptId((currentId) => {
+        if (currentId === null) {
+          // From empty state: ↓/→ selects first; ↑/← stays empty.
+          return delta > 0 ? orderedReceiptIds[0] ?? null : null;
+        }
+        // selectedReceiptId may be either start.id or end.id of a node;
+        // match against both so banner-jump-to-failed (which can land on
+        // either) works alongside row-click (always primary id).
+        const idx = orderedNodes.findIndex(
+          (n) => n.start.id === currentId || n.end?.id === currentId,
+        );
+        if (idx < 0) return currentId; // unknown id — leave alone
+        const next = idx + delta;
+        if (next < 0 || next >= orderedNodes.length) return currentId; // edge clamp
+        return orderedReceiptIds[next]!;
+      });
+    },
+    [orderedNodes, orderedReceiptIds, setSelectedReceiptId],
+  );
+
+  // Focus-follows-selection: when selectedReceiptId changes, programmatically
+  // focus the matching tree row. Without this, the browser's :focus-visible
+  // ring stays on the last *clicked* row even after keyboard nav has moved
+  // the app's selection elsewhere — the user sees two ring outlines on
+  // different rows. Pairing focus with selection guarantees a single visual
+  // indicator at any time.
+  //
+  // selectedReceiptId may be either start.id or end.id of a node (banner
+  // jump-to-failed can land on either; row clicks land on the primary id).
+  // We canonicalize via orderedNodes → primary id (matches data-receipt-id
+  // attribute rendered by Subtree) before querySelectoring.
+  useEffect(() => {
+    if (selectedReceiptId === null) return;
+    const node = orderedNodes.find(
+      (n) => n.start.id === selectedReceiptId || n.end?.id === selectedReceiptId,
+    );
+    if (!node) return;
+    const primary = node.end ? node.end.id : node.start.id;
+    const el = document.querySelector(
+      `[data-receipt-id="${primary}"]`,
+    );
+    if (el instanceof HTMLElement) {
+      el.focus({ preventScroll: false });
+    }
+  }, [selectedReceiptId, orderedNodes]);
+
+  // Keyboard nav: ←/→ and ↑/↓ both navigate prev/next; Esc deselects.
+  // Suppressed inside text inputs / contenteditable so search boxes (none
+  // today, but defensive for the future) don't lose arrow-key handling.
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement | null;
+      if (
+        t &&
+        (t.tagName === "INPUT" ||
+          t.tagName === "TEXTAREA" ||
+          t.isContentEditable)
+      ) {
+        return;
+      }
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+        e.preventDefault();
+        navigate(1);
+      } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        navigate(-1);
+      } else if (e.key === "Escape") {
+        setSelectedReceiptId(null);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [navigate, setSelectedReceiptId]);
+
+  return (
     <div className="space-y-6">
       <RunSummaryCard
         pack={pack}
@@ -289,17 +469,39 @@ export default function RunPage() {
         canRerun={isDone || overall.kind === "error"}
       />
 
-      <RunTreeView
-        pack={pack}
-        onSelectReceipt={setSelectedReceiptId}
-        verifications={verifications}
-      />
+      {/* Tree + Detail container.
+            Narrow (<1280px): default block layout — tree fills width, detail
+              is fixed-positioned drawer (escapes flow).
+            Wide (≥1280px): grid 60/40 — tree left, detail right, both visible
+              simultaneously. */}
+      <div
+        className={
+          "min-[1280px]:grid min-[1280px]:grid-cols-[3fr_2fr] " +
+          "min-[1280px]:gap-6 min-[1280px]:items-start " +
+          "space-y-6 min-[1280px]:space-y-0"
+        }
+      >
+        <RunTreeView
+          pack={pack}
+          onSelectReceipt={setSelectedReceiptId}
+          verifications={verifications}
+          selectedReceiptId={selectedReceiptId}
+        />
 
-      <EventDetailPanel
-        receiptId={selectedReceiptId}
-        pack={pack}
-        onClose={() => setSelectedReceiptId(null)}
-      />
+        <EventDetailPanel
+          receiptId={selectedReceiptId}
+          pack={pack}
+          currentNode={selectedNode}
+          sequenceNumber={selectedSeqNumber}
+          totalEvents={totalEvents}
+          verifyStatus={detailVerifyStatus}
+          onClose={() => setSelectedReceiptId(null)}
+          onPrev={() => navigate(-1)}
+          onNext={() => navigate(1)}
+          canPrev={canPrev}
+          canNext={canNext}
+        />
+      </div>
     </div>
   );
 }

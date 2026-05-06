@@ -1,7 +1,31 @@
-// EventDetailPanel — side drawer showing a single receipt's details +
-// "Verify this event" button that runs 5 steps with live progress.
+// EventDetailPanel — per-event inspector. E5 rewrite.
+//
+// Major changes vs v0.2/B4:
+//   - Layout: drawer at <1280px (current B4 behavior preserved); fits as a
+//     grid cell at ≥1280px (split-pane). Single component renders both
+//     modes via Tailwind responsive classes — `fixed top-0 right-0` is the
+//     drawer base; `min-[1280px]:static` overrides at the breakpoint so the
+//     element flows into RunPage's grid container at wide widths.
+//   - Section order: Header → Verification → Description → Payload → Tech fold.
+//     (v0.2 had Identity, Timing, Hash chain as top-level sections; all three
+//     are demoted into the technical-metadata fold or absorbed into Header.)
+//   - Verification: default 1-line status consumed from RunPage's auto-verify
+//     state (D15). Click ▼ to expand the 5-step trace — same verifyEventStepwise
+//     used by v0.2, just gated behind a fold instead of always-running.
+//     Failed events auto-expand on selection (failures need attention).
+//   - Description: NEW section, plain English by event_type. Same derivation
+//     family as the tooltip line 2 (E3) but expanded to a full sentence with
+//     subject alias resolution for final_decision (D16).
+//   - Per-event "Verify this event" button removed. Result inherited from
+//     RunPage's auto-verify status; user re-triggers via the ▼ trace open or
+//     the page-level "re-verify all" link.
+//   - Receipt id, event_hash, parent_hash, paired_event_hash, public_key all
+//     move into the collapsed "technical metadata" fold (D13 + IA §1.2.A).
+//   - Header includes prev/next arrows + (drawer mode only) a × close. Keyboard
+//     ←/→/↑/↓ navigation lives in RunPage; this component only renders the
+//     buttons that share the same handlers.
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { NumberToken } from "../../../verifier/canonical.js";
 import type { EvidencePack, Receipt } from "../lib/evidencePack";
 import {
@@ -12,56 +36,426 @@ import {
   type StepResult,
   type VerifyState,
 } from "../lib/inlineVerifier";
+import {
+  loadSubjectAliases,
+  type SubjectAliases,
+} from "../lib/subjectAliases";
+import {
+  asNumber,
+  durationMs,
+  findNestedLlm,
+  pickPayloadString,
+  pickTokenCount,
+  type ReceiptVerifyStatus,
+  type TreeNode,
+} from "./RunTreeView";
+import ExpandableHash from "./ExpandableHash";
 
-const ERC8004_REGISTRY = "0x7177a6867296406881E20d6647232314736Dd09A";
+// ---------------------------------------------------------------------------
+// description derivation — full-sentence variant of tooltip line 2 (IA §4 + E3)
 
-function basescanTokenUrl(tokenId: number): string {
-  return `https://sepolia.basescan.org/token/${ERC8004_REGISTRY}?a=${tokenId}`;
+function deriveDescription(node: TreeNode, aliases: SubjectAliases): string {
+  const r = node.start;
+  const t = r.event_type;
+  try {
+    if (t === "final_decision") {
+      const decision = pickPayloadString(r.payload_excerpt, "decision");
+      const subjectRef = pickPayloadString(r.payload_excerpt, "candidate_id");
+      const subject = subjectRef
+        ? aliases[subjectRef] ?? subjectRef
+        : "(unknown subject)";
+      const decisionLabel = decision ? decision.toUpperCase() : "—";
+      return `Agent issued final decision: ${decisionLabel}. Subject: ${subject}.`;
+    }
+    if (t === "error") {
+      const msg =
+        pickPayloadString(r.payload_excerpt, "message") ??
+        pickPayloadString(r.payload_excerpt, "error") ??
+        "(no message available)";
+      const truncated = msg.length > 200 ? msg.slice(0, 200) + "…" : msg;
+      return `Event failed: ${truncated}`;
+    }
+    if (t === "llm_start" || t === "llm_end") {
+      const model = pickPayloadString(r.payload_excerpt, "model") ?? "an LLM";
+      const tempVal = (r.payload_excerpt as Record<string, unknown> | null)
+        ?.temperature;
+      const tempNum = asNumber(tempVal);
+      // Temperatures conventionally render with at least one decimal place
+      // (0.0, 0.7) — distinguishes "0.0 deterministic" from "0 missing".
+      const tempPart =
+        tempNum !== null ? ` at temperature ${tempNum.toFixed(1)}` : "";
+      if (!node.end) {
+        return `Agent called ${model}${tempPart}. Still in flight.`;
+      }
+      const dur = durationMs(node.start.timestamp, node.end.timestamp);
+      const tokens = pickTokenCount(node);
+      const durLabel = dur ?? "—";
+      if (tokens !== null) {
+        return `Agent called ${model}${tempPart}. Returned ~${tokens} tokens in ${durLabel}.`;
+      }
+      return `Agent called ${model}${tempPart}. Completed in ${durLabel}.`;
+    }
+    if (t === "tool_start" || t === "tool_end") {
+      const toolName =
+        pickPayloadString(r.payload_excerpt, "tool_name") ?? "(tool)";
+      const nested = findNestedLlm(node);
+      if (nested) {
+        const nestedModel =
+          pickPayloadString(nested.start.payload_excerpt, "model") ?? "an LLM";
+        const nestedDur =
+          nested.end &&
+          durationMs(nested.start.timestamp, nested.end.timestamp);
+        const nestedDurPart = nestedDur ? ` for ${nestedDur}` : "";
+        return `Agent invoked ${toolName} as a tool. Internally called ${nestedModel}${nestedDurPart}.`;
+      }
+      const dur = node.end
+        ? durationMs(node.start.timestamp, node.end.timestamp)
+        : null;
+      return dur
+        ? `Agent invoked ${toolName} as a tool, completed in ${dur}.`
+        : `Agent invoked ${toolName} as a tool.`;
+    }
+    return `Event of type ${t}.`;
+  } catch {
+    return `Event of type ${t}.`;
+  }
 }
 
-function basescanTxUrl(tx: string): string {
-  return `https://sepolia.basescan.org/tx/${tx}`;
+// ---------------------------------------------------------------------------
+// header bits
+
+function familyLabel(node: TreeNode): string {
+  const t = node.start.event_type;
+  if (t.startsWith("llm_")) {
+    const model = pickPayloadString(node.start.payload_excerpt, "model");
+    return model ? `LLM call (${model})` : "LLM call";
+  }
+  if (t.startsWith("tool_")) {
+    const tool = pickPayloadString(node.start.payload_excerpt, "tool_name");
+    return tool ? `Tool call (${tool})` : "Tool call";
+  }
+  if (t === "final_decision") return "Final decision";
+  if (t === "error") return "Error";
+  return t;
 }
+
+function headerDuration(node: TreeNode): string | null {
+  if (!node.end) return null;
+  return durationMs(node.start.timestamp, node.end.timestamp);
+}
+
+// ---------------------------------------------------------------------------
+// component props
 
 interface EventDetailPanelProps {
   receiptId: number | null;
   pack: EvidencePack;
+  currentNode: TreeNode | null;
+  sequenceNumber: number | null;
+  totalEvents: number;
+  verifyStatus: ReceiptVerifyStatus;
   onClose: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+  canPrev: boolean;
+  canNext: boolean;
 }
 
 export default function EventDetailPanel({
   receiptId,
   pack,
+  currentNode,
+  sequenceNumber,
+  totalEvents,
+  verifyStatus,
   onClose,
+  onPrev,
+  onNext,
+  canPrev,
+  canNext,
 }: EventDetailPanelProps) {
   const open = receiptId !== null;
   const receipt: Receipt | undefined = useMemo(
-    () => (receiptId === null ? undefined : pack.receipts.find((r) => r.id === receiptId)),
+    () =>
+      receiptId === null
+        ? undefined
+        : pack.receipts.find((r) => r.id === receiptId),
     [receiptId, pack.receipts],
   );
 
+  // Aliases load once on mount; same fetch RunSummaryCard does — browser
+  // cache de-dupes the network cost.
+  const [aliases, setAliases] = useState<SubjectAliases>({});
+  useEffect(() => {
+    let cancelled = false;
+    void loadSubjectAliases().then((a) => {
+      if (!cancelled) setAliases(a);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return (
+    <>
+      {/* Drawer backdrop — narrow only, hidden in split-pane mode */}
+      <div
+        className={
+          `fixed inset-0 bg-black/60 z-30 transition-opacity ` +
+          `min-[1280px]:hidden ` +
+          (open ? "opacity-100" : "opacity-0 pointer-events-none")
+        }
+        onClick={onClose}
+        aria-hidden="true"
+      />
+
+      {/* Panel — drawer at narrow widths, in-grid card at ≥1280px */}
+      <aside
+        aria-hidden={!open}
+        className={
+          // Drawer (default)
+          `fixed top-0 right-0 h-full w-[480px] max-w-[100vw] z-40 ` +
+          `bg-panel border-l border-border shadow-2xl overflow-y-auto ` +
+          `transform transition-transform duration-200 ` +
+          `${open ? "translate-x-0" : "translate-x-full"} ` +
+          // Split-pane override at ≥1280px
+          `min-[1280px]:static min-[1280px]:translate-x-0 ` +
+          `min-[1280px]:h-auto min-[1280px]:w-auto min-[1280px]:max-w-none ` +
+          `min-[1280px]:overflow-visible ` +
+          `min-[1280px]:rounded-lg min-[1280px]:border ` +
+          `min-[1280px]:border-border min-[1280px]:shadow-none`
+        }
+      >
+        {receipt && currentNode ? (
+          <DetailContent
+            receipt={receipt}
+            node={currentNode}
+            pack={pack}
+            sequenceNumber={sequenceNumber}
+            totalEvents={totalEvents}
+            verifyStatus={verifyStatus}
+            aliases={aliases}
+            onClose={onClose}
+            onPrev={onPrev}
+            onNext={onNext}
+            canPrev={canPrev}
+            canNext={canNext}
+          />
+        ) : (
+          <EmptyState />
+        )}
+      </aside>
+    </>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// empty state — split-pane mode only (drawer is translated off-screen instead)
+
+function EmptyState() {
+  return (
+    <div className="text-center text-muted py-16 px-5 space-y-3">
+      <div className="text-2xl text-muted/40">·</div>
+      <div className="text-sm">Click an event in the tree to inspect</div>
+      <div className="text-xs text-muted/70">
+        ↑↓ keyboard arrows to navigate
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// detail body
+
+interface DetailContentProps {
+  receipt: Receipt;
+  node: TreeNode;
+  pack: EvidencePack;
+  sequenceNumber: number | null;
+  totalEvents: number;
+  verifyStatus: ReceiptVerifyStatus;
+  aliases: SubjectAliases;
+  onClose: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+  canPrev: boolean;
+  canNext: boolean;
+}
+
+function DetailContent({
+  receipt,
+  node,
+  pack,
+  sequenceNumber,
+  totalEvents,
+  verifyStatus,
+  aliases,
+  onClose,
+  onPrev,
+  onNext,
+  canPrev,
+  canNext,
+}: DetailContentProps) {
+  return (
+    <div className="p-5 space-y-5">
+      <Header
+        node={node}
+        sequenceNumber={sequenceNumber}
+        totalEvents={totalEvents}
+        onClose={onClose}
+        onPrev={onPrev}
+        onNext={onNext}
+        canPrev={canPrev}
+        canNext={canNext}
+      />
+      <VerifySection
+        receipt={receipt}
+        pack={pack}
+        verifyStatus={verifyStatus}
+      />
+      <DescriptionSection node={node} aliases={aliases} />
+      <PayloadSection receipt={receipt} />
+      <TechnicalMetadataFold receipt={receipt} node={node} />
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// header
+
+interface HeaderProps {
+  node: TreeNode;
+  sequenceNumber: number | null;
+  totalEvents: number;
+  onClose: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+  canPrev: boolean;
+  canNext: boolean;
+}
+
+function Header({
+  node,
+  sequenceNumber,
+  totalEvents,
+  onClose,
+  onPrev,
+  onNext,
+  canPrev,
+  canNext,
+}: HeaderProps) {
+  const dur = headerDuration(node);
+  return (
+    <div className="flex items-start justify-between gap-3 pb-3 border-b border-border">
+      <div className="min-w-0">
+        <div className="text-xs text-muted">
+          {sequenceNumber !== null
+            ? `Event ${sequenceNumber} of ${totalEvents}`
+            : "Event"}
+        </div>
+        <div className="text-lg font-semibold text-text break-words">
+          {familyLabel(node)}
+        </div>
+        <div className="text-xs text-muted mt-0.5">
+          {node.start.timestamp}
+          {dur && <> · {dur}</>}
+        </div>
+      </div>
+      <div className="flex items-center gap-1 shrink-0">
+        <NavButton onClick={onPrev} disabled={!canPrev} label="prev">
+          ←
+        </NavButton>
+        <NavButton onClick={onNext} disabled={!canNext} label="next">
+          →
+        </NavButton>
+        {/* Close button only in drawer mode — split-pane has no close, only deselect via Esc */}
+        <button
+          type="button"
+          onClick={onClose}
+          className="text-muted hover:text-text text-2xl leading-none ml-1 min-[1280px]:hidden"
+          aria-label="close"
+        >
+          ×
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function NavButton({
+  onClick,
+  disabled,
+  label,
+  children,
+}: {
+  onClick: () => void;
+  disabled: boolean;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={label}
+      title={label}
+      className="px-2 py-1 text-text hover:bg-bg rounded disabled:opacity-30 disabled:cursor-not-allowed"
+    >
+      {children}
+    </button>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// section helpers
+
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <h3 className="text-xs uppercase tracking-wider text-muted">{children}</h3>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 1 · verification (default-collapsed; auto-expands on failure — D15)
+
+function VerifySection({
+  receipt,
+  pack,
+  verifyStatus,
+}: {
+  receipt: Receipt;
+  pack: EvidencePack;
+  verifyStatus: ReceiptVerifyStatus;
+}) {
+  const [expanded, setExpanded] = useState(false);
   const [verifyState, setVerifyState] = useState<VerifyState>(emptyVerifyState);
   const [running, setRunning] = useState(false);
+  // Track which receipt id we last triggered a stepwise run for, so we don't
+  // re-fire on every render but DO fire once per (receiptId × expanded).
+  const lastRunForId = useRef<number | null>(null);
 
-  // Reset verify panel whenever the selected receipt changes.
+  // Reset when the user navigates to a different event.
   useEffect(() => {
     setVerifyState(emptyVerifyState());
     setRunning(false);
-  }, [receiptId]);
+    lastRunForId.current = null;
+    // Auto-expand failures so the user sees which step broke immediately.
+    setExpanded(verifyStatus === "fail");
+  }, [receipt.id, verifyStatus]);
 
-  // ESC closes.
+  // Trigger the stepwise run when the section is (or becomes) expanded —
+  // either by user click on ▼ or by the auto-expand-on-failure effect above.
   useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open, onClose]);
+    if (!expanded || running) return;
+    if (lastRunForId.current === receipt.id) return;
+    lastRunForId.current = receipt.id;
+    void runVerify();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [expanded, receipt.id]);
 
   const runVerify = async () => {
-    if (receiptId === null) return;
-    const inputs = pickVerifyInputs(pack, receiptId);
+    const inputs = pickVerifyInputs(pack, receipt.id);
     if (!inputs) {
       setVerifyState({
         ...emptyVerifyState(),
@@ -94,282 +488,49 @@ export default function EventDetailPanel({
     }
   };
 
-  return (
-    <>
-      {/* overlay */}
-      <div
-        className={`fixed inset-0 bg-black/60 transition-opacity z-30
-                    ${open ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-        onClick={onClose}
-        aria-hidden="true"
-      />
+  const summary = (() => {
+    switch (verifyStatus) {
+      case "pending":
+        return <span className="text-muted">○ Verification pending…</span>;
+      case "verifying":
+        return (
+          <span className="text-running">
+            <span className="animate-pulse mr-1">◐</span>Verifying…
+          </span>
+        );
+      case "ok":
+        return (
+          <span className="text-ok font-semibold">
+            ✓ Verified end-to-end
+          </span>
+        );
+      case "fail":
+        return (
+          <span className="text-fail font-semibold">✗ Verification failed</span>
+        );
+    }
+  })();
 
-      {/* drawer */}
-      <aside
-        className={`fixed top-0 right-0 h-full w-[480px] max-w-[100vw] z-40
-                    bg-panel border-l border-border shadow-2xl
-                    transform transition-transform duration-200
-                    ${open ? "translate-x-0" : "translate-x-full"}
-                    overflow-y-auto`}
-        aria-hidden={!open}
-      >
-        {receipt && (
-          <div className="p-5 space-y-5">
-            <Header receipt={receipt} onClose={onClose} />
-            <IdentitySection receipt={receipt} />
-            <TimingSection receipt={receipt} pack={pack} />
-            <HashChainSection receipt={receipt} />
-            <PayloadSection receipt={receipt} />
-            <VerifySection
-              state={verifyState}
-              running={running}
-              onRun={runVerify}
-            />
-          </div>
-        )}
-      </aside>
-    </>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// header
-
-function Header({ receipt, onClose }: { receipt: Receipt; onClose: () => void }) {
-  return (
-    <div className="flex items-start justify-between gap-3 pb-3 border-b border-border">
-      <div>
-        <div className="text-xs text-muted uppercase tracking-wider">
-          receipt #{receipt.id ?? "—"}
-        </div>
-        <div className="text-lg font-semibold text-text">{receipt.event_type}</div>
-      </div>
-      <button
-        type="button"
-        onClick={onClose}
-        className="text-muted hover:text-text text-2xl leading-none"
-        aria-label="close"
-      >
-        ×
-      </button>
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// section helpers
-
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return (
-    <h3 className="text-xs uppercase tracking-wider text-muted">{children}</h3>
-  );
-}
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="text-sm">
-      <div className="text-xs text-muted">{label}</div>
-      <div className="text-text break-all">{children}</div>
-    </div>
-  );
-}
-
-function MonoBox({ children }: { children: React.ReactNode }) {
-  return (
-    <code className="block bg-bg border border-border rounded px-2 py-1 text-xs break-all">
-      {children}
-    </code>
-  );
-}
-
-function ExpandableHash({ value }: { value: string | null }) {
-  const [open, setOpen] = useState(false);
-  if (value === null) return <span className="text-muted">— (genesis)</span>;
-  const stripped = value.startsWith("sha256:") ? value.slice("sha256:".length) : value;
-  const short = stripped.slice(0, 16) + "…" + stripped.slice(-8);
-  return (
-    <button
-      type="button"
-      onClick={() => setOpen((v) => !v)}
-      className="text-left w-full"
-      aria-expanded={open}
-    >
-      <code className="block bg-bg border border-border rounded px-2 py-1 text-xs break-all hover:border-accent">
-        {open ? value : short}
-      </code>
-    </button>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// 5 sections
-
-function IdentitySection({ receipt }: { receipt: Receipt }) {
   return (
     <section className="space-y-2">
-      <SectionTitle>1 · Identity</SectionTitle>
-      <Field label="agent_id">
-        <code className="bg-bg px-1.5 py-0.5 rounded border border-border">
-          {receipt.agent_id}
-        </code>
-      </Field>
-      <Field label="agent_erc8004_token_id">
-        {receipt.agent_erc8004_token_id !== null ? (
-          <a
-            href={basescanTokenUrl(receipt.agent_erc8004_token_id)}
-            target="_blank"
-            rel="noreferrer"
-            className="text-accent"
-          >
-            #{receipt.agent_erc8004_token_id} ↗
-          </a>
-        ) : (
-          <span className="text-muted">null</span>
-        )}
-      </Field>
-      <Field label="public_key">
-        <ExpandableHash value={receipt.public_key} />
-      </Field>
-    </section>
-  );
-}
-
-function TimingSection({ receipt, pack }: { receipt: Receipt; pack: EvidencePack }) {
-  return (
-    <section className="space-y-2">
-      <SectionTitle>2 · Timing</SectionTitle>
-      <Field label="timestamp (event-time, signed)">
-        <MonoBox>{receipt.timestamp}</MonoBox>
-      </Field>
-      <Field label="anchor block (chain-time)">
-        <div className="space-y-1">
-          <MonoBox>
-            block {pack.anchor.block_number} · chain {pack.anchor.chain_id}
-          </MonoBox>
-          <a
-            href={basescanTxUrl(pack.anchor.tx_hash)}
-            target="_blank"
-            rel="noreferrer"
-            className="text-accent text-xs break-all"
-          >
-            {pack.anchor.tx_hash} ↗
-          </a>
-          <div className="text-muted text-[11px] italic">
-            anchor block timestamp arrives via RPC in B5
-          </div>
-        </div>
-      </Field>
-    </section>
-  );
-}
-
-function HashChainSection({ receipt }: { receipt: Receipt }) {
-  return (
-    <section className="space-y-2">
-      <SectionTitle>3 · Hash chain</SectionTitle>
-      <Field label="parent_hash">
-        <ExpandableHash value={receipt.parent_hash} />
-      </Field>
-      <Field label="event_hash (this receipt)">
-        <ExpandableHash value={receipt.event_hash} />
-      </Field>
-      <Field label="paired_event_hash">
-        <ExpandableHash value={receipt.paired_event_hash} />
-      </Field>
-    </section>
-  );
-}
-
-function PayloadSection({ receipt }: { receipt: Receipt }) {
-  // payload_excerpt's numbers arrive as NumberToken instances (the loader
-  // preserves source repr so verification can byte-equal Python's signed
-  // bytes). For display we flatten them back to plain JS numbers via a
-  // JSON.stringify replacer — loses "0.0" → "0" but renders sanely. The
-  // display copy is purely cosmetic; verification still reads the original.
-  const pretty = useMemo(
-    () =>
-      JSON.stringify(
-        receipt.payload_excerpt,
-        (_key, value) =>
-          value instanceof NumberToken ? Number(value.src) : value,
-        2,
-      ),
-    [receipt.payload_excerpt],
-  );
-  return (
-    <section className="space-y-2">
-      <SectionTitle>4 · Payload</SectionTitle>
-      <pre className="bg-bg border border-border rounded p-3 text-xs text-text overflow-x-auto whitespace-pre-wrap break-all">
-        {pretty}
-      </pre>
-    </section>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// 5 · verify
-
-function VerifySection({
-  state,
-  running,
-  onRun,
-}: {
-  state: VerifyState;
-  running: boolean;
-  onRun: () => void;
-}) {
-  const anyStarted = state.steps.some((s) => s.status !== "pending");
-  const allDone = state.done;
-
-  return (
-    <section className="space-y-3">
-      <SectionTitle>5 · Verify</SectionTitle>
-      {!anyStarted && (
+      <SectionTitle>Verification</SectionTitle>
+      <div className="flex items-center justify-between gap-3">
+        <div className="text-sm">{summary}</div>
         <button
           type="button"
-          onClick={onRun}
-          disabled={running}
-          className="w-full bg-accent text-bg font-semibold py-2 rounded
-                     hover:brightness-110 disabled:opacity-50"
+          onClick={() => setExpanded((v) => !v)}
+          className="text-xs text-muted hover:text-text shrink-0"
+          aria-expanded={expanded}
         >
-          Verify this event
+          {expanded ? "▲ hide 5-step trace" : "▼ show 5-step trace"}
         </button>
-      )}
-
-      {anyStarted && (
-        <ul className="space-y-1.5">
-          {state.steps.map((step, i) => (
+      </div>
+      {expanded && (
+        <ul className="space-y-1.5 pt-1">
+          {verifyState.steps.map((step, i) => (
             <StepRow key={i} index={i} step={step} />
           ))}
         </ul>
-      )}
-
-      {allDone && (
-        <div className="bg-ok/20 border border-ok/40 rounded p-3 text-ok">
-          <div className="text-lg font-semibold">✓ Verified end-to-end</div>
-          <div className="text-xs text-text/80 mt-1">
-            All 5 steps passed. Receipt is independently verifiable on Base
-            Sepolia.
-          </div>
-        </div>
-      )}
-
-      {state.firstFail !== null && (
-        <div className="bg-fail/20 border border-fail/40 rounded p-3 text-fail">
-          <div className="font-semibold">
-            ✗ Failed at step {state.firstFail}
-          </div>
-        </div>
-      )}
-
-      {anyStarted && !running && (
-        <button
-          type="button"
-          onClick={onRun}
-          className="text-xs text-muted hover:text-text underline"
-        >
-          retry
-        </button>
       )}
     </section>
   );
@@ -417,5 +578,130 @@ function StepRow({ index, step }: { index: number; step: StepResult }) {
         </div>
       </div>
     </li>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 2 · description — plain English by event_type
+
+function DescriptionSection({
+  node,
+  aliases,
+}: {
+  node: TreeNode;
+  aliases: SubjectAliases;
+}) {
+  const text = useMemo(() => deriveDescription(node, aliases), [node, aliases]);
+  return (
+    <section className="space-y-2">
+      <SectionTitle>Description</SectionTitle>
+      <p className="text-sm text-text leading-relaxed">{text}</p>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 3 · payload (default-expanded — Tier 2)
+
+function PayloadSection({ receipt }: { receipt: Receipt }) {
+  // payload_excerpt's numbers arrive as NumberToken instances (the loader
+  // preserves source repr so verification can byte-equal Python's signed
+  // bytes). For display we flatten them back to plain JS numbers via a
+  // JSON.stringify replacer — loses "0.0" → "0" but renders sanely. The
+  // display copy is purely cosmetic; verification still reads the original.
+  const pretty = useMemo(
+    () =>
+      JSON.stringify(
+        receipt.payload_excerpt,
+        (_key, value) =>
+          value instanceof NumberToken ? Number(value.src) : value,
+        2,
+      ),
+    [receipt.payload_excerpt],
+  );
+  return (
+    <section className="space-y-2">
+      <SectionTitle>Payload</SectionTitle>
+      <pre className="bg-bg border border-border rounded p-3 text-xs text-text overflow-x-auto whitespace-pre-wrap break-all">
+        {pretty}
+      </pre>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 4 · technical metadata (Tier 3 fold, collapsed by default)
+
+function TechnicalMetadataFold({
+  receipt,
+  node,
+}: {
+  receipt: Receipt;
+  node: TreeNode;
+}) {
+  const [open, setOpen] = useState(false);
+
+  // Receipt id label per Q1 lock: "30 (paired with 29)" for paired events,
+  // "30" for singles. Pair lookup uses the TreeNode (which already pairs
+  // _start ↔ _end during buildTree).
+  const pairId = (() => {
+    if (node.kind !== "pair" || !node.end) return null;
+    if (receipt.id === node.end.id) return node.start.id;
+    if (receipt.id === node.start.id) return node.end.id;
+    return null;
+  })();
+  const receiptIdLabel =
+    pairId !== null ? `${receipt.id} (paired with ${pairId})` : `${receipt.id}`;
+
+  return (
+    <section className="border-t border-border pt-3">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="text-xs text-muted hover:text-text"
+        aria-expanded={open}
+      >
+        {open ? "▲ Hide technical metadata" : "▸ Show technical metadata"}
+      </button>
+      {open && (
+        <div className="mt-3 space-y-3">
+          <Field label="Receipt id">
+            <code className="bg-bg px-1.5 py-0.5 rounded border border-border text-xs">
+              {receiptIdLabel}
+            </code>
+          </Field>
+          <Field label="Event hash">
+            <ExpandableHash value={receipt.event_hash} />
+          </Field>
+          <Field label="Parent hash">
+            <ExpandableHash
+              value={receipt.parent_hash}
+              emptyLabel="— (genesis)"
+            />
+          </Field>
+          <Field label="Paired event hash">
+            <ExpandableHash value={receipt.paired_event_hash} />
+          </Field>
+          <Field label="Public key">
+            <ExpandableHash value={receipt.public_key} />
+          </Field>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function Field({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="text-sm">
+      <div className="text-xs text-muted">{label}</div>
+      <div className="text-text break-all">{children}</div>
+    </div>
   );
 }

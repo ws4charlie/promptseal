@@ -15,6 +15,7 @@ import {
   loadSubjectAliases,
   type SubjectAliases,
 } from "../lib/subjectAliases";
+import ExpandableHash from "./ExpandableHash";
 
 const ERC8004_REGISTRY = "0x7177a6867296406881E20d6647232314736Dd09A";
 
@@ -245,31 +246,6 @@ function RunSummarySection({ summary }: { summary: RunSummary }) {
   );
 }
 
-function ExpandableHashLocal({ value }: { value: string | null }) {
-  // Local copy of EventDetailPanel's ExpandableHash — same DOM, same UX.
-  // Inlined rather than imported to keep E4 scoped to RunSummaryCard +
-  // RunPage; E5 will refactor EventDetailPanel and can dedupe at that
-  // point if desired.
-  const [open, setOpen] = useState(false);
-  if (value === null) return <span className="text-muted">—</span>;
-  const stripped = value.startsWith("sha256:")
-    ? value.slice("sha256:".length)
-    : value;
-  const short = stripped.slice(0, 16) + "…" + stripped.slice(-8);
-  return (
-    <button
-      type="button"
-      onClick={() => setOpen((v) => !v)}
-      className="text-left w-full"
-      aria-expanded={open}
-    >
-      <code className="block bg-bg border border-border rounded px-2 py-1 text-xs break-all hover:border-accent">
-        {open ? value : short}
-      </code>
-    </button>
-  );
-}
-
 function TechnicalMetadataFold({ pack }: { pack: EvidencePack }) {
   const [open, setOpen] = useState(false);
   // run_id truncation per E4 spec: first 12 chars, ellipsis if longer.
@@ -305,7 +281,7 @@ function TechnicalMetadataFold({ pack }: { pack: EvidencePack }) {
           <div className="flex items-baseline gap-3">
             <dt className="text-muted text-xs w-28 shrink-0">Merkle root:</dt>
             <dd className="text-xs text-text flex-1 min-w-0">
-              <ExpandableHashLocal value={pack.merkle_root} />
+              <ExpandableHash value={pack.merkle_root} />
             </dd>
           </div>
           <div className="flex items-baseline gap-3">
