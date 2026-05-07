@@ -108,21 +108,25 @@ function assignSequenceNumbers(tree: TreeNode[]): Map<string, number> {
 // formatting + color helpers
 
 function formatEventTimestamp(iso: string): string {
-  // "2026-05-07T03:34:00.552Z" → "03:34:00.552". Date dropped — RunPage
-  // header already shows the run's date once ("Started: 2026-05-07 ..."),
-  // and every event in a run shares it; repeating the date per row is
-  // dead pixels that crowd out the description column. Forensic-grade
-  // ms precision retained so operators reading consecutive rows can see
-  // sub-second gaps between events.
+  // "2026-05-07T03:34:00.552Z" → "May 7 03:34:00.552". Date is back in the
+  // row (Q5 follow-up dropped it; restored here now that the column is
+  // wide enough to fit). Each row reads as a forensic log line — full
+  // month-day + ms-precision time. Intl's en-US locale would produce
+  // "May 7, 03:34:00.552"; the trailing comma after the day is stripped
+  // for tighter visual alignment in the tabular-nums column.
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
   return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
     fractionalSecondDigits: 3,
     hour12: false,
-  }).format(d);
+  })
+    .format(d)
+    .replace(", ", " ");
 }
 
 export function durationMs(start: string, end: string): string | null {
@@ -257,8 +261,7 @@ export function deriveTooltipLine2(node: TreeNode): string {
       return pickString(r.payload_excerpt, "model") ?? "LLM";
     }
     if (t === "tool_start" || t === "tool_end") {
-      const toolName = pickString(r.payload_excerpt, "tool_name") ?? "tool";
-      return `Called ${toolName}`;
+      return pickString(r.payload_excerpt, "tool_name") ?? "tool";
     }
     return t;
   } catch {
@@ -280,11 +283,7 @@ function renderEventDescription(node: TreeNode) {
   const payload = node.start.payload_excerpt;
   if (t === "tool_start" || t === "tool_end") {
     const toolName = pickPayloadString(payload, "tool_name") ?? "tool";
-    return (
-      <>
-        Called <code className="font-mono text-green-300">{toolName}</code>
-      </>
-    );
+    return <code className="font-mono text-green-300">{toolName}</code>;
   }
   if (t === "llm_start" || t === "llm_end") {
     const model = pickPayloadString(payload, "model") ?? "LLM";
@@ -523,7 +522,7 @@ function NodeRow({
             truncates on overflow. tabular-nums on the numeric columns
             equalizes digit width for vertical alignment. */}
         <div
-          className="flex-1 min-w-0 grid grid-cols-[76px_1fr_92px_64px_36px]
+          className="flex-1 min-w-0 grid grid-cols-[76px_1fr_140px_64px_20px]
                      gap-3 items-center"
         >
           {/* badge — w-full + justify-start: all 4 family labels render at
@@ -566,17 +565,25 @@ function NodeRow({
             {dur ?? "—"}
           </span>
 
-          {/* verify + tamper status. ⚠ rendered when payload differs from
-              the originalReceipts snapshot; verify icon (✓/✗/◐/○) shows
-              the chain-validation state. Both fit in the 36px column when
-              both apply (e.g. tampered + re-verified failed → "⚠ ✗"). */}
-          <span className="text-xs flex items-center gap-1 justify-end">
-            {tampered && (
+          {/* Single-icon priority slot (20px). Priority order:
+                1. ✗ (red) — verify failed; the most informative state, shown
+                   even when row is also tampered (verify caught the tamper).
+                2. ⚠ (yellow) — payload modified but verify hasn't re-run yet
+                   (stale-verify intermediate state).
+                3. ✓ / ◐ / ○ — clean verify status.
+              The tampered+ok case falls through to ⚠; the EventDetailPanel
+              top banner + the page-level banner still surface "modified"
+              independently, so dropping the dual-icon doesn't lose info. */}
+          <span className="text-xs">
+            {verifyStatus === "fail" ? (
+              <VerifyStatusIcon status="fail" />
+            ) : tampered ? (
               <span className="text-yellow-300" title="payload modified">
                 ⚠
               </span>
-            )}
-            {verifyStatus && <VerifyStatusIcon status={verifyStatus} />}
+            ) : verifyStatus ? (
+              <VerifyStatusIcon status={verifyStatus} />
+            ) : null}
           </span>
         </div>
       </div>

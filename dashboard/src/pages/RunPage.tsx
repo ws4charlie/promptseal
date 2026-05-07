@@ -32,12 +32,9 @@ import {
 
 const VERIFY_CONCURRENCY = 4; // tune to balance throughput vs RPC fairness
 
-function basescanTxUrl(tx: string, chainId: number): string {
-  // We only support Base Sepolia in v0.2 — chain_id 84532. Other ids fall
-  // through to the same explorer for now (a future patch may add a chain map).
-  void chainId;
-  return `https://sepolia.basescan.org/tx/${tx}`;
-}
+// basescanTxUrl helper deleted — banner no longer renders an anchor TX
+// link (RunSummaryCard's Anchor FactRow is the single surface for it,
+// using its own basescanTxUrl helper). Removed to satisfy noUnusedLocals.
 
 interface LoadState {
   status: "loading" | "ok" | "error";
@@ -499,7 +496,6 @@ function RunPageLoaded({
 
       <VerifyAllBanner
         overall={overall}
-        pack={pack}
         onJumpToFailed={(id) => setSelectedReceiptId(id)}
         onRerun={() => void runVerifyAll(pack)}
         canRerun={isDone || overall.kind === "error"}
@@ -549,7 +545,6 @@ function RunPageLoaded({
 
 interface VerifyAllBannerProps {
   overall: OverallStatus;
-  pack: EvidencePack;
   onJumpToFailed: (id: number) => void;
   onRerun: () => void;
   canRerun: boolean;
@@ -558,7 +553,6 @@ interface VerifyAllBannerProps {
 
 function VerifyAllBanner({
   overall,
-  pack,
   onJumpToFailed,
   onRerun,
   canRerun,
@@ -632,16 +626,7 @@ function VerifyAllBanner({
               ✓ All {overall.total} events verified end-to-end
             </div>
             <div className="text-text/80 text-xs mt-1">
-              Hash chain intact. Merkle root matches{" "}
-              <a
-                href={basescanTxUrl(pack.anchor.tx_hash, pack.anchor.chain_id)}
-                target="_blank"
-                rel="noreferrer"
-                className="text-accent break-all"
-              >
-                anchor TX
-              </a>
-              .
+              Hash chain intact, Merkle root matches the anchor.
             </div>
           </div>
           {rerunButton}
