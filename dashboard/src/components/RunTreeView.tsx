@@ -106,10 +106,26 @@ function assignSequenceNumbers(tree: TreeNode[]): Map<string, number> {
 // ---------------------------------------------------------------------------
 // formatting + color helpers
 
-function shortClock(iso: string): string {
-  // 2026-05-05T16:34:21.123Z → 16:34:21.123
-  const m = iso.match(/T(\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?)/);
-  return m ? m[1]! : iso;
+function formatEventTimestamp(iso: string): string {
+  // "2026-05-07T03:34:00.552Z" → "May 7 03:34:00.552". Date is always
+  // visible (no hover) so operators reading rows out of order can scan
+  // when each event happened. tabular-nums on the column aligns digits
+  // vertically. Locale "en-US" is intentional — the demo audience reads
+  // English month names; the Intl trailing comma after day is stripped
+  // so the row reads like a forensic log line, not a sentence.
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    fractionalSecondDigits: 3,
+    hour12: false,
+  })
+    .format(d)
+    .replace(", ", " ");
 }
 
 export function durationMs(start: string, end: string): string | null {
@@ -216,19 +232,24 @@ export function findNestedLlm(node: TreeNode): TreeNode | undefined {
 }
 
 export function deriveTooltipLine2(node: TreeNode): string {
+  // Row description simplified: duration moved to its own column, token count
+  // moved to TechnicalMetadataFold, nested-LLM hint absorbed into the tree
+  // char prefix. Description column now answers one question per family:
+  // LLM → which model; tool → which tool; decision → hire/reject; error → why.
   const r = node.start;
   const t = r.event_type;
   try {
     if (t === "final_decision") {
       const decision = pickString(r.payload_excerpt, "decision");
-      return decision ? `Decision: ${decision.toUpperCase()}` : "Decision";
+      return decision ? decision.toUpperCase() : "DECISION";
     }
     if (t === "error") {
       const msg =
         pickString(r.payload_excerpt, "message") ??
         pickString(r.payload_excerpt, "error") ??
-        // Some adapters serialize the whole error as a string payload:
-        (typeof r.payload_excerpt === "string" ? (r.payload_excerpt as string) : null);
+        (typeof r.payload_excerpt === "string"
+          ? (r.payload_excerpt as string)
+          : null);
       if (msg) {
         const truncated = msg.length > 60 ? msg.slice(0, 60) : msg;
         return `Failed: ${truncated}`;
@@ -236,25 +257,11 @@ export function deriveTooltipLine2(node: TreeNode): string {
       return "Failed";
     }
     if (t === "llm_start" || t === "llm_end") {
-      const model = pickString(r.payload_excerpt, "model") ?? "LLM";
-      if (!node.end) return `${model}, in flight`;
-      const dur = durationMs(node.start.timestamp, node.end.timestamp);
-      const tokens = pickTokenCount(node);
-      const tokenClause = tokens !== null ? `, ~${tokens} tokens` : "";
-      return dur ? `${model}, ${dur}${tokenClause}` : `${model}${tokenClause}`;
+      return pickString(r.payload_excerpt, "model") ?? "LLM";
     }
     if (t === "tool_start" || t === "tool_end") {
       const toolName = pickString(r.payload_excerpt, "tool_name") ?? "tool";
-      const nested = findNestedLlm(node);
-      if (nested) {
-        const nestedModel =
-          pickString(nested.start.payload_excerpt, "model") ?? "LLM";
-        return `${toolName} (called ${nestedModel} internally)`;
-      }
-      const dur = node.end
-        ? durationMs(node.start.timestamp, node.end.timestamp)
-        : null;
-      return dur ? `Called ${toolName} (${dur})` : `Called ${toolName}`;
+      return `Called ${toolName}`;
     }
     return t;
   } catch {
@@ -400,11 +407,11 @@ function NodeRow({
 }: RowProps) {
   const family = familyOf(node.start.event_type);
   const styles = FAMILY_STYLES[family];
-  const indent = node.depth * 20;
   const dur =
     node.end ? durationMs(node.start.timestamp, node.end.timestamp) : null;
   const inFlight =
     !node.end && node.start.event_type.endsWith("_start");
+  const description = deriveTooltipLine2(node);
   // App-level selection styling — distinct from the browser's :focus-visible
   // ring so the user can tell "the row I clicked vs. the row that ends up
   // focused after I tabbed". Selection wins over family hover; the accent
@@ -440,9 +447,8 @@ function NodeRow({
       onMouseLeave={handleLeave}
     >
       <div
-        className={`flex items-center gap-3 py-1.5 px-2 rounded text-sm
+        className={`flex items-center gap-2 py-1.5 px-3 rounded text-sm
                     cursor-pointer ${rowVisualClass}`}
-        style={{ paddingLeft: `${indent + 8}px` }}
         onClick={onClick}
         role="button"
         tabIndex={isFocusable ? 0 : -1}
@@ -455,6 +461,10 @@ function NodeRow({
           }
         }}
       >
+        {/* Chevron lives outside the data grid: per-row expand/collapse stays
+            functional without reserving a sixth grid column. Indent is no
+            longer rendered as paddingLeft — nesting is shown by the "└─ "
+            tree char prefix in the description column instead. */}
         <button
           type="button"
           onClick={(e) => {
@@ -469,55 +479,60 @@ function NodeRow({
           {hasChildren ? (expanded ? "▾" : "▸") : "·"}
         </button>
 
-        <span
-          className={`text-[10px] uppercase tracking-wider px-1.5 py-0.5
-                     rounded border ${styles.badge}`}
+        {/* 5-column data grid: badge | description | timestamp | duration |
+            verify. Fixed widths on cols 1/3/4/5 keep them aligned across
+            every row in the run; description (1fr) absorbs slack and
+            truncates on overflow. tabular-nums on the numeric columns
+            equalizes digit width for vertical alignment. */}
+        <div
+          className="flex-1 min-w-0 grid grid-cols-[76px_1fr_160px_64px_20px]
+                     gap-3 items-center"
         >
-          {styles.label}
-        </span>
+          {/* badge — w-full + justify-start: all 4 family labels render at
+              the same visual width (= column width) regardless of label
+              length, so the LLM/TOOL/DECISION/ERROR tags line up vertically. */}
+          <span
+            className={`inline-flex w-full justify-start text-[10px] uppercase
+                       tracking-wider px-1.5 py-0.5 rounded border ${styles.badge}`}
+          >
+            {styles.label}
+          </span>
 
-        <span className="text-text shrink-0">
-          Event {sequenceNumber}
-          {inFlight && (
-            <span className="text-muted text-xs italic ml-1">(in flight)</span>
-          )}
-        </span>
+          {/* description column. Tree char prefix marks nested children
+              (depth > 0); inline "Event N · " keeps the row identifier
+              alongside the description. title= surfaces full text when
+              the column narrows and the text-ellipsis kicks in. */}
+          <span
+            className="overflow-hidden text-ellipsis whitespace-nowrap text-text"
+            title={description}
+          >
+            {node.depth > 0 && <span className="text-muted">└─ </span>}
+            <span className="text-muted text-xs">
+              Event {sequenceNumber} ·{" "}
+            </span>
+            {description}
+            {inFlight && (
+              <span className="text-muted text-xs italic ml-1">(in flight)</span>
+            )}
+          </span>
 
-        <span className="text-muted text-xs shrink-0">·</span>
+          {/* timestamp — full month + day + HH:MM:SS.mmm, always visible.
+              Right-aligned + tabular-nums for digit alignment. */}
+          <span className="text-muted text-xs text-right tabular-nums">
+            {formatEventTimestamp(node.start.timestamp)}
+          </span>
 
-        {/* E7 Issue 2 / D19: description Tier 1 inline. Operators want to
-            scan the row list without hovering each event — the human-readable
-            "what did the agent do here" identifier (model / tool name /
-            decision / error preamble) belongs on the row itself, not in a
-            tooltip. Reuses deriveTooltipLine2() (which DetailPanel's
-            description section also derives from). flex-1 + min-w-0 +
-            text-ellipsis truncates when the row narrows (drawer mode at
-            <1280px especially). title= surfaces full text on hover when
-            truncated. */}
-        <span
-          className="flex-1 min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-text"
-          title={deriveTooltipLine2(node)}
-        >
-          {deriveTooltipLine2(node)}
-        </span>
+          {/* duration — em dash placeholder for singletons (E8 Issue 1).
+              Right-aligned + tabular-nums. */}
+          <span className="text-muted text-xs text-right tabular-nums">
+            {dur ?? "—"}
+          </span>
 
-        <span className="text-muted text-xs shrink-0">
-          {shortClock(node.start.timestamp)}
-        </span>
-
-        {/* E8 Issue 1: single-receipt events (final_decision, error) have no
-            paired _end and therefore no duration. Originally the whole "·
-            duration" span was conditionally rendered, which left the row
-            ending at the timestamp and made the verify icon column shift
-            left for that row only. Em dash (—, U+2014) is rendered as a
-            placeholder so column alignment stays stable across all rows
-            and operators read "no duration applies here", not "duration
-            missing / error". */}
-        <span className="text-muted text-xs shrink-0">· {dur ?? "—"}</span>
-
-        <span className="text-muted text-xs shrink-0">
-          {verifyStatus && <VerifyStatusIcon status={verifyStatus} />}
-        </span>
+          {/* verify status — fixed slot. */}
+          <span className="text-muted text-xs">
+            {verifyStatus && <VerifyStatusIcon status={verifyStatus} />}
+          </span>
+        </div>
       </div>
       <Tooltip node={node} visible={hovering} flipY={flipY} />
     </div>
