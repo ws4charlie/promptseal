@@ -36,6 +36,25 @@ def _hash_str(text: str) -> str:
     return HASH_PREFIX + hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
+_PAYLOAD_TEXT_LIMIT = 32 * 1024  # 32 KB safety cap per field
+
+
+def _capture_text(text: Any, limit: int = _PAYLOAD_TEXT_LIMIT) -> str | None:
+    """Capture text for payload_excerpt with safety cap.
+
+    Hash field captures full content cryptographically; text field is for
+    human-readable evidence display.
+    """
+    if text is None:
+        return None
+    if not isinstance(text, str):
+        text = str(text)
+    if len(text) <= limit:
+        return text
+    truncated_count = len(text) - limit
+    return text[:limit] + f"... [TRUNCATED {truncated_count} chars; full hash recorded separately]"
+
+
 def _json_safe(obj: Any) -> Any:
     """Best-effort coercion to JSON-hashable form for hashing only."""
     if obj is None or isinstance(obj, (bool, int, float, str)):
@@ -209,6 +228,7 @@ class PromptSealCallbackHandler(BaseCallbackHandler):
             "model": mk.get("model"),
             "temperature": mk.get("temperature"),
             "system_prompt_hash": None,
+            "prompts": [_capture_text(p) for p in prompts],
             "messages_hash": _hash_obj(prompts),
         }
         eh = self._emit(ps, "llm_start", payload)
@@ -229,7 +249,12 @@ class PromptSealCallbackHandler(BaseCallbackHandler):
         payload = {
             "model": mk.get("model"),
             "temperature": mk.get("temperature"),
+            "system_prompt": _capture_text(system_text) if system_text else None,
             "system_prompt_hash": _hash_str(system_text) if system_text else None,
+            "messages": [
+                {"type": m["type"], "content": _capture_text(m["content"])}
+                for m in non_system
+            ],
             "messages_hash": _hash_obj(non_system),
         }
         eh = self._emit(ps, "llm_start", payload)
@@ -251,6 +276,7 @@ class PromptSealCallbackHandler(BaseCallbackHandler):
             output_text = str(response)
         llm_output = getattr(response, "llm_output", None) or {}
         payload = {
+            "output_text": _capture_text(output_text),
             "output_hash": _hash_str(output_text),
             "token_usage": _json_safe(
                 llm_output.get("usage") or llm_output.get("token_usage")
@@ -294,6 +320,11 @@ class PromptSealCallbackHandler(BaseCallbackHandler):
         args_repr = inputs if inputs is not None else input_str
         payload = {
             "tool_name": tool_name,
+            "args": (
+                _json_safe(args_repr)
+                if isinstance(args_repr, dict)
+                else _capture_text(args_repr)
+            ),
             "args_hash": _hash_obj(args_repr),
         }
         eh = self._emit(ps, "tool_start", payload)
@@ -313,6 +344,7 @@ class PromptSealCallbackHandler(BaseCallbackHandler):
         output_str = output if isinstance(output, str) else str(output)
         payload = {
             "tool_name": tool_name,
+            "output": _capture_text(output_str),
             "output_hash": _hash_str(output_str),
         }
         self._emit(ps, "tool_end", payload, paired_event_hash=paired)
@@ -352,8 +384,10 @@ class PromptSealCallbackHandler(BaseCallbackHandler):
         decision = output.get("decision")
         if decision not in ("hire", "reject"):
             return None
+        reasoning_text = str(output.get("reasoning", ""))
         return {
             "candidate_id": output.get("candidate_id"),
             "decision": decision,
-            "reasoning_hash": _hash_str(str(output.get("reasoning", ""))),
+            "reasoning": _capture_text(reasoning_text),
+            "reasoning_hash": _hash_str(reasoning_text),
         }

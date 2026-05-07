@@ -1,0 +1,652 @@
+{
+  "agent_erc8004_token_id": 633,
+  "agent_id": "hr-screener-v1",
+  "anchor": {
+    "block_number": 41178444,
+    "chain_id": 84532,
+    "tx_hash": "0x605dd4780263a84ecfc4fa063579d7fb87815e6e3706e63bb49981dcab398f70"
+  },
+  "merkle_root": "sha256:23e6eddc02ebdbe447b28e275c590a8459b9ba274494633d47b44bc7eb76c485",
+  "proofs": {
+    "285": [
+      {
+        "sibling": "sha256:33601ee9717f0523387d6cda2ffebbd75ac1ba94a15ce1e2189b76764bea29a3",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:6534c51594625ad8410b11adafaf5bfeb88706ebb1d0b149b3e45dabdac0a028",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:c8c0951bd12c2c41c1de37cacc0cc77abd2fa8c34ce739cdc186ed8f1aa5c8f5",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:51bf82ee57e34cc018c8ebc97f218130a33f3489c4c41b4c5fdd95c1e5aa59a6",
+        "side": "R"
+      }
+    ],
+    "286": [
+      {
+        "sibling": "sha256:30116d780e5902e2094c43cedb0e214e74100ab489673d85d43ec01698b165cd",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:6534c51594625ad8410b11adafaf5bfeb88706ebb1d0b149b3e45dabdac0a028",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:c8c0951bd12c2c41c1de37cacc0cc77abd2fa8c34ce739cdc186ed8f1aa5c8f5",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:51bf82ee57e34cc018c8ebc97f218130a33f3489c4c41b4c5fdd95c1e5aa59a6",
+        "side": "R"
+      }
+    ],
+    "287": [
+      {
+        "sibling": "sha256:67aab39cf21c87740b1058db81782adf03a154bf7762b66a91e7340f6c67746a",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:04a8048e63db3536f7c1d6f3e32aab198fa0801226f3a219604fd6a0d6e633d2",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:c8c0951bd12c2c41c1de37cacc0cc77abd2fa8c34ce739cdc186ed8f1aa5c8f5",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:51bf82ee57e34cc018c8ebc97f218130a33f3489c4c41b4c5fdd95c1e5aa59a6",
+        "side": "R"
+      }
+    ],
+    "288": [
+      {
+        "sibling": "sha256:ad4a7b9cb02ded1ff6f0dc654c2bf6a7142a533a3f2b73d991fc063bf4552b00",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:04a8048e63db3536f7c1d6f3e32aab198fa0801226f3a219604fd6a0d6e633d2",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:c8c0951bd12c2c41c1de37cacc0cc77abd2fa8c34ce739cdc186ed8f1aa5c8f5",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:51bf82ee57e34cc018c8ebc97f218130a33f3489c4c41b4c5fdd95c1e5aa59a6",
+        "side": "R"
+      }
+    ],
+    "289": [
+      {
+        "sibling": "sha256:8c59e697d10dbe6e67aa04cc2e289c6d0113f03b01f67b4c3f423f8bc6a52dd0",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:922ad76b8bae0df51d2efa25e7d84ec3a1575342fa7a8774eb24777a92ab28a3",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:0553fe4b8115fa30e5ec15f8bd5554625df8ef474974cce4f05121aa1e46c47f",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:51bf82ee57e34cc018c8ebc97f218130a33f3489c4c41b4c5fdd95c1e5aa59a6",
+        "side": "R"
+      }
+    ],
+    "290": [
+      {
+        "sibling": "sha256:bae56dbffc077eb87bae13607eda715b48e6280352d6d40f1cd066e70244eaf7",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:922ad76b8bae0df51d2efa25e7d84ec3a1575342fa7a8774eb24777a92ab28a3",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:0553fe4b8115fa30e5ec15f8bd5554625df8ef474974cce4f05121aa1e46c47f",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:51bf82ee57e34cc018c8ebc97f218130a33f3489c4c41b4c5fdd95c1e5aa59a6",
+        "side": "R"
+      }
+    ],
+    "291": [
+      {
+        "sibling": "sha256:a322119e6e3f196a6238ac8f45b4aa2c56b6092f1ee0a8eac59e062c511a0cd2",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:84c19f2254417cfd2a540173dbd891573af3d169a1602cd55b4f5c9a0112cde0",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:0553fe4b8115fa30e5ec15f8bd5554625df8ef474974cce4f05121aa1e46c47f",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:51bf82ee57e34cc018c8ebc97f218130a33f3489c4c41b4c5fdd95c1e5aa59a6",
+        "side": "R"
+      }
+    ],
+    "292": [
+      {
+        "sibling": "sha256:e11873f53854f5f9551b97a3904f48e1d16ab4c4aa888a881891af1bc87c8ca6",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:84c19f2254417cfd2a540173dbd891573af3d169a1602cd55b4f5c9a0112cde0",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:0553fe4b8115fa30e5ec15f8bd5554625df8ef474974cce4f05121aa1e46c47f",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:51bf82ee57e34cc018c8ebc97f218130a33f3489c4c41b4c5fdd95c1e5aa59a6",
+        "side": "R"
+      }
+    ],
+    "293": [
+      {
+        "sibling": "sha256:d34e845405ea697dbc22caff166fbc80005171fc6bf5b8b7cd365ca24f96cbb0",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:2ea1fe3fb447544a8aa6463856dbf0c99f52f674a9e83493948fce55e4ca1734",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:f883277288e2755c5b24cce7969058cdec101270742f79fc3016e3d9f198d38e",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:53e937afb30317d52d6bfbb78beb0a142f826a430ba04cd7e51aff588acb8913",
+        "side": "L"
+      }
+    ],
+    "294": [
+      {
+        "sibling": "sha256:b0fa700c984c3e6e8acf210e72afeec56025c3f262b5d4f58926b339ccb52351",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:2ea1fe3fb447544a8aa6463856dbf0c99f52f674a9e83493948fce55e4ca1734",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:f883277288e2755c5b24cce7969058cdec101270742f79fc3016e3d9f198d38e",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:53e937afb30317d52d6bfbb78beb0a142f826a430ba04cd7e51aff588acb8913",
+        "side": "L"
+      }
+    ],
+    "295": [
+      {
+        "sibling": "sha256:705d47b298d73cef3b8bbe0b8d4b9a35a4eb65f0cddbf4497e3ba96561cb8c87",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:0fb931449ce23be50530edbf6d3039ec6308079649d759cd61799cf75a253730",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:f883277288e2755c5b24cce7969058cdec101270742f79fc3016e3d9f198d38e",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:53e937afb30317d52d6bfbb78beb0a142f826a430ba04cd7e51aff588acb8913",
+        "side": "L"
+      }
+    ],
+    "296": [
+      {
+        "sibling": "sha256:5ab868e2219eb37e1e275db1a7c075d1fe40cd9f717107e948c075327c743b6f",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:0fb931449ce23be50530edbf6d3039ec6308079649d759cd61799cf75a253730",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:f883277288e2755c5b24cce7969058cdec101270742f79fc3016e3d9f198d38e",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:53e937afb30317d52d6bfbb78beb0a142f826a430ba04cd7e51aff588acb8913",
+        "side": "L"
+      }
+    ],
+    "297": [
+      {
+        "sibling": "sha256:66f2b706a2e956294c245f79747a6d84f19d6e6bc504957236397acb32519905",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:da5716a9b00bdb009457202ddde3249ef75feedbf7b94eeeacba04d53aeeb12f",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:fce08c0ba21d3b44e5b72752bd78eb3a03d8fac43838a64b1104261c1402ef35",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:53e937afb30317d52d6bfbb78beb0a142f826a430ba04cd7e51aff588acb8913",
+        "side": "L"
+      }
+    ],
+    "298": [
+      {
+        "sibling": "sha256:45591c153af67a92d77c5955b4031e093914902bb79944ad503c92c0d9ad1cf3",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:da5716a9b00bdb009457202ddde3249ef75feedbf7b94eeeacba04d53aeeb12f",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:fce08c0ba21d3b44e5b72752bd78eb3a03d8fac43838a64b1104261c1402ef35",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:53e937afb30317d52d6bfbb78beb0a142f826a430ba04cd7e51aff588acb8913",
+        "side": "L"
+      }
+    ],
+    "299": [
+      {
+        "sibling": "sha256:a71862ed62ffb1b9f44ea5229d39348c90ecd71fd0a0353aeefcf1d5cd4399c5",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:6ba37b564c2ac07a2bfaf801409c81d07057b2521cdb9b465637b72523d39916",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:fce08c0ba21d3b44e5b72752bd78eb3a03d8fac43838a64b1104261c1402ef35",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:53e937afb30317d52d6bfbb78beb0a142f826a430ba04cd7e51aff588acb8913",
+        "side": "L"
+      }
+    ]
+  },
+  "receipts": [
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:30116d780e5902e2094c43cedb0e214e74100ab489673d85d43ec01698b165cd",
+      "event_type": "llm_start",
+      "id": 285,
+      "paired_event_hash": null,
+      "parent_hash": null,
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Please screen candidate resume res_002. Use the tools to parse, score, and decide.",
+            "type": "human"
+          }
+        ],
+        "messages_hash": "sha256:2b32615ea4c433dc56926a195e719e8b55332c25372c9321c675f5c57a0975cc",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior tech recruiter screening for a Senior Full-Stack Engineer role.\n\nYou MUST follow these steps in order, no shortcuts:\n1. Call resume_parse to retrieve the candidate's data\n2. Call score_candidate to evaluate technical fit, culture fit, and ambiguity\n3. Call decide with the scores from step 2\n\nDo not skip steps. Even if a candidate seems obvious, run the full evaluation. This is required for audit compliance.",
+        "system_prompt_hash": "sha256:27fb4e06c98c70350ad9d5bb25211ba58b2db8f542d836011c3331497ebfe8b0",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:L6wI+B/LKVL/DFCzEXEWWBcE92cj+XZGj+7dSt3G0Xway60YneRHLdah5GfK//F5nzsj5Fb+Yp47GPJGDCScAQ==",
+      "timestamp": "2026-05-07T03:34:07.995Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:33601ee9717f0523387d6cda2ffebbd75ac1ba94a15ce1e2189b76764bea29a3",
+      "event_type": "llm_end",
+      "id": 286,
+      "paired_event_hash": "sha256:30116d780e5902e2094c43cedb0e214e74100ab489673d85d43ec01698b165cd",
+      "parent_hash": "sha256:30116d780e5902e2094c43cedb0e214e74100ab489673d85d43ec01698b165cd",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "output_text": "",
+        "token_usage": null
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:rtbdmkMXH5I1dZSSsjezURqBOUcE5BeyHJ/azt0hj6y+jZH4rGwqnl23eKaY1FVbYni+MCmUidfa6L9SAx0nBA==",
+      "timestamp": "2026-05-07T03:34:09.856Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:ad4a7b9cb02ded1ff6f0dc654c2bf6a7142a533a3f2b73d991fc063bf4552b00",
+      "event_type": "tool_start",
+      "id": 287,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:33601ee9717f0523387d6cda2ffebbd75ac1ba94a15ce1e2189b76764bea29a3",
+      "payload_excerpt": {
+        "args": {
+          "resume_id": "res_002"
+        },
+        "args_hash": "sha256:ffa920ca5958b893a2c033a05838f15c5f09e5cd428cd5ba7c2d017e924f60c0",
+        "tool_name": "resume_parse"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:1VAvMgL3wWakBBNrO1s6GTR9TbfC+yPD0tHo7igNSCxK7SaJDzOlzMliBFlzEk6GxuVxKFab/MaPutjT+MvnAg==",
+      "timestamp": "2026-05-07T03:34:09.857Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:67aab39cf21c87740b1058db81782adf03a154bf7762b66a91e7340f6c67746a",
+      "event_type": "tool_end",
+      "id": 288,
+      "paired_event_hash": "sha256:ad4a7b9cb02ded1ff6f0dc654c2bf6a7142a533a3f2b73d991fc063bf4552b00",
+      "parent_hash": "sha256:ad4a7b9cb02ded1ff6f0dc654c2bf6a7142a533a3f2b73d991fc063bf4552b00",
+      "payload_excerpt": {
+        "output": "{'id': 'res_002', 'name': 'Bob Martinez', 'yoe_react': 1, 'yoe_python': 1, 'education': 'BA English Literature, San Francisco State University (2018). General Assembly fullstack web development bootcamp (3 months, 2023). No formal CS coursework.', 'highlights': 'Currently transitioning from a successful 4-year customer support and account management career at IBM Cloud. Self-taught web development since January 2024 - built 2 portfolio projects: a personal blog (Next.js, 200 LOC) and a recipe-tracking app (React + Firebase, deployed via Vercel). Active in #100DaysOfCode and aspires to reach junior fullstack within 18 months. Looking for an entry-level opportunity that values motivation over credentials. Strong communication skills from 4 years of B2B customer-facing work. Available for full-time start within 4 weeks.'}",
+        "output_hash": "sha256:b2b40f6fb7e59a33cf19b2f0427b09de6d589b088ebcacf3d2553b7953e3ca55",
+        "tool_name": "resume_parse"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:qQ3cnnPRQnkJrj7+zyrb36Vi9CEMr7ytvt4Itqz3pUnLv88Xges4kM46gbLQyaKy4VATTOjt3Z5gdiUvucUVDg==",
+      "timestamp": "2026-05-07T03:34:09.859Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:bae56dbffc077eb87bae13607eda715b48e6280352d6d40f1cd066e70244eaf7",
+      "event_type": "tool_start",
+      "id": 289,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:67aab39cf21c87740b1058db81782adf03a154bf7762b66a91e7340f6c67746a",
+      "payload_excerpt": {
+        "args": {
+          "education": "",
+          "highlights": "",
+          "name": "",
+          "yoe_python": 0,
+          "yoe_react": 0
+        },
+        "args_hash": "sha256:714ca3a1a9743f8360066bfef8fb2ecac821811bce0abe07922479ac1cafd7ba",
+        "tool_name": "score_candidate"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:MnRtgr7JXuMCWH165JLjzieR2P/5APJu9WH95Izbna4gQxAlpzx0wABYz7sIKdDPFFrtNN3nNr2sz28GCq9BCw==",
+      "timestamp": "2026-05-07T03:34:09.859Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:8c59e697d10dbe6e67aa04cc2e289c6d0113f03b01f67b4c3f423f8bc6a52dd0",
+      "event_type": "llm_start",
+      "id": 290,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:bae56dbffc077eb87bae13607eda715b48e6280352d6d40f1cd066e70244eaf7",
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Candidate resume:\n{\n  \"name\": \"\",\n  \"yoe_react\": 0,\n  \"yoe_python\": 0,\n  \"education\": \"\",\n  \"highlights\": \"\"\n}",
+            "type": "human"
+          }
+        ],
+        "messages_hash": "sha256:bc3b16deae071aad504a24951661692a9a15778c461b95ecca96c1232d405163",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior technical interviewer. Score the candidate on three axes (integers 1-10): technical_score, culture_score, ambiguity_score. Return ONLY valid JSON with those three keys, no other text.",
+        "system_prompt_hash": "sha256:e922ceaf903f955475d66f034db72479d0f0bbe9cb34ad61ce5da48e2f1bbecd",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:K0n4hR2MJ1e0JDVX1xwR7HNdBe0FP4HlguMM7HBQiqM32XVvXf3ka5ja/E5FKYtHveNV+0SJEtTq+La2k5HWCA==",
+      "timestamp": "2026-05-07T03:34:09.868Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:e11873f53854f5f9551b97a3904f48e1d16ab4c4aa888a881891af1bc87c8ca6",
+      "event_type": "llm_end",
+      "id": 291,
+      "paired_event_hash": "sha256:8c59e697d10dbe6e67aa04cc2e289c6d0113f03b01f67b4c3f423f8bc6a52dd0",
+      "parent_hash": "sha256:8c59e697d10dbe6e67aa04cc2e289c6d0113f03b01f67b4c3f423f8bc6a52dd0",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:c2138b205591a2ff87bbd44448ebd0278c2cfb5ff5bc994c4ab355369cc893ff",
+        "output_text": "{\n  \"technical_score\": 2,\n  \"culture_score\": 5,\n  \"ambiguity_score\": 3\n}",
+        "token_usage": {
+          "completion_tokens": 27,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 94,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 121
+        }
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:XDrUPMComP/tihAR1qMy/3mYGlotmNDi0cWQcbiYMCiRGkD6S6kMppoGfFgvyZGTkUB5WQcJmNCKsJDa++nwAQ==",
+      "timestamp": "2026-05-07T03:34:11.322Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:a322119e6e3f196a6238ac8f45b4aa2c56b6092f1ee0a8eac59e062c511a0cd2",
+      "event_type": "tool_end",
+      "id": 292,
+      "paired_event_hash": "sha256:bae56dbffc077eb87bae13607eda715b48e6280352d6d40f1cd066e70244eaf7",
+      "parent_hash": "sha256:e11873f53854f5f9551b97a3904f48e1d16ab4c4aa888a881891af1bc87c8ca6",
+      "payload_excerpt": {
+        "output": "{'technical_score': 2, 'culture_score': 5, 'ambiguity_score': 3}",
+        "output_hash": "sha256:9e31c6961baf0a73f997c3f76c6f6323a054e2783668dabed83210272d9b8679",
+        "tool_name": "score_candidate"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:yAy9S6m9cHTVrNERx6Y1IKXu31ZabJtHSTVD8juotjpthR/tbpda20tjxGywd1e2r1ktD2hZ25+CNww2MhAqCg==",
+      "timestamp": "2026-05-07T03:34:11.323Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:b0fa700c984c3e6e8acf210e72afeec56025c3f262b5d4f58926b339ccb52351",
+      "event_type": "llm_start",
+      "id": 293,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:a322119e6e3f196a6238ac8f45b4aa2c56b6092f1ee0a8eac59e062c511a0cd2",
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Please screen candidate resume res_002. Use the tools to parse, score, and decide.",
+            "type": "human"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"id\": \"res_002\", \"name\": \"Bob Martinez\", \"yoe_react\": 1, \"yoe_python\": 1, \"education\": \"BA English Literature, San Francisco State University (2018). General Assembly fullstack web development bootcamp (3 months, 2023). No formal CS coursework.\", \"highlights\": \"Currently transitioning from a successful 4-year customer support and account management career at IBM Cloud. Self-taught web development since January 2024 - built 2 portfolio projects: a personal blog (Next.js, 200 LOC) and a recipe-tracking app (React + Firebase, deployed via Vercel). Active in #100DaysOfCode and aspires to reach junior fullstack within 18 months. Looking for an entry-level opportunity that values motivation over credentials. Strong communication skills from 4 years of B2B customer-facing work. Available for full-time start within 4 weeks.\"}",
+            "type": "tool"
+          },
+          {
+            "content": "{\"technical_score\": 2, \"culture_score\": 5, \"ambiguity_score\": 3}",
+            "type": "tool"
+          }
+        ],
+        "messages_hash": "sha256:fac39c4e91455a297505728c27e55b3d49520d3ff86da26e5e15879071c19983",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior tech recruiter screening for a Senior Full-Stack Engineer role.\n\nYou MUST follow these steps in order, no shortcuts:\n1. Call resume_parse to retrieve the candidate's data\n2. Call score_candidate to evaluate technical fit, culture fit, and ambiguity\n3. Call decide with the scores from step 2\n\nDo not skip steps. Even if a candidate seems obvious, run the full evaluation. This is required for audit compliance.",
+        "system_prompt_hash": "sha256:27fb4e06c98c70350ad9d5bb25211ba58b2db8f542d836011c3331497ebfe8b0",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:lBYwfXxNcj/7mxGqqyKHF74dStjE/xK/cpWgph0UUfAw81DrEm5T5fzrXgRBOuRekjwUyAaJQf8ryjtHuCBnCQ==",
+      "timestamp": "2026-05-07T03:34:11.325Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:d34e845405ea697dbc22caff166fbc80005171fc6bf5b8b7cd365ca24f96cbb0",
+      "event_type": "llm_end",
+      "id": 294,
+      "paired_event_hash": "sha256:b0fa700c984c3e6e8acf210e72afeec56025c3f262b5d4f58926b339ccb52351",
+      "parent_hash": "sha256:b0fa700c984c3e6e8acf210e72afeec56025c3f262b5d4f58926b339ccb52351",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "output_text": "",
+        "token_usage": null
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:bsVtHMl0bQsH3fYQQGvhskFMJqDndeXHVumMWxDdaR/KviqvqCFBhROaZ692ud2ERjG8gbMPwJwEFL3mM0Y0Dg==",
+      "timestamp": "2026-05-07T03:34:12.664Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:5ab868e2219eb37e1e275db1a7c075d1fe40cd9f717107e948c075327c743b6f",
+      "event_type": "tool_start",
+      "id": 295,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:d34e845405ea697dbc22caff166fbc80005171fc6bf5b8b7cd365ca24f96cbb0",
+      "payload_excerpt": {
+        "args": {
+          "ambiguity_score": 3,
+          "candidate_id": "res_002",
+          "culture_score": 5,
+          "technical_score": 2
+        },
+        "args_hash": "sha256:30149c3374717ecf328902a0ce968a2f52adca771a10f768e8e287c25c3f3b2a",
+        "tool_name": "decide"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:FT9+n7JNPwaXZPhwh2j0MmrmrE/3UiT6YnwnspWHOxVkbpknqx/VzX8frNBLgbPEdFaOCiHMMmGfKKy3Zlg7Cg==",
+      "timestamp": "2026-05-07T03:34:12.666Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:705d47b298d73cef3b8bbe0b8d4b9a35a4eb65f0cddbf4497e3ba96561cb8c87",
+      "event_type": "tool_end",
+      "id": 296,
+      "paired_event_hash": "sha256:5ab868e2219eb37e1e275db1a7c075d1fe40cd9f717107e948c075327c743b6f",
+      "parent_hash": "sha256:5ab868e2219eb37e1e275db1a7c075d1fe40cd9f717107e948c075327c743b6f",
+      "payload_excerpt": {
+        "output": "{'decision': 'reject', 'reasoning': 'Weak fundamentals: technical 2/10, culture 5/10.', 'candidate_id': 'res_002'}",
+        "output_hash": "sha256:57e54d63ef8433adcf47d49f608a04c8926a4d0fe095fee125a2dfe1924c1250",
+        "tool_name": "decide"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:O8o8mM1dMfIKdy6p4aTzSXWZln1AX9P2jeAlP316ZRHAdDqJ0Odym6J8P8++/eiRDXO5Zx3MdwmCzovSOAmDDQ==",
+      "timestamp": "2026-05-07T03:34:12.667Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:45591c153af67a92d77c5955b4031e093914902bb79944ad503c92c0d9ad1cf3",
+      "event_type": "final_decision",
+      "id": 297,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:705d47b298d73cef3b8bbe0b8d4b9a35a4eb65f0cddbf4497e3ba96561cb8c87",
+      "payload_excerpt": {
+        "candidate_id": "res_002",
+        "decision": "reject",
+        "reasoning": "Weak fundamentals: technical 2/10, culture 5/10.",
+        "reasoning_hash": "sha256:0de68c1114311893899d65a41dbdf9763b4c948de620d1f84f6a98b64e638a9b"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:sN5rfLLWz55wlXfDpbqbrbj1D1zGza9FArQyKf1zcN9iWxen5xe4aQYE/hVOjK3Ndq9GfeSMbm+GUmkZr/F5CQ==",
+      "timestamp": "2026-05-07T03:34:12.667Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:66f2b706a2e956294c245f79747a6d84f19d6e6bc504957236397acb32519905",
+      "event_type": "llm_start",
+      "id": 298,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:45591c153af67a92d77c5955b4031e093914902bb79944ad503c92c0d9ad1cf3",
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Please screen candidate resume res_002. Use the tools to parse, score, and decide.",
+            "type": "human"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"id\": \"res_002\", \"name\": \"Bob Martinez\", \"yoe_react\": 1, \"yoe_python\": 1, \"education\": \"BA English Literature, San Francisco State University (2018). General Assembly fullstack web development bootcamp (3 months, 2023). No formal CS coursework.\", \"highlights\": \"Currently transitioning from a successful 4-year customer support and account management career at IBM Cloud. Self-taught web development since January 2024 - built 2 portfolio projects: a personal blog (Next.js, 200 LOC) and a recipe-tracking app (React + Firebase, deployed via Vercel). Active in #100DaysOfCode and aspires to reach junior fullstack within 18 months. Looking for an entry-level opportunity that values motivation over credentials. Strong communication skills from 4 years of B2B customer-facing work. Available for full-time start within 4 weeks.\"}",
+            "type": "tool"
+          },
+          {
+            "content": "{\"technical_score\": 2, \"culture_score\": 5, \"ambiguity_score\": 3}",
+            "type": "tool"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"decision\": \"reject\", \"reasoning\": \"Weak fundamentals: technical 2/10, culture 5/10.\", \"candidate_id\": \"res_002\"}",
+            "type": "tool"
+          }
+        ],
+        "messages_hash": "sha256:aea5e90013f519fc430cce1a67c18344b989ee9be9f3b16770f4f6d5c8aba2f4",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior tech recruiter screening for a Senior Full-Stack Engineer role.\n\nYou MUST follow these steps in order, no shortcuts:\n1. Call resume_parse to retrieve the candidate's data\n2. Call score_candidate to evaluate technical fit, culture fit, and ambiguity\n3. Call decide with the scores from step 2\n\nDo not skip steps. Even if a candidate seems obvious, run the full evaluation. This is required for audit compliance.",
+        "system_prompt_hash": "sha256:27fb4e06c98c70350ad9d5bb25211ba58b2db8f542d836011c3331497ebfe8b0",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:5Qu4vhyaBQi1eDMjw+hkt4Lwk3s65OO+z1nZIyc5pX67m74sB9NUl8sBe/3B6mLpCaU+fn0ul2I3gM/Eo07RDA==",
+      "timestamp": "2026-05-07T03:34:12.671Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:a71862ed62ffb1b9f44ea5229d39348c90ecd71fd0a0353aeefcf1d5cd4399c5",
+      "event_type": "llm_end",
+      "id": 299,
+      "paired_event_hash": "sha256:66f2b706a2e956294c245f79747a6d84f19d6e6bc504957236397acb32519905",
+      "parent_hash": "sha256:66f2b706a2e956294c245f79747a6d84f19d6e6bc504957236397acb32519905",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:ae47f50d528b68f53ab3c4a5ac15b3480b379ce8f7e4bae10b38b40f131bded2",
+        "output_text": "The candidate, Bob Martinez, has been screened with the following results:\n\n- **Technical Score**: 2/10\n- **Culture Score**: 5/10\n- **Ambiguity Score**: 3/10\n\n**Decision**: Reject\n\n**Reasoning**: The candidate demonstrated weak fundamentals with a technical score of 2 out of 10, which does not meet the requirements for the Senior Full-Stack Engineer role.",
+        "token_usage": null
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:DAgMAXO69HJ2Cvv5YW+46T0IErxGvzmOoIR3Mzb3t2jzBAVhqKYHUBSqaOKUBDLjBdyYM08y21indTT3WCglDw==",
+      "timestamp": "2026-05-07T03:34:15.315Z"
+    }
+  ],
+  "run_id": "run-cab8a47f7500",
+  "version": "0.2"
+}

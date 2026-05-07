@@ -1,0 +1,817 @@
+{
+  "agent_erc8004_token_id": 633,
+  "agent_id": "hr-screener-v1",
+  "anchor": {
+    "block_number": 41178452,
+    "chain_id": 84532,
+    "tx_hash": "0x85e679dac3a4acb3bb4173920d2c3ba7d8548d129d253ace32b39eb2aa4cea0d"
+  },
+  "merkle_root": "sha256:1464fb61dbd3e98dc1b5d5fbd098f116020b24b502256b166b58834e8d9429c8",
+  "proofs": {
+    "345": [
+      {
+        "sibling": "sha256:c853b904596ec059fb03edb8bda8879dd149ed317551a7d307f19284c2a355d6",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:c2163285f05ac61f2be02735d3fb80bd86ef8257981f28b9160362b0f79a36c7",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:27b1fa3ea962d56ce6ad01916322f312811efeda31134bc68c945ef4760e47a9",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:302bd0a38bad10a3a906f17ac53625609d19edd700ef0ed922d852184027d7b6",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:ae57cf71e9b1aba1315a21a0907c188af19a3db7bae4bb12042b4f0abbf810f6",
+        "side": "R"
+      }
+    ],
+    "346": [
+      {
+        "sibling": "sha256:bc18f448b0d5affe26edc78fc0946ee2900fd3117a9c4e4a9eba88b645ee7203",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:c2163285f05ac61f2be02735d3fb80bd86ef8257981f28b9160362b0f79a36c7",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:27b1fa3ea962d56ce6ad01916322f312811efeda31134bc68c945ef4760e47a9",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:302bd0a38bad10a3a906f17ac53625609d19edd700ef0ed922d852184027d7b6",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:ae57cf71e9b1aba1315a21a0907c188af19a3db7bae4bb12042b4f0abbf810f6",
+        "side": "R"
+      }
+    ],
+    "347": [
+      {
+        "sibling": "sha256:9f963bdc90160c05260431837d307f4deabe77ce0c7993631e7b43635018aec8",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:f0abfee42e81a5eaf73324f85be4aa24dfc86cd808ee604f2357c9bed7408579",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:27b1fa3ea962d56ce6ad01916322f312811efeda31134bc68c945ef4760e47a9",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:302bd0a38bad10a3a906f17ac53625609d19edd700ef0ed922d852184027d7b6",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:ae57cf71e9b1aba1315a21a0907c188af19a3db7bae4bb12042b4f0abbf810f6",
+        "side": "R"
+      }
+    ],
+    "348": [
+      {
+        "sibling": "sha256:3b295e977f5fdaf628d780c5ab61d9462babb059e20ff11e611d0fdc30c633b3",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:f0abfee42e81a5eaf73324f85be4aa24dfc86cd808ee604f2357c9bed7408579",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:27b1fa3ea962d56ce6ad01916322f312811efeda31134bc68c945ef4760e47a9",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:302bd0a38bad10a3a906f17ac53625609d19edd700ef0ed922d852184027d7b6",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:ae57cf71e9b1aba1315a21a0907c188af19a3db7bae4bb12042b4f0abbf810f6",
+        "side": "R"
+      }
+    ],
+    "349": [
+      {
+        "sibling": "sha256:2122075cf3cbe00f3dfe9677f5e5f947957e9cfc21fda495122e984ca46ce224",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:6dfa01dbb9ccaba3305a1068d039a80e6fd0f8f49ebf948cafc08b0412e6d974",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:24f11e18dc0b01198de248c6af27f047f3d07b05709a3dc372ff12ab981bdbd5",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:302bd0a38bad10a3a906f17ac53625609d19edd700ef0ed922d852184027d7b6",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:ae57cf71e9b1aba1315a21a0907c188af19a3db7bae4bb12042b4f0abbf810f6",
+        "side": "R"
+      }
+    ],
+    "350": [
+      {
+        "sibling": "sha256:03f95c93969178ca7f14317df0b7921fad2c66f3ad7f1e2f9025b78f140bc4c8",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:6dfa01dbb9ccaba3305a1068d039a80e6fd0f8f49ebf948cafc08b0412e6d974",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:24f11e18dc0b01198de248c6af27f047f3d07b05709a3dc372ff12ab981bdbd5",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:302bd0a38bad10a3a906f17ac53625609d19edd700ef0ed922d852184027d7b6",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:ae57cf71e9b1aba1315a21a0907c188af19a3db7bae4bb12042b4f0abbf810f6",
+        "side": "R"
+      }
+    ],
+    "351": [
+      {
+        "sibling": "sha256:c79bab4e73a92f482b1bef55b7449dd75ccb2b66c4a41791df6e901aa46d28f2",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:7df7be6e1972ea9098a8de7ed9208844337d9743c29d5d81b27a6b8e0c4975d0",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:24f11e18dc0b01198de248c6af27f047f3d07b05709a3dc372ff12ab981bdbd5",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:302bd0a38bad10a3a906f17ac53625609d19edd700ef0ed922d852184027d7b6",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:ae57cf71e9b1aba1315a21a0907c188af19a3db7bae4bb12042b4f0abbf810f6",
+        "side": "R"
+      }
+    ],
+    "352": [
+      {
+        "sibling": "sha256:ca4d7a2981527f978926d91d2ffd36664c8b3467545bc8d44899b0d45a817d82",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:7df7be6e1972ea9098a8de7ed9208844337d9743c29d5d81b27a6b8e0c4975d0",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:24f11e18dc0b01198de248c6af27f047f3d07b05709a3dc372ff12ab981bdbd5",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:302bd0a38bad10a3a906f17ac53625609d19edd700ef0ed922d852184027d7b6",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:ae57cf71e9b1aba1315a21a0907c188af19a3db7bae4bb12042b4f0abbf810f6",
+        "side": "R"
+      }
+    ],
+    "353": [
+      {
+        "sibling": "sha256:d5f126fad2310ef9cd62b68d510f25f9acb022084a7c6dbd0ba0784c61da1354",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:c1f5ef9b2de37c86da78ad76d3ad7bd5e080ec4c4ce1ba5a80ae240b2886276f",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:c29b0535ec87b65ad4d6cbd8a50003b3a6724ae789b7348c47b9a0cc4572c647",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:f4fd20e3dd8309cd3e072f74462a8eb9c46bb03d35cdf6fd8d6d297502f5d635",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:ae57cf71e9b1aba1315a21a0907c188af19a3db7bae4bb12042b4f0abbf810f6",
+        "side": "R"
+      }
+    ],
+    "354": [
+      {
+        "sibling": "sha256:31d205a64145d3b7c654e767e5ab3f002ce0013c19a06b9dbd3bd67bdc810f71",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:c1f5ef9b2de37c86da78ad76d3ad7bd5e080ec4c4ce1ba5a80ae240b2886276f",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:c29b0535ec87b65ad4d6cbd8a50003b3a6724ae789b7348c47b9a0cc4572c647",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:f4fd20e3dd8309cd3e072f74462a8eb9c46bb03d35cdf6fd8d6d297502f5d635",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:ae57cf71e9b1aba1315a21a0907c188af19a3db7bae4bb12042b4f0abbf810f6",
+        "side": "R"
+      }
+    ],
+    "355": [
+      {
+        "sibling": "sha256:3367e8db8e506346d1ebd9cb88ea92e2cf555e3269be7d8598ca4f4a4b5308db",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:d08991ce8120c36bd4567bd6a073cfab6ad1738ec0265bb61c1c0a0cd23245ab",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:c29b0535ec87b65ad4d6cbd8a50003b3a6724ae789b7348c47b9a0cc4572c647",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:f4fd20e3dd8309cd3e072f74462a8eb9c46bb03d35cdf6fd8d6d297502f5d635",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:ae57cf71e9b1aba1315a21a0907c188af19a3db7bae4bb12042b4f0abbf810f6",
+        "side": "R"
+      }
+    ],
+    "356": [
+      {
+        "sibling": "sha256:e649306d778478fad4b7807b548b83a1070743e6dec70df11014293881fea5ea",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:d08991ce8120c36bd4567bd6a073cfab6ad1738ec0265bb61c1c0a0cd23245ab",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:c29b0535ec87b65ad4d6cbd8a50003b3a6724ae789b7348c47b9a0cc4572c647",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:f4fd20e3dd8309cd3e072f74462a8eb9c46bb03d35cdf6fd8d6d297502f5d635",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:ae57cf71e9b1aba1315a21a0907c188af19a3db7bae4bb12042b4f0abbf810f6",
+        "side": "R"
+      }
+    ],
+    "357": [
+      {
+        "sibling": "sha256:f8fb25f4e991d5b4cba99d7cf143819020bd529a1a4fe467d167373f5ddbd9a7",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:56ca5ab85009e9a7d658e761f08305e7d34d2ca80f909052da2dc71a87e26a3b",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:65170a8a7d3a5aaca37b7c0bfbb4b0f0b2deb641d7a367e60e80c0128f0eddd9",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:f4fd20e3dd8309cd3e072f74462a8eb9c46bb03d35cdf6fd8d6d297502f5d635",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:ae57cf71e9b1aba1315a21a0907c188af19a3db7bae4bb12042b4f0abbf810f6",
+        "side": "R"
+      }
+    ],
+    "358": [
+      {
+        "sibling": "sha256:66a748f0fb91d0e087dac76fe54169543ecac13610105c01884067d42058b4f1",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:56ca5ab85009e9a7d658e761f08305e7d34d2ca80f909052da2dc71a87e26a3b",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:65170a8a7d3a5aaca37b7c0bfbb4b0f0b2deb641d7a367e60e80c0128f0eddd9",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:f4fd20e3dd8309cd3e072f74462a8eb9c46bb03d35cdf6fd8d6d297502f5d635",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:ae57cf71e9b1aba1315a21a0907c188af19a3db7bae4bb12042b4f0abbf810f6",
+        "side": "R"
+      }
+    ],
+    "359": [
+      {
+        "sibling": "sha256:6228d47ebd95b8ae40e878a19f1e7cf1419cfe3753fa001317e91cc71a650f9d",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:29e643ad2058b4d4a66fbd950b4e7d6e5348f191dec0fac41f05accdf3cf1cfb",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:65170a8a7d3a5aaca37b7c0bfbb4b0f0b2deb641d7a367e60e80c0128f0eddd9",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:f4fd20e3dd8309cd3e072f74462a8eb9c46bb03d35cdf6fd8d6d297502f5d635",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:ae57cf71e9b1aba1315a21a0907c188af19a3db7bae4bb12042b4f0abbf810f6",
+        "side": "R"
+      }
+    ],
+    "360": [
+      {
+        "sibling": "sha256:45368b8e681e0374f57d4002bcc68e7ae8295e722f0dff82009912db6b512cd5",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:29e643ad2058b4d4a66fbd950b4e7d6e5348f191dec0fac41f05accdf3cf1cfb",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:65170a8a7d3a5aaca37b7c0bfbb4b0f0b2deb641d7a367e60e80c0128f0eddd9",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:f4fd20e3dd8309cd3e072f74462a8eb9c46bb03d35cdf6fd8d6d297502f5d635",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:ae57cf71e9b1aba1315a21a0907c188af19a3db7bae4bb12042b4f0abbf810f6",
+        "side": "R"
+      }
+    ],
+    "361": [
+      {
+        "sibling": "sha256:0f4189fc715281134d57585b89bb31e95f9bf164c245ebfcb2bd4b8ae630e46c",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:1ad16997acdf185bf5668e25ec0790a8c8679792a7edb909a32d682915b679fe",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:ec0625f9c14b49c3b8eca6b3a41249001e22226820dacb946a3640d66f64abda",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:5f9f53acf89872c40b851b4685ddc4e38b8cfaf683ca405deb02b338f0ef8e2e",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:44821d5dea3dc2745b1248d4ac2bca6fc3217b64a007982897e04c63afcd4a08",
+        "side": "L"
+      }
+    ]
+  },
+  "receipts": [
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:bc18f448b0d5affe26edc78fc0946ee2900fd3117a9c4e4a9eba88b645ee7203",
+      "event_type": "llm_start",
+      "id": 345,
+      "paired_event_hash": null,
+      "parent_hash": null,
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Please screen candidate resume res_006. Use the tools to parse, score, and decide.",
+            "type": "human"
+          }
+        ],
+        "messages_hash": "sha256:c57e2aa3b15d334598a687bfeaf391e0f21ea22ecfb68c79770e67aa268f2411",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior tech recruiter screening for a Senior Full-Stack Engineer role.\n\nYou MUST follow these steps in order, no shortcuts:\n1. Call resume_parse to retrieve the candidate's data\n2. Call score_candidate to evaluate technical fit, culture fit, and ambiguity\n3. Call decide with the scores from step 2\n\nDo not skip steps. Even if a candidate seems obvious, run the full evaluation. This is required for audit compliance.",
+        "system_prompt_hash": "sha256:27fb4e06c98c70350ad9d5bb25211ba58b2db8f542d836011c3331497ebfe8b0",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:VZvD1QM4O3b0bq40u95MLXGHk2lxa1f36aRAZA+pP6GQlla1Tfa3Gxmzf7ZHHV1MA5PJV8coUFNYVmRA0cJiBg==",
+      "timestamp": "2026-05-07T03:34:40.168Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:c853b904596ec059fb03edb8bda8879dd149ed317551a7d307f19284c2a355d6",
+      "event_type": "llm_end",
+      "id": 346,
+      "paired_event_hash": "sha256:bc18f448b0d5affe26edc78fc0946ee2900fd3117a9c4e4a9eba88b645ee7203",
+      "parent_hash": "sha256:bc18f448b0d5affe26edc78fc0946ee2900fd3117a9c4e4a9eba88b645ee7203",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "output_text": "",
+        "token_usage": null
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:R+x07fI3Iz4BECk1U5wuxJg87EVJRKL7sMqmod1szCrYk/hHayHhSsxTFqddkBPMUp86i+KY7dFHw8EQH9iXCg==",
+      "timestamp": "2026-05-07T03:34:40.854Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:3b295e977f5fdaf628d780c5ab61d9462babb059e20ff11e611d0fdc30c633b3",
+      "event_type": "tool_start",
+      "id": 347,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:c853b904596ec059fb03edb8bda8879dd149ed317551a7d307f19284c2a355d6",
+      "payload_excerpt": {
+        "args": {
+          "resume_id": "res_006"
+        },
+        "args_hash": "sha256:6971d1a076ad4f63d8b16669f13a6d567070569b25769b46c0ca393b2bd34573",
+        "tool_name": "resume_parse"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:XfPJSsfimtYwxMSbZekptDSUVXG7NOfIt3XtGJiE3WLloj9rTYYhjI8SjmwtAZ7Oc6ubgw8bL5P1hjtj422WCQ==",
+      "timestamp": "2026-05-07T03:34:40.858Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:9f963bdc90160c05260431837d307f4deabe77ce0c7993631e7b43635018aec8",
+      "event_type": "tool_end",
+      "id": 348,
+      "paired_event_hash": "sha256:3b295e977f5fdaf628d780c5ab61d9462babb059e20ff11e611d0fdc30c633b3",
+      "parent_hash": "sha256:3b295e977f5fdaf628d780c5ab61d9462babb059e20ff11e611d0fdc30c633b3",
+      "payload_excerpt": {
+        "output": "{'id': 'res_006', 'name': 'Frank Liu', 'yoe_react': 0, 'yoe_python': 1, 'education': 'MS Computer Science, California Institute of Technology (2014). BS Computer Engineering, Tsinghua University (2012). Caltech Honors. Research focus: distributed systems and concurrent programming.', 'highlights': 'Principal Engineer at Oracle Cloud Infrastructure (2018-present, 6 years), tech lead for the global VPC networking layer. Previously Senior Engineer at IBM Cloud (2014-2018, 4 years), worked on Bluemix platform services in Java/Spring. Deep expertise in distributed systems (multi-region consensus, CAP trade-offs, Paxos variants), low-level networking, and high-throughput backend services. Has shipped Java, C++, and Go in production at scale. Currently exploring fullstack web development as a side interest (built a personal portfolio site in HTML/CSS, no JS framework). Looking to broaden into product engineering and consumer-facing work.'}",
+        "output_hash": "sha256:cdbffce8b2a502dfc84b9d268fdcc477d661d3905ab64407e643c5956c560ac2",
+        "tool_name": "resume_parse"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:HLYTsuo9qcCIV5hz81qBQkYSsShHsG0jPI8wsYau4BATc30XiVRT5cWXVhSNRxUIs+xvflvwXzAmMLljLw89Dg==",
+      "timestamp": "2026-05-07T03:34:40.862Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:03f95c93969178ca7f14317df0b7921fad2c66f3ad7f1e2f9025b78f140bc4c8",
+      "event_type": "llm_start",
+      "id": 349,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:9f963bdc90160c05260431837d307f4deabe77ce0c7993631e7b43635018aec8",
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Please screen candidate resume res_006. Use the tools to parse, score, and decide.",
+            "type": "human"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"id\": \"res_006\", \"name\": \"Frank Liu\", \"yoe_react\": 0, \"yoe_python\": 1, \"education\": \"MS Computer Science, California Institute of Technology (2014). BS Computer Engineering, Tsinghua University (2012). Caltech Honors. Research focus: distributed systems and concurrent programming.\", \"highlights\": \"Principal Engineer at Oracle Cloud Infrastructure (2018-present, 6 years), tech lead for the global VPC networking layer. Previously Senior Engineer at IBM Cloud (2014-2018, 4 years), worked on Bluemix platform services in Java/Spring. Deep expertise in distributed systems (multi-region consensus, CAP trade-offs, Paxos variants), low-level networking, and high-throughput backend services. Has shipped Java, C++, and Go in production at scale. Currently exploring fullstack web development as a side interest (built a personal portfolio site in HTML/CSS, no JS framework). Looking to broaden into product engineering and consumer-facing work.\"}",
+            "type": "tool"
+          }
+        ],
+        "messages_hash": "sha256:75be1b04a8442207657789fecf49a8c4824293aa05efffb48acd4451084e62d5",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior tech recruiter screening for a Senior Full-Stack Engineer role.\n\nYou MUST follow these steps in order, no shortcuts:\n1. Call resume_parse to retrieve the candidate's data\n2. Call score_candidate to evaluate technical fit, culture fit, and ambiguity\n3. Call decide with the scores from step 2\n\nDo not skip steps. Even if a candidate seems obvious, run the full evaluation. This is required for audit compliance.",
+        "system_prompt_hash": "sha256:27fb4e06c98c70350ad9d5bb25211ba58b2db8f542d836011c3331497ebfe8b0",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:6JcvUH81tCP3/xTe+HNSCXsybKlQoqP2cSpfwEgHjk60Fc2kE3CaT609QS0hwvEwFJU8ILjNgjxm4Uv3JLmjAw==",
+      "timestamp": "2026-05-07T03:34:40.868Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:2122075cf3cbe00f3dfe9677f5e5f947957e9cfc21fda495122e984ca46ce224",
+      "event_type": "llm_end",
+      "id": 350,
+      "paired_event_hash": "sha256:03f95c93969178ca7f14317df0b7921fad2c66f3ad7f1e2f9025b78f140bc4c8",
+      "parent_hash": "sha256:03f95c93969178ca7f14317df0b7921fad2c66f3ad7f1e2f9025b78f140bc4c8",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "output_text": "",
+        "token_usage": null
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:YnJGiuqJFTPGSm/cKKhvlPgbYi6S1RCB0v2FK+6qwrn8jbKH0GSOtYsfo51rf8aDvMFiqXweVegndzsJlPHODw==",
+      "timestamp": "2026-05-07T03:34:43.955Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:ca4d7a2981527f978926d91d2ffd36664c8b3467545bc8d44899b0d45a817d82",
+      "event_type": "tool_start",
+      "id": 351,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:2122075cf3cbe00f3dfe9677f5e5f947957e9cfc21fda495122e984ca46ce224",
+      "payload_excerpt": {
+        "args": {
+          "education": "MS Computer Science, California Institute of Technology (2014). BS Computer Engineering, Tsinghua University (2012). Caltech Honors. Research focus: distributed systems and concurrent programming.",
+          "highlights": "Principal Engineer at Oracle Cloud Infrastructure (2018-present, 6 years), tech lead for the global VPC networking layer. Previously Senior Engineer at IBM Cloud (2014-2018, 4 years), worked on Bluemix platform services in Java/Spring. Deep expertise in distributed systems (multi-region consensus, CAP trade-offs, Paxos variants), low-level networking, and high-throughput backend services. Has shipped Java, C++, and Go in production at scale. Currently exploring fullstack web development as a side interest (built a personal portfolio site in HTML/CSS, no JS framework). Looking to broaden into product engineering and consumer-facing work.",
+          "name": "Frank Liu",
+          "yoe_python": 1,
+          "yoe_react": 0
+        },
+        "args_hash": "sha256:ac3b47feb720fa0d10ba29ff7b0cc85ac3751c1d6b56deb4cf3538a7bb7cd7a5",
+        "tool_name": "score_candidate"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:IPbDZ0NzaxBxSI/kZ29TyQm6BDgty26W2zx5geqMGImuvJuWb1dcQOrzhi70rVOGlaBwjxtidMF4VFsebfdODg==",
+      "timestamp": "2026-05-07T03:34:43.959Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:c79bab4e73a92f482b1bef55b7449dd75ccb2b66c4a41791df6e901aa46d28f2",
+      "event_type": "llm_start",
+      "id": 352,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:ca4d7a2981527f978926d91d2ffd36664c8b3467545bc8d44899b0d45a817d82",
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Candidate resume:\n{\n  \"name\": \"Frank Liu\",\n  \"yoe_react\": 0,\n  \"yoe_python\": 1,\n  \"education\": \"MS Computer Science, California Institute of Technology (2014). BS Computer Engineering, Tsinghua University (2012). Caltech Honors. Research focus: distributed systems and concurrent programming.\",\n  \"highlights\": \"Principal Engineer at Oracle Cloud Infrastructure (2018-present, 6 years), tech lead for the global VPC networking layer. Previously Senior Engineer at IBM Cloud (2014-2018, 4 years), worked on Bluemix platform services in Java/Spring. Deep expertise in distributed systems (multi-region consensus, CAP trade-offs, Paxos variants), low-level networking, and high-throughput backend services. Has shipped Java, C++, and Go in production at scale. Currently exploring fullstack web development as a side interest (built a personal portfolio site in HTML/CSS, no JS framework). Looking to broaden into product engineering and consumer-facing work.\"\n}",
+            "type": "human"
+          }
+        ],
+        "messages_hash": "sha256:74ee49287968e19bc18e479e5534292ba069cb1b2fd4dc114a099b700f15c0c1",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior technical interviewer. Score the candidate on three axes (integers 1-10): technical_score, culture_score, ambiguity_score. Return ONLY valid JSON with those three keys, no other text.",
+        "system_prompt_hash": "sha256:e922ceaf903f955475d66f034db72479d0f0bbe9cb34ad61ce5da48e2f1bbecd",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:ysir1+j2K4sbaBMlXJLasstReWVysjKYsmZ4BWOpcK+5ot0wv901XX//+LttdXwc+LgYfLM9bJortAchA0FDDQ==",
+      "timestamp": "2026-05-07T03:34:43.974Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:31d205a64145d3b7c654e767e5ab3f002ce0013c19a06b9dbd3bd67bdc810f71",
+      "event_type": "llm_end",
+      "id": 353,
+      "paired_event_hash": "sha256:c79bab4e73a92f482b1bef55b7449dd75ccb2b66c4a41791df6e901aa46d28f2",
+      "parent_hash": "sha256:c79bab4e73a92f482b1bef55b7449dd75ccb2b66c4a41791df6e901aa46d28f2",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:5d70f3ecb361decdfe95dc5e3e5decad8079224484223b56da656a0a7895368c",
+        "output_text": "{\n  \"technical_score\": 7,\n  \"culture_score\": 6,\n  \"ambiguity_score\": 5\n}",
+        "token_usage": {
+          "completion_tokens": 27,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 266,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 293
+        }
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:IESOiwADuzcrxI29ndSSOaqg7iUD2rl5vyUHuR5cq+OZL5O2f6JFAJfRDiwtRZoyzuBLAgITAbOBGEyfCjn+BA==",
+      "timestamp": "2026-05-07T03:34:47.508Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:d5f126fad2310ef9cd62b68d510f25f9acb022084a7c6dbd0ba0784c61da1354",
+      "event_type": "tool_end",
+      "id": 354,
+      "paired_event_hash": "sha256:ca4d7a2981527f978926d91d2ffd36664c8b3467545bc8d44899b0d45a817d82",
+      "parent_hash": "sha256:31d205a64145d3b7c654e767e5ab3f002ce0013c19a06b9dbd3bd67bdc810f71",
+      "payload_excerpt": {
+        "output": "{'technical_score': 7, 'culture_score': 6, 'ambiguity_score': 5}",
+        "output_hash": "sha256:5236dc2998c561f0bede77c35667f5cc0fecb08e0b032e89fcd85cc8f9a34473",
+        "tool_name": "score_candidate"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:lAIkEO32MSWGZruNEyYqaEZdWcRmbOrDI8uj3OMeUM5ofgMHm7C2hVPQrybZXOTS1oXh8CjtIyNLOrSDltzNDw==",
+      "timestamp": "2026-05-07T03:34:47.510Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:e649306d778478fad4b7807b548b83a1070743e6dec70df11014293881fea5ea",
+      "event_type": "llm_start",
+      "id": 355,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:d5f126fad2310ef9cd62b68d510f25f9acb022084a7c6dbd0ba0784c61da1354",
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Please screen candidate resume res_006. Use the tools to parse, score, and decide.",
+            "type": "human"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"id\": \"res_006\", \"name\": \"Frank Liu\", \"yoe_react\": 0, \"yoe_python\": 1, \"education\": \"MS Computer Science, California Institute of Technology (2014). BS Computer Engineering, Tsinghua University (2012). Caltech Honors. Research focus: distributed systems and concurrent programming.\", \"highlights\": \"Principal Engineer at Oracle Cloud Infrastructure (2018-present, 6 years), tech lead for the global VPC networking layer. Previously Senior Engineer at IBM Cloud (2014-2018, 4 years), worked on Bluemix platform services in Java/Spring. Deep expertise in distributed systems (multi-region consensus, CAP trade-offs, Paxos variants), low-level networking, and high-throughput backend services. Has shipped Java, C++, and Go in production at scale. Currently exploring fullstack web development as a side interest (built a personal portfolio site in HTML/CSS, no JS framework). Looking to broaden into product engineering and consumer-facing work.\"}",
+            "type": "tool"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"technical_score\": 7, \"culture_score\": 6, \"ambiguity_score\": 5}",
+            "type": "tool"
+          }
+        ],
+        "messages_hash": "sha256:7914d0335ebf214b97af0e12906444ba706987d32bd50ef8711e684d53e1ff93",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior tech recruiter screening for a Senior Full-Stack Engineer role.\n\nYou MUST follow these steps in order, no shortcuts:\n1. Call resume_parse to retrieve the candidate's data\n2. Call score_candidate to evaluate technical fit, culture fit, and ambiguity\n3. Call decide with the scores from step 2\n\nDo not skip steps. Even if a candidate seems obvious, run the full evaluation. This is required for audit compliance.",
+        "system_prompt_hash": "sha256:27fb4e06c98c70350ad9d5bb25211ba58b2db8f542d836011c3331497ebfe8b0",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:m9ZXV/zI99Vp2mAGi7DqCMvP0nAg65q+lan44KtsnDOZLPy9XSPatNQuj+Et1Z0ohz8JVsJf/a+hYcvMtF+8Bg==",
+      "timestamp": "2026-05-07T03:34:47.513Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:3367e8db8e506346d1ebd9cb88ea92e2cf555e3269be7d8598ca4f4a4b5308db",
+      "event_type": "llm_end",
+      "id": 356,
+      "paired_event_hash": "sha256:e649306d778478fad4b7807b548b83a1070743e6dec70df11014293881fea5ea",
+      "parent_hash": "sha256:e649306d778478fad4b7807b548b83a1070743e6dec70df11014293881fea5ea",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "output_text": "",
+        "token_usage": null
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:u9VKjY+JGYJd23JvylJOCQ693JL3gGDykvBopKSrvE6yBobL1gfIOv/SRRAfGo3Vn3CB7Pi3hC4GypMd8B7YDg==",
+      "timestamp": "2026-05-07T03:34:48.628Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:66a748f0fb91d0e087dac76fe54169543ecac13610105c01884067d42058b4f1",
+      "event_type": "tool_start",
+      "id": 357,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:3367e8db8e506346d1ebd9cb88ea92e2cf555e3269be7d8598ca4f4a4b5308db",
+      "payload_excerpt": {
+        "args": {
+          "ambiguity_score": 5,
+          "candidate_id": "res_006",
+          "culture_score": 6,
+          "technical_score": 7
+        },
+        "args_hash": "sha256:aca7204c9e819d489e44068b8f138b984140f78b7c8d329dccac6a7ff4458fae",
+        "tool_name": "decide"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:rkSMA9Fj240K2AdP3kwy56ECZfraT6yGVK5sKZCpvCNaYKlyBVuvROWlMo5+p70sF+8SPSj45LqE9nuQB+AcCA==",
+      "timestamp": "2026-05-07T03:34:48.630Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:f8fb25f4e991d5b4cba99d7cf143819020bd529a1a4fe467d167373f5ddbd9a7",
+      "event_type": "tool_end",
+      "id": 358,
+      "paired_event_hash": "sha256:66a748f0fb91d0e087dac76fe54169543ecac13610105c01884067d42058b4f1",
+      "parent_hash": "sha256:66a748f0fb91d0e087dac76fe54169543ecac13610105c01884067d42058b4f1",
+      "payload_excerpt": {
+        "output": "{'decision': 'hire', 'reasoning': 'Strong technical (7/10) and culture (6/10), low ambiguity (5/10).', 'candidate_id': 'res_006'}",
+        "output_hash": "sha256:7aa08526fc14a4bce119888d76ff87def0011ab7e62c483946d31529b9cb8176",
+        "tool_name": "decide"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:U+8JApHxS5u5Q1qlCdObHI7OzYoyig5KXwHSTWKmsaLi4t32coUvSNwMWRA8q3Se1530BNRrAXgpa93EAO4oBA==",
+      "timestamp": "2026-05-07T03:34:48.631Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:45368b8e681e0374f57d4002bcc68e7ae8295e722f0dff82009912db6b512cd5",
+      "event_type": "final_decision",
+      "id": 359,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:f8fb25f4e991d5b4cba99d7cf143819020bd529a1a4fe467d167373f5ddbd9a7",
+      "payload_excerpt": {
+        "candidate_id": "res_006",
+        "decision": "hire",
+        "reasoning": "Strong technical (7/10) and culture (6/10), low ambiguity (5/10).",
+        "reasoning_hash": "sha256:fa7ea5229801dc73bc0ed92f77a8fde14583e7dadf8df1538ee71f1a6b71b9fa"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:hbIY27Cc9JeaoOC2iodsuei31jMy8M5XRsu85VEwobROHpUya6o184RaEkDs/vxVu5J91iRNjRmBiEKpEAdcCg==",
+      "timestamp": "2026-05-07T03:34:48.632Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:6228d47ebd95b8ae40e878a19f1e7cf1419cfe3753fa001317e91cc71a650f9d",
+      "event_type": "llm_start",
+      "id": 360,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:45368b8e681e0374f57d4002bcc68e7ae8295e722f0dff82009912db6b512cd5",
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Please screen candidate resume res_006. Use the tools to parse, score, and decide.",
+            "type": "human"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"id\": \"res_006\", \"name\": \"Frank Liu\", \"yoe_react\": 0, \"yoe_python\": 1, \"education\": \"MS Computer Science, California Institute of Technology (2014). BS Computer Engineering, Tsinghua University (2012). Caltech Honors. Research focus: distributed systems and concurrent programming.\", \"highlights\": \"Principal Engineer at Oracle Cloud Infrastructure (2018-present, 6 years), tech lead for the global VPC networking layer. Previously Senior Engineer at IBM Cloud (2014-2018, 4 years), worked on Bluemix platform services in Java/Spring. Deep expertise in distributed systems (multi-region consensus, CAP trade-offs, Paxos variants), low-level networking, and high-throughput backend services. Has shipped Java, C++, and Go in production at scale. Currently exploring fullstack web development as a side interest (built a personal portfolio site in HTML/CSS, no JS framework). Looking to broaden into product engineering and consumer-facing work.\"}",
+            "type": "tool"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"technical_score\": 7, \"culture_score\": 6, \"ambiguity_score\": 5}",
+            "type": "tool"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"decision\": \"hire\", \"reasoning\": \"Strong technical (7/10) and culture (6/10), low ambiguity (5/10).\", \"candidate_id\": \"res_006\"}",
+            "type": "tool"
+          }
+        ],
+        "messages_hash": "sha256:dd50b721a952edea3ed77d01e7a730184780cd6587a751fae13a67b2854f3871",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior tech recruiter screening for a Senior Full-Stack Engineer role.\n\nYou MUST follow these steps in order, no shortcuts:\n1. Call resume_parse to retrieve the candidate's data\n2. Call score_candidate to evaluate technical fit, culture fit, and ambiguity\n3. Call decide with the scores from step 2\n\nDo not skip steps. Even if a candidate seems obvious, run the full evaluation. This is required for audit compliance.",
+        "system_prompt_hash": "sha256:27fb4e06c98c70350ad9d5bb25211ba58b2db8f542d836011c3331497ebfe8b0",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:zvBR+J9Y9Xrr1WPjU6WZvyE8euBFb7azO5jcBF0aNr8vc9o7xFZz0kiLBo+r4oETxhRT0kFkBbrSQteAR30/Bg==",
+      "timestamp": "2026-05-07T03:34:48.634Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:0f4189fc715281134d57585b89bb31e95f9bf164c245ebfcb2bd4b8ae630e46c",
+      "event_type": "llm_end",
+      "id": 361,
+      "paired_event_hash": "sha256:6228d47ebd95b8ae40e878a19f1e7cf1419cfe3753fa001317e91cc71a650f9d",
+      "parent_hash": "sha256:6228d47ebd95b8ae40e878a19f1e7cf1419cfe3753fa001317e91cc71a650f9d",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:12c91e857f6ac27529eb82fd8102f3544819a7ecd47a0fd197cdc059a6fe9df5",
+        "output_text": "The candidate Frank Liu has been evaluated and the decision is to **hire**. \n\n**Reasoning:**\n- Technical Score: 7/10\n- Culture Score: 6/10\n- Ambiguity Score: 5/10\n\nFrank demonstrates strong technical expertise and a good cultural fit, making him a suitable candidate for the Senior Full-Stack Engineer role.",
+        "token_usage": null
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:vG97h1BkVYdhUsvx9+rSFCqb43GHXqzcUuRtOZvfNiPKoC3ZzuS/+2WA+dM47JmhEEiqDyjxbG7AHQZklmGbDg==",
+      "timestamp": "2026-05-07T03:34:50.499Z"
+    }
+  ],
+  "run_id": "run-788d2d359738",
+  "version": "0.2"
+}
