@@ -265,6 +265,41 @@ export function deriveTooltipLine2(node: TreeNode): string {
   }
 }
 
+// Row description as JSX with IDE-style token highlighting. The plain-text
+// version (deriveTooltipLine2) is still computed once per row for the title=
+// attribute (accessibility / hover fallback when ellipsis truncates); this
+// returns the visible content with monospace + colored function/model name
+// for the three high-frequency event families. Color tokens match the badge
+// palette (text-{blue,green,yellow}-300) so badge label and code token read
+// as the same family — operator scans the column and sees a green pill next
+// to a green tool_name. Error / orphan / unknown event types fall back to
+// the plain string so the column never renders blank.
+function renderEventDescription(node: TreeNode) {
+  const t = node.start.event_type;
+  const payload = node.start.payload_excerpt;
+  if (t === "tool_start" || t === "tool_end") {
+    const toolName = pickPayloadString(payload, "tool_name") ?? "tool";
+    return (
+      <>
+        Called <code className="font-mono text-green-300">{toolName}</code>
+      </>
+    );
+  }
+  if (t === "llm_start" || t === "llm_end") {
+    const model = pickPayloadString(payload, "model") ?? "LLM";
+    return <code className="font-mono text-blue-300">{model}</code>;
+  }
+  if (t === "final_decision") {
+    const decision = pickPayloadString(payload, "decision");
+    return (
+      <span className="font-bold text-yellow-300">
+        {decision ? decision.toUpperCase() : "DECISION"}
+      </span>
+    );
+  }
+  return deriveTooltipLine2(node);
+}
+
 // ---------------------------------------------------------------------------
 // tooltip (mouse-over detail) — IA §4 originally specified 2 lines (timestamp
 // + plain-English description). E7 / D19: description moves Tier 1 inline on
@@ -495,18 +530,18 @@ function NodeRow({
           </span>
 
           {/* description column. Tree char prefix marks nested children
-              (depth > 0); inline "Event N · " keeps the row identifier
-              alongside the description. title= surfaces full text when
-              the column narrows and the text-ellipsis kicks in. */}
+              (depth > 0); inline "N · " keeps the row identifier compact.
+              Description body uses renderEventDescription for IDE-style
+              token highlighting (mono + family color on the function /
+              model / decision token). title= surfaces full plain text when
+              the column narrows and text-ellipsis kicks in. */}
           <span
             className="overflow-hidden text-ellipsis whitespace-nowrap text-text"
             title={description}
           >
             {node.depth > 0 && <span className="text-muted">└─ </span>}
-            <span className="text-muted text-xs">
-              Event {sequenceNumber} ·{" "}
-            </span>
-            {description}
+            <span className="text-muted text-xs">{sequenceNumber} · </span>
+            {renderEventDescription(node)}
             {inFlight && (
               <span className="text-muted text-xs italic ml-1">(in flight)</span>
             )}
