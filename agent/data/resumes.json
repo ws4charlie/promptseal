@@ -52,5 +52,21 @@
     "education": "MS Computer Science, California Institute of Technology (2014). BS Computer Engineering, Tsinghua University (2012). Caltech Honors. Research focus: distributed systems and concurrent programming.",
     "highlights": "Principal Engineer at Oracle Cloud Infrastructure (2018-present, 6 years), tech lead for the global VPC networking layer. Previously Senior Engineer at IBM Cloud (2014-2018, 4 years), worked on Bluemix platform services in Java/Spring. Deep expertise in distributed systems (multi-region consensus, CAP trade-offs, Paxos variants), low-level networking, and high-throughput backend services. Has shipped Java, C++, and Go in production at scale. Currently exploring fullstack web development as a side interest (built a personal portfolio site in HTML/CSS, no JS framework). Looking to broaden into product engineering and consumer-facing work.",
     "expected_decision": "reject"
+  },
+  {
+    "id": "res_007",
+    "name": "Grace Park",
+    "yoe_react": 8,
+    "yoe_python": 9,
+    "education": "MS Computer Science, Carnegie Mellon (2016). BS Computer Science, UC Berkeley (2014).",
+    "highlights": "Currently Senior Staff Engineer (L6) at Google, leading Search infrastructure for 1B+ daily queries. Previously Tech Lead at Meta (2018-2022) on the React Native core team — co-authored the new architecture (Fabric) and shipped Hermes JIT improvements. Open source: 800+ stars on a popular React state management library, regular speaker at React Conf. Mentored 12+ junior engineers to senior roles. Strong system design background, comfortable with distributed systems and on-call rotations. Looking for a Staff+ role with technical leadership scope. References available from former managers at Meta and Google."
+  },
+  {
+    "id": "res_008",
+    "name": "Henry Wu",
+    "yoe_react": 0,
+    "yoe_python": 1,
+    "education": "BS Business Administration, San Francisco State (2024). Completed online JavaScript course on Udemy.",
+    "highlights": "Recent graduate with strong interest in software engineering. Built a personal portfolio website using HTML/CSS and JavaScript. Followed a tutorial series to create a to-do list React app. Currently learning Python through self-study. Comfortable with basic Git commands. Took one Coursera course on web development. Eager to learn and grow in a fast-paced engineering environment. Available immediately."
   }
 ]
