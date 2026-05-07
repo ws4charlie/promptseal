@@ -19,6 +19,7 @@ import RunTreeView, {
 } from "../components/RunTreeView";
 import {
   EvidencePackValidationError,
+  hasAnyTamper,
   loadFromEmbedded,
   loadFromURL,
   type EvidencePack,
@@ -83,6 +84,14 @@ export default function RunPage() {
     Map<number, ReceiptVerifyStatus>
   >(new Map());
   const [overall, setOverall] = useState<OverallStatus>({ kind: "idle" });
+  // Tamper feature (Q-tamper): bumped on every Apply/Restore so derived
+  // hasAnyTamper() / isReceiptIdTampered() recompute and child components
+  // re-render. The pack itself is mutated in place (cheaper than immutable
+  // updates for nested payload edits, and we explicitly want the same
+  // Receipt object reference so the rest of the dashboard's useMemo deps
+  // don't churn). Version state is the trigger only — never read directly,
+  // so we discard the value and keep just the setter.
+  const [, setTamperVersion] = useState(0);
 
   // ---------- 1. load evidence pack from ?evidence=<url> ------------------
 
@@ -235,6 +244,22 @@ export default function RunPage() {
     [],
   );
 
+  // Tamper feature: bump version (forces re-render so derived hasAnyTamper
+  // recomputes) and optionally trigger re-verify-all (Restore path — we
+  // want the green ✓ to come back automatically once the original payload
+  // is back). Apply path passes shouldReverify=false so the user sees the
+  // intermediate yellow "modified" banner state and clicks Re-verify
+  // themselves to drive the demo punchline.
+  const handleTamperChange = useCallback(
+    (shouldReverify: boolean) => {
+      setTamperVersion((v) => v + 1);
+      if (shouldReverify && state.status === "ok" && state.pack) {
+        void runVerifyAll(state.pack);
+      }
+    },
+    [state, runVerifyAll],
+  );
+
   // ---------- 3. trigger auto-verify when pack lands ----------------------
 
   useEffect(() => {
@@ -274,6 +299,12 @@ export default function RunPage() {
     }
   })();
 
+  // Re-derived on every render — tamperVersion bump triggers re-render and
+  // hasAnyTamper() recomputes. Direct read (not useMemo) because the
+  // computation is cheap (linear scan + JSON.stringify per receipt) and
+  // memoizing on a mutable pack reference would defeat the purpose.
+  const tampered = hasAnyTamper(pack);
+
   return (
     <RunPageLoaded
       pack={pack}
@@ -284,6 +315,8 @@ export default function RunPage() {
       runVerifyAll={runVerifyAll}
       selectedReceiptId={selectedReceiptId}
       setSelectedReceiptId={setSelectedReceiptId}
+      tampered={tampered}
+      onTamperChange={handleTamperChange}
     />
   );
 }
@@ -304,6 +337,8 @@ interface RunPageLoadedProps {
   // Full Dispatch<SetStateAction<…>> so the functional updater form works:
   // navigate calls setSelectedReceiptId((currentId) => …) to read fresh state.
   setSelectedReceiptId: Dispatch<SetStateAction<number | null>>;
+  tampered: boolean;
+  onTamperChange: (shouldReverify: boolean) => void;
 }
 
 function RunPageLoaded({
@@ -315,6 +350,8 @@ function RunPageLoaded({
   runVerifyAll,
   selectedReceiptId,
   setSelectedReceiptId,
+  tampered,
+  onTamperChange,
 }: RunPageLoadedProps) {
   // Tree shape — drives both rendering (RunTreeView re-builds internally,
   // matching the same algorithm) and keyboard navigation (us, here). The
@@ -457,7 +494,6 @@ function RunPageLoaded({
       <RunSummaryCard
         pack={pack}
         summary={pack.summary ?? null}
-        onReverify={() => void runVerifyAll(pack)}
         verifyStatus={cardVerifyStatus}
       />
 
@@ -467,6 +503,7 @@ function RunPageLoaded({
         onJumpToFailed={(id) => setSelectedReceiptId(id)}
         onRerun={() => void runVerifyAll(pack)}
         canRerun={isDone || overall.kind === "error"}
+        tampered={tampered}
       />
 
       {/* Tree + Detail container.
@@ -500,6 +537,7 @@ function RunPageLoaded({
           onNext={() => navigate(1)}
           canPrev={canPrev}
           canNext={canNext}
+          onTamperChange={onTamperChange}
         />
       </div>
     </div>
@@ -515,6 +553,7 @@ interface VerifyAllBannerProps {
   onJumpToFailed: (id: number) => void;
   onRerun: () => void;
   canRerun: boolean;
+  tampered: boolean;
 }
 
 function VerifyAllBanner({
@@ -523,6 +562,7 @@ function VerifyAllBanner({
   onJumpToFailed,
   onRerun,
   canRerun,
+  tampered,
 }: VerifyAllBannerProps) {
   const rerunButton = canRerun ? (
     <button
@@ -530,9 +570,30 @@ function VerifyAllBanner({
       onClick={onRerun}
       className="ml-3 text-xs underline text-text/70 hover:text-text"
     >
-      re-verify all
+      Re-verify
     </button>
   ) : null;
+
+  // Yellow "modified, verification stale" intermediate state — fires when
+  // verify last reported all_ok but a payload has been tampered since.
+  // Purpose: drive the demo punchline ("modify a byte → instant red ✗")
+  // by giving the audience an explicit before-state to click Re-verify on.
+  if (overall.kind === "all_ok" && tampered) {
+    return (
+      <div className="bg-yellow-900/30 border border-yellow-700/40 rounded-lg p-4 flex items-center justify-between flex-wrap gap-2">
+        <div>
+          <div className="text-yellow-300 font-semibold text-lg">
+            ⚠ Payload modified — verification is stale
+          </div>
+          <div className="text-text/80 text-xs mt-1">
+            Click <span className="font-semibold">Re-verify</span> to validate
+            the tampered receipts.
+          </div>
+        </div>
+        {rerunButton}
+      </div>
+    );
+  }
 
   switch (overall.kind) {
     case "idle":

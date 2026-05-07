@@ -140,16 +140,18 @@ type VerifyStatus = "pending" | "verifying" | "ok" | "fail";
 
 function VerifyPill({
   status,
-  onReverify,
+  onDownload,
 }: {
   status: VerifyStatus;
-  onReverify: () => void;
+  onDownload: () => void;
 }) {
-  // Pill mirrors the top-of-page banner state machine; clicking "re-run"
-  // triggers the same onReverify handler RunPage uses for its banner button
-  // (IA §5 rule 6 — one re-verify-all surface in spirit; this is a shortcut
-  // to the same handler).
-  const canRerun = status === "ok" || status === "fail";
+  // The pill is a status indicator + Download CTA. The "re-run" trigger was
+  // removed (Q-tamper cleanup) — the page-level VerifyAllBanner is now the
+  // single re-verify surface, eliminating the redundant duplicate handler.
+  // Download evidence pack is gated on ok/fail states — only meaningful
+  // once verification has produced a verdict the recipient can
+  // independently re-verify.
+  const canDownload = status === "ok" || status === "fail";
   const inner = (() => {
     switch (status) {
       case "pending":
@@ -170,17 +172,17 @@ function VerifyPill({
     }
   })();
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 flex-wrap">
       {inner}
-      {canRerun && (
+      {canDownload && (
         <>
           <span className="text-muted text-xs">·</span>
           <button
             type="button"
-            onClick={onReverify}
-            className="text-xs text-muted hover:text-text underline"
+            onClick={onDownload}
+            className="text-sm text-text hover:text-blue-300 underline"
           >
-            re-run
+            Download evidence pack
           </button>
         </>
       )}
@@ -249,12 +251,11 @@ function RunSummarySection({ summary }: { summary: RunSummary }) {
 function TechnicalMetadataFold({ pack }: { pack: EvidencePack }) {
   const [open, setOpen] = useState(false);
   // run_id truncation per E4 spec: first 12 chars, ellipsis if longer.
+  // Anchor TX moved to the General info FactRow list (above) so it's
+  // permanently visible — the typical "is this anchored on-chain?"
+  // question doesn't need to be hidden behind a fold.
   const runIdShort =
     pack.run_id.length > 12 ? pack.run_id.slice(0, 12) + "…" : pack.run_id;
-  // tx_hash truncation: 0x-prefixed hex; show first 10 + last 4.
-  const tx = pack.anchor.tx_hash;
-  const txShort =
-    tx.length > 14 ? `${tx.slice(0, 10)}…${tx.slice(-4)}` : tx;
   return (
     <section className="border-t border-border px-5 py-3">
       <button
@@ -284,23 +285,6 @@ function TechnicalMetadataFold({ pack }: { pack: EvidencePack }) {
               <ExpandableHash value={pack.merkle_root} />
             </dd>
           </div>
-          <div className="flex items-baseline gap-3">
-            <dt className="text-muted text-xs w-28 shrink-0">Anchor TX:</dt>
-            <dd className="text-xs text-text">
-              <a
-                href={basescanTxUrl(pack.anchor.tx_hash)}
-                target="_blank"
-                rel="noreferrer"
-                className="text-accent break-all"
-                title={pack.anchor.tx_hash}
-              >
-                {txShort} ↗
-              </a>
-              <span className="text-muted ml-2">
-                block {pack.anchor.block_number} · chain {pack.anchor.chain_id}
-              </span>
-            </dd>
-          </div>
         </div>
       )}
     </section>
@@ -312,14 +296,12 @@ function TechnicalMetadataFold({ pack }: { pack: EvidencePack }) {
 interface RunSummaryCardProps {
   pack: EvidencePack;
   summary: RunSummary | null;
-  onReverify: () => void;
   verifyStatus: VerifyStatus;
 }
 
 export default function RunSummaryCard({
   pack,
   summary,
-  onReverify,
   verifyStatus,
 }: RunSummaryCardProps) {
   const [aliases, setAliases] = useState<SubjectAliases>({});
@@ -336,6 +318,29 @@ export default function RunSummaryCard({
   const title = useMemo(() => resolveTitle(pack, aliases), [pack, aliases]);
   const facts = useMemo(() => deriveFacts(pack), [pack]);
 
+  // Filename uses title.primary (alias → subject_ref → run_id fallback chain
+  // already resolved upstream), kebab-cased + 8-char run_id slice. Yields
+  // e.g. "promptseal-evidence-alice-chen-3345a152.html" — readable for
+  // recipients, indexable on disk, no PII beyond what's already in the pack.
+  // Downloads the self-contained HTML bundle (D7): single ~700KB file the
+  // recipient can double-click and verify against Base Sepolia without
+  // trusting any host. The bundle is pre-built by scripts/07_runs_list.py
+  // and lives at dashboard/public/evidence-bundle-<run_id>.html.
+  const handleDownloadPack = () => {
+    const slug = title.primary
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "") || "run";
+    const runShort = pack.run_id.replace(/^run-/, "").slice(0, 8);
+    const filename = `promptseal-evidence-${slug}-${runShort}.html`;
+    const link = document.createElement("a");
+    link.href = `/evidence-bundle-${pack.run_id}.html`;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section className="bg-panel border border-border rounded-lg overflow-hidden">
       {/* zone 1: title + verify pill */}
@@ -348,7 +353,10 @@ export default function RunSummaryCard({
             </span>
           )}
         </h1>
-        <VerifyPill status={verifyStatus} onReverify={onReverify} />
+        <VerifyPill
+          status={verifyStatus}
+          onDownload={handleDownloadPack}
+        />
       </div>
 
       {/* zone 2: fact rows */}
@@ -382,6 +390,19 @@ export default function RunSummaryCard({
               </a>
             </>
           )}
+        </FactRow>
+        <FactRow label="Anchor:">
+          <a
+            href={basescanTxUrl(pack.anchor.tx_hash)}
+            target="_blank"
+            rel="noreferrer"
+            className="text-accent"
+            title={pack.anchor.tx_hash}
+          >
+            {pack.anchor.tx_hash.slice(0, 8)}…{pack.anchor.tx_hash.slice(-6)} ↗
+          </a>
+          <span className="text-muted mx-1.5">·</span>
+          <span className="text-muted">block {pack.anchor.block_number}</span>
         </FactRow>
       </dl>
 

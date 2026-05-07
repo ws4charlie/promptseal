@@ -32,7 +32,7 @@ def main() -> int:
         return 1
 
     # Step 1: Run agent
-    print(f"\n=== [1/3] Running agent for {candidate} ===")
+    print(f"\n=== [1/4] Running agent for {candidate} ===")
     result = subprocess.run(
         [str(venv_python), "scripts/02_run_demo.py", candidate],
         cwd=project_root,
@@ -54,7 +54,7 @@ def main() -> int:
     print(f"\nNew run: {new_run}")
 
     # Step 2: Anchor on chain
-    print(f"\n=== [2/3] Anchoring on Base Sepolia ===")
+    print("\n=== [2/4] Anchoring on Base Sepolia ===")
     result = subprocess.run(
         [str(venv_python), "scripts/03_anchor_run.py", new_run],
         cwd=project_root,
@@ -68,8 +68,11 @@ def main() -> int:
         )
         return result.returncode
 
-    # Step 3: Export evidence packs (regenerates runs-index.json + sample-packs)
-    print(f"\n=== [3/3] Exporting evidence packs ===")
+    # Step 3: Export evidence packs (regenerates runs-index.json + sample-packs).
+    # 07 also rebuilds evidence-bundle-*.html for every run including the new
+    # one, so step 4 below is technically redundant but kept as a defensive
+    # extra in case 07's bundle build silently failed.
+    print("\n=== [3/4] Exporting evidence packs ===")
     result = subprocess.run(
         [str(venv_python), "scripts/07_runs_list.py"],
         cwd=project_root,
@@ -77,6 +80,33 @@ def main() -> int:
     if result.returncode != 0:
         print(f"\n✗ Export failed (exit {result.returncode})", file=sys.stderr)
         return result.returncode
+
+    # Step 4: Build self-contained HTML bundle for the new run. Non-fatal —
+    # if it fails the JSON pack at /sample-pack-<run>.json is still valid
+    # and the dashboard works; only the offline downloadable bundle is
+    # missing.
+    print("\n=== [4/4] Building self-contained HTML bundle ===")
+    bundle_out = project_root / "dashboard" / "public" / f"evidence-bundle-{new_run}.html"
+    result = subprocess.run(
+        [
+            str(venv_python),
+            "scripts/build_self_contained.py",
+            new_run,
+            "--output",
+            str(bundle_out),
+        ],
+        cwd=project_root,
+    )
+    if result.returncode != 0:
+        print(
+            f"\n⚠ Bundle build failed (exit {result.returncode}) — JSON pack still valid",
+            file=sys.stderr,
+        )
+        print(
+            f"  Manually retry: .venv/bin/python scripts/build_self_contained.py {new_run}",
+            file=sys.stderr,
+        )
+        # Don't return — bundle is best-effort, doesn't block demo flow.
 
     print("\n✓ Done. Refresh your dashboard (Cmd+Shift+R).")
     print(f"  Run ID: {new_run}")

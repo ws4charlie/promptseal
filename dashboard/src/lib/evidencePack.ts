@@ -72,6 +72,13 @@ export interface EvidencePack {
   // JSON object keys are strings; receipt id is the integer-as-string key.
   proofs: Record<string, MerkleProofStep[]>;
   summary?: RunSummary;
+  // Tamper-feature snapshot (Q-tamper): deep clone of `receipts` taken at
+  // load time. Mutations to `receipts[N].payload_excerpt` (via the Edit /
+  // Tamper UI in EventDetailPanel) are detected by comparing against this
+  // snapshot, and Restore copies the original payload back. Preserves
+  // NumberToken instances so canonical bytes round-trip exactly. Underscore
+  // prefix marks it as runtime-only state — never serialized to disk.
+  __originalReceipts?: Receipt[];
 }
 
 // --- validator -------------------------------------------------------------
@@ -227,7 +234,86 @@ export function validateEvidencePack(data: unknown): EvidencePack {
   if (data.summary !== undefined) {
     pack.summary = validateSummary(data.summary);
   }
+
+  // Snapshot a deep-cloned copy of receipts for Tamper detection + Restore.
+  // structuredClone would lose NumberToken class identity (it copies the
+  // src field but as a plain object), which would corrupt verify on
+  // restore — Receipt.payload_excerpt contains NumberToken instances that
+  // canonical_json() must round-trip byte-equal to Python's signed bytes.
+  // Hence the bespoke clone helper.
+  pack.__originalReceipts = pack.receipts.map(deepCloneReceipt);
+
   return pack;
+}
+
+// Bespoke deep clone that preserves NumberToken class identity. Plain
+// objects, arrays, primitives, and null are handled normally; NumberToken
+// instances are reconstructed via `new NumberToken(src)` so canonical
+// round-tripping after Restore continues to match Python's signed bytes.
+function deepCloneReceipt(r: Receipt): Receipt {
+  return cloneValue(r) as Receipt;
+}
+
+function cloneValue(v: unknown): unknown {
+  if (v === null || typeof v !== "object") return v;
+  if (v instanceof NumberToken) return new NumberToken(v.src);
+  if (Array.isArray(v)) return v.map(cloneValue);
+  const out: Record<string, unknown> = {};
+  for (const [k, val] of Object.entries(v as Record<string, unknown>)) {
+    out[k] = cloneValue(val);
+  }
+  return out;
+}
+
+// --- tamper detection -----------------------------------------------------
+//
+// JSON.stringify-based deep equality is sufficient because:
+//   1. Both current and original may contain NumberToken instances (which
+//      stringify as `{"src":"..."}`). Same source → same string.
+//   2. After user Apply (JSON.parse from textarea), current loses
+//      NumberTokens — stringify produces `0` instead of `{"src":"0.0"}`.
+//      Different from original → detected as tampered. Correct.
+//   3. After user Restore (clone from __originalReceipts), the cloned
+//      payload has NumberTokens again — matches original byte-for-byte.
+
+function jsonOf(v: unknown): string {
+  return JSON.stringify(v);
+}
+
+export function isReceiptTampered(pack: EvidencePack, index: number): boolean {
+  const orig = pack.__originalReceipts?.[index];
+  const curr = pack.receipts[index];
+  if (!orig || !curr) return false;
+  return jsonOf(curr.payload_excerpt) !== jsonOf(orig.payload_excerpt);
+}
+
+// Find receipt by id and check if tampered. Receipt id is stable across the
+// pack's lifetime; this is what UI components have access to (node.start.id,
+// node.end.id) without knowing the array index.
+export function isReceiptIdTampered(
+  pack: EvidencePack,
+  receiptId: number | undefined,
+): boolean {
+  if (receiptId === undefined) return false;
+  const idx = pack.receipts.findIndex((r) => r.id === receiptId);
+  return idx >= 0 && isReceiptTampered(pack, idx);
+}
+
+export function hasAnyTamper(pack: EvidencePack): boolean {
+  if (!pack.__originalReceipts) return false;
+  return pack.receipts.some((_, i) => isReceiptTampered(pack, i));
+}
+
+// Restore one receipt's payload from the original snapshot. Caller is
+// responsible for triggering re-render + re-verify; this just mutates pack.
+export function restoreReceiptPayload(pack: EvidencePack, index: number): void {
+  const orig = pack.__originalReceipts?.[index];
+  const curr = pack.receipts[index];
+  if (!orig || !curr) return;
+  curr.payload_excerpt = cloneValue(orig.payload_excerpt) as Record<
+    string,
+    unknown
+  >;
 }
 
 // --- loaders ---------------------------------------------------------------

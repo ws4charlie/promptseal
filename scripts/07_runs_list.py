@@ -22,6 +22,7 @@ import importlib.util
 import json
 import os
 import sqlite3
+import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -194,6 +195,33 @@ def export_sample_packs(
             continue
         rprint(f"  [green]✓ exported {out.name}[/green]")
         ok += 1
+
+        # Best-effort: also produce the self-contained HTML bundle (D7) so
+        # the dashboard's Download Evidence Pack button has a real .html to
+        # serve. Subprocess invocation is on purpose — build_self_contained
+        # runs `npm run build:single` which is heavy enough that we don't
+        # want it inlined here. Failures are logged + skipped; the JSON
+        # pack is the canonical artifact and remains valid.
+        bundle_out = output_dir / f"evidence-bundle-{run_id}.html"
+        try:
+            subprocess.run(
+                [
+                    sys.executable,
+                    str(Path(__file__).resolve().parent / "build_self_contained.py"),
+                    run_id,
+                    "--output",
+                    str(bundle_out),
+                ],
+                check=True,
+                capture_output=True,
+            )
+        except subprocess.CalledProcessError:
+            rprint(
+                f"  [yellow]⚠ bundle build failed for {run_id} "
+                f"(skipped — JSON pack still valid)[/yellow]"
+            )
+            continue
+        rprint(f"  [green]✓ exported {bundle_out.name}[/green]")
     return (ok, fail)
 
 

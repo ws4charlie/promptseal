@@ -20,6 +20,7 @@
 import { useMemo, useRef, useState } from "react";
 import { NumberToken } from "../../../verifier/canonical.js";
 import type { EvidencePack, Receipt } from "../lib/evidencePack";
+import { isReceiptIdTampered } from "../lib/evidencePack";
 
 // Per-receipt verification status — RunPage owns the map; the tree just
 // reflects it as a small icon next to each row.
@@ -389,6 +390,11 @@ interface RowProps {
   onToggle: () => void;
   onClick: () => void;
   verifyStatus?: ReceiptVerifyStatus;
+  // Tamper feature: derived in Subtree from pack.__originalReceipts. When
+  // true the row renders a ⚠ alongside the verify icon. Distinct from
+  // verify ✗ — ⚠ means "payload was modified" (transient state), ✗ means
+  // "verification failed" (after re-verify of tampered payload).
+  tampered: boolean;
 }
 
 function VerifyStatusIcon({ status }: { status: ReceiptVerifyStatus }) {
@@ -435,6 +441,7 @@ function NodeRow({
   onToggle,
   onClick,
   verifyStatus,
+  tampered,
 }: RowProps) {
   const family = familyOf(node.start.event_type);
   const styles = FAMILY_STYLES[family];
@@ -516,7 +523,7 @@ function NodeRow({
             truncates on overflow. tabular-nums on the numeric columns
             equalizes digit width for vertical alignment. */}
         <div
-          className="flex-1 min-w-0 grid grid-cols-[76px_1fr_92px_64px_20px]
+          className="flex-1 min-w-0 grid grid-cols-[76px_1fr_92px_64px_36px]
                      gap-3 items-center"
         >
           {/* badge — w-full + justify-start: all 4 family labels render at
@@ -559,8 +566,16 @@ function NodeRow({
             {dur ?? "—"}
           </span>
 
-          {/* verify status — fixed slot. */}
-          <span className="text-muted text-xs">
+          {/* verify + tamper status. ⚠ rendered when payload differs from
+              the originalReceipts snapshot; verify icon (✓/✗/◐/○) shows
+              the chain-validation state. Both fit in the 36px column when
+              both apply (e.g. tampered + re-verified failed → "⚠ ✗"). */}
+          <span className="text-xs flex items-center gap-1 justify-end">
+            {tampered && (
+              <span className="text-yellow-300" title="payload modified">
+                ⚠
+              </span>
+            )}
             {verifyStatus && <VerifyStatusIcon status={verifyStatus} />}
           </span>
         </div>
@@ -578,6 +593,7 @@ interface SubtreeProps {
   verifications?: Map<number, ReceiptVerifyStatus>;
   sequenceNumbers: Map<string, number>;
   selectedReceiptId: number | null;
+  pack: EvidencePack;
 }
 
 function Subtree({
@@ -588,6 +604,7 @@ function Subtree({
   verifications,
   sequenceNumbers,
   selectedReceiptId,
+  pack,
 }: SubtreeProps) {
   const key = node.start.event_hash;
   const expanded = expandedSet.has(key);
@@ -595,6 +612,12 @@ function Subtree({
   const targetReceiptId = node.end ? node.end.id : node.start.id;
   const verifyStatus = verifications?.get(targetReceiptId);
   const sequenceNumber = sequenceNumbers.get(key) ?? 0;
+  // Either start or end being tampered marks the row as tampered. Singles
+  // only have start; paired events check both halves so the badge appears
+  // whether the user tampered Input or Output.
+  const tampered =
+    isReceiptIdTampered(pack, node.start.id) ||
+    isReceiptIdTampered(pack, node.end?.id);
   // Match selectedReceiptId against either start.id or end.id — banner
   // jump-to-failed may land on a _start id while row clicks land on the
   // primary (end-or-start) id.
@@ -623,6 +646,7 @@ function Subtree({
         onToggle={() => toggle(key)}
         onClick={() => onSelectReceipt?.(targetReceiptId)}
         verifyStatus={verifyStatus}
+        tampered={tampered}
       />
       {expanded && hasChildren && (
         <div>
@@ -636,6 +660,7 @@ function Subtree({
               verifications={verifications}
               sequenceNumbers={sequenceNumbers}
               selectedReceiptId={selectedReceiptId}
+              pack={pack}
             />
           ))}
         </div>
@@ -753,6 +778,7 @@ export default function RunTreeView({
             verifications={verifications}
             sequenceNumbers={sequenceNumbers}
             selectedReceiptId={selectedReceiptId}
+            pack={pack}
           />
         ))}
       </div>

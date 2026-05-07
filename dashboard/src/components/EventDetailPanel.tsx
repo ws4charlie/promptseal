@@ -29,6 +29,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { NumberToken } from "../../../verifier/canonical.js";
 import type { EvidencePack, Receipt } from "../lib/evidencePack";
 import {
+  isReceiptIdTampered,
+  restoreReceiptPayload,
+} from "../lib/evidencePack";
+import {
   STEP_LABELS,
   emptyVerifyState,
   pickVerifyInputs,
@@ -159,6 +163,12 @@ interface EventDetailPanelProps {
   onNext: () => void;
   canPrev: boolean;
   canNext: boolean;
+  // Tamper feature: called after Apply/Restore mutates pack.receipts. Bumps
+  // a version counter in RunPage to force re-render of all dashboard
+  // surfaces that derive from pack (banner, tree row, payload). When
+  // shouldReverify is true (Restore path), RunPage also re-runs the
+  // verify-all pipeline so the green ✓ comes back automatically.
+  onTamperChange: (shouldReverify: boolean) => void;
 }
 
 export default function EventDetailPanel({
@@ -173,6 +183,7 @@ export default function EventDetailPanel({
   onNext,
   canPrev,
   canNext,
+  onTamperChange,
 }: EventDetailPanelProps) {
   const open = receiptId !== null;
   const receipt: Receipt | undefined = useMemo(
@@ -240,6 +251,7 @@ export default function EventDetailPanel({
             onNext={onNext}
             canPrev={canPrev}
             canNext={canNext}
+            onTamperChange={onTamperChange}
           />
         ) : (
           <EmptyState />
@@ -280,6 +292,7 @@ interface DetailContentProps {
   onNext: () => void;
   canPrev: boolean;
   canNext: boolean;
+  onTamperChange: (shouldReverify: boolean) => void;
 }
 
 function DetailContent({
@@ -295,6 +308,7 @@ function DetailContent({
   onNext,
   canPrev,
   canNext,
+  onTamperChange,
 }: DetailContentProps) {
   return (
     <div className="p-5 space-y-5">
@@ -308,6 +322,7 @@ function DetailContent({
         canPrev={canPrev}
         canNext={canNext}
       />
+      <TamperBanner node={node} pack={pack} />
       <VerifySection
         receipt={receipt}
         pack={pack}
@@ -315,7 +330,26 @@ function DetailContent({
       />
       <DescriptionSection node={node} aliases={aliases} />
       <PayloadSection node={node} />
+      <TamperSection node={node} pack={pack} onTamperChange={onTamperChange} />
       <TechnicalMetadataFold receipt={receipt} node={node} />
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Tamper banner — top-of-panel yellow strip surfaces "this event has been
+// tampered" so operators don't lose track when they navigate away and back.
+// Derived purely from pack.__originalReceipts vs pack.receipts; no
+// component state.
+
+function TamperBanner({ node, pack }: { node: TreeNode; pack: EvidencePack }) {
+  const tampered =
+    isReceiptIdTampered(pack, node.start.id) ||
+    isReceiptIdTampered(pack, node.end?.id);
+  if (!tampered) return null;
+  return (
+    <div className="bg-yellow-900/30 border border-yellow-700/40 rounded text-yellow-300 text-xs px-2 py-1.5">
+      ⚠ This event has been tampered (modified payload)
     </div>
   );
 }
@@ -773,6 +807,157 @@ function Field({
     <div className="text-sm">
       <div className="text-xs text-muted">{label}</div>
       <div className="text-text break-all">{children}</div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Tamper editor — disclosure block (default collapsed, red text). For paired
+// events renders 2 textareas (Input from start.payload, Output from
+// end.payload); for singles renders 1. Each textarea controlled with local
+// state; JSON validated on blur. Apply mutates pack.receipts[N].payload_excerpt
+// in place + bumps version (no auto re-verify so the audience sees the
+// "stale verification" yellow banner state). Restore copies original payload
+// back + auto-triggers re-verify so the green ✓ comes back.
+
+function TamperSection({
+  node,
+  pack,
+  onTamperChange,
+}: {
+  node: TreeNode;
+  pack: EvidencePack;
+  onTamperChange: (shouldReverify: boolean) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const isPaired = node.kind === "pair" && node.end !== undefined;
+  return (
+    <section className="border-t border-border pt-3 space-y-3">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="text-xs text-red-400 hover:text-red-300 font-semibold"
+        aria-expanded={open}
+      >
+        {open ? "▼ Hide tamper editor" : "▶ Edit / Tamper this event"}
+      </button>
+      {open && (
+        <>
+          <p className="text-xs text-muted">
+            Editing the payload changes the bytes the receipt was signed over,
+            so verification will fail until you Restore the original.
+          </p>
+          <TamperEditor
+            key={`start-${node.start.id}`}
+            label={isPaired ? "Input (signed)" : "Payload (signed)"}
+            receipt={node.start}
+            pack={pack}
+            onTamperChange={onTamperChange}
+          />
+          {isPaired && node.end && (
+            <TamperEditor
+              key={`end-${node.end.id}`}
+              label="Output (signed)"
+              receipt={node.end}
+              pack={pack}
+              onTamperChange={onTamperChange}
+            />
+          )}
+        </>
+      )}
+    </section>
+  );
+}
+
+function payloadToJsonString(payload: Record<string, unknown>): string {
+  return JSON.stringify(
+    payload,
+    (_key, value) => (value instanceof NumberToken ? Number(value.src) : value),
+    2,
+  );
+}
+
+function TamperEditor({
+  label,
+  receipt,
+  pack,
+  onTamperChange,
+}: {
+  label: string;
+  receipt: Receipt;
+  pack: EvidencePack;
+  onTamperChange: (shouldReverify: boolean) => void;
+}) {
+  // Initial textarea contents derived from the *current* payload (which may
+  // already be tampered if the user navigated away and back). Restore button
+  // refreshes this from pack.__originalReceipts.
+  const [draft, setDraft] = useState(() =>
+    payloadToJsonString(receipt.payload_excerpt),
+  );
+  const [error, setError] = useState<string | null>(null);
+
+  const validate = (text: string): boolean => {
+    try {
+      JSON.parse(text);
+      setError(null);
+      return true;
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e));
+      return false;
+    }
+  };
+
+  const handleApply = () => {
+    if (!validate(draft)) return;
+    const parsed = JSON.parse(draft);
+    const idx = pack.receipts.findIndex((r) => r.id === receipt.id);
+    if (idx < 0) return;
+    pack.receipts[idx].payload_excerpt = parsed as Record<string, unknown>;
+    onTamperChange(false); // bump version, do NOT auto re-verify
+  };
+
+  const handleRestore = () => {
+    const idx = pack.receipts.findIndex((r) => r.id === receipt.id);
+    if (idx < 0) return;
+    restoreReceiptPayload(pack, idx);
+    setDraft(payloadToJsonString(pack.receipts[idx].payload_excerpt));
+    setError(null);
+    onTamperChange(true); // bump version + auto re-verify
+  };
+
+  return (
+    <div className="space-y-2">
+      <div className="text-xs uppercase tracking-wider text-muted">
+        {label}
+      </div>
+      <textarea
+        value={draft}
+        onChange={(e) => setDraft(e.target.value)}
+        onBlur={() => validate(draft)}
+        className="w-full h-48 bg-bg border border-border rounded p-2 text-xs font-mono text-text whitespace-pre overflow-auto"
+        spellCheck={false}
+      />
+      {error && (
+        <div className="text-xs text-red-400 break-all">
+          Invalid JSON: {error}
+        </div>
+      )}
+      <div className="flex gap-2">
+        <button
+          type="button"
+          onClick={handleApply}
+          className="text-xs bg-red-900/40 border border-red-700/50 text-red-300 hover:text-red-200 px-2.5 py-1 rounded"
+        >
+          Apply tamper
+        </button>
+        <button
+          type="button"
+          onClick={handleRestore}
+          className="text-xs text-muted hover:text-text border border-border px-2.5 py-1 rounded"
+        >
+          Restore original
+        </button>
+      </div>
     </div>
   );
 }
