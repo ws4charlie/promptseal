@@ -314,7 +314,7 @@ function DetailContent({
         verifyStatus={verifyStatus}
       />
       <DescriptionSection node={node} aliases={aliases} />
-      <PayloadSection receipt={receipt} />
+      <PayloadSection node={node} />
       <TechnicalMetadataFold receipt={receipt} node={node} />
     </div>
   );
@@ -602,30 +602,101 @@ function DescriptionSection({
 
 // ---------------------------------------------------------------------------
 // 3 · payload (default-expanded — Tier 2)
+//
+// Paired nodes (LLM/tool calls) render TWO sections — Input from start.payload
+// and Output from end.payload. Each receipt is independently signed; "(signed)"
+// in the title is the court-evidence cue that input ≠ output by design and
+// each carries its own Ed25519 signature.
+//
+// Single nodes (final_decision, error, orphan _end) render one "Payload"
+// section. payload_excerpt's numbers arrive as NumberToken instances (the
+// loader preserves source repr so verification can byte-equal Python's signed
+// bytes). For display we flatten them back to plain JS numbers via a
+// JSON.stringify replacer — loses "0.0" → "0" but renders sanely. The
+// display copy is purely cosmetic; verification still reads the original.
 
-function PayloadSection({ receipt }: { receipt: Receipt }) {
-  // payload_excerpt's numbers arrive as NumberToken instances (the loader
-  // preserves source repr so verification can byte-equal Python's signed
-  // bytes). For display we flatten them back to plain JS numbers via a
-  // JSON.stringify replacer — loses "0.0" → "0" but renders sanely. The
-  // display copy is purely cosmetic; verification still reads the original.
-  const pretty = useMemo(
-    () =>
-      JSON.stringify(
-        receipt.payload_excerpt,
-        (_key, value) =>
-          value instanceof NumberToken ? Number(value.src) : value,
-        2,
-      ),
-    [receipt.payload_excerpt],
+function prettyPayload(payload: Record<string, unknown>): string {
+  return JSON.stringify(
+    payload,
+    (_key, value) => (value instanceof NumberToken ? Number(value.src) : value),
+    2,
   );
+}
+
+function formatByteSize(s: string): string {
+  const bytes = new TextEncoder().encode(s).length;
+  if (bytes < 1024) return `${bytes} B`;
+  return `${(bytes / 1024).toFixed(1)} KB`;
+}
+
+// Default-collapsed disclosure block — pattern matches TechnicalMetadataFold
+// (button-as-header). Click toggles expansion. Same text-xs/text-muted style
+// as the other folds in this file. Size hint helps operator estimate scroll
+// before clicking.
+function PayloadBlock({ title, body }: { title: string; body: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const sizeHint = useMemo(() => formatByteSize(body), [body]);
   return (
     <section className="space-y-2">
-      <SectionTitle>Payload</SectionTitle>
-      <pre className="bg-bg border border-border rounded p-3 text-xs text-text overflow-x-auto whitespace-pre-wrap break-all">
-        {pretty}
-      </pre>
+      <button
+        type="button"
+        onClick={() => setExpanded((v) => !v)}
+        className="flex items-center gap-2 text-xs text-muted hover:text-text"
+        aria-expanded={expanded}
+      >
+        <span className="w-3 text-center">{expanded ? "▼" : "▶"}</span>
+        <span className="uppercase tracking-wider">{title}</span>
+        <span className="normal-case tracking-normal text-muted/80">
+          ({sizeHint})
+        </span>
+      </button>
+      {expanded && (
+        <pre className="bg-bg border border-border rounded p-3 text-xs text-text overflow-x-auto whitespace-pre-wrap break-all">
+          {body}
+        </pre>
+      )}
     </section>
+  );
+}
+
+function PayloadSection({ node }: { node: TreeNode }) {
+  const startPretty = useMemo(
+    () => prettyPayload(node.start.payload_excerpt),
+    [node.start.payload_excerpt],
+  );
+  const endPretty = useMemo(
+    () => (node.end ? prettyPayload(node.end.payload_excerpt) : null),
+    [node.end],
+  );
+
+  // Single (or paired-but-orphan-end) → one block.
+  // `key` ties the block instance to the receipt id so React remounts on
+  // event switch — a fresh PayloadBlock starts collapsed, matching user
+  // expectation that each event lands on a clean state.
+  if (node.kind === "single" || endPretty === null || !node.end) {
+    return (
+      <PayloadBlock
+        key={`pay-${node.start.id}`}
+        title="Payload (signed)"
+        body={startPretty}
+      />
+    );
+  }
+
+  // Paired → Input + Output, each its own signed receipt.
+  return (
+    <>
+      <PayloadBlock
+        key={`in-${node.start.id}`}
+        title="Input (signed)"
+        body={startPretty}
+      />
+      <PayloadBlock
+        key={`out-${node.end.id}`}
+        title="Output (signed)"
+        body={endPretty}
+      />
+    </>
   );
 }
 

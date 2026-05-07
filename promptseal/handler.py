@@ -109,6 +109,55 @@ def _llm_output_text(response: Any) -> str:
     return "\n".join(pieces)
 
 
+def _extract_tool_calls(response: Any) -> list[dict[str, Any]] | None:
+    """Pull AIMessage.tool_calls from the first generation, if present.
+
+    Returns a normalized list of {name, arguments, id} dicts so the receipt
+    captures *what tool the model decided to invoke and with which args* —
+    the input-side counterpart to on_tool_start (which fires after the agent
+    runtime has already routed the call). Catches both modern (TypedDict)
+    and legacy (object) tool_call shapes; tolerates `args` / `arguments`
+    naming variations across LangChain / provider SDK versions.
+
+    Returns None if the response had no tool_calls (text-only LLM output)
+    or if the structure couldn't be parsed (best-effort, never raises).
+    """
+    try:
+        gens = getattr(response, "generations", None) or []
+        if not gens or not gens[0]:
+            return None
+        first_gen = gens[0][0]
+        message = getattr(first_gen, "message", None)
+        if message is None:
+            return None
+        tool_calls_raw = getattr(message, "tool_calls", None)
+        if not tool_calls_raw:
+            return None
+        out: list[dict[str, Any]] = []
+        for tc in tool_calls_raw:
+            if isinstance(tc, dict):
+                args = tc.get("args")
+                if args is None:
+                    args = tc.get("arguments")
+                out.append({
+                    "name": tc.get("name"),
+                    "arguments": _json_safe(args),
+                    "id": tc.get("id"),
+                })
+            else:
+                args = getattr(tc, "args", None)
+                if args is None:
+                    args = getattr(tc, "arguments", None)
+                out.append({
+                    "name": getattr(tc, "name", None),
+                    "arguments": _json_safe(args),
+                    "id": getattr(tc, "id", None),
+                })
+        return out
+    except Exception:
+        return None
+
+
 class PromptSealCallbackHandler(BaseCallbackHandler):
     """LangChain callback that mints a signed receipt per LLM/tool start/end."""
 
@@ -278,6 +327,7 @@ class PromptSealCallbackHandler(BaseCallbackHandler):
         payload = {
             "output_text": _capture_text(output_text),
             "output_hash": _hash_str(output_text),
+            "tool_calls": _extract_tool_calls(response),
             "token_usage": _json_safe(
                 llm_output.get("usage") or llm_output.get("token_usage")
             ),
