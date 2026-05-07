@@ -1,0 +1,853 @@
+{
+  "agent_erc8004_token_id": 633,
+  "agent_id": "hr-screener-v1",
+  "anchor": {
+    "block_number": 41212007,
+    "chain_id": 84532,
+    "tx_hash": "0x0f0efdace9d61fe0c5d6402d858e123261af56b3ae0c7abd11f8b57e8f8e0408"
+  },
+  "merkle_root": "sha256:1ea93d4c73457157c25e259198d2a8805ed6d7554af43304a99c9b9b3cbc7098",
+  "proofs": {
+    "441": [
+      {
+        "sibling": "sha256:6aa6e89cfaf4ece44ec9ec88395227ec52e2e6c3a0ce68fae97a91717e4c7039",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:eb45dff703d91a4226dfd16d6370f506917c7131728490c480305cedb9de62f5",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:8dab298424f20144fdcb1110dc4f464edd3296c05a4845feacfc4c9ad1b9c466",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:31630b21d9436daea274cbaaf408a8be2d280e1427c1c9f6f0657b4e399e15e2",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:630cd172e36c67df2d93efa5dddcf5c1da0ea0024d4538a777d6741284bdd11a",
+        "side": "R"
+      }
+    ],
+    "442": [
+      {
+        "sibling": "sha256:dba6cfc7d8b6849bb5df4a2176ac9bb8e96d3f17d0dc1caaa7267a66d14bfe36",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:eb45dff703d91a4226dfd16d6370f506917c7131728490c480305cedb9de62f5",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:8dab298424f20144fdcb1110dc4f464edd3296c05a4845feacfc4c9ad1b9c466",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:31630b21d9436daea274cbaaf408a8be2d280e1427c1c9f6f0657b4e399e15e2",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:630cd172e36c67df2d93efa5dddcf5c1da0ea0024d4538a777d6741284bdd11a",
+        "side": "R"
+      }
+    ],
+    "443": [
+      {
+        "sibling": "sha256:0bdaff3ce77295796218d60e713d5a6feb6f8e927164a12307c70e911c993d93",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:7c3261ec46c20ecbcfc6647c56b2c3bd8cefa5aed689ea78a75e658bc239f16e",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:8dab298424f20144fdcb1110dc4f464edd3296c05a4845feacfc4c9ad1b9c466",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:31630b21d9436daea274cbaaf408a8be2d280e1427c1c9f6f0657b4e399e15e2",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:630cd172e36c67df2d93efa5dddcf5c1da0ea0024d4538a777d6741284bdd11a",
+        "side": "R"
+      }
+    ],
+    "444": [
+      {
+        "sibling": "sha256:656de292a29e9df2f6896595e199fd2b9cac1af427891a3b4edc4a9917dd5ed8",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:7c3261ec46c20ecbcfc6647c56b2c3bd8cefa5aed689ea78a75e658bc239f16e",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:8dab298424f20144fdcb1110dc4f464edd3296c05a4845feacfc4c9ad1b9c466",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:31630b21d9436daea274cbaaf408a8be2d280e1427c1c9f6f0657b4e399e15e2",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:630cd172e36c67df2d93efa5dddcf5c1da0ea0024d4538a777d6741284bdd11a",
+        "side": "R"
+      }
+    ],
+    "445": [
+      {
+        "sibling": "sha256:324a16f54fa849a8875c8c7f71c5b42f09e41f36766876cf0db39485e28c3179",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:4f85200bc300fec8fdbe47f7ea07df2ea95805968ea26c6c6cce770283612e4d",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:62226c77263878e5bdb1682171d43cdfd43bce660d22f728e4a365dafccca4d0",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:31630b21d9436daea274cbaaf408a8be2d280e1427c1c9f6f0657b4e399e15e2",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:630cd172e36c67df2d93efa5dddcf5c1da0ea0024d4538a777d6741284bdd11a",
+        "side": "R"
+      }
+    ],
+    "446": [
+      {
+        "sibling": "sha256:d60ef7cb37b1049e2175005289e31bd1425922d7999bea38d2e919fdb4b10254",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:4f85200bc300fec8fdbe47f7ea07df2ea95805968ea26c6c6cce770283612e4d",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:62226c77263878e5bdb1682171d43cdfd43bce660d22f728e4a365dafccca4d0",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:31630b21d9436daea274cbaaf408a8be2d280e1427c1c9f6f0657b4e399e15e2",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:630cd172e36c67df2d93efa5dddcf5c1da0ea0024d4538a777d6741284bdd11a",
+        "side": "R"
+      }
+    ],
+    "447": [
+      {
+        "sibling": "sha256:e01570864d60d1e40fbd20c7006be749a884288df875a57e5380f2d8b2282dbc",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:b6c4beb6fdac0901492d4f192e2f9f00595ebb740812ed6026d18cf3576869c7",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:62226c77263878e5bdb1682171d43cdfd43bce660d22f728e4a365dafccca4d0",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:31630b21d9436daea274cbaaf408a8be2d280e1427c1c9f6f0657b4e399e15e2",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:630cd172e36c67df2d93efa5dddcf5c1da0ea0024d4538a777d6741284bdd11a",
+        "side": "R"
+      }
+    ],
+    "448": [
+      {
+        "sibling": "sha256:f262a8cb513029b9850ca04c3d923812bda7be818e491ec67e79214234c734d3",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:b6c4beb6fdac0901492d4f192e2f9f00595ebb740812ed6026d18cf3576869c7",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:62226c77263878e5bdb1682171d43cdfd43bce660d22f728e4a365dafccca4d0",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:31630b21d9436daea274cbaaf408a8be2d280e1427c1c9f6f0657b4e399e15e2",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:630cd172e36c67df2d93efa5dddcf5c1da0ea0024d4538a777d6741284bdd11a",
+        "side": "R"
+      }
+    ],
+    "449": [
+      {
+        "sibling": "sha256:8ad68333a1bed0b3fb29192f5537a0a8ec779ce2d253767e4a992217ad050bba",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:9d7d86e96044fbc5e55aa20c21c41f1d00bddd6c77a0c6d93df5e87827d423eb",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:27aaed27986032ae815b04399c3196d9e50dea805ac84b0a32586ba793fe6fa9",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:05b94998d72bc31abcce915d310ca117fd1b9fa8f19873df72030bc19ba6cbe3",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:630cd172e36c67df2d93efa5dddcf5c1da0ea0024d4538a777d6741284bdd11a",
+        "side": "R"
+      }
+    ],
+    "450": [
+      {
+        "sibling": "sha256:5a357e5a5b5c8e0160175fd3bf13b436ea3f7633e69d211676fae1bf0336b346",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:9d7d86e96044fbc5e55aa20c21c41f1d00bddd6c77a0c6d93df5e87827d423eb",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:27aaed27986032ae815b04399c3196d9e50dea805ac84b0a32586ba793fe6fa9",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:05b94998d72bc31abcce915d310ca117fd1b9fa8f19873df72030bc19ba6cbe3",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:630cd172e36c67df2d93efa5dddcf5c1da0ea0024d4538a777d6741284bdd11a",
+        "side": "R"
+      }
+    ],
+    "451": [
+      {
+        "sibling": "sha256:153a8fbfd682419794b3177f816b2cc325b2335ed834597d57143473f55c5537",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:a8cb9a3d9e55628630a169704dfc5cfdb3f208a4976c35b4c2f306f2e09deb63",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:27aaed27986032ae815b04399c3196d9e50dea805ac84b0a32586ba793fe6fa9",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:05b94998d72bc31abcce915d310ca117fd1b9fa8f19873df72030bc19ba6cbe3",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:630cd172e36c67df2d93efa5dddcf5c1da0ea0024d4538a777d6741284bdd11a",
+        "side": "R"
+      }
+    ],
+    "452": [
+      {
+        "sibling": "sha256:7d3da244f8a68f00ce4e0a85a28bfeda22d30076e104cd459b1cfa6ab94ae838",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:a8cb9a3d9e55628630a169704dfc5cfdb3f208a4976c35b4c2f306f2e09deb63",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:27aaed27986032ae815b04399c3196d9e50dea805ac84b0a32586ba793fe6fa9",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:05b94998d72bc31abcce915d310ca117fd1b9fa8f19873df72030bc19ba6cbe3",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:630cd172e36c67df2d93efa5dddcf5c1da0ea0024d4538a777d6741284bdd11a",
+        "side": "R"
+      }
+    ],
+    "453": [
+      {
+        "sibling": "sha256:00f8bc369f3a74d091ff677181994580beec803b01e9f757185f4c1c27a6adcf",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:96661aab090ab0d55a01fa7fa9fdb4812e82ef49468909e75e2b60c23eae1bcc",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:afc60ff561d925bd25c48d43ee4de7d930ebd365af6599607526f78d4e6543eb",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:05b94998d72bc31abcce915d310ca117fd1b9fa8f19873df72030bc19ba6cbe3",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:630cd172e36c67df2d93efa5dddcf5c1da0ea0024d4538a777d6741284bdd11a",
+        "side": "R"
+      }
+    ],
+    "454": [
+      {
+        "sibling": "sha256:6cd5a75b5e1090713c360be277424a86028b8b0bb76e37ae2fd7857c9f9fb989",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:96661aab090ab0d55a01fa7fa9fdb4812e82ef49468909e75e2b60c23eae1bcc",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:afc60ff561d925bd25c48d43ee4de7d930ebd365af6599607526f78d4e6543eb",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:05b94998d72bc31abcce915d310ca117fd1b9fa8f19873df72030bc19ba6cbe3",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:630cd172e36c67df2d93efa5dddcf5c1da0ea0024d4538a777d6741284bdd11a",
+        "side": "R"
+      }
+    ],
+    "455": [
+      {
+        "sibling": "sha256:efb351836d50f01fc645c2a64db246a8f5c21ad1c18b2c6d1aaaa7ea3d27366f",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:957c8d15e2fc866bc2530e093fb9e6314bdb9a873d63aeee0db0c6b9030d2cfb",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:afc60ff561d925bd25c48d43ee4de7d930ebd365af6599607526f78d4e6543eb",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:05b94998d72bc31abcce915d310ca117fd1b9fa8f19873df72030bc19ba6cbe3",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:630cd172e36c67df2d93efa5dddcf5c1da0ea0024d4538a777d6741284bdd11a",
+        "side": "R"
+      }
+    ],
+    "456": [
+      {
+        "sibling": "sha256:2d51498cb0440d082f7e2ddd4312b178b6f604df72ef17dc06cf074c2407c656",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:957c8d15e2fc866bc2530e093fb9e6314bdb9a873d63aeee0db0c6b9030d2cfb",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:afc60ff561d925bd25c48d43ee4de7d930ebd365af6599607526f78d4e6543eb",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:05b94998d72bc31abcce915d310ca117fd1b9fa8f19873df72030bc19ba6cbe3",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:630cd172e36c67df2d93efa5dddcf5c1da0ea0024d4538a777d6741284bdd11a",
+        "side": "R"
+      }
+    ],
+    "457": [
+      {
+        "sibling": "sha256:328c613e3f2b1a7da700d2800218d0c83285fa7dc5697654b54e320cc7428bd2",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:740324244ed67cfd331acfa76a2a07e6dd9ab7238ac208aa199d3ba59a8da150",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:c5dcf4073cfaddbf6dca9d9ea9bf36d8a3ac8cc3193b7b86627a3f58516072ee",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:0dc51c303405d08e66b5c7fca32cf6878d45eb0433d6413ca51b203eac2445ff",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:51efbb55e4770724321adfdbaf282a6d0e45cee9005583f6c0a10e3b7148c922",
+        "side": "L"
+      }
+    ]
+  },
+  "receipts": [
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:dba6cfc7d8b6849bb5df4a2176ac9bb8e96d3f17d0dc1caaa7267a66d14bfe36",
+      "event_type": "llm_start",
+      "id": 441,
+      "paired_event_hash": null,
+      "parent_hash": null,
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Please screen candidate resume res_003. Use the tools to parse, score, and decide.",
+            "type": "human"
+          }
+        ],
+        "messages_hash": "sha256:af0df59863adcd4c67c9631459c51a8c553b83675d42ee994b7fce817dff0a64",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior tech recruiter screening for a Senior Full-Stack Engineer role.\n\nYou MUST follow these steps in order, no shortcuts:\n1. Call resume_parse to retrieve the candidate's data\n2. Call score_candidate to evaluate technical fit, culture fit, and ambiguity\n3. Call decide with the scores from step 2\n\nDo not skip steps. Even if a candidate seems obvious, run the full evaluation. This is required for audit compliance.",
+        "system_prompt_hash": "sha256:27fb4e06c98c70350ad9d5bb25211ba58b2db8f542d836011c3331497ebfe8b0",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:Sg72BHblzQWqy833qVsHYlLXefbm4hM5BcBQLbAtovWBHClM2qSND5pUxn790pYmosL1bPCAMZV24gK926WcAA==",
+      "timestamp": "2026-05-07T22:18:08.937Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:6aa6e89cfaf4ece44ec9ec88395227ec52e2e6c3a0ce68fae97a91717e4c7039",
+      "event_type": "llm_end",
+      "id": 442,
+      "paired_event_hash": "sha256:dba6cfc7d8b6849bb5df4a2176ac9bb8e96d3f17d0dc1caaa7267a66d14bfe36",
+      "parent_hash": "sha256:dba6cfc7d8b6849bb5df4a2176ac9bb8e96d3f17d0dc1caaa7267a66d14bfe36",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "output_text": "",
+        "token_usage": null,
+        "tool_calls": [
+          {
+            "arguments": {
+              "resume_id": "res_003"
+            },
+            "id": "call_Cw06VDztl9sVeTCQsXsemJ6w",
+            "name": "resume_parse"
+          }
+        ]
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:71h3TqzJ/Ae/xKdtNYU/+jSfhZHtYdFztBFJKg4fH8sGlEFO4UI34rHUK6zOEzEjMjueEh/uY0OdK7GaTvcHBA==",
+      "timestamp": "2026-05-07T22:18:09.851Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:656de292a29e9df2f6896595e199fd2b9cac1af427891a3b4edc4a9917dd5ed8",
+      "event_type": "tool_start",
+      "id": 443,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:6aa6e89cfaf4ece44ec9ec88395227ec52e2e6c3a0ce68fae97a91717e4c7039",
+      "payload_excerpt": {
+        "args": {
+          "resume_id": "res_003"
+        },
+        "args_hash": "sha256:7c2fbedb9129b5ff9c4f7f6d3d797a0eca526e0fc9e6472f264af94495bd0559",
+        "tool_name": "resume_parse"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:AXiJWPfCpAf/t5JUgni7SAr5pBGwuc4smBiJsRk7++6PlYbPPVJqFGV7nVE3+sUAWNAfc8d7kZTcCGR+RQPqCg==",
+      "timestamp": "2026-05-07T22:18:09.854Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:0bdaff3ce77295796218d60e713d5a6feb6f8e927164a12307c70e911c993d93",
+      "event_type": "tool_end",
+      "id": 444,
+      "paired_event_hash": "sha256:656de292a29e9df2f6896595e199fd2b9cac1af427891a3b4edc4a9917dd5ed8",
+      "parent_hash": "sha256:656de292a29e9df2f6896595e199fd2b9cac1af427891a3b4edc4a9917dd5ed8",
+      "payload_excerpt": {
+        "output": "{'id': 'res_003', 'name': 'Carol Singh', 'yoe_react': 2, 'yoe_python': 2, 'education': 'BS Computer Science, UC Davis (2022). 3.6 GPA. Coursework: Data Structures, Algorithms, Database Systems, Operating Systems, Mobile Application Development. Senior project: real-time chat app with WebSocket + React.', 'highlights': 'Currently Software Engineer II at Plaid (1.5 years), Identity Verification team. Built and shipped 3 React features in the user dashboard, reduced load time of one critical view by 40%. Previous internship at Asana (summer 2021) on the iOS team. Side project: open-source contributions to MUI (1 merged PR for accessibility). Comfortable with React + TypeScript + REST APIs; growing Python skills via internal data tooling. Interested in moving to a smaller, faster-paced startup environment.'}",
+        "output_hash": "sha256:0bc96edf8ea9b87f6b1982c60b7f2ce28dc14f48149d1b4b66ca29fec6db5219",
+        "tool_name": "resume_parse"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:6bnksbEQYWg8YKgzXE66trnrd3wn45+YQt8UcDJkAekXLBQ7K6Tb02RpWHVde2IUfboGmA9NsEbzg+5Cvq9sCw==",
+      "timestamp": "2026-05-07T22:18:09.856Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:d60ef7cb37b1049e2175005289e31bd1425922d7999bea38d2e919fdb4b10254",
+      "event_type": "llm_start",
+      "id": 445,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:0bdaff3ce77295796218d60e713d5a6feb6f8e927164a12307c70e911c993d93",
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Please screen candidate resume res_003. Use the tools to parse, score, and decide.",
+            "type": "human"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"id\": \"res_003\", \"name\": \"Carol Singh\", \"yoe_react\": 2, \"yoe_python\": 2, \"education\": \"BS Computer Science, UC Davis (2022). 3.6 GPA. Coursework: Data Structures, Algorithms, Database Systems, Operating Systems, Mobile Application Development. Senior project: real-time chat app with WebSocket + React.\", \"highlights\": \"Currently Software Engineer II at Plaid (1.5 years), Identity Verification team. Built and shipped 3 React features in the user dashboard, reduced load time of one critical view by 40%. Previous internship at Asana (summer 2021) on the iOS team. Side project: open-source contributions to MUI (1 merged PR for accessibility). Comfortable with React + TypeScript + REST APIs; growing Python skills via internal data tooling. Interested in moving to a smaller, faster-paced startup environment.\"}",
+            "type": "tool"
+          }
+        ],
+        "messages_hash": "sha256:5fcbd62acf509ce3d69f5ea4ce378b092e4045af1519b35ff125d35e79cfb25e",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior tech recruiter screening for a Senior Full-Stack Engineer role.\n\nYou MUST follow these steps in order, no shortcuts:\n1. Call resume_parse to retrieve the candidate's data\n2. Call score_candidate to evaluate technical fit, culture fit, and ambiguity\n3. Call decide with the scores from step 2\n\nDo not skip steps. Even if a candidate seems obvious, run the full evaluation. This is required for audit compliance.",
+        "system_prompt_hash": "sha256:27fb4e06c98c70350ad9d5bb25211ba58b2db8f542d836011c3331497ebfe8b0",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:27VQING0pMR3HlaK98F+nRPnhVcs1cEIvEWroheqKICVhpNmB3pj5ihR1FLw5G7U2pF6bItkE1QjDyObFMxiAQ==",
+      "timestamp": "2026-05-07T22:18:09.859Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:324a16f54fa849a8875c8c7f71c5b42f09e41f36766876cf0db39485e28c3179",
+      "event_type": "llm_end",
+      "id": 446,
+      "paired_event_hash": "sha256:d60ef7cb37b1049e2175005289e31bd1425922d7999bea38d2e919fdb4b10254",
+      "parent_hash": "sha256:d60ef7cb37b1049e2175005289e31bd1425922d7999bea38d2e919fdb4b10254",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "output_text": "",
+        "token_usage": null,
+        "tool_calls": [
+          {
+            "arguments": {
+              "education": "BS Computer Science, UC Davis (2022). 3.6 GPA. Coursework: Data Structures, Algorithms, Database Systems, Operating Systems, Mobile Application Development. Senior project: real-time chat app with WebSocket + React.",
+              "highlights": "Currently Software Engineer II at Plaid (1.5 years), Identity Verification team. Built and shipped 3 React features in the user dashboard, reduced load time of one critical view by 40%. Previous internship at Asana (summer 2021) on the iOS team. Side project: open-source contributions to MUI (1 merged PR for accessibility). Comfortable with React + TypeScript + REST APIs; growing Python skills via internal data tooling. Interested in moving to a smaller, faster-paced startup environment.",
+              "name": "Carol Singh",
+              "yoe_python": 2,
+              "yoe_react": 2
+            },
+            "id": "call_s9RrDH79OYB5qqP1RtIGtqmC",
+            "name": "score_candidate"
+          }
+        ]
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:ubWM7hwOId+6IrScKsAuVU++Jvz4Xkyj/SF/f8+pctOP8kyeSQd2Va4200x8JaVZA5QeQGW6JGM0vs+HDlF8BA==",
+      "timestamp": "2026-05-07T22:18:13.522Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:f262a8cb513029b9850ca04c3d923812bda7be818e491ec67e79214234c734d3",
+      "event_type": "tool_start",
+      "id": 447,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:324a16f54fa849a8875c8c7f71c5b42f09e41f36766876cf0db39485e28c3179",
+      "payload_excerpt": {
+        "args": {
+          "education": "BS Computer Science, UC Davis (2022). 3.6 GPA. Coursework: Data Structures, Algorithms, Database Systems, Operating Systems, Mobile Application Development. Senior project: real-time chat app with WebSocket + React.",
+          "highlights": "Currently Software Engineer II at Plaid (1.5 years), Identity Verification team. Built and shipped 3 React features in the user dashboard, reduced load time of one critical view by 40%. Previous internship at Asana (summer 2021) on the iOS team. Side project: open-source contributions to MUI (1 merged PR for accessibility). Comfortable with React + TypeScript + REST APIs; growing Python skills via internal data tooling. Interested in moving to a smaller, faster-paced startup environment.",
+          "name": "Carol Singh",
+          "yoe_python": 2,
+          "yoe_react": 2
+        },
+        "args_hash": "sha256:22e838d7b390d70ac270b7c4f89f07254f5cbd6dff3b7e040af7fd197629bd79",
+        "tool_name": "score_candidate"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:NTaMVU+eCvBYZ3mJctIeUsyHBi6DaVK+Gv6HhZHMSNGHoyB8cu6lp33oafQyHJqZntksoPxO4uX2dPOj5Aw4Bg==",
+      "timestamp": "2026-05-07T22:18:13.524Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:e01570864d60d1e40fbd20c7006be749a884288df875a57e5380f2d8b2282dbc",
+      "event_type": "llm_start",
+      "id": 448,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:f262a8cb513029b9850ca04c3d923812bda7be818e491ec67e79214234c734d3",
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Candidate resume:\n{\n  \"name\": \"Carol Singh\",\n  \"yoe_react\": 2,\n  \"yoe_python\": 2,\n  \"education\": \"BS Computer Science, UC Davis (2022). 3.6 GPA. Coursework: Data Structures, Algorithms, Database Systems, Operating Systems, Mobile Application Development. Senior project: real-time chat app with WebSocket + React.\",\n  \"highlights\": \"Currently Software Engineer II at Plaid (1.5 years), Identity Verification team. Built and shipped 3 React features in the user dashboard, reduced load time of one critical view by 40%. Previous internship at Asana (summer 2021) on the iOS team. Side project: open-source contributions to MUI (1 merged PR for accessibility). Comfortable with React + TypeScript + REST APIs; growing Python skills via internal data tooling. Interested in moving to a smaller, faster-paced startup environment.\"\n}",
+            "type": "human"
+          }
+        ],
+        "messages_hash": "sha256:14f3630d20f4130cc00e88867b17932770df42d7240cc8fb91af415f334d1dca",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior technical interviewer. Score the candidate on three axes (integers 1-10): technical_score, culture_score, ambiguity_score. Return ONLY valid JSON with those three keys, no other text.",
+        "system_prompt_hash": "sha256:e922ceaf903f955475d66f034db72479d0f0bbe9cb34ad61ce5da48e2f1bbecd",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:mb6IU8XuybL1EfB+me0FH1EvPsNwgcvu29cQFcMS/mB8OXmSnteAwBU/0vZe4YBBU1uZILVVWx8d+ECPKRzMDA==",
+      "timestamp": "2026-05-07T22:18:13.534Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:5a357e5a5b5c8e0160175fd3bf13b436ea3f7633e69d211676fae1bf0336b346",
+      "event_type": "llm_end",
+      "id": 449,
+      "paired_event_hash": "sha256:e01570864d60d1e40fbd20c7006be749a884288df875a57e5380f2d8b2282dbc",
+      "parent_hash": "sha256:e01570864d60d1e40fbd20c7006be749a884288df875a57e5380f2d8b2282dbc",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:5d70f3ecb361decdfe95dc5e3e5decad8079224484223b56da656a0a7895368c",
+        "output_text": "{\n  \"technical_score\": 7,\n  \"culture_score\": 6,\n  \"ambiguity_score\": 5\n}",
+        "token_usage": {
+          "completion_tokens": 27,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 246,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 273
+        },
+        "tool_calls": null
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:axvd01KSxhMgpBgXd20N60o9v6IkoAgsFolBo8kU0bjZGsEYAjN9WbX3I6wFb8JLAoeBNQukdOgJKxgSWDCrBA==",
+      "timestamp": "2026-05-07T22:18:14.410Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:8ad68333a1bed0b3fb29192f5537a0a8ec779ce2d253767e4a992217ad050bba",
+      "event_type": "tool_end",
+      "id": 450,
+      "paired_event_hash": "sha256:f262a8cb513029b9850ca04c3d923812bda7be818e491ec67e79214234c734d3",
+      "parent_hash": "sha256:5a357e5a5b5c8e0160175fd3bf13b436ea3f7633e69d211676fae1bf0336b346",
+      "payload_excerpt": {
+        "output": "{'technical_score': 7, 'culture_score': 6, 'ambiguity_score': 5}",
+        "output_hash": "sha256:5236dc2998c561f0bede77c35667f5cc0fecb08e0b032e89fcd85cc8f9a34473",
+        "tool_name": "score_candidate"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:KeGfIu7DIZurNXyHqwRwHd7e4L9AaEznqKNEeSTjt0fM54Oidv2BiRtk+RXRklpv0impMGZmI0tD23w5gVkwAA==",
+      "timestamp": "2026-05-07T22:18:14.411Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:7d3da244f8a68f00ce4e0a85a28bfeda22d30076e104cd459b1cfa6ab94ae838",
+      "event_type": "llm_start",
+      "id": 451,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:8ad68333a1bed0b3fb29192f5537a0a8ec779ce2d253767e4a992217ad050bba",
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Please screen candidate resume res_003. Use the tools to parse, score, and decide.",
+            "type": "human"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"id\": \"res_003\", \"name\": \"Carol Singh\", \"yoe_react\": 2, \"yoe_python\": 2, \"education\": \"BS Computer Science, UC Davis (2022). 3.6 GPA. Coursework: Data Structures, Algorithms, Database Systems, Operating Systems, Mobile Application Development. Senior project: real-time chat app with WebSocket + React.\", \"highlights\": \"Currently Software Engineer II at Plaid (1.5 years), Identity Verification team. Built and shipped 3 React features in the user dashboard, reduced load time of one critical view by 40%. Previous internship at Asana (summer 2021) on the iOS team. Side project: open-source contributions to MUI (1 merged PR for accessibility). Comfortable with React + TypeScript + REST APIs; growing Python skills via internal data tooling. Interested in moving to a smaller, faster-paced startup environment.\"}",
+            "type": "tool"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"technical_score\": 7, \"culture_score\": 6, \"ambiguity_score\": 5}",
+            "type": "tool"
+          }
+        ],
+        "messages_hash": "sha256:602535fd214d766bd12fbacb6ad85c5c39b53426bc9812ec4f83a027762df4c6",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior tech recruiter screening for a Senior Full-Stack Engineer role.\n\nYou MUST follow these steps in order, no shortcuts:\n1. Call resume_parse to retrieve the candidate's data\n2. Call score_candidate to evaluate technical fit, culture fit, and ambiguity\n3. Call decide with the scores from step 2\n\nDo not skip steps. Even if a candidate seems obvious, run the full evaluation. This is required for audit compliance.",
+        "system_prompt_hash": "sha256:27fb4e06c98c70350ad9d5bb25211ba58b2db8f542d836011c3331497ebfe8b0",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:Zk3CeRXBC1gjX1y7Y+UWqFAFi//tsYDbX8Yag86tbXw5/QHCCiy/2xzv7bKeuxGmp0ky+1OFgrsUhahZMjgDBg==",
+      "timestamp": "2026-05-07T22:18:14.413Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:153a8fbfd682419794b3177f816b2cc325b2335ed834597d57143473f55c5537",
+      "event_type": "llm_end",
+      "id": 452,
+      "paired_event_hash": "sha256:7d3da244f8a68f00ce4e0a85a28bfeda22d30076e104cd459b1cfa6ab94ae838",
+      "parent_hash": "sha256:7d3da244f8a68f00ce4e0a85a28bfeda22d30076e104cd459b1cfa6ab94ae838",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "output_text": "",
+        "token_usage": null,
+        "tool_calls": [
+          {
+            "arguments": {
+              "ambiguity_score": 5,
+              "candidate_id": "res_003",
+              "culture_score": 6,
+              "technical_score": 7
+            },
+            "id": "call_fXHR3pNFB973netvToRdQb1A",
+            "name": "decide"
+          }
+        ]
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:PJG8qPR17V9XGfGqH194DXVGEqdh1EQpq2L1CVmk+S+tW/9K7vJOPsdxJBdgsGNE/yb/xkc69wcFA4ZXPXCKDA==",
+      "timestamp": "2026-05-07T22:18:15.622Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:6cd5a75b5e1090713c360be277424a86028b8b0bb76e37ae2fd7857c9f9fb989",
+      "event_type": "tool_start",
+      "id": 453,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:153a8fbfd682419794b3177f816b2cc325b2335ed834597d57143473f55c5537",
+      "payload_excerpt": {
+        "args": {
+          "ambiguity_score": 5,
+          "candidate_id": "res_003",
+          "culture_score": 6,
+          "technical_score": 7
+        },
+        "args_hash": "sha256:03ebcc0944931ad5f76e233d67e34bf5cc5f3568b47b63fa4307136c8cccfacf",
+        "tool_name": "decide"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:FI2fuKD+CmeIIwBFP+EE1Q4PQwsDvhG+j9xtLgfHDL6RPeLQfWPPtt8tqqnHEE6RAVqoVwwMPDqxZuFKaZ+7Bg==",
+      "timestamp": "2026-05-07T22:18:15.626Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:00f8bc369f3a74d091ff677181994580beec803b01e9f757185f4c1c27a6adcf",
+      "event_type": "tool_end",
+      "id": 454,
+      "paired_event_hash": "sha256:6cd5a75b5e1090713c360be277424a86028b8b0bb76e37ae2fd7857c9f9fb989",
+      "parent_hash": "sha256:6cd5a75b5e1090713c360be277424a86028b8b0bb76e37ae2fd7857c9f9fb989",
+      "payload_excerpt": {
+        "output": "{'decision': 'hire', 'reasoning': 'Strong technical (7/10) and culture (6/10), low ambiguity (5/10).', 'candidate_id': 'res_003'}",
+        "output_hash": "sha256:3d8fea9c1887a532a2b69a9641ae056dd4038797500ae3efbb98b27ca9d7a1bb",
+        "tool_name": "decide"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:eBYfClCFDn+mpQZJu5pLss91Mpht1HCjL0Xz7DTAMGA7RtDjzt1O8vjh+U5uaTPhl0p9pE9w3nHpGjl0B51gBA==",
+      "timestamp": "2026-05-07T22:18:15.627Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:2d51498cb0440d082f7e2ddd4312b178b6f604df72ef17dc06cf074c2407c656",
+      "event_type": "final_decision",
+      "id": 455,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:00f8bc369f3a74d091ff677181994580beec803b01e9f757185f4c1c27a6adcf",
+      "payload_excerpt": {
+        "candidate_id": "res_003",
+        "decision": "hire",
+        "reasoning": "Strong technical (7/10) and culture (6/10), low ambiguity (5/10).",
+        "reasoning_hash": "sha256:fa7ea5229801dc73bc0ed92f77a8fde14583e7dadf8df1538ee71f1a6b71b9fa"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:JyG2dmC6+0nd55d4y136U9P62/BnfaXUmi4y8Mbh6/fGs2K+B20dB/L0xavUp36baGZqPRch3ZuYly7I0pxHDA==",
+      "timestamp": "2026-05-07T22:18:15.628Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:efb351836d50f01fc645c2a64db246a8f5c21ad1c18b2c6d1aaaa7ea3d27366f",
+      "event_type": "llm_start",
+      "id": 456,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:2d51498cb0440d082f7e2ddd4312b178b6f604df72ef17dc06cf074c2407c656",
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Please screen candidate resume res_003. Use the tools to parse, score, and decide.",
+            "type": "human"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"id\": \"res_003\", \"name\": \"Carol Singh\", \"yoe_react\": 2, \"yoe_python\": 2, \"education\": \"BS Computer Science, UC Davis (2022). 3.6 GPA. Coursework: Data Structures, Algorithms, Database Systems, Operating Systems, Mobile Application Development. Senior project: real-time chat app with WebSocket + React.\", \"highlights\": \"Currently Software Engineer II at Plaid (1.5 years), Identity Verification team. Built and shipped 3 React features in the user dashboard, reduced load time of one critical view by 40%. Previous internship at Asana (summer 2021) on the iOS team. Side project: open-source contributions to MUI (1 merged PR for accessibility). Comfortable with React + TypeScript + REST APIs; growing Python skills via internal data tooling. Interested in moving to a smaller, faster-paced startup environment.\"}",
+            "type": "tool"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"technical_score\": 7, \"culture_score\": 6, \"ambiguity_score\": 5}",
+            "type": "tool"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"decision\": \"hire\", \"reasoning\": \"Strong technical (7/10) and culture (6/10), low ambiguity (5/10).\", \"candidate_id\": \"res_003\"}",
+            "type": "tool"
+          }
+        ],
+        "messages_hash": "sha256:04e0e8139dbd7e7b0eb36052391bbf1d2a349cc5971fbcf3f2b477a8b8129f60",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior tech recruiter screening for a Senior Full-Stack Engineer role.\n\nYou MUST follow these steps in order, no shortcuts:\n1. Call resume_parse to retrieve the candidate's data\n2. Call score_candidate to evaluate technical fit, culture fit, and ambiguity\n3. Call decide with the scores from step 2\n\nDo not skip steps. Even if a candidate seems obvious, run the full evaluation. This is required for audit compliance.",
+        "system_prompt_hash": "sha256:27fb4e06c98c70350ad9d5bb25211ba58b2db8f542d836011c3331497ebfe8b0",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:xJg32MXeBySStaFPOCRXNCwoUKd0aFsixn9bJugjPV5epgDgeBx+Qco4mpWheMdpBJU/QtNC8N7hv3uOhAzgCg==",
+      "timestamp": "2026-05-07T22:18:15.630Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:328c613e3f2b1a7da700d2800218d0c83285fa7dc5697654b54e320cc7428bd2",
+      "event_type": "llm_end",
+      "id": 457,
+      "paired_event_hash": "sha256:efb351836d50f01fc645c2a64db246a8f5c21ad1c18b2c6d1aaaa7ea3d27366f",
+      "parent_hash": "sha256:efb351836d50f01fc645c2a64db246a8f5c21ad1c18b2c6d1aaaa7ea3d27366f",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:263b5dc1b8b37c10f5b2d43e947d2fbf4014cbcacbb40cca5a1f5f7e63b03530",
+        "output_text": "The candidate Carol Singh (ID: res_003) has been evaluated and the decision is to **hire**. \n\n**Reasoning:**\n- **Technical Score:** 7/10 - Demonstrates solid technical skills, particularly in React and TypeScript.\n- **Culture Score:** 6/10 - Appears to fit well within the company culture.\n- **Ambiguity Score:** 5/10 - Shows a moderate ability to handle ambiguity.\n\nOverall, Carol's strengths in technical skills and cultural fit make her a suitable candidate for the Senior Full-Stack Engineer role.",
+        "token_usage": null,
+        "tool_calls": null
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:wnMFcf73JwQNAJaHsaFxqIBZ9cJH+4IyNtRsGbiCYR2LBckMyBImD0P/P8MS0CyQRLlQgbqU/2/GwzJt8lR/Dg==",
+      "timestamp": "2026-05-07T22:18:18.894Z"
+    }
+  ],
+  "run_id": "run-9619fea057ee",
+  "version": "0.2"
+}

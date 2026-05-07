@@ -1,0 +1,853 @@
+{
+  "agent_erc8004_token_id": 633,
+  "agent_id": "hr-screener-v1",
+  "anchor": {
+    "block_number": 41212192,
+    "chain_id": 84532,
+    "tx_hash": "0xc2f840d89308ccb4c0f5929a5a1fae1792ec663b6824f1111842c182123c96ab"
+  },
+  "merkle_root": "sha256:08b1f6f371615b69cb435320972face32679fbcd64383eeae99d9a2a62c402e2",
+  "proofs": {
+    "458": [
+      {
+        "sibling": "sha256:0a39c117c8e0967e69d30e07cc6f2422fbd75a2cc5ae077b26af142d3c9234a3",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:2202b871bff9c7488335f6cc57777917641fa832335439bd00b94a8fef038937",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:7b01969efe55f2e5b462346f289f8d0928e15ce6a49187735c0b61ee47276c8f",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:cc4a10117fdf1bb5f43f91f795e0f4e929bc0b6f4ec10f14a71c6e2d3d91c093",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:2f2a53d0db0433b6a171b5ec798b58555db7ead78078296a2c540bd5187f198f",
+        "side": "R"
+      }
+    ],
+    "459": [
+      {
+        "sibling": "sha256:5ddd2e3a8487c6f02f616bf0e11a33c255ad57700c55b66ad0928a8b043e244c",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:2202b871bff9c7488335f6cc57777917641fa832335439bd00b94a8fef038937",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:7b01969efe55f2e5b462346f289f8d0928e15ce6a49187735c0b61ee47276c8f",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:cc4a10117fdf1bb5f43f91f795e0f4e929bc0b6f4ec10f14a71c6e2d3d91c093",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:2f2a53d0db0433b6a171b5ec798b58555db7ead78078296a2c540bd5187f198f",
+        "side": "R"
+      }
+    ],
+    "460": [
+      {
+        "sibling": "sha256:34fa29fd51dac80635576e49038abee6f49c22929303655eac2b4c81ef681ab1",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:bb38add08656b50bbf7dcdf078d6148a98a93673a6e2782fc7fcd74c2f89bb08",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:7b01969efe55f2e5b462346f289f8d0928e15ce6a49187735c0b61ee47276c8f",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:cc4a10117fdf1bb5f43f91f795e0f4e929bc0b6f4ec10f14a71c6e2d3d91c093",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:2f2a53d0db0433b6a171b5ec798b58555db7ead78078296a2c540bd5187f198f",
+        "side": "R"
+      }
+    ],
+    "461": [
+      {
+        "sibling": "sha256:8ea322f3b472fd0e3398495fb10f3cdf9b6779d7145c69a30ae538833c4802e5",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:bb38add08656b50bbf7dcdf078d6148a98a93673a6e2782fc7fcd74c2f89bb08",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:7b01969efe55f2e5b462346f289f8d0928e15ce6a49187735c0b61ee47276c8f",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:cc4a10117fdf1bb5f43f91f795e0f4e929bc0b6f4ec10f14a71c6e2d3d91c093",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:2f2a53d0db0433b6a171b5ec798b58555db7ead78078296a2c540bd5187f198f",
+        "side": "R"
+      }
+    ],
+    "462": [
+      {
+        "sibling": "sha256:338d67ced839302a269766e1a406d2b653638932552340be2fd13e713b503706",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:65e6554cf6b8a4f00b921a5bb5597076ce46ecb7860c8a9ae0626663a30ce9cf",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:4acc3446900b70bb4b417dbf0521007219e50d03ee2520b48c4e9a6a3c47d782",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:cc4a10117fdf1bb5f43f91f795e0f4e929bc0b6f4ec10f14a71c6e2d3d91c093",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:2f2a53d0db0433b6a171b5ec798b58555db7ead78078296a2c540bd5187f198f",
+        "side": "R"
+      }
+    ],
+    "463": [
+      {
+        "sibling": "sha256:471cfbe33fc6e9dd3249baad52a7258a2ac8898d011bcd549edaa1e2d95ac114",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:65e6554cf6b8a4f00b921a5bb5597076ce46ecb7860c8a9ae0626663a30ce9cf",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:4acc3446900b70bb4b417dbf0521007219e50d03ee2520b48c4e9a6a3c47d782",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:cc4a10117fdf1bb5f43f91f795e0f4e929bc0b6f4ec10f14a71c6e2d3d91c093",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:2f2a53d0db0433b6a171b5ec798b58555db7ead78078296a2c540bd5187f198f",
+        "side": "R"
+      }
+    ],
+    "464": [
+      {
+        "sibling": "sha256:0a8fb031d61187d6c90bbaf7dfb757514a592f5484080f09c13921ce5b164d93",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:7e67a15ad892a2d43db492cb7892f5f8bd922077c96e145d897d5e25e4c0eca9",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:4acc3446900b70bb4b417dbf0521007219e50d03ee2520b48c4e9a6a3c47d782",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:cc4a10117fdf1bb5f43f91f795e0f4e929bc0b6f4ec10f14a71c6e2d3d91c093",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:2f2a53d0db0433b6a171b5ec798b58555db7ead78078296a2c540bd5187f198f",
+        "side": "R"
+      }
+    ],
+    "465": [
+      {
+        "sibling": "sha256:2991e0df7fceeb533f1c9b9772de583cf955c6bf928cfc6917880b6767dc5187",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:7e67a15ad892a2d43db492cb7892f5f8bd922077c96e145d897d5e25e4c0eca9",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:4acc3446900b70bb4b417dbf0521007219e50d03ee2520b48c4e9a6a3c47d782",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:cc4a10117fdf1bb5f43f91f795e0f4e929bc0b6f4ec10f14a71c6e2d3d91c093",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:2f2a53d0db0433b6a171b5ec798b58555db7ead78078296a2c540bd5187f198f",
+        "side": "R"
+      }
+    ],
+    "466": [
+      {
+        "sibling": "sha256:3de5ab59f265b880222b38c6816a5396681646556a0520b516b782a6c990a7d7",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:bfbf09d94ae661e277e0326259b4ae505608b003db18bcf406c0486a57443fff",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:083179ef4a52e3255e9bac9668329108e61cf17dc1aa84a4058d8856ea3cad0c",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:12f293399c4b54d4690b9aca2d226df2f67f8fe1fdd7b7549d53f5bdfb2c1480",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:2f2a53d0db0433b6a171b5ec798b58555db7ead78078296a2c540bd5187f198f",
+        "side": "R"
+      }
+    ],
+    "467": [
+      {
+        "sibling": "sha256:a046472b05f6d4e1316602177e7f07c4b7db21049039e6c85bf1cc2163651495",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:bfbf09d94ae661e277e0326259b4ae505608b003db18bcf406c0486a57443fff",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:083179ef4a52e3255e9bac9668329108e61cf17dc1aa84a4058d8856ea3cad0c",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:12f293399c4b54d4690b9aca2d226df2f67f8fe1fdd7b7549d53f5bdfb2c1480",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:2f2a53d0db0433b6a171b5ec798b58555db7ead78078296a2c540bd5187f198f",
+        "side": "R"
+      }
+    ],
+    "468": [
+      {
+        "sibling": "sha256:f79055857e98f3195b0813b1b79ca8ee6cc0211c7ff5679483af0f0409a6b4f5",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:6d373c6273fc33f3aee6cb885b6a095424c23954821cd3ad73ed9da7332e51f1",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:083179ef4a52e3255e9bac9668329108e61cf17dc1aa84a4058d8856ea3cad0c",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:12f293399c4b54d4690b9aca2d226df2f67f8fe1fdd7b7549d53f5bdfb2c1480",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:2f2a53d0db0433b6a171b5ec798b58555db7ead78078296a2c540bd5187f198f",
+        "side": "R"
+      }
+    ],
+    "469": [
+      {
+        "sibling": "sha256:a2b15055f8b1aed2c06b56d7e384beb3265f8f689cf2c5ad968ffea74ec39737",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:6d373c6273fc33f3aee6cb885b6a095424c23954821cd3ad73ed9da7332e51f1",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:083179ef4a52e3255e9bac9668329108e61cf17dc1aa84a4058d8856ea3cad0c",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:12f293399c4b54d4690b9aca2d226df2f67f8fe1fdd7b7549d53f5bdfb2c1480",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:2f2a53d0db0433b6a171b5ec798b58555db7ead78078296a2c540bd5187f198f",
+        "side": "R"
+      }
+    ],
+    "470": [
+      {
+        "sibling": "sha256:408332dbd7fc03ea15d39aafd9346da11b389115af8e4d32c44d850d9947e805",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:e9d96da3cd606f22618f4527aeeb80b3f7ae465a4709832705d316d04c998522",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:9910d0d43e570de50bb4d1a367c7ad0fb1a9a94ec5395f1cb279b95c637d8101",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:12f293399c4b54d4690b9aca2d226df2f67f8fe1fdd7b7549d53f5bdfb2c1480",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:2f2a53d0db0433b6a171b5ec798b58555db7ead78078296a2c540bd5187f198f",
+        "side": "R"
+      }
+    ],
+    "471": [
+      {
+        "sibling": "sha256:8e7b5690a009d8be4d33d56791510a20eddc1e7e6d0922b34214c736ef0b8e3d",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:e9d96da3cd606f22618f4527aeeb80b3f7ae465a4709832705d316d04c998522",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:9910d0d43e570de50bb4d1a367c7ad0fb1a9a94ec5395f1cb279b95c637d8101",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:12f293399c4b54d4690b9aca2d226df2f67f8fe1fdd7b7549d53f5bdfb2c1480",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:2f2a53d0db0433b6a171b5ec798b58555db7ead78078296a2c540bd5187f198f",
+        "side": "R"
+      }
+    ],
+    "472": [
+      {
+        "sibling": "sha256:d7bdecc687d7f50f7668bb532f3735dcbb8070d1d1575e4fdaabef3ac377dcf8",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:fbe2f89b40a22c12f07064413487ecd935bb0c544a2b37ccdbe9a3ec48bc2631",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:9910d0d43e570de50bb4d1a367c7ad0fb1a9a94ec5395f1cb279b95c637d8101",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:12f293399c4b54d4690b9aca2d226df2f67f8fe1fdd7b7549d53f5bdfb2c1480",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:2f2a53d0db0433b6a171b5ec798b58555db7ead78078296a2c540bd5187f198f",
+        "side": "R"
+      }
+    ],
+    "473": [
+      {
+        "sibling": "sha256:b27ae90f548d2e4a82d8eff65749f7c8c95cf1fdb3fb3da10a6582d7aae4895e",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:fbe2f89b40a22c12f07064413487ecd935bb0c544a2b37ccdbe9a3ec48bc2631",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:9910d0d43e570de50bb4d1a367c7ad0fb1a9a94ec5395f1cb279b95c637d8101",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:12f293399c4b54d4690b9aca2d226df2f67f8fe1fdd7b7549d53f5bdfb2c1480",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:2f2a53d0db0433b6a171b5ec798b58555db7ead78078296a2c540bd5187f198f",
+        "side": "R"
+      }
+    ],
+    "474": [
+      {
+        "sibling": "sha256:4a59a1cdaa7f54844303b026af5be6e5d3c49e5534d976f3afd0821702002d8e",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:a5aa40c34d3a576dad6dbfe2b2d09949a5e6656fa5e92dd9693bbd9614a81ed9",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:63fad92d8d6a4aefa27da9698d1623874db161dd22ecfa45c47323f875cc8a87",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:23010c7e1852f2bcadb7955f2f4f7e5409cabf670f73aed0fb1b44d104da25fe",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:3eb9afab261067ee333d438014b5c1f0e410e2ec0ab765fdb0b31506ff182d90",
+        "side": "L"
+      }
+    ]
+  },
+  "receipts": [
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:5ddd2e3a8487c6f02f616bf0e11a33c255ad57700c55b66ad0928a8b043e244c",
+      "event_type": "llm_start",
+      "id": 458,
+      "paired_event_hash": null,
+      "parent_hash": null,
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Please screen candidate resume res_004. Use the tools to parse, score, and decide.",
+            "type": "human"
+          }
+        ],
+        "messages_hash": "sha256:616b731e1610f4f1e1658c2fbbe5151217dd5a3c044eaf5434c31c7ae9cdfa98",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior tech recruiter screening for a Senior Full-Stack Engineer role.\n\nYou MUST follow these steps in order, no shortcuts:\n1. Call resume_parse to retrieve the candidate's data\n2. Call score_candidate to evaluate technical fit, culture fit, and ambiguity\n3. Call decide with the scores from step 2\n\nDo not skip steps. Even if a candidate seems obvious, run the full evaluation. This is required for audit compliance.",
+        "system_prompt_hash": "sha256:27fb4e06c98c70350ad9d5bb25211ba58b2db8f542d836011c3331497ebfe8b0",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:I1fpNpzIp2u1wiopUpvSwlC/lAlb3DmZRvm8Y1oBauYM/7J8UJUex9pRWNdJTP+DXBJyAPBJJEmOoIozqUciDw==",
+      "timestamp": "2026-05-07T22:24:18.932Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:0a39c117c8e0967e69d30e07cc6f2422fbd75a2cc5ae077b26af142d3c9234a3",
+      "event_type": "llm_end",
+      "id": 459,
+      "paired_event_hash": "sha256:5ddd2e3a8487c6f02f616bf0e11a33c255ad57700c55b66ad0928a8b043e244c",
+      "parent_hash": "sha256:5ddd2e3a8487c6f02f616bf0e11a33c255ad57700c55b66ad0928a8b043e244c",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "output_text": "",
+        "token_usage": null,
+        "tool_calls": [
+          {
+            "arguments": {
+              "resume_id": "res_004"
+            },
+            "id": "call_vaRd0EwIBOtdTuqWd3hZSjz6",
+            "name": "resume_parse"
+          }
+        ]
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:knVEdDLEtXvAPOp+DSVd3Ao8E6A/poB8hlzT1x9BXRHtBnWRgxKwsg9XroyXtkfgiDREbU0VO2sQtwdjUtMkCQ==",
+      "timestamp": "2026-05-07T22:24:20.368Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:8ea322f3b472fd0e3398495fb10f3cdf9b6779d7145c69a30ae538833c4802e5",
+      "event_type": "tool_start",
+      "id": 460,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:0a39c117c8e0967e69d30e07cc6f2422fbd75a2cc5ae077b26af142d3c9234a3",
+      "payload_excerpt": {
+        "args": {
+          "resume_id": "res_004"
+        },
+        "args_hash": "sha256:374b9754d6f3484dc2c19e2fde17f4ffb28d15711443f2177086e12daa70a0c1",
+        "tool_name": "resume_parse"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:42hXEM1AS9IHHhbyu272EDvK6b6dXyRAz4SWMLRij/xE7aR1T/dtql7N4NXaw0xfOXzdmwr7r5jHQdHYGDo8Cg==",
+      "timestamp": "2026-05-07T22:24:20.371Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:34fa29fd51dac80635576e49038abee6f49c22929303655eac2b4c81ef681ab1",
+      "event_type": "tool_end",
+      "id": 461,
+      "paired_event_hash": "sha256:8ea322f3b472fd0e3398495fb10f3cdf9b6779d7145c69a30ae538833c4802e5",
+      "parent_hash": "sha256:8ea322f3b472fd0e3398495fb10f3cdf9b6779d7145c69a30ae538833c4802e5",
+      "payload_excerpt": {
+        "output": "{'id': 'res_004', 'name': 'David Kim', 'yoe_react': 5, 'yoe_python': 8, 'education': \"MS Computer Science, UC Berkeley (2018). BS Computer Science, Carnegie Mellon University (2016). Thesis: 'GPU-accelerated graph neural networks for recommendation systems'. CMU Dean's List 6/8 semesters.\", 'highlights': \"Senior Software Engineer at Anthropic (2023-present), platform team. Previously Senior MLE at Meta Reality Labs (2020-2023), built recommendation pipeline serving 50M users. Earlier Tech Lead Manager at Google Search (2018-2020), led team of 5 building search ranking inference infrastructure (Python + TensorFlow). Open-source maintainer of pytorch-geometric (3.5k stars). 6 publications at NeurIPS and ICLR, h-index 9. Author of 'Practical ML Systems' (O'Reilly 2022). Looking for a senior IC role at a technically ambitious AI startup.\"}",
+        "output_hash": "sha256:ad78520f030b65f55241ed38246b73ea015512d3641d565aadfbb4b655957f42",
+        "tool_name": "resume_parse"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:zTjdrhu/sRyp9krd2mS6W7zRw+axy1N8Oq0qgRLUY39fP3lkfWvQR/hMpzke1Gl8N9TCzTa0gfJuitxUz0kdDQ==",
+      "timestamp": "2026-05-07T22:24:20.374Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:471cfbe33fc6e9dd3249baad52a7258a2ac8898d011bcd549edaa1e2d95ac114",
+      "event_type": "llm_start",
+      "id": 462,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:34fa29fd51dac80635576e49038abee6f49c22929303655eac2b4c81ef681ab1",
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Please screen candidate resume res_004. Use the tools to parse, score, and decide.",
+            "type": "human"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"id\": \"res_004\", \"name\": \"David Kim\", \"yoe_react\": 5, \"yoe_python\": 8, \"education\": \"MS Computer Science, UC Berkeley (2018). BS Computer Science, Carnegie Mellon University (2016). Thesis: 'GPU-accelerated graph neural networks for recommendation systems'. CMU Dean's List 6/8 semesters.\", \"highlights\": \"Senior Software Engineer at Anthropic (2023-present), platform team. Previously Senior MLE at Meta Reality Labs (2020-2023), built recommendation pipeline serving 50M users. Earlier Tech Lead Manager at Google Search (2018-2020), led team of 5 building search ranking inference infrastructure (Python + TensorFlow). Open-source maintainer of pytorch-geometric (3.5k stars). 6 publications at NeurIPS and ICLR, h-index 9. Author of 'Practical ML Systems' (O'Reilly 2022). Looking for a senior IC role at a technically ambitious AI startup.\"}",
+            "type": "tool"
+          }
+        ],
+        "messages_hash": "sha256:380084aa701c637bda7b12dab56b703f5186cb8ba82576d76dd7b944f84675f3",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior tech recruiter screening for a Senior Full-Stack Engineer role.\n\nYou MUST follow these steps in order, no shortcuts:\n1. Call resume_parse to retrieve the candidate's data\n2. Call score_candidate to evaluate technical fit, culture fit, and ambiguity\n3. Call decide with the scores from step 2\n\nDo not skip steps. Even if a candidate seems obvious, run the full evaluation. This is required for audit compliance.",
+        "system_prompt_hash": "sha256:27fb4e06c98c70350ad9d5bb25211ba58b2db8f542d836011c3331497ebfe8b0",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:y7JlwOVcypy9XBVExCKwjNEYn9zOB5kiw4ItiP595RYftXxTSwe0oANRksVzU6WBXDT4ewDN6bKHHatJ/5CjAA==",
+      "timestamp": "2026-05-07T22:24:20.378Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:338d67ced839302a269766e1a406d2b653638932552340be2fd13e713b503706",
+      "event_type": "llm_end",
+      "id": 463,
+      "paired_event_hash": "sha256:471cfbe33fc6e9dd3249baad52a7258a2ac8898d011bcd549edaa1e2d95ac114",
+      "parent_hash": "sha256:471cfbe33fc6e9dd3249baad52a7258a2ac8898d011bcd549edaa1e2d95ac114",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "output_text": "",
+        "token_usage": null,
+        "tool_calls": [
+          {
+            "arguments": {
+              "education": "MS Computer Science, UC Berkeley (2018). BS Computer Science, Carnegie Mellon University (2016). Thesis: 'GPU-accelerated graph neural networks for recommendation systems'. CMU Dean's List 6/8 semesters.",
+              "highlights": "Senior Software Engineer at Anthropic (2023-present), platform team. Previously Senior MLE at Meta Reality Labs (2020-2023), built recommendation pipeline serving 50M users. Earlier Tech Lead Manager at Google Search (2018-2020), led team of 5 building search ranking inference infrastructure (Python + TensorFlow). Open-source maintainer of pytorch-geometric (3.5k stars). 6 publications at NeurIPS and ICLR, h-index 9. Author of 'Practical ML Systems' (O'Reilly 2022). Looking for a senior IC role at a technically ambitious AI startup.",
+              "name": "David Kim",
+              "yoe_python": 8,
+              "yoe_react": 5
+            },
+            "id": "call_liZzvYS7FCdr4rIfKTB6Ufcl",
+            "name": "score_candidate"
+          }
+        ]
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:kcBCEuOnM85V4vWRIug94Yl+nfNazCd9eVzJhOgwvlgVeujtdhA4MsSBocTmWv2JFaCuLCbVJh4vFIc0CcE8AQ==",
+      "timestamp": "2026-05-07T22:24:25.052Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:2991e0df7fceeb533f1c9b9772de583cf955c6bf928cfc6917880b6767dc5187",
+      "event_type": "tool_start",
+      "id": 464,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:338d67ced839302a269766e1a406d2b653638932552340be2fd13e713b503706",
+      "payload_excerpt": {
+        "args": {
+          "education": "MS Computer Science, UC Berkeley (2018). BS Computer Science, Carnegie Mellon University (2016). Thesis: 'GPU-accelerated graph neural networks for recommendation systems'. CMU Dean's List 6/8 semesters.",
+          "highlights": "Senior Software Engineer at Anthropic (2023-present), platform team. Previously Senior MLE at Meta Reality Labs (2020-2023), built recommendation pipeline serving 50M users. Earlier Tech Lead Manager at Google Search (2018-2020), led team of 5 building search ranking inference infrastructure (Python + TensorFlow). Open-source maintainer of pytorch-geometric (3.5k stars). 6 publications at NeurIPS and ICLR, h-index 9. Author of 'Practical ML Systems' (O'Reilly 2022). Looking for a senior IC role at a technically ambitious AI startup.",
+          "name": "David Kim",
+          "yoe_python": 8,
+          "yoe_react": 5
+        },
+        "args_hash": "sha256:f79c65dc57913c0830bea92f914c183da6ac07df87af226cc72104dd1e8ffa79",
+        "tool_name": "score_candidate"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:tm3nLvYdg8cA0xK73eo8m3JBx9wghe9ZmxbO8IF2nUnpsL764V2TzcEQ/TzuDbD/avqN8y93HIL9jqE/aiFkBA==",
+      "timestamp": "2026-05-07T22:24:25.057Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:0a8fb031d61187d6c90bbaf7dfb757514a592f5484080f09c13921ce5b164d93",
+      "event_type": "llm_start",
+      "id": 465,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:2991e0df7fceeb533f1c9b9772de583cf955c6bf928cfc6917880b6767dc5187",
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Candidate resume:\n{\n  \"name\": \"David Kim\",\n  \"yoe_react\": 5,\n  \"yoe_python\": 8,\n  \"education\": \"MS Computer Science, UC Berkeley (2018). BS Computer Science, Carnegie Mellon University (2016). Thesis: 'GPU-accelerated graph neural networks for recommendation systems'. CMU Dean's List 6/8 semesters.\",\n  \"highlights\": \"Senior Software Engineer at Anthropic (2023-present), platform team. Previously Senior MLE at Meta Reality Labs (2020-2023), built recommendation pipeline serving 50M users. Earlier Tech Lead Manager at Google Search (2018-2020), led team of 5 building search ranking inference infrastructure (Python + TensorFlow). Open-source maintainer of pytorch-geometric (3.5k stars). 6 publications at NeurIPS and ICLR, h-index 9. Author of 'Practical ML Systems' (O'Reilly 2022). Looking for a senior IC role at a technically ambitious AI startup.\"\n}",
+            "type": "human"
+          }
+        ],
+        "messages_hash": "sha256:3a8e8e726d97e411a7367f326514b58b7bf16c499c99ecb09ef3ca21908fc0c5",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior technical interviewer. Score the candidate on three axes (integers 1-10): technical_score, culture_score, ambiguity_score. Return ONLY valid JSON with those three keys, no other text.",
+        "system_prompt_hash": "sha256:e922ceaf903f955475d66f034db72479d0f0bbe9cb34ad61ce5da48e2f1bbecd",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:I2NmcZ1edI6pE6Wr9+kXe4CJMhuHJz29W0RYtJVncSPMdWVRkh5nrkwTtyCrjKmOKip4Ck8cQVWGDGVIlFGHCQ==",
+      "timestamp": "2026-05-07T22:24:25.076Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:a046472b05f6d4e1316602177e7f07c4b7db21049039e6c85bf1cc2163651495",
+      "event_type": "llm_end",
+      "id": 466,
+      "paired_event_hash": "sha256:0a8fb031d61187d6c90bbaf7dfb757514a592f5484080f09c13921ce5b164d93",
+      "parent_hash": "sha256:0a8fb031d61187d6c90bbaf7dfb757514a592f5484080f09c13921ce5b164d93",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:12edeba3618548211e40e3d077a339a38ef36d78bc8b258200062d43d638fa43",
+        "output_text": "{\n  \"technical_score\": 9,\n  \"culture_score\": 8,\n  \"ambiguity_score\": 7\n}",
+        "token_usage": {
+          "completion_tokens": 27,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 272,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 299
+        },
+        "tool_calls": null
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:Twscgkt65QHBX+FXn7JxdO3JxbeLCUvjDn5nCYK1SFp10qCCCaLAFedzV5Ci1FyI6tVSOk+nnh0ETRzYwHXhCg==",
+      "timestamp": "2026-05-07T22:24:26.484Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:3de5ab59f265b880222b38c6816a5396681646556a0520b516b782a6c990a7d7",
+      "event_type": "tool_end",
+      "id": 467,
+      "paired_event_hash": "sha256:2991e0df7fceeb533f1c9b9772de583cf955c6bf928cfc6917880b6767dc5187",
+      "parent_hash": "sha256:a046472b05f6d4e1316602177e7f07c4b7db21049039e6c85bf1cc2163651495",
+      "payload_excerpt": {
+        "output": "{'technical_score': 9, 'culture_score': 8, 'ambiguity_score': 7}",
+        "output_hash": "sha256:6937ed3bfeb78e35f32cc6b27af18fb4de61530087d611f6089d195e0bef482c",
+        "tool_name": "score_candidate"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:oyeyAhxLPICXX2dDgbtMhiFvHHVQ08cov8wwA43ExuE2ALuXV/NL7pO6fYFEMDOtpzX/g34Cgb3jOEwU9Qb3Bg==",
+      "timestamp": "2026-05-07T22:24:26.486Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:a2b15055f8b1aed2c06b56d7e384beb3265f8f689cf2c5ad968ffea74ec39737",
+      "event_type": "llm_start",
+      "id": 468,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:3de5ab59f265b880222b38c6816a5396681646556a0520b516b782a6c990a7d7",
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Please screen candidate resume res_004. Use the tools to parse, score, and decide.",
+            "type": "human"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"id\": \"res_004\", \"name\": \"David Kim\", \"yoe_react\": 5, \"yoe_python\": 8, \"education\": \"MS Computer Science, UC Berkeley (2018). BS Computer Science, Carnegie Mellon University (2016). Thesis: 'GPU-accelerated graph neural networks for recommendation systems'. CMU Dean's List 6/8 semesters.\", \"highlights\": \"Senior Software Engineer at Anthropic (2023-present), platform team. Previously Senior MLE at Meta Reality Labs (2020-2023), built recommendation pipeline serving 50M users. Earlier Tech Lead Manager at Google Search (2018-2020), led team of 5 building search ranking inference infrastructure (Python + TensorFlow). Open-source maintainer of pytorch-geometric (3.5k stars). 6 publications at NeurIPS and ICLR, h-index 9. Author of 'Practical ML Systems' (O'Reilly 2022). Looking for a senior IC role at a technically ambitious AI startup.\"}",
+            "type": "tool"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"technical_score\": 9, \"culture_score\": 8, \"ambiguity_score\": 7}",
+            "type": "tool"
+          }
+        ],
+        "messages_hash": "sha256:747a4ae501e5bf0953f6f11538a50c81bbc52730044610dd636f689f2e52afe3",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior tech recruiter screening for a Senior Full-Stack Engineer role.\n\nYou MUST follow these steps in order, no shortcuts:\n1. Call resume_parse to retrieve the candidate's data\n2. Call score_candidate to evaluate technical fit, culture fit, and ambiguity\n3. Call decide with the scores from step 2\n\nDo not skip steps. Even if a candidate seems obvious, run the full evaluation. This is required for audit compliance.",
+        "system_prompt_hash": "sha256:27fb4e06c98c70350ad9d5bb25211ba58b2db8f542d836011c3331497ebfe8b0",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:vIOIn5z5wm25JVsPAsRJge2BzLtkPerll96E03Kvms+Osq3LZNSkSCn985bptQ6xjkVhMLHOfG8N308q5Z8RDA==",
+      "timestamp": "2026-05-07T22:24:26.489Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:f79055857e98f3195b0813b1b79ca8ee6cc0211c7ff5679483af0f0409a6b4f5",
+      "event_type": "llm_end",
+      "id": 469,
+      "paired_event_hash": "sha256:a2b15055f8b1aed2c06b56d7e384beb3265f8f689cf2c5ad968ffea74ec39737",
+      "parent_hash": "sha256:a2b15055f8b1aed2c06b56d7e384beb3265f8f689cf2c5ad968ffea74ec39737",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "output_text": "",
+        "token_usage": null,
+        "tool_calls": [
+          {
+            "arguments": {
+              "ambiguity_score": 7,
+              "candidate_id": "res_004",
+              "culture_score": 8,
+              "technical_score": 9
+            },
+            "id": "call_YpQrYb3ayMwC64CVig0h0J9H",
+            "name": "decide"
+          }
+        ]
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:BL8UU30PzPBCfDr20rrhhMrzjCFaoSyUkv0M0QwPZiF/OsrSrpg+r0sKmuBP7VWMKxsV16QAmpYEwciZFFv4CA==",
+      "timestamp": "2026-05-07T22:24:27.449Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:8e7b5690a009d8be4d33d56791510a20eddc1e7e6d0922b34214c736ef0b8e3d",
+      "event_type": "tool_start",
+      "id": 470,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:f79055857e98f3195b0813b1b79ca8ee6cc0211c7ff5679483af0f0409a6b4f5",
+      "payload_excerpt": {
+        "args": {
+          "ambiguity_score": 7,
+          "candidate_id": "res_004",
+          "culture_score": 8,
+          "technical_score": 9
+        },
+        "args_hash": "sha256:aabfb6f6637d9771c9e2b65e8486e620dee4a46a251476545b5a76ec50117b3d",
+        "tool_name": "decide"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:js3T78p2VIebVrI++T+7UidYG2tAYu3ZYy56kQ/DXaVBeH5dW5qxfoOlMOYEBWcdtPTkeXS9L6478V7UujKDAQ==",
+      "timestamp": "2026-05-07T22:24:27.453Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:408332dbd7fc03ea15d39aafd9346da11b389115af8e4d32c44d850d9947e805",
+      "event_type": "tool_end",
+      "id": 471,
+      "paired_event_hash": "sha256:8e7b5690a009d8be4d33d56791510a20eddc1e7e6d0922b34214c736ef0b8e3d",
+      "parent_hash": "sha256:8e7b5690a009d8be4d33d56791510a20eddc1e7e6d0922b34214c736ef0b8e3d",
+      "payload_excerpt": {
+        "output": "{'decision': 'hire', 'reasoning': 'Strong technical (9/10) and culture (8/10), low ambiguity (7/10).', 'candidate_id': 'res_004'}",
+        "output_hash": "sha256:72797eb94ca379f8dacc50ff965efca1fdda84a746ec59e8537f54050b49e001",
+        "tool_name": "decide"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:klYE5wn9oXDYCvum7r1KoZ1B/c88ikSzjLIVgI/K8WI1dC3mU+MfcljlSpFpRMaZ1XNptrlpmlvqrsfXXMUiDg==",
+      "timestamp": "2026-05-07T22:24:27.455Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:b27ae90f548d2e4a82d8eff65749f7c8c95cf1fdb3fb3da10a6582d7aae4895e",
+      "event_type": "final_decision",
+      "id": 472,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:408332dbd7fc03ea15d39aafd9346da11b389115af8e4d32c44d850d9947e805",
+      "payload_excerpt": {
+        "candidate_id": "res_004",
+        "decision": "hire",
+        "reasoning": "Strong technical (9/10) and culture (8/10), low ambiguity (7/10).",
+        "reasoning_hash": "sha256:445974d07c90201fd5f131b6bb46783cefe4a4d768521165d9fcdf7e5feac4af"
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:V8KTqquc5/SutPnPzWP1rpvGgYdNo12nI3Pn9xeePMrBwbp9RwpcE8NTfon1a91n6v6lYLYNRYSRMhfJFQPCDQ==",
+      "timestamp": "2026-05-07T22:24:27.457Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:d7bdecc687d7f50f7668bb532f3735dcbb8070d1d1575e4fdaabef3ac377dcf8",
+      "event_type": "llm_start",
+      "id": 473,
+      "paired_event_hash": null,
+      "parent_hash": "sha256:b27ae90f548d2e4a82d8eff65749f7c8c95cf1fdb3fb3da10a6582d7aae4895e",
+      "payload_excerpt": {
+        "messages": [
+          {
+            "content": "Please screen candidate resume res_004. Use the tools to parse, score, and decide.",
+            "type": "human"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"id\": \"res_004\", \"name\": \"David Kim\", \"yoe_react\": 5, \"yoe_python\": 8, \"education\": \"MS Computer Science, UC Berkeley (2018). BS Computer Science, Carnegie Mellon University (2016). Thesis: 'GPU-accelerated graph neural networks for recommendation systems'. CMU Dean's List 6/8 semesters.\", \"highlights\": \"Senior Software Engineer at Anthropic (2023-present), platform team. Previously Senior MLE at Meta Reality Labs (2020-2023), built recommendation pipeline serving 50M users. Earlier Tech Lead Manager at Google Search (2018-2020), led team of 5 building search ranking inference infrastructure (Python + TensorFlow). Open-source maintainer of pytorch-geometric (3.5k stars). 6 publications at NeurIPS and ICLR, h-index 9. Author of 'Practical ML Systems' (O'Reilly 2022). Looking for a senior IC role at a technically ambitious AI startup.\"}",
+            "type": "tool"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"technical_score\": 9, \"culture_score\": 8, \"ambiguity_score\": 7}",
+            "type": "tool"
+          },
+          {
+            "content": "",
+            "type": "AIMessageChunk"
+          },
+          {
+            "content": "{\"decision\": \"hire\", \"reasoning\": \"Strong technical (9/10) and culture (8/10), low ambiguity (7/10).\", \"candidate_id\": \"res_004\"}",
+            "type": "tool"
+          }
+        ],
+        "messages_hash": "sha256:5fe5d6419a366802966d6381219c5278e241a1afc9471131e564b1edbfe7155b",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a senior tech recruiter screening for a Senior Full-Stack Engineer role.\n\nYou MUST follow these steps in order, no shortcuts:\n1. Call resume_parse to retrieve the candidate's data\n2. Call score_candidate to evaluate technical fit, culture fit, and ambiguity\n3. Call decide with the scores from step 2\n\nDo not skip steps. Even if a candidate seems obvious, run the full evaluation. This is required for audit compliance.",
+        "system_prompt_hash": "sha256:27fb4e06c98c70350ad9d5bb25211ba58b2db8f542d836011c3331497ebfe8b0",
+        "temperature": 0.0
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:uQ5ExLzzXFiY2MZhL9sdVpvYQSLBQuFhpb91/+gIEs3e8/zD1CFQ42qSbJlZK1GVFhKcNuPSRczgZu/qztUjDQ==",
+      "timestamp": "2026-05-07T22:24:27.460Z"
+    },
+    {
+      "agent_erc8004_token_id": 633,
+      "agent_id": "hr-screener-v1",
+      "event_hash": "sha256:4a59a1cdaa7f54844303b026af5be6e5d3c49e5534d976f3afd0821702002d8e",
+      "event_type": "llm_end",
+      "id": 474,
+      "paired_event_hash": "sha256:d7bdecc687d7f50f7668bb532f3735dcbb8070d1d1575e4fdaabef3ac377dcf8",
+      "parent_hash": "sha256:d7bdecc687d7f50f7668bb532f3735dcbb8070d1d1575e4fdaabef3ac377dcf8",
+      "payload_excerpt": {
+        "finish_reason": null,
+        "output_hash": "sha256:f928d2306bce5b0fe0b46b7f85e760029257dabbbf8c99324cd825b92ec6850f",
+        "output_text": "The candidate, David Kim, has been evaluated and the decision is to **hire**. \n\n**Reasoning:**\n- **Technical Score:** 9/10\n- **Culture Score:** 8/10\n- **Ambiguity Score:** 7/10\n\nDavid demonstrates strong technical expertise and a good cultural fit, with a manageable level of ambiguity.",
+        "token_usage": null,
+        "tool_calls": null
+      },
+      "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
+      "schema_version": "0.1",
+      "signature": "ed25519:c/VdiLhLtOEsxX+T/DDUvD1Ujgt4QZEnCd/PEtYSz+e9Mi+Wb1cTUKTNENGGkMxRrlEjt0gNmFcFjX7NXZCrAA==",
+      "timestamp": "2026-05-07T22:24:29.301Z"
+    }
+  ],
+  "run_id": "run-f8014202aa7a",
+  "version": "0.2"
+}

@@ -2,279 +2,279 @@
   "agent_erc8004_token_id": 633,
   "agent_id": "hr-screener-v1",
   "anchor": {
-    "block_number": 41178444,
+    "block_number": 41211994,
     "chain_id": 84532,
-    "tx_hash": "0x605dd4780263a84ecfc4fa063579d7fb87815e6e3706e63bb49981dcab398f70"
+    "tx_hash": "0xa1006263985b78b28c00500db144209e470249a8b941437533f3cd44e6126b6a"
   },
-  "merkle_root": "sha256:23e6eddc02ebdbe447b28e275c590a8459b9ba274494633d47b44bc7eb76c485",
+  "merkle_root": "sha256:6f34cf4c307ff1b1aa546f84cb98c68601e3371d1291b8971edc0a9ab0bc0e52",
   "proofs": {
-    "285": [
+    "426": [
       {
-        "sibling": "sha256:33601ee9717f0523387d6cda2ffebbd75ac1ba94a15ce1e2189b76764bea29a3",
+        "sibling": "sha256:5aafb7fff18d15c73fc22c1848d0f155adaa6516dd74216e26e6fc6c2094b044",
         "side": "R"
       },
       {
-        "sibling": "sha256:6534c51594625ad8410b11adafaf5bfeb88706ebb1d0b149b3e45dabdac0a028",
+        "sibling": "sha256:38a8550e4756e5acfa90892b87e1f6f40dc2f2f3cdf8e8e77ea7ecff13267b5e",
         "side": "R"
       },
       {
-        "sibling": "sha256:c8c0951bd12c2c41c1de37cacc0cc77abd2fa8c34ce739cdc186ed8f1aa5c8f5",
+        "sibling": "sha256:b34fa60e95f65ab42ccf647d7c141eb87c05d9014d7009ed40bcec6a6572a980",
         "side": "R"
       },
       {
-        "sibling": "sha256:51bf82ee57e34cc018c8ebc97f218130a33f3489c4c41b4c5fdd95c1e5aa59a6",
-        "side": "R"
-      }
-    ],
-    "286": [
-      {
-        "sibling": "sha256:30116d780e5902e2094c43cedb0e214e74100ab489673d85d43ec01698b165cd",
-        "side": "L"
-      },
-      {
-        "sibling": "sha256:6534c51594625ad8410b11adafaf5bfeb88706ebb1d0b149b3e45dabdac0a028",
-        "side": "R"
-      },
-      {
-        "sibling": "sha256:c8c0951bd12c2c41c1de37cacc0cc77abd2fa8c34ce739cdc186ed8f1aa5c8f5",
-        "side": "R"
-      },
-      {
-        "sibling": "sha256:51bf82ee57e34cc018c8ebc97f218130a33f3489c4c41b4c5fdd95c1e5aa59a6",
+        "sibling": "sha256:df1a2b182bc5757040ff001d2aecbc257bcb49cc536babc9e04a86f3b16f9aba",
         "side": "R"
       }
     ],
-    "287": [
+    "427": [
       {
-        "sibling": "sha256:67aab39cf21c87740b1058db81782adf03a154bf7762b66a91e7340f6c67746a",
-        "side": "R"
-      },
-      {
-        "sibling": "sha256:04a8048e63db3536f7c1d6f3e32aab198fa0801226f3a219604fd6a0d6e633d2",
+        "sibling": "sha256:2b6bc5e865dc10a19d6cc5c61d1c8122af1da1ee78e8b8f458d6bd3dfdb19020",
         "side": "L"
       },
       {
-        "sibling": "sha256:c8c0951bd12c2c41c1de37cacc0cc77abd2fa8c34ce739cdc186ed8f1aa5c8f5",
+        "sibling": "sha256:38a8550e4756e5acfa90892b87e1f6f40dc2f2f3cdf8e8e77ea7ecff13267b5e",
         "side": "R"
       },
       {
-        "sibling": "sha256:51bf82ee57e34cc018c8ebc97f218130a33f3489c4c41b4c5fdd95c1e5aa59a6",
-        "side": "R"
-      }
-    ],
-    "288": [
-      {
-        "sibling": "sha256:ad4a7b9cb02ded1ff6f0dc654c2bf6a7142a533a3f2b73d991fc063bf4552b00",
-        "side": "L"
-      },
-      {
-        "sibling": "sha256:04a8048e63db3536f7c1d6f3e32aab198fa0801226f3a219604fd6a0d6e633d2",
-        "side": "L"
-      },
-      {
-        "sibling": "sha256:c8c0951bd12c2c41c1de37cacc0cc77abd2fa8c34ce739cdc186ed8f1aa5c8f5",
+        "sibling": "sha256:b34fa60e95f65ab42ccf647d7c141eb87c05d9014d7009ed40bcec6a6572a980",
         "side": "R"
       },
       {
-        "sibling": "sha256:51bf82ee57e34cc018c8ebc97f218130a33f3489c4c41b4c5fdd95c1e5aa59a6",
+        "sibling": "sha256:df1a2b182bc5757040ff001d2aecbc257bcb49cc536babc9e04a86f3b16f9aba",
         "side": "R"
       }
     ],
-    "289": [
+    "428": [
       {
-        "sibling": "sha256:8c59e697d10dbe6e67aa04cc2e289c6d0113f03b01f67b4c3f423f8bc6a52dd0",
+        "sibling": "sha256:316eb43f26e3add103895eb710ba5079da7763ebd4bb2f0697d474647b7a221b",
         "side": "R"
       },
       {
-        "sibling": "sha256:922ad76b8bae0df51d2efa25e7d84ec3a1575342fa7a8774eb24777a92ab28a3",
-        "side": "R"
-      },
-      {
-        "sibling": "sha256:0553fe4b8115fa30e5ec15f8bd5554625df8ef474974cce4f05121aa1e46c47f",
+        "sibling": "sha256:1ba2140b3d390d04b901a9e2c50e1dc2cbf019b7852a9d28097d760d282db2dc",
         "side": "L"
       },
       {
-        "sibling": "sha256:51bf82ee57e34cc018c8ebc97f218130a33f3489c4c41b4c5fdd95c1e5aa59a6",
-        "side": "R"
-      }
-    ],
-    "290": [
-      {
-        "sibling": "sha256:bae56dbffc077eb87bae13607eda715b48e6280352d6d40f1cd066e70244eaf7",
-        "side": "L"
-      },
-      {
-        "sibling": "sha256:922ad76b8bae0df51d2efa25e7d84ec3a1575342fa7a8774eb24777a92ab28a3",
+        "sibling": "sha256:b34fa60e95f65ab42ccf647d7c141eb87c05d9014d7009ed40bcec6a6572a980",
         "side": "R"
       },
       {
-        "sibling": "sha256:0553fe4b8115fa30e5ec15f8bd5554625df8ef474974cce4f05121aa1e46c47f",
-        "side": "L"
-      },
-      {
-        "sibling": "sha256:51bf82ee57e34cc018c8ebc97f218130a33f3489c4c41b4c5fdd95c1e5aa59a6",
+        "sibling": "sha256:df1a2b182bc5757040ff001d2aecbc257bcb49cc536babc9e04a86f3b16f9aba",
         "side": "R"
       }
     ],
-    "291": [
+    "429": [
       {
-        "sibling": "sha256:a322119e6e3f196a6238ac8f45b4aa2c56b6092f1ee0a8eac59e062c511a0cd2",
+        "sibling": "sha256:a49b90429ad3cc92a73d3bedd86a1d5cce836caf7135c1cf66697b0a97ae9475",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:1ba2140b3d390d04b901a9e2c50e1dc2cbf019b7852a9d28097d760d282db2dc",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:b34fa60e95f65ab42ccf647d7c141eb87c05d9014d7009ed40bcec6a6572a980",
         "side": "R"
       },
       {
-        "sibling": "sha256:84c19f2254417cfd2a540173dbd891573af3d169a1602cd55b4f5c9a0112cde0",
-        "side": "L"
-      },
-      {
-        "sibling": "sha256:0553fe4b8115fa30e5ec15f8bd5554625df8ef474974cce4f05121aa1e46c47f",
-        "side": "L"
-      },
-      {
-        "sibling": "sha256:51bf82ee57e34cc018c8ebc97f218130a33f3489c4c41b4c5fdd95c1e5aa59a6",
-        "side": "R"
-      }
-    ],
-    "292": [
-      {
-        "sibling": "sha256:e11873f53854f5f9551b97a3904f48e1d16ab4c4aa888a881891af1bc87c8ca6",
-        "side": "L"
-      },
-      {
-        "sibling": "sha256:84c19f2254417cfd2a540173dbd891573af3d169a1602cd55b4f5c9a0112cde0",
-        "side": "L"
-      },
-      {
-        "sibling": "sha256:0553fe4b8115fa30e5ec15f8bd5554625df8ef474974cce4f05121aa1e46c47f",
-        "side": "L"
-      },
-      {
-        "sibling": "sha256:51bf82ee57e34cc018c8ebc97f218130a33f3489c4c41b4c5fdd95c1e5aa59a6",
+        "sibling": "sha256:df1a2b182bc5757040ff001d2aecbc257bcb49cc536babc9e04a86f3b16f9aba",
         "side": "R"
       }
     ],
-    "293": [
+    "430": [
       {
-        "sibling": "sha256:d34e845405ea697dbc22caff166fbc80005171fc6bf5b8b7cd365ca24f96cbb0",
+        "sibling": "sha256:a68b52e11325d697f5d89bc964c1c46a9d9ece153dfdbfd56ebad133fa526cc3",
         "side": "R"
       },
       {
-        "sibling": "sha256:2ea1fe3fb447544a8aa6463856dbf0c99f52f674a9e83493948fce55e4ca1734",
+        "sibling": "sha256:3af7ae5a2f7690f9dd69e63f5ac9c37c142d37a1b70192dd8abcdad8c1837829",
         "side": "R"
       },
       {
-        "sibling": "sha256:f883277288e2755c5b24cce7969058cdec101270742f79fc3016e3d9f198d38e",
+        "sibling": "sha256:1efdad8e2d3529dae54a3349a3b7fa26d0b3d28a877679bcd06a33008c93028e",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:df1a2b182bc5757040ff001d2aecbc257bcb49cc536babc9e04a86f3b16f9aba",
+        "side": "R"
+      }
+    ],
+    "431": [
+      {
+        "sibling": "sha256:ff21827b1a85d16baf5833095dd62fb47fd593902db01b1e953c3ba1a0f87802",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:3af7ae5a2f7690f9dd69e63f5ac9c37c142d37a1b70192dd8abcdad8c1837829",
         "side": "R"
       },
       {
-        "sibling": "sha256:53e937afb30317d52d6bfbb78beb0a142f826a430ba04cd7e51aff588acb8913",
+        "sibling": "sha256:1efdad8e2d3529dae54a3349a3b7fa26d0b3d28a877679bcd06a33008c93028e",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:df1a2b182bc5757040ff001d2aecbc257bcb49cc536babc9e04a86f3b16f9aba",
+        "side": "R"
+      }
+    ],
+    "432": [
+      {
+        "sibling": "sha256:de4847306db7c5ec4b5ede4c7e45ca5e1fae74afa4e1f4d085aced4a09d84b3e",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:2829c1b4b4ef60c8aa2283cc237ce6830f10180b2c35f599d09d7438845bd3cf",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:1efdad8e2d3529dae54a3349a3b7fa26d0b3d28a877679bcd06a33008c93028e",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:df1a2b182bc5757040ff001d2aecbc257bcb49cc536babc9e04a86f3b16f9aba",
+        "side": "R"
+      }
+    ],
+    "433": [
+      {
+        "sibling": "sha256:f0a203e72308112e3e06e02e2038e43542dbdfbd01c1a94b6bca0ef0657ede3d",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:2829c1b4b4ef60c8aa2283cc237ce6830f10180b2c35f599d09d7438845bd3cf",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:1efdad8e2d3529dae54a3349a3b7fa26d0b3d28a877679bcd06a33008c93028e",
+        "side": "L"
+      },
+      {
+        "sibling": "sha256:df1a2b182bc5757040ff001d2aecbc257bcb49cc536babc9e04a86f3b16f9aba",
+        "side": "R"
+      }
+    ],
+    "434": [
+      {
+        "sibling": "sha256:756d35f30be25c7cb181f3b7671ea606fa21667451ab98757c64393b2f36c380",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:668aae666102d0636e4c309ac90a903789c6ad1268ceb0c59788b34fb2b78860",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:ac09a7de944fd72ba135abec0ee3f1053b4636988aa709a4ab5881ee6ea33a44",
+        "side": "R"
+      },
+      {
+        "sibling": "sha256:41da9558b93cde4fb77308bba8b101a2c7aceb59f78c0ffce73befb2c3e41dd1",
         "side": "L"
       }
     ],
-    "294": [
+    "435": [
       {
-        "sibling": "sha256:b0fa700c984c3e6e8acf210e72afeec56025c3f262b5d4f58926b339ccb52351",
+        "sibling": "sha256:855f521504f936e10361d09208f5a1f10762fa6c2698c2f34827e6f1fbbb3d35",
         "side": "L"
       },
       {
-        "sibling": "sha256:2ea1fe3fb447544a8aa6463856dbf0c99f52f674a9e83493948fce55e4ca1734",
+        "sibling": "sha256:668aae666102d0636e4c309ac90a903789c6ad1268ceb0c59788b34fb2b78860",
         "side": "R"
       },
       {
-        "sibling": "sha256:f883277288e2755c5b24cce7969058cdec101270742f79fc3016e3d9f198d38e",
+        "sibling": "sha256:ac09a7de944fd72ba135abec0ee3f1053b4636988aa709a4ab5881ee6ea33a44",
         "side": "R"
       },
       {
-        "sibling": "sha256:53e937afb30317d52d6bfbb78beb0a142f826a430ba04cd7e51aff588acb8913",
+        "sibling": "sha256:41da9558b93cde4fb77308bba8b101a2c7aceb59f78c0ffce73befb2c3e41dd1",
         "side": "L"
       }
     ],
-    "295": [
+    "436": [
       {
-        "sibling": "sha256:705d47b298d73cef3b8bbe0b8d4b9a35a4eb65f0cddbf4497e3ba96561cb8c87",
+        "sibling": "sha256:31beca0a86cb68e2b56f670a96ad915f11b6896ac5d3678cb8fbb4eab128cc87",
         "side": "R"
       },
       {
-        "sibling": "sha256:0fb931449ce23be50530edbf6d3039ec6308079649d759cd61799cf75a253730",
+        "sibling": "sha256:adabeddee484624dd4293baf3298a4c93ab7281dae5dd1d124ba86f2c98f8324",
         "side": "L"
       },
       {
-        "sibling": "sha256:f883277288e2755c5b24cce7969058cdec101270742f79fc3016e3d9f198d38e",
+        "sibling": "sha256:ac09a7de944fd72ba135abec0ee3f1053b4636988aa709a4ab5881ee6ea33a44",
         "side": "R"
       },
       {
-        "sibling": "sha256:53e937afb30317d52d6bfbb78beb0a142f826a430ba04cd7e51aff588acb8913",
+        "sibling": "sha256:41da9558b93cde4fb77308bba8b101a2c7aceb59f78c0ffce73befb2c3e41dd1",
         "side": "L"
       }
     ],
-    "296": [
+    "437": [
       {
-        "sibling": "sha256:5ab868e2219eb37e1e275db1a7c075d1fe40cd9f717107e948c075327c743b6f",
+        "sibling": "sha256:a95e043eb12df21637257b62dfec5b0a041cd2d6c905427e3a0300a0b2ece76e",
         "side": "L"
       },
       {
-        "sibling": "sha256:0fb931449ce23be50530edbf6d3039ec6308079649d759cd61799cf75a253730",
+        "sibling": "sha256:adabeddee484624dd4293baf3298a4c93ab7281dae5dd1d124ba86f2c98f8324",
         "side": "L"
       },
       {
-        "sibling": "sha256:f883277288e2755c5b24cce7969058cdec101270742f79fc3016e3d9f198d38e",
+        "sibling": "sha256:ac09a7de944fd72ba135abec0ee3f1053b4636988aa709a4ab5881ee6ea33a44",
         "side": "R"
       },
       {
-        "sibling": "sha256:53e937afb30317d52d6bfbb78beb0a142f826a430ba04cd7e51aff588acb8913",
+        "sibling": "sha256:41da9558b93cde4fb77308bba8b101a2c7aceb59f78c0ffce73befb2c3e41dd1",
         "side": "L"
       }
     ],
-    "297": [
+    "438": [
       {
-        "sibling": "sha256:66f2b706a2e956294c245f79747a6d84f19d6e6bc504957236397acb32519905",
+        "sibling": "sha256:836730d47df9e090b56ddbb38a32cde63de70f47e0a7ab286a242f7efdf55bb0",
         "side": "R"
       },
       {
-        "sibling": "sha256:da5716a9b00bdb009457202ddde3249ef75feedbf7b94eeeacba04d53aeeb12f",
+        "sibling": "sha256:e62565d1ba569577532ac9d748afa8382d1ea208826541f28942cf1291112102",
         "side": "R"
       },
       {
-        "sibling": "sha256:fce08c0ba21d3b44e5b72752bd78eb3a03d8fac43838a64b1104261c1402ef35",
+        "sibling": "sha256:54b15fc8cfb7df5add749b576deb0e09b4031f4ec05adee99b893cb48477a29d",
         "side": "L"
       },
       {
-        "sibling": "sha256:53e937afb30317d52d6bfbb78beb0a142f826a430ba04cd7e51aff588acb8913",
+        "sibling": "sha256:41da9558b93cde4fb77308bba8b101a2c7aceb59f78c0ffce73befb2c3e41dd1",
         "side": "L"
       }
     ],
-    "298": [
+    "439": [
       {
-        "sibling": "sha256:45591c153af67a92d77c5955b4031e093914902bb79944ad503c92c0d9ad1cf3",
+        "sibling": "sha256:cc44bac10f54eba77569195a9daf37fbbeba3a124f51e7d8bf875264600112ca",
         "side": "L"
       },
       {
-        "sibling": "sha256:da5716a9b00bdb009457202ddde3249ef75feedbf7b94eeeacba04d53aeeb12f",
+        "sibling": "sha256:e62565d1ba569577532ac9d748afa8382d1ea208826541f28942cf1291112102",
         "side": "R"
       },
       {
-        "sibling": "sha256:fce08c0ba21d3b44e5b72752bd78eb3a03d8fac43838a64b1104261c1402ef35",
+        "sibling": "sha256:54b15fc8cfb7df5add749b576deb0e09b4031f4ec05adee99b893cb48477a29d",
         "side": "L"
       },
       {
-        "sibling": "sha256:53e937afb30317d52d6bfbb78beb0a142f826a430ba04cd7e51aff588acb8913",
+        "sibling": "sha256:41da9558b93cde4fb77308bba8b101a2c7aceb59f78c0ffce73befb2c3e41dd1",
         "side": "L"
       }
     ],
-    "299": [
+    "440": [
       {
-        "sibling": "sha256:a71862ed62ffb1b9f44ea5229d39348c90ecd71fd0a0353aeefcf1d5cd4399c5",
+        "sibling": "sha256:59602c799f8c43d63bffda2481f0fd7530842d778449a273e9032a0501e077d6",
         "side": "R"
       },
       {
-        "sibling": "sha256:6ba37b564c2ac07a2bfaf801409c81d07057b2521cdb9b465637b72523d39916",
+        "sibling": "sha256:3199111d17e8a6a891ee5fee849cd8a540bc2723db5c75e775cadeec1b0d66aa",
         "side": "L"
       },
       {
-        "sibling": "sha256:fce08c0ba21d3b44e5b72752bd78eb3a03d8fac43838a64b1104261c1402ef35",
+        "sibling": "sha256:54b15fc8cfb7df5add749b576deb0e09b4031f4ec05adee99b893cb48477a29d",
         "side": "L"
       },
       {
-        "sibling": "sha256:53e937afb30317d52d6bfbb78beb0a142f826a430ba04cd7e51aff588acb8913",
+        "sibling": "sha256:41da9558b93cde4fb77308bba8b101a2c7aceb59f78c0ffce73befb2c3e41dd1",
         "side": "L"
       }
     ]
@@ -283,9 +283,9 @@
     {
       "agent_erc8004_token_id": 633,
       "agent_id": "hr-screener-v1",
-      "event_hash": "sha256:30116d780e5902e2094c43cedb0e214e74100ab489673d85d43ec01698b165cd",
+      "event_hash": "sha256:2b6bc5e865dc10a19d6cc5c61d1c8122af1da1ee78e8b8f458d6bd3dfdb19020",
       "event_type": "llm_start",
-      "id": 285,
+      "id": 426,
       "paired_event_hash": null,
       "parent_hash": null,
       "payload_excerpt": {
@@ -303,36 +303,56 @@
       },
       "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
       "schema_version": "0.1",
-      "signature": "ed25519:L6wI+B/LKVL/DFCzEXEWWBcE92cj+XZGj+7dSt3G0Xway60YneRHLdah5GfK//F5nzsj5Fb+Yp47GPJGDCScAQ==",
-      "timestamp": "2026-05-07T03:34:07.995Z"
+      "signature": "ed25519:cE8lxkmCoivXC8lIW+AjaFlZpbJMXTfZWzwUOyw2tKU1yzy5E/+zyb1Q1nXCnXyyyTq6vh8bWgu2Z01H2N4lBA==",
+      "timestamp": "2026-05-07T22:17:43.981Z"
     },
     {
       "agent_erc8004_token_id": 633,
       "agent_id": "hr-screener-v1",
-      "event_hash": "sha256:33601ee9717f0523387d6cda2ffebbd75ac1ba94a15ce1e2189b76764bea29a3",
+      "event_hash": "sha256:5aafb7fff18d15c73fc22c1848d0f155adaa6516dd74216e26e6fc6c2094b044",
       "event_type": "llm_end",
-      "id": 286,
-      "paired_event_hash": "sha256:30116d780e5902e2094c43cedb0e214e74100ab489673d85d43ec01698b165cd",
-      "parent_hash": "sha256:30116d780e5902e2094c43cedb0e214e74100ab489673d85d43ec01698b165cd",
+      "id": 427,
+      "paired_event_hash": "sha256:2b6bc5e865dc10a19d6cc5c61d1c8122af1da1ee78e8b8f458d6bd3dfdb19020",
+      "parent_hash": "sha256:2b6bc5e865dc10a19d6cc5c61d1c8122af1da1ee78e8b8f458d6bd3dfdb19020",
       "payload_excerpt": {
         "finish_reason": null,
         "output_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "output_text": "",
-        "token_usage": null
+        "token_usage": null,
+        "tool_calls": [
+          {
+            "arguments": {
+              "resume_id": "res_002"
+            },
+            "id": "call_UOmSh8nTJVZIky8mGQdupnL9",
+            "name": "resume_parse"
+          },
+          {
+            "arguments": {
+              "education": "",
+              "highlights": "",
+              "name": "",
+              "yoe_python": 0,
+              "yoe_react": 0
+            },
+            "id": "call_Zuj3VQUMNzEZZ9Y0XGuHvd01",
+            "name": "score_candidate"
+          }
+        ]
       },
       "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
       "schema_version": "0.1",
-      "signature": "ed25519:rtbdmkMXH5I1dZSSsjezURqBOUcE5BeyHJ/azt0hj6y+jZH4rGwqnl23eKaY1FVbYni+MCmUidfa6L9SAx0nBA==",
-      "timestamp": "2026-05-07T03:34:09.856Z"
+      "signature": "ed25519:TezfbHHpu1zUtkQ2sOwLMpnQWztBife4VbWP723jIL7TDRPCHkwxug2qKpiZLlSDqoyqxXy5eK9ak5A26XKtBg==",
+      "timestamp": "2026-05-07T22:17:46.802Z"
     },
     {
       "agent_erc8004_token_id": 633,
       "agent_id": "hr-screener-v1",
-      "event_hash": "sha256:ad4a7b9cb02ded1ff6f0dc654c2bf6a7142a533a3f2b73d991fc063bf4552b00",
+      "event_hash": "sha256:a49b90429ad3cc92a73d3bedd86a1d5cce836caf7135c1cf66697b0a97ae9475",
       "event_type": "tool_start",
-      "id": 287,
+      "id": 428,
       "paired_event_hash": null,
-      "parent_hash": "sha256:33601ee9717f0523387d6cda2ffebbd75ac1ba94a15ce1e2189b76764bea29a3",
+      "parent_hash": "sha256:5aafb7fff18d15c73fc22c1848d0f155adaa6516dd74216e26e6fc6c2094b044",
       "payload_excerpt": {
         "args": {
           "resume_id": "res_002"
@@ -342,17 +362,17 @@
       },
       "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
       "schema_version": "0.1",
-      "signature": "ed25519:1VAvMgL3wWakBBNrO1s6GTR9TbfC+yPD0tHo7igNSCxK7SaJDzOlzMliBFlzEk6GxuVxKFab/MaPutjT+MvnAg==",
-      "timestamp": "2026-05-07T03:34:09.857Z"
+      "signature": "ed25519:TuqOws3nPL5KeokTfly7xQhBmPQ0N2euP7S8khfJOXrReCqrl9PCVbZfwVFr3baPrdepSK0G8t0Gp9Wqbd/ZCQ==",
+      "timestamp": "2026-05-07T22:17:46.805Z"
     },
     {
       "agent_erc8004_token_id": 633,
       "agent_id": "hr-screener-v1",
-      "event_hash": "sha256:67aab39cf21c87740b1058db81782adf03a154bf7762b66a91e7340f6c67746a",
+      "event_hash": "sha256:316eb43f26e3add103895eb710ba5079da7763ebd4bb2f0697d474647b7a221b",
       "event_type": "tool_end",
-      "id": 288,
-      "paired_event_hash": "sha256:ad4a7b9cb02ded1ff6f0dc654c2bf6a7142a533a3f2b73d991fc063bf4552b00",
-      "parent_hash": "sha256:ad4a7b9cb02ded1ff6f0dc654c2bf6a7142a533a3f2b73d991fc063bf4552b00",
+      "id": 429,
+      "paired_event_hash": "sha256:a49b90429ad3cc92a73d3bedd86a1d5cce836caf7135c1cf66697b0a97ae9475",
+      "parent_hash": "sha256:a49b90429ad3cc92a73d3bedd86a1d5cce836caf7135c1cf66697b0a97ae9475",
       "payload_excerpt": {
         "output": "{'id': 'res_002', 'name': 'Bob Martinez', 'yoe_react': 1, 'yoe_python': 1, 'education': 'BA English Literature, San Francisco State University (2018). General Assembly fullstack web development bootcamp (3 months, 2023). No formal CS coursework.', 'highlights': 'Currently transitioning from a successful 4-year customer support and account management career at IBM Cloud. Self-taught web development since January 2024 - built 2 portfolio projects: a personal blog (Next.js, 200 LOC) and a recipe-tracking app (React + Firebase, deployed via Vercel). Active in #100DaysOfCode and aspires to reach junior fullstack within 18 months. Looking for an entry-level opportunity that values motivation over credentials. Strong communication skills from 4 years of B2B customer-facing work. Available for full-time start within 4 weeks.'}",
         "output_hash": "sha256:b2b40f6fb7e59a33cf19b2f0427b09de6d589b088ebcacf3d2553b7953e3ca55",
@@ -360,17 +380,17 @@
       },
       "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
       "schema_version": "0.1",
-      "signature": "ed25519:qQ3cnnPRQnkJrj7+zyrb36Vi9CEMr7ytvt4Itqz3pUnLv88Xges4kM46gbLQyaKy4VATTOjt3Z5gdiUvucUVDg==",
-      "timestamp": "2026-05-07T03:34:09.859Z"
+      "signature": "ed25519:ce96qTZ9sE+Cq75UZKaURYDaEhzChbtjszUdcjdGX7sPtyx6rAkUu/gijo9Gk05gpEonoWQ2FVf/SO5uTbL+Bg==",
+      "timestamp": "2026-05-07T22:17:46.807Z"
     },
     {
       "agent_erc8004_token_id": 633,
       "agent_id": "hr-screener-v1",
-      "event_hash": "sha256:bae56dbffc077eb87bae13607eda715b48e6280352d6d40f1cd066e70244eaf7",
+      "event_hash": "sha256:ff21827b1a85d16baf5833095dd62fb47fd593902db01b1e953c3ba1a0f87802",
       "event_type": "tool_start",
-      "id": 289,
+      "id": 430,
       "paired_event_hash": null,
-      "parent_hash": "sha256:67aab39cf21c87740b1058db81782adf03a154bf7762b66a91e7340f6c67746a",
+      "parent_hash": "sha256:316eb43f26e3add103895eb710ba5079da7763ebd4bb2f0697d474647b7a221b",
       "payload_excerpt": {
         "args": {
           "education": "",
@@ -384,17 +404,17 @@
       },
       "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
       "schema_version": "0.1",
-      "signature": "ed25519:MnRtgr7JXuMCWH165JLjzieR2P/5APJu9WH95Izbna4gQxAlpzx0wABYz7sIKdDPFFrtNN3nNr2sz28GCq9BCw==",
-      "timestamp": "2026-05-07T03:34:09.859Z"
+      "signature": "ed25519:P2lRtKemTpQ0MxZ2t58wMcSLY6oRbnkKGmHsbPOtD+17ND4MC/HRradXnqAbRveGDg8chtu99n6gNwcyxRxNDQ==",
+      "timestamp": "2026-05-07T22:17:46.808Z"
     },
     {
       "agent_erc8004_token_id": 633,
       "agent_id": "hr-screener-v1",
-      "event_hash": "sha256:8c59e697d10dbe6e67aa04cc2e289c6d0113f03b01f67b4c3f423f8bc6a52dd0",
+      "event_hash": "sha256:a68b52e11325d697f5d89bc964c1c46a9d9ece153dfdbfd56ebad133fa526cc3",
       "event_type": "llm_start",
-      "id": 290,
+      "id": 431,
       "paired_event_hash": null,
-      "parent_hash": "sha256:bae56dbffc077eb87bae13607eda715b48e6280352d6d40f1cd066e70244eaf7",
+      "parent_hash": "sha256:ff21827b1a85d16baf5833095dd62fb47fd593902db01b1e953c3ba1a0f87802",
       "payload_excerpt": {
         "messages": [
           {
@@ -410,17 +430,17 @@
       },
       "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
       "schema_version": "0.1",
-      "signature": "ed25519:K0n4hR2MJ1e0JDVX1xwR7HNdBe0FP4HlguMM7HBQiqM32XVvXf3ka5ja/E5FKYtHveNV+0SJEtTq+La2k5HWCA==",
-      "timestamp": "2026-05-07T03:34:09.868Z"
+      "signature": "ed25519:BDAyAMASR3tUPNVCIf/aJ5cfJhcKbuJgC9yLcozRQf/z63xqKBwrcbgsh7Je0GXUSoaZEsw5/l6LGVn50GY2AQ==",
+      "timestamp": "2026-05-07T22:17:46.819Z"
     },
     {
       "agent_erc8004_token_id": 633,
       "agent_id": "hr-screener-v1",
-      "event_hash": "sha256:e11873f53854f5f9551b97a3904f48e1d16ab4c4aa888a881891af1bc87c8ca6",
+      "event_hash": "sha256:f0a203e72308112e3e06e02e2038e43542dbdfbd01c1a94b6bca0ef0657ede3d",
       "event_type": "llm_end",
-      "id": 291,
-      "paired_event_hash": "sha256:8c59e697d10dbe6e67aa04cc2e289c6d0113f03b01f67b4c3f423f8bc6a52dd0",
-      "parent_hash": "sha256:8c59e697d10dbe6e67aa04cc2e289c6d0113f03b01f67b4c3f423f8bc6a52dd0",
+      "id": 432,
+      "paired_event_hash": "sha256:a68b52e11325d697f5d89bc964c1c46a9d9ece153dfdbfd56ebad133fa526cc3",
+      "parent_hash": "sha256:a68b52e11325d697f5d89bc964c1c46a9d9ece153dfdbfd56ebad133fa526cc3",
       "payload_excerpt": {
         "finish_reason": null,
         "output_hash": "sha256:c2138b205591a2ff87bbd44448ebd0278c2cfb5ff5bc994c4ab355369cc893ff",
@@ -439,21 +459,22 @@
             "cached_tokens": 0
           },
           "total_tokens": 121
-        }
+        },
+        "tool_calls": null
       },
       "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
       "schema_version": "0.1",
-      "signature": "ed25519:XDrUPMComP/tihAR1qMy/3mYGlotmNDi0cWQcbiYMCiRGkD6S6kMppoGfFgvyZGTkUB5WQcJmNCKsJDa++nwAQ==",
-      "timestamp": "2026-05-07T03:34:11.322Z"
+      "signature": "ed25519:9sWMsbXxw7RUXZcYGAZidD8J7xYADOS0E0vTYVnTT+PJanlWCy5NN1+bbNyFMfFXBabBGMS/mhah39XpR/9pAg==",
+      "timestamp": "2026-05-07T22:17:47.852Z"
     },
     {
       "agent_erc8004_token_id": 633,
       "agent_id": "hr-screener-v1",
-      "event_hash": "sha256:a322119e6e3f196a6238ac8f45b4aa2c56b6092f1ee0a8eac59e062c511a0cd2",
+      "event_hash": "sha256:de4847306db7c5ec4b5ede4c7e45ca5e1fae74afa4e1f4d085aced4a09d84b3e",
       "event_type": "tool_end",
-      "id": 292,
-      "paired_event_hash": "sha256:bae56dbffc077eb87bae13607eda715b48e6280352d6d40f1cd066e70244eaf7",
-      "parent_hash": "sha256:e11873f53854f5f9551b97a3904f48e1d16ab4c4aa888a881891af1bc87c8ca6",
+      "id": 433,
+      "paired_event_hash": "sha256:ff21827b1a85d16baf5833095dd62fb47fd593902db01b1e953c3ba1a0f87802",
+      "parent_hash": "sha256:f0a203e72308112e3e06e02e2038e43542dbdfbd01c1a94b6bca0ef0657ede3d",
       "payload_excerpt": {
         "output": "{'technical_score': 2, 'culture_score': 5, 'ambiguity_score': 3}",
         "output_hash": "sha256:9e31c6961baf0a73f997c3f76c6f6323a054e2783668dabed83210272d9b8679",
@@ -461,17 +482,17 @@
       },
       "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
       "schema_version": "0.1",
-      "signature": "ed25519:yAy9S6m9cHTVrNERx6Y1IKXu31ZabJtHSTVD8juotjpthR/tbpda20tjxGywd1e2r1ktD2hZ25+CNww2MhAqCg==",
-      "timestamp": "2026-05-07T03:34:11.323Z"
+      "signature": "ed25519:GL//2WKZ/9L4B2He9VekU5fkCEqu0+js9ae6jXKd06kzClJgTpp2TcmwjnrHuvINIYT+9X1c6YcDc9ATBFqoAg==",
+      "timestamp": "2026-05-07T22:17:47.854Z"
     },
     {
       "agent_erc8004_token_id": 633,
       "agent_id": "hr-screener-v1",
-      "event_hash": "sha256:b0fa700c984c3e6e8acf210e72afeec56025c3f262b5d4f58926b339ccb52351",
+      "event_hash": "sha256:855f521504f936e10361d09208f5a1f10762fa6c2698c2f34827e6f1fbbb3d35",
       "event_type": "llm_start",
-      "id": 293,
+      "id": 434,
       "paired_event_hash": null,
-      "parent_hash": "sha256:a322119e6e3f196a6238ac8f45b4aa2c56b6092f1ee0a8eac59e062c511a0cd2",
+      "parent_hash": "sha256:de4847306db7c5ec4b5ede4c7e45ca5e1fae74afa4e1f4d085aced4a09d84b3e",
       "payload_excerpt": {
         "messages": [
           {
@@ -499,36 +520,48 @@
       },
       "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
       "schema_version": "0.1",
-      "signature": "ed25519:lBYwfXxNcj/7mxGqqyKHF74dStjE/xK/cpWgph0UUfAw81DrEm5T5fzrXgRBOuRekjwUyAaJQf8ryjtHuCBnCQ==",
-      "timestamp": "2026-05-07T03:34:11.325Z"
+      "signature": "ed25519:kUoTAdtNmeAxKOQr4nEXJ36GpnJEe0aty/qjFF2MZke5kXqZKZ1j0aqVm2f+u3A+0jtgCh8cnLo8alWIBCv4Dw==",
+      "timestamp": "2026-05-07T22:17:47.857Z"
     },
     {
       "agent_erc8004_token_id": 633,
       "agent_id": "hr-screener-v1",
-      "event_hash": "sha256:d34e845405ea697dbc22caff166fbc80005171fc6bf5b8b7cd365ca24f96cbb0",
+      "event_hash": "sha256:756d35f30be25c7cb181f3b7671ea606fa21667451ab98757c64393b2f36c380",
       "event_type": "llm_end",
-      "id": 294,
-      "paired_event_hash": "sha256:b0fa700c984c3e6e8acf210e72afeec56025c3f262b5d4f58926b339ccb52351",
-      "parent_hash": "sha256:b0fa700c984c3e6e8acf210e72afeec56025c3f262b5d4f58926b339ccb52351",
+      "id": 435,
+      "paired_event_hash": "sha256:855f521504f936e10361d09208f5a1f10762fa6c2698c2f34827e6f1fbbb3d35",
+      "parent_hash": "sha256:855f521504f936e10361d09208f5a1f10762fa6c2698c2f34827e6f1fbbb3d35",
       "payload_excerpt": {
         "finish_reason": null,
         "output_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "output_text": "",
-        "token_usage": null
+        "token_usage": null,
+        "tool_calls": [
+          {
+            "arguments": {
+              "ambiguity_score": 3,
+              "candidate_id": "res_002",
+              "culture_score": 5,
+              "technical_score": 2
+            },
+            "id": "call_xgLUURydDXqFGJbzlLD4KrO8",
+            "name": "decide"
+          }
+        ]
       },
       "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
       "schema_version": "0.1",
-      "signature": "ed25519:bsVtHMl0bQsH3fYQQGvhskFMJqDndeXHVumMWxDdaR/KviqvqCFBhROaZ692ud2ERjG8gbMPwJwEFL3mM0Y0Dg==",
-      "timestamp": "2026-05-07T03:34:12.664Z"
+      "signature": "ed25519:pQM/ZG875rZ7EqJrjAeyPXFaWJ1pDG25h2WgNSoKkiuwdNBKgoDmSBJfvQDVbbkTSbfgqLZjB35yfstj55dLAg==",
+      "timestamp": "2026-05-07T22:17:49.222Z"
     },
     {
       "agent_erc8004_token_id": 633,
       "agent_id": "hr-screener-v1",
-      "event_hash": "sha256:5ab868e2219eb37e1e275db1a7c075d1fe40cd9f717107e948c075327c743b6f",
+      "event_hash": "sha256:a95e043eb12df21637257b62dfec5b0a041cd2d6c905427e3a0300a0b2ece76e",
       "event_type": "tool_start",
-      "id": 295,
+      "id": 436,
       "paired_event_hash": null,
-      "parent_hash": "sha256:d34e845405ea697dbc22caff166fbc80005171fc6bf5b8b7cd365ca24f96cbb0",
+      "parent_hash": "sha256:756d35f30be25c7cb181f3b7671ea606fa21667451ab98757c64393b2f36c380",
       "payload_excerpt": {
         "args": {
           "ambiguity_score": 3,
@@ -541,17 +574,17 @@
       },
       "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
       "schema_version": "0.1",
-      "signature": "ed25519:FT9+n7JNPwaXZPhwh2j0MmrmrE/3UiT6YnwnspWHOxVkbpknqx/VzX8frNBLgbPEdFaOCiHMMmGfKKy3Zlg7Cg==",
-      "timestamp": "2026-05-07T03:34:12.666Z"
+      "signature": "ed25519:5DsWpsqF3RFVa++eqDYZgzaiFXRiUKI6E9Ln422bK0lBwAC4t77zi3kiSmIXDBn+66G7UO1TtAn76/NSFBrEBQ==",
+      "timestamp": "2026-05-07T22:17:49.225Z"
     },
     {
       "agent_erc8004_token_id": 633,
       "agent_id": "hr-screener-v1",
-      "event_hash": "sha256:705d47b298d73cef3b8bbe0b8d4b9a35a4eb65f0cddbf4497e3ba96561cb8c87",
+      "event_hash": "sha256:31beca0a86cb68e2b56f670a96ad915f11b6896ac5d3678cb8fbb4eab128cc87",
       "event_type": "tool_end",
-      "id": 296,
-      "paired_event_hash": "sha256:5ab868e2219eb37e1e275db1a7c075d1fe40cd9f717107e948c075327c743b6f",
-      "parent_hash": "sha256:5ab868e2219eb37e1e275db1a7c075d1fe40cd9f717107e948c075327c743b6f",
+      "id": 437,
+      "paired_event_hash": "sha256:a95e043eb12df21637257b62dfec5b0a041cd2d6c905427e3a0300a0b2ece76e",
+      "parent_hash": "sha256:a95e043eb12df21637257b62dfec5b0a041cd2d6c905427e3a0300a0b2ece76e",
       "payload_excerpt": {
         "output": "{'decision': 'reject', 'reasoning': 'Weak fundamentals: technical 2/10, culture 5/10.', 'candidate_id': 'res_002'}",
         "output_hash": "sha256:57e54d63ef8433adcf47d49f608a04c8926a4d0fe095fee125a2dfe1924c1250",
@@ -559,17 +592,17 @@
       },
       "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
       "schema_version": "0.1",
-      "signature": "ed25519:O8o8mM1dMfIKdy6p4aTzSXWZln1AX9P2jeAlP316ZRHAdDqJ0Odym6J8P8++/eiRDXO5Zx3MdwmCzovSOAmDDQ==",
-      "timestamp": "2026-05-07T03:34:12.667Z"
+      "signature": "ed25519:PQdMQa8IU7d2m+qQXUKbFZGb5sGKcyPaiGURf6hOq8AJu6TWtEpIMC5LpvxHhWXKtvUK+bDDRg3ZeKJW7GP2Bw==",
+      "timestamp": "2026-05-07T22:17:49.227Z"
     },
     {
       "agent_erc8004_token_id": 633,
       "agent_id": "hr-screener-v1",
-      "event_hash": "sha256:45591c153af67a92d77c5955b4031e093914902bb79944ad503c92c0d9ad1cf3",
+      "event_hash": "sha256:cc44bac10f54eba77569195a9daf37fbbeba3a124f51e7d8bf875264600112ca",
       "event_type": "final_decision",
-      "id": 297,
+      "id": 438,
       "paired_event_hash": null,
-      "parent_hash": "sha256:705d47b298d73cef3b8bbe0b8d4b9a35a4eb65f0cddbf4497e3ba96561cb8c87",
+      "parent_hash": "sha256:31beca0a86cb68e2b56f670a96ad915f11b6896ac5d3678cb8fbb4eab128cc87",
       "payload_excerpt": {
         "candidate_id": "res_002",
         "decision": "reject",
@@ -578,17 +611,17 @@
       },
       "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
       "schema_version": "0.1",
-      "signature": "ed25519:sN5rfLLWz55wlXfDpbqbrbj1D1zGza9FArQyKf1zcN9iWxen5xe4aQYE/hVOjK3Ndq9GfeSMbm+GUmkZr/F5CQ==",
-      "timestamp": "2026-05-07T03:34:12.667Z"
+      "signature": "ed25519:X+f8NAOxZ1PlfkFO4JdFhKiPkog1fpoPkjdV8zr+lAu5d5yN4DwSxtiyFkqTQX2/cOlqLP8VjzEFW6hLN7M4Dg==",
+      "timestamp": "2026-05-07T22:17:49.228Z"
     },
     {
       "agent_erc8004_token_id": 633,
       "agent_id": "hr-screener-v1",
-      "event_hash": "sha256:66f2b706a2e956294c245f79747a6d84f19d6e6bc504957236397acb32519905",
+      "event_hash": "sha256:836730d47df9e090b56ddbb38a32cde63de70f47e0a7ab286a242f7efdf55bb0",
       "event_type": "llm_start",
-      "id": 298,
+      "id": 439,
       "paired_event_hash": null,
-      "parent_hash": "sha256:45591c153af67a92d77c5955b4031e093914902bb79944ad503c92c0d9ad1cf3",
+      "parent_hash": "sha256:cc44bac10f54eba77569195a9daf37fbbeba3a124f51e7d8bf875264600112ca",
       "payload_excerpt": {
         "messages": [
           {
@@ -624,29 +657,30 @@
       },
       "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
       "schema_version": "0.1",
-      "signature": "ed25519:5Qu4vhyaBQi1eDMjw+hkt4Lwk3s65OO+z1nZIyc5pX67m74sB9NUl8sBe/3B6mLpCaU+fn0ul2I3gM/Eo07RDA==",
-      "timestamp": "2026-05-07T03:34:12.671Z"
+      "signature": "ed25519:HarD09Cf7qlvXz5Cemqb7ayagmSkxay0kddRfhOIv7lCwCoQ8/qufxaIh+19+ebh3bFitAUxRGbaYpliEjW9BA==",
+      "timestamp": "2026-05-07T22:17:49.232Z"
     },
     {
       "agent_erc8004_token_id": 633,
       "agent_id": "hr-screener-v1",
-      "event_hash": "sha256:a71862ed62ffb1b9f44ea5229d39348c90ecd71fd0a0353aeefcf1d5cd4399c5",
+      "event_hash": "sha256:59602c799f8c43d63bffda2481f0fd7530842d778449a273e9032a0501e077d6",
       "event_type": "llm_end",
-      "id": 299,
-      "paired_event_hash": "sha256:66f2b706a2e956294c245f79747a6d84f19d6e6bc504957236397acb32519905",
-      "parent_hash": "sha256:66f2b706a2e956294c245f79747a6d84f19d6e6bc504957236397acb32519905",
+      "id": 440,
+      "paired_event_hash": "sha256:836730d47df9e090b56ddbb38a32cde63de70f47e0a7ab286a242f7efdf55bb0",
+      "parent_hash": "sha256:836730d47df9e090b56ddbb38a32cde63de70f47e0a7ab286a242f7efdf55bb0",
       "payload_excerpt": {
         "finish_reason": null,
         "output_hash": "sha256:ae47f50d528b68f53ab3c4a5ac15b3480b379ce8f7e4bae10b38b40f131bded2",
         "output_text": "The candidate, Bob Martinez, has been screened with the following results:\n\n- **Technical Score**: 2/10\n- **Culture Score**: 5/10\n- **Ambiguity Score**: 3/10\n\n**Decision**: Reject\n\n**Reasoning**: The candidate demonstrated weak fundamentals with a technical score of 2 out of 10, which does not meet the requirements for the Senior Full-Stack Engineer role.",
-        "token_usage": null
+        "token_usage": null,
+        "tool_calls": null
       },
       "public_key": "ed25519:rZH406btsaIUdsO9AtW/Vg5KLrYC6qc9L20dYwfxfek=",
       "schema_version": "0.1",
-      "signature": "ed25519:DAgMAXO69HJ2Cvv5YW+46T0IErxGvzmOoIR3Mzb3t2jzBAVhqKYHUBSqaOKUBDLjBdyYM08y21indTT3WCglDw==",
-      "timestamp": "2026-05-07T03:34:15.315Z"
+      "signature": "ed25519:APUA/acXYVCTcSXSgg+NWIf+7pn3Fwqi0mdMWmRiwwzGIbGwMfsCMpV7WlwVvny86Y7xLfmejpazRfwsAnJfDQ==",
+      "timestamp": "2026-05-07T22:17:52.582Z"
     }
   ],
-  "run_id": "run-cab8a47f7500",
+  "run_id": "run-1f2fe81a76f4",
   "version": "0.2"
 }

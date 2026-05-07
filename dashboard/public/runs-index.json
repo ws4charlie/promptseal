@@ -1,6 +1,45 @@
 {
-  "generated_at": "2026-05-07T22:10:11Z",
+  "generated_at": "2026-05-07T22:24:31Z",
   "runs": [
+    {
+      "agent_id": "hr-screener-v1",
+      "anchor_block": 41212192,
+      "anchor_tx": "0xc2f840d89308ccb4c0f5929a5a1fae1792ec663b6824f1111842c182123c96ab",
+      "duration_ms": 10380,
+      "ended_at": "2026-05-07T22:24:29.304Z",
+      "event_count": 17,
+      "final_decision": "hire",
+      "has_summary": false,
+      "run_id": "run-f8014202aa7a",
+      "started_at": "2026-05-07T22:24:18.924Z",
+      "subject_ref": "res_004"
+    },
+    {
+      "agent_id": "hr-screener-v1",
+      "anchor_block": 41212007,
+      "anchor_tx": "0x0f0efdace9d61fe0c5d6402d858e123261af56b3ae0c7abd11f8b57e8f8e0408",
+      "duration_ms": 9968,
+      "ended_at": "2026-05-07T22:18:18.897Z",
+      "event_count": 17,
+      "final_decision": "hire",
+      "has_summary": false,
+      "run_id": "run-9619fea057ee",
+      "started_at": "2026-05-07T22:18:08.929Z",
+      "subject_ref": "res_003"
+    },
+    {
+      "agent_id": "hr-screener-v1",
+      "anchor_block": 41211994,
+      "anchor_tx": "0xa1006263985b78b28c00500db144209e470249a8b941437533f3cd44e6126b6a",
+      "duration_ms": 8612,
+      "ended_at": "2026-05-07T22:17:52.585Z",
+      "event_count": 15,
+      "final_decision": "reject",
+      "has_summary": false,
+      "run_id": "run-1f2fe81a76f4",
+      "started_at": "2026-05-07T22:17:43.973Z",
+      "subject_ref": "res_002"
+    },
     {
       "agent_id": "hr-screener-v1",
       "anchor_block": 41178452,
@@ -26,45 +65,6 @@
       "run_id": "run-12b5cf079f14",
       "started_at": "2026-05-07T03:34:32.192Z",
       "subject_ref": "res_005"
-    },
-    {
-      "agent_id": "hr-screener-v1",
-      "anchor_block": 41178448,
-      "anchor_tx": "0x9377d7f1024409e86f059c6fd8f56c7c4a71f33170a69145b7a2fd10afaea772",
-      "duration_ms": 6764,
-      "ended_at": "2026-05-07T03:34:31.019Z",
-      "event_count": 15,
-      "final_decision": "reject",
-      "has_summary": false,
-      "run_id": "run-8393bd7ec3c6",
-      "started_at": "2026-05-07T03:34:24.255Z",
-      "subject_ref": "res_004"
-    },
-    {
-      "agent_id": "hr-screener-v1",
-      "anchor_block": 41178446,
-      "anchor_tx": "0x69da2ab0ed32f7dd8a151399a2a89add6ab9524103f4779312d0e62f12ff2f98",
-      "duration_ms": 6507,
-      "ended_at": "2026-05-07T03:34:23.038Z",
-      "event_count": 15,
-      "final_decision": "reject",
-      "has_summary": false,
-      "run_id": "run-b9fe36205c07",
-      "started_at": "2026-05-07T03:34:16.531Z",
-      "subject_ref": "res_003"
-    },
-    {
-      "agent_id": "hr-screener-v1",
-      "anchor_block": 41178444,
-      "anchor_tx": "0x605dd4780263a84ecfc4fa063579d7fb87815e6e3706e63bb49981dcab398f70",
-      "duration_ms": 7330,
-      "ended_at": "2026-05-07T03:34:15.317Z",
-      "event_count": 15,
-      "final_decision": "reject",
-      "has_summary": false,
-      "run_id": "run-cab8a47f7500",
-      "started_at": "2026-05-07T03:34:07.987Z",
-      "subject_ref": "res_002"
     },
     {
       "agent_id": "hr-screener-v1",
