@@ -19,6 +19,7 @@
 
 import { useMemo, useRef, useState } from "react";
 import { NumberToken } from "../../../verifier/canonical.js";
+import { renderDecision } from "../lib/decisionLabel";
 import type { EvidencePack, Receipt } from "../lib/evidencePack";
 import { isReceiptIdTampered } from "../lib/evidencePack";
 
@@ -242,7 +243,7 @@ export function deriveTooltipLine2(node: TreeNode): string {
   try {
     if (t === "final_decision") {
       const decision = pickString(r.payload_excerpt, "decision");
-      return decision ? decision.toUpperCase() : "DECISION";
+      return renderDecision(decision) || "DECISION";
     }
     if (t === "error") {
       const msg =
@@ -293,7 +294,7 @@ function renderEventDescription(node: TreeNode) {
     const decision = pickPayloadString(payload, "decision");
     return (
       <span className="font-bold text-yellow-300">
-        {decision ? decision.toUpperCase() : "DECISION"}
+        {renderDecision(decision) || "DECISION"}
       </span>
     );
   }

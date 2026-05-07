@@ -12,6 +12,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { /* Link, */ useNavigate } from "react-router-dom";
+import { renderDecision } from "../lib/decisionLabel";
 import { loadFromEmbedded } from "../lib/evidencePack";
 import {
   formatSubject,
@@ -280,7 +281,7 @@ function RunsTableRow({ run, aliases }: RowProps) {
         )}
       </td>
       <td className={`px-3 py-2.5 text-sm uppercase ${decisionClasses(run.final_decision)}`}>
-        {run.final_decision ?? "—"}
+        {renderDecision(run.final_decision) || "—"}
       </td>
       <td className="px-3 py-2.5 text-sm text-text">{run.event_count}</td>
       <td className="px-3 py-2.5 text-sm text-text">

@@ -10,6 +10,7 @@
 // run_id move to the collapsible fold (D14 spirit + IA §1.2.B).
 
 import { useEffect, useMemo, useState } from "react";
+import { renderDecision } from "../lib/decisionLabel";
 import type { EvidencePack, Receipt, RunSummary } from "../lib/evidencePack";
 import {
   loadSubjectAliases,
@@ -363,7 +364,7 @@ export default function RunSummaryCard({
       <dl className="border-t border-border px-5 py-4 space-y-3">
         <FactRow label="Decision:" emphasis>
           <span className={decisionTextClasses(facts.decision)}>
-            {facts.decision ?? "—"}
+            {renderDecision(facts.decision) || "—"}
           </span>
         </FactRow>
         <FactRow label="Started:">

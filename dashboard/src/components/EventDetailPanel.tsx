@@ -27,6 +27,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { NumberToken } from "../../../verifier/canonical.js";
+import { renderDecision } from "../lib/decisionLabel";
 import type { EvidencePack, Receipt } from "../lib/evidencePack";
 import {
   isReceiptIdTampered,
@@ -68,7 +69,7 @@ function deriveDescription(node: TreeNode, aliases: SubjectAliases): string {
       const subject = subjectRef
         ? aliases[subjectRef] ?? subjectRef
         : "(unknown subject)";
-      const decisionLabel = decision ? decision.toUpperCase() : "—";
+      const decisionLabel = renderDecision(decision) || "—";
       return `Agent issued final decision: ${decisionLabel}. Subject: ${subject}.`;
     }
     if (t === "error") {
