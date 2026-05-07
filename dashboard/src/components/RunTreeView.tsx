@@ -107,25 +107,21 @@ function assignSequenceNumbers(tree: TreeNode[]): Map<string, number> {
 // formatting + color helpers
 
 function formatEventTimestamp(iso: string): string {
-  // "2026-05-07T03:34:00.552Z" → "May 7 03:34:00.552". Date is always
-  // visible (no hover) so operators reading rows out of order can scan
-  // when each event happened. tabular-nums on the column aligns digits
-  // vertically. Locale "en-US" is intentional — the demo audience reads
-  // English month names; the Intl trailing comma after day is stripped
-  // so the row reads like a forensic log line, not a sentence.
+  // "2026-05-07T03:34:00.552Z" → "03:34:00.552". Date dropped — RunPage
+  // header already shows the run's date once ("Started: 2026-05-07 ..."),
+  // and every event in a run shares it; repeating the date per row is
+  // dead pixels that crowd out the description column. Forensic-grade
+  // ms precision retained so operators reading consecutive rows can see
+  // sub-second gaps between events.
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
   return new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "numeric",
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
     fractionalSecondDigits: 3,
     hour12: false,
-  })
-    .format(d)
-    .replace(", ", " ");
+  }).format(d);
 }
 
 export function durationMs(start: string, end: string): string | null {
@@ -485,7 +481,7 @@ function NodeRow({
             truncates on overflow. tabular-nums on the numeric columns
             equalizes digit width for vertical alignment. */}
         <div
-          className="flex-1 min-w-0 grid grid-cols-[76px_1fr_160px_64px_20px]
+          className="flex-1 min-w-0 grid grid-cols-[76px_1fr_92px_64px_20px]
                      gap-3 items-center"
         >
           {/* badge — w-full + justify-start: all 4 family labels render at
