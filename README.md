@@ -1,327 +1,205 @@
 # PromptSeal
 
-> *Built for the **ZetaChain Hackathon May 4-8, 2026**.*
+> The trustless evidence layer for AI agents. Every action signed, hash-chained, and anchored on chain — independently verifiable without trusting the operator.
 
-PromptSeal is a cryptographic evidence layer for AI agents. A LangChain-based
-hiring agent screens 5 fake resumes; every LLM call, tool call, and
-hire/reject decision is captured as an **Ed25519-signed receipt**. Receipts
-hash-chain into SQLite; per-run **Merkle roots anchor to Base Sepolia**; the
-agent's pubkey is bound to an **ERC-8004 token** on the same chain. A static
-HTML page verifies any receipt independently — and tampering one byte in the
-DB flips the verifier RED on the spot.
+[Live demo](https://prompt-seal.vercel.app) · [ERC-8004 Token #633](https://sepolia.basescan.org/token/0x7177a6867296406881E20d6647232314736Dd09A?a=633) · ZetaChain Hackathon · May 2026
 
-The pitch in one line: **what did this AI agent do, when — and can a third
-party verify it without trusting us?**
+---
 
-## Live demo evidence on Base Sepolia (testnet)
+## What
 
-These artifacts were produced by this code; you can verify them right now
-without trusting this repo.
+PromptSeal turns every AI agent action — every LLM call, every tool call, every decision — into a **cryptographically signed receipt**. Receipts are hash-chained per run and Merkle-anchored to a public blockchain. The agent's signing key is bound to a public on-chain identity (ERC-8004 NFT).
 
-- **Agent ERC-8004 token #633** (pubkey `ed25519:rZH406b…fek=` bound to the
-  on-chain identity):
-  https://sepolia.basescan.org/token/0x7177a6867296406881E20d6647232314736Dd09A?a=633
-- **Sample anchor TX** (Merkle root of one 15-receipt run, posted as the
-  transaction's `data` field — anyone can fetch it via a Base Sepolia
-  explorer or RPC):
-  https://sepolia.basescan.org/tx/0xef2052fdbf38becb67660fc106d55e1d533552536d15ce815e4e2e5b8ab017e2
+A regulator, court, insurer, or counterparty can verify what an agent did **without trusting the operator's servers, vendor, or word**. Math, not promises.
 
-## Prerequisites
+## Why this matters
 
-- Python 3.11+ (≤3.12)
-- Node.js 20+ (only for the cross-language canonicalization tests)
-- An LLM provider — **either** an OpenAI API key, **or** an Anthropic API
-  key, **or** a Bifrost gateway (an OpenAI-compatible internal proxy)
-- A funded Base Sepolia wallet (only for the on-chain steps; faucet here:
-  https://www.coinbase.com/faucets/base-ethereum-sepolia-faucet)
+Today's AI logging stack (LangSmith, Langfuse, Arize, W&B) is excellent for *debugging* — but the traces it produces are **mutable**, **vendor-controlled**, and fail the first question a regulator or court asks:
 
-## Setup
+> *"Can you prove this log was not modified after the fact, without me trusting your vendor?"*
+
+This is not our framing. It is the framing of an **active, open RFC inside the LangChain repo** — *RFC: ComplianceCallbackHandler — tamper-evident audit trails for regulated industries* — filed in March 2026 and **still open**:
+
+> *"Current callback handlers and observability integrations (LangSmith, W&B) are designed for developer debugging. They don't produce tamper-evident evidence that auditors or regulators can independently verify... auditors need independently verifiable evidence, not vendor-controlled logs."*
+> — aniketh-maddipati, [LangChain RFC #35691](https://github.com/langchain-ai/langchain/issues/35691)
+
+PromptSeal is one answer to that gap — focused on what cryptographic primitives alone do not solve: **the legal-grade tier required by regulators and courts, and the chain-flexibility required by enterprises that operate across jurisdictions.**
+
+## Why now — the regulatory forcing functions
+
+Three regulatory deadlines turn this gap into a buying budget over the next 18 months:
+
+- **EU AI Act Article 12 — Aug 2, 2026.** Mandatory automatic event logging for high-risk AI systems (hiring, credit, healthcare, biometrics, public services). Retention ≥6 months under Art. 19/26; 10 years for technical documentation under Art. 18. Penalties up to €15M or 3% global turnover (Art. 99). *Article 12 does not mandate cryptographic tamper-evidence — courtroom-grade litigation does. PromptSeal exceeds the regulatory floor by design.*
+- **US FRE 902(13) / 902(14).** Federal Rules of Evidence (2017) making electronic records **self-authenticating** — admissible without a live witness, via a qualified-person certification. Ed25519 + Merkle satisfies. PromptSeal ships the certification template. Hearsay handled separately under FRE 803(6).
+- **EU eIDAS (910/2014).** Qualified electronic signatures and timestamps carry legal effect equal to handwritten signatures across the EU. Tier 3 white-labels a Qualified Trust Service Provider (DigiCert / GlobalSign) partner.
+
+## How it works
+
+Three principles drive the architecture:
+
+1. **Trustless verification.** Anyone with a public key and a chain explorer can verify a PromptSeal receipt. No PromptSeal account. No PromptSeal server. No PromptSeal trust.
+2. **SDK capture, multi-mode query.** Capture is SDK-only — the EU AI Act requires *automatic* recording, not after-the-fact reconstruction. Adapters are framework-agnostic: LangChain (BaseCallbackHandler), CrewAI (Event Listener), Google ADK (Plugin), Claude Agent SDK (RunHooks); AutoGen via OpenTelemetry outer span; vanilla HTTP middleware for custom stacks. Query is multi-mode: human dashboard, CLI, MCP server.
+3. **Identity binding via ERC-8004.** Each agent's signing key is bound to a public on-chain NFT (ERC-721) — the emerging on-chain agent identity standard, co-authored by MetaMask, Ethereum Foundation, Google, Coinbase. Verifiers pull the public key from NFT metadata. No key servers. No DNS-style trust.
+
+### Per-event flow
+
+```
+Agent emits paired events at every decision boundary:
+  llm_start  →  llm_end    (system prompt, messages, model, output, tokens)
+  tool_start →  tool_end   (tool name, args, output)
+  human_override            (co-signed by agent key + approver key)
+  sub_agent_handoff         (co-signed by delegating + receiving keys)
+
+For each event:
+  canonical_bytes(event) → SHA-256 → Ed25519 sign with the agent key
+  receipt = { event_hash, signature, public_key, timestamp,
+              agent_id, agent_erc8004_token_id,
+              parent_hash, paired_event_hash, ... }
+
+Receipts are hash-chained — each embeds the previous.
+
+Per run:
+  All receipt hashes → Merkle tree → root
+  Root anchored on chain in one transaction.
+
+Verifier:
+  1. Pull agent public key from ERC-8004 NFT metadata (on chain)
+  2. Recompute each receipt's canonical bytes + hash
+  3. Verify signature with public key
+  4. Walk the hash chain — any modification breaks it
+  5. Recompute Merkle root, compare with on-chain anchor
+```
+
+## ZetaChain as control plane — chains are the customer's choice
+
+Most cryptographic-receipt projects pick one chain and lock the whole stack to it. PromptSeal does not.
+
+PromptSeal uses **ZetaChain as a chain-agnostic control plane**: the customer decides where their Merkle roots live based on their own jurisdictional, legal, and cost constraints — not ours.
+
+- **Bitcoin** for the longest-precedent jurisdictional anchor. *Court in 2030 will not need to ask what Bitcoin is.*
+- **Ethereum mainnet** for permanence and the largest verifier ecosystem.
+- **Solana** for cost and throughput at scale.
+- **Base** for the ERC-8004 agent identity registry.
+- **ZetaChain itself** for cross-chain Merkle bundle composition — anchor once, settled across multiple chains in one logical operation.
+
+This matters for two reasons. First, **a US plaintiff's lawyer may want Bitcoin precedent; an EU compliance officer may want ETH-mainnet alongside an eIDAS qualified timestamp; a Korean fintech may want a chain a Korean regulator already understands.** The legal value of an anchor is partly about the chain's own perceived durability and reach — that's a customer choice, not a vendor decision.
+
+Second, **AI agent commerce is already cross-chain** (x402 on multiple L2s, AP2 across consortium rails). PromptSeal evidence sits beside the agent's actual transactions — wherever they happen.
+
+## The demo (this repo)
+
+A LangChain HR resume screener wired with PromptSeal. Six runs anchored to Base Sepolia, including:
+
+- **Alice Chen** — strong candidate (8 yoe Google L6) wrongly REJECTED. The events panel shows why: a known `gpt-4o-mini` quirk dropped the agent's tool call arguments mid-chain, so the scoring function received empty inputs. The cryptographic trail proves the error happened at the agent layer — not in the data, not in the model's reasoning, not in the operator's intent. **This is the case PromptSeal exists for.**
+- **Frank Liu** — strong candidate, correctly PASSED.
+- **Carol Singh** — borderline candidate, AI judged HIRE. Defensible PASS.
+- **Bob, David, Emma** — additional outcomes across the spectrum.
+
+Every run includes:
+- ✓ Per-event verify (hash chain + signature + Merkle proof + chain comparison)
+- 🔧 In-browser tamper test (edit a payload, re-verify, watch verification break, restore)
+- 📦 Self-contained 380 KB HTML evidence pack — open offline, full UI, full verification, no servers required
+
+### Try it
 
 ```bash
-python3.11 -m venv .venv
-.venv/bin/pip install -e .
-.venv/bin/pip install pytest==8.3.3 pytest-asyncio==0.24.0 ruff==0.7.4
-
-cp .env.example .env
-# fill in: LLM creds + DEPLOYER_PRIVATE_KEY for Base Sepolia
+git clone https://github.com/ws4charlie/promptseal
+cd promptseal
+./scripts/setup.sh                # installs Python + node deps, configures sqlite
+./scripts/demo_reset.py           # clean Phase C dataset (6 runs)
+./scripts/demo_live.py res_007    # run the agent on a fresh candidate, live
+cd dashboard && npm run dev       # open http://localhost:5173
 ```
 
-`.env.example` documents every variable. `.env` is git-ignored.
+Or just visit the [live deployment](https://prompt-seal.vercel.app).
 
-## End-to-end run order
+## How PromptSeal differs from the closest projects
 
-```bash
-# 1. (One-time, already done in the demo wallet — token 633 minted.)
-#    Registers the agent's Ed25519 pubkey to ERC-8004. Writes agent_id.json
-#    so subsequent receipts auto-populate `agent_erc8004_token_id`.
-.venv/bin/python scripts/01_register_agent.py            # or --dry-run
+The same LangChain RFC #35691 thread surfaced several independent cryptographic-receipt projects. Two of the closest in spirit are **AgentMint** (the RFC author's own reference: Ed25519 + RFC 3161 timestamps + AIUC-1 mapping) and **AgentLedger** (Ed25519 + JSONL append-only hash chain, OpenSSL-verifiable offline). Both are well-designed cryptographic primitives. PromptSeal goes beyond the primitive on three deliberate axes:
 
-# 2. Run the hiring agent on one (or all) resumes. Streams signed receipts
-#    into ./promptseal.sqlite, prints a table per run, verifies hash chain.
-.venv/bin/python scripts/02_run_demo.py res_002          # one resume
-.venv/bin/python scripts/02_run_demo.py                  # all 5
+| Differentiator | What it is | Why it matters |
+|:--|:--|:--|
+| **Chain-agnostic via ZetaChain control plane** | Customer chooses the anchor chain (Bitcoin, Ethereum, Solana, Base) per use case. Single Merkle root, multiple chain options. | Other projects pick one chain and lock everyone in. PromptSeal lets the **buyer** decide based on their jurisdictional, legal, and cost constraints. |
+| **Legal-grade tier** | FRE 902(13)/(14) certification template, law-firm opinion letter, eIDAS QTSP partnership | Receipts are admissible in court without a live witness. Cryptographic-primitive projects stop at "verifiable with OpenSSL" — which is not the bar GCs and compliance officers actually buy on. |
+| **ERC-8004 identity binding** | Agent's public key lives in an on-chain NFT registry, not a vendor's JWKS or DID document | Verifiers don't need to ask anyone — including us — for keys. Permissionless lookup. |
 
-# 3. Anchor a run's Merkle root to Base Sepolia. Self-send TX with the
-#    32-byte root in the data field.
-.venv/bin/python scripts/03_anchor_run.py run-e8b202cfc898
+The cryptographic primitive (Ed25519 + hash chain + on-chain anchor) will commoditize within ~12 months. We expect that. PromptSeal's bet is on the layers above the primitive.
 
-# 4. Browse to the verifier. The audience pastes a receipt, a Merkle proof,
-#    and the anchor tx hash; the page recomputes the hash, verifies the
-#    Ed25519 signature, walks the Merkle proof, fetches the on-chain root,
-#    compares. GREEN ✓ or RED ✗ + which step failed.
-.venv/bin/python -m http.server 8000 --directory verifier
-# open http://localhost:8000
+## Use cases beyond hiring
 
-# 5. Generate paste-ready inputs for the verifier (so demo day doesn't
-#    require live SQLite spelunking).
-.venv/bin/python scripts/generate_verifier_inputs.py run-e8b202cfc898 41
-```
+Every regulated domain where an AI agent makes consequential decisions, and a third party may later need to verify what it did:
 
-### The "wow" moment — tamper demo
+- **Lending / credit** — ECOA right to explanation; EU AI Act Annex III high-risk
+- **Healthcare** — FDA SaMD; HIPAA; medical triage decision trails
+- **Insurance** — underwriting + claims; state insurance regulators
+- **KYC / AML / fraud** — FinCEN, FATF, EU AMLD; account-freeze disputes
+- **Legal AI** — contract review, e-discovery; attorney-client privilege auditability
+- **Government / public-sector AI** — welfare, immigration, policing; FOIA + civil rights
+- **Education** — admissions, exam proctoring; FERPA, Title VI/IX
+- **Autonomous systems** — vehicles, robotics; NHTSA, EU product safety
 
-```bash
-# corrupt one byte of receipt id 41's payload
-.venv/bin/python scripts/99_tamper_demo.py 41
+The common thread: *a regulator or court might one day ask "show me what the agent actually did."* PromptSeal is the format you'll wish you'd been writing.
 
-# Re-paste the now-tampered receipt into the verifier → RED ✗
-# "Step 1: event_hash mismatch — receipt body has been tampered."
-# Both single-receipt verify AND chain.verify_chain detect it.
+## Where we fit (vs adjacent categories)
 
-# clean up after demo
-.venv/bin/python scripts/99_tamper_demo.py --restore 41
-```
+| Category | Examples | What they do | Why we're different |
+|:--|:--|:--|:--|
+| Tracing / debugging | LangSmith, Langfuse, W&B, Arize | Mutable trace data for dev debug | Cryptographic, framework-agnostic, litigation-grade |
+| Governance / GRC | Credo AI, Holistic AI, FairNow | Policy + impact assessments | Vendor-controlled; we're independently verifiable |
+| Generic timestamping | OriginStamp, OpenTimestamps | Bitcoin / Ethereum hash anchoring | AI-agnostic; no agent schema, no certification template |
+| OSS AI signing | AgentMint, AgentLedger | Ed25519 + RFC 3161 receipts | Chain-locked, primitive-only; we ship Tier 3 + multi-chain via ZetaChain |
+| AI inventory / storage | FireTail, Astrix Security | Centralized vendor storage | Not independently verifiable without trusting them |
+| Agent protocol / identity | A2A (Google + LF), AP2 (Mastercard / Visa) | Identity + payment for agents | Not message-level evidence — PromptSeal complements |
 
-## Sharing evidence packs
+PromptSeal sits beside this stack — not against it. We don't replace your observability — we sit beside it and seal it.
 
-A "PromptSeal evidence pack" is the canonical artifact a customer hands to
-counsel, an auditor, or a counterparty. v0.2 supports three share modes —
-**you can pick one without re-anchoring or regenerating any cryptography**.
-The receipts and the on-chain anchor are the same in all three.
+## Product tiers
 
-### Mode 1 — Self-contained HTML (recommended default · D7)
+| Tier | Audience | What it is | Status |
+|:--|:--|:--|:--|
+| **Tier 1 — SDK** | Developers | MIT-licensed, framework-agnostic adapters. Ed25519 signing, hash chain, default ZetaChain anchor. | Hackathon ship — this repo |
+| **Tier 2 — Hosted verifier** | Engineering / SecOps | Public verifier portal, archival service, alerts on chain mismatch, SOC 2 Type II. | Roadmap |
+| **Tier 3 — Legal-grade vault** | General Counsel / Compliance | 10-year retention SLA, FRE 902(13)/(14) certification, law-firm opinion letter, eIDAS QTSP partner. | Roadmap |
 
-A single ~334 KB HTML file. Recipient double-clicks → browser opens →
-dashboard auto-verifies all receipts against Base Sepolia (one RPC call
-for the whole run). Nothing to host, nothing to trust on the sender's
-side.
+## Tech stack
 
-```bash
-# Bundle one run as a single HTML file (writes evidence-bundle-<run_id>.html)
-.venv/bin/python scripts/build_self_contained.py run-e8b202cfc898
-# → ./evidence-bundle-run-e8b202cfc898.html
-```
+- **Agent:** LangChain (BaseCallbackHandler) — adapters planned for CrewAI, Google ADK, Claude Agent SDK, AutoGen (via OpenTelemetry), vanilla HTTP middleware
+- **Crypto:** Ed25519 signing, SHA-256 canonical hashing, Merkle batching
+- **Anchor:** ZetaChain control plane → Bitcoin / Ethereum / Solana / Base — customer-configurable
+- **Identity:** ERC-8004 (ERC-721) — Token [#633](https://sepolia.basescan.org/token/0x7177a6867296406881E20d6647232314736Dd09A?a=633) on Base Sepolia
+- **Dashboard:** TypeScript / React / Vite — self-contained HTML evidence pack mode (380 KB single file, offline-verifiable)
+- **SDK:** Python (Tier 1 ship); JS planned
 
-### Mode 2 — Hosted JSON + dashboard
+## What it is not
 
-Host the canonical JSON pack (PLAN §7) at any HTTPS URL. The recipient
-opens your dashboard with `?evidence=<URL>`. Useful when you already
-operate a static-host like Cloudflare Pages or GitHub Pages.
+Not a security firewall. Not content evaluation. Not work-correctness verification. Not a replacement for LangSmith debugging UX.
 
-```bash
-# Just the JSON
-.venv/bin/python scripts/04_export_evidence_pack.py run-e8b202cfc898
-# → ./evidence-pack-run-e8b202cfc898.json
-```
+PromptSeal answers exactly one question:
 
-### Mode 3 — GitHub Release artifact (orchestrator)
+> *What did this AI agent do, when — and can a third party verify it without trusting us?*
 
-`scripts/06_publish_evidence.py` is the all-in-one publisher: it generates
-the JSON, optionally builds the self-contained HTML, optionally uploads
-both to a GitHub Release as assets, and writes a `share-info-<run>.md`
-with a copy-pasteable share message. Requires `gh` CLI authenticated for
-the upload step (`gh auth login`).
+## Risks (we are honest about them)
 
-```bash
-# JSON only, written to ./published/
-.venv/bin/python scripts/06_publish_evidence.py run-e8b202cfc898
+- **LangChain native ship.** RFC #35691 itself proposes a `ComplianceCallbackHandler` Protocol upstream into `langchain-core`. If LangChain ships this natively (12-18 month window estimated), the cryptographic primitive becomes free in-framework. Our defense: framework-agnostic capture, multi-chain via ZetaChain, QTSP partnership, law-firm opinion, FRE certification template — the layers a callback Protocol cannot ship.
+- **Open-source commoditization.** Ed25519 + on-chain anchor commoditizes within ~12 months. Tier 1 SDK is *distribution*, not revenue. The moat is in Tiers 2 and 3 — the *Let's Encrypt vs DigiCert* play.
 
-# JSON + self-contained HTML
-.venv/bin/python scripts/06_publish_evidence.py run-e8b202cfc898 --build-html
+## Roadmap
 
-# Full publish to a GitHub Release
-.venv/bin/python scripts/06_publish_evidence.py run-e8b202cfc898 \
-    --build-html --upload-github-release v0.2-evidence-bob
-```
-
-The published files plus the markdown share sheet land under
-`--output-dir <path>` (default `./published/`). See PLAN §6 C2 for the
-orchestrator design and §7 for the evidence-pack schema.
-
-## Operator dashboard (v0.3)
-
-The dashboard at `dashboard/` is the operator-facing UI for browsing your
-own runs (different from the verifier-paste flow). v0.3 made the runs
-list the default landing page; the verifier (paste URL / drag ZIP) moved
-to `/load`.
-
-### One-command data refresh
-
-```bash
-.venv/bin/python scripts/07_runs_list.py
-```
-
-Generates `dashboard/public/runs-index.json` (the runs table) **and**
-`dashboard/public/sample-pack-<run_id>.json` for every anchored run (the
-per-run evidence packs the dashboard loads when you click into a row).
-Both are gitignored. Re-run after each new agent run + anchor.
-
-Skip the per-run packs with `--no-export-packs` if you only need the
-index.
-
-### Local dev
-
-```bash
-cd dashboard
-npm install        # first time only
-npm run dev        # serves at http://localhost:5173
-```
-
-Visit `/` for the runs list, `/run/<id>?evidence=/sample-pack-<id>.json`
-for a specific run, `/load` for the paste-a-URL verifier, `/manual` for
-the vanilla verifier embed.
-
-Layout is responsive: ≥1280px viewport renders split-pane (tree left,
-detail panel right, both always visible); narrower viewports fall back
-to drawer overlay. Keyboard navigation: ↑/↓/←/→ moves between events,
-Esc deselects.
-
-### Optional: subject alias map (D16)
-
-Operators recognize candidates by name, not by `res_NNN` codes. Drop a
-small JSON file at `dashboard/public/subject-aliases.json`:
-
-```json
-{
-  "res_001": "Alice Chen",
-  "res_002": "Bob Martinez",
-  "res_003": "Carol Singh"
-}
-```
-
-The runs list and the run detail title will show the alias as primary
-text with the raw `res_NNN` in parens. The file is gitignored — alias
-data stays local. Without it, the UI gracefully falls back to raw refs.
-
-### Sharing a self-contained build (D7)
-
-If you want to send a recipient a single HTML file with everything
-baked in (dashboard + one run's evidence pack), see
-[Mode 1 — Self-contained HTML](#mode-1--self-contained-html-recommended-default--d7)
-above. The build pipeline is unchanged in v0.3; the bundled dashboard
-just renders the new split-pane layout.
-
-## Project structure
-
-```
-promptseal/                 Python SDK — the verifiable-receipt layer
-  canonical.py              Canonical JSON (sorted keys, compact, UTF-8)
-  crypto.py                 Ed25519 keypair + sign + verify
-  receipt.py                Receipt construction (auto-loads token id)
-  chain.py                  SQLite hash-chain storage + integrity check
-  merkle.py                 Merkle tree builder + inclusion proof
-  anchor.py                 EIP-1559 self-send TX with root in data field
-  erc8004.py                ERC-8004 register + tokenId from Transfer log
-  handler.py                LangChain BaseCallbackHandler — emits receipts
-
-agent/                      The hiring agent
-  llm.py                    OpenAI / Anthropic / Bifrost factory
-  tools.py                  resume_parse / score_candidate / decide
-  hiring_agent.py           LangChain agent assembly + run loop
-  data/resumes.json         5 fake resumes (3 obvious + 2 ambiguous)
-
-verifier/                   Static HTML/JS — no build step
-  index.html                Three textareas + Verify button
-  canonical.js              Pure-JS canonicalize + JSON parser (preserves
-                            float source repr; mirrors canonical.py byte-equal)
-  verify.js                 5-step orchestrator + @noble/ed25519 + RPC fetch
-  style.css                 Dark theme, monospace
-  test_canonical_cross_lang.mjs   Node test: JS canonical bytes == Python's
-  test_e2e_node.mjs               Node test: 5-step verify against live chain
-
-scripts/
-  01_register_agent.py      One-time ERC-8004 registration
-  02_run_demo.py            Run agent → stream receipts to SQLite
-  03_anchor_run.py          Build Merkle, anchor root on Base Sepolia
-  99_tamper_demo.py         Corrupt + restore one receipt's payload
-  generate_verifier_inputs.py   Emit paste-ready textarea contents
-
-tests/                      pytest suite (108 tests)
-```
-
-## Tests
-
-```bash
-.venv/bin/python -m pytest tests/
-# 108 passed in ~2s
-```
-
-Plus the JS-side cross-language tests (require a running `02_run_demo.py`
-output to populate fixtures):
-
-```bash
-.venv/bin/python -c "import json,sqlite3; from pathlib import Path; \
-  from promptseal.canonical import canonical_json; \
-  conn=sqlite3.connect('promptseal.sqlite'); conn.row_factory=sqlite3.Row; \
-  out=[{'id':r['id'],'event_type':r['event_type'],\
-    'expected_event_hash':r['event_hash'],\
-    'receipt_canonical_text':canonical_json({k:(json.loads(r['payload_excerpt']) \
-      if k=='payload_excerpt' else r[k]) for k in r.keys() if k!='id'}).decode()} \
-    for r in conn.execute('SELECT * FROM receipts WHERE id IN (29,41)')]; \
-  Path('verifier/test_fixtures.json').write_text(json.dumps(out))"
-
-node verifier/test_canonical_cross_lang.mjs   # canonical bytes ↔ Python byte-equal
-node verifier/test_e2e_node.mjs               # full 5-step verify in Node
-```
-
-The cross-language test guards the single biggest portability pitfall:
-Python preserves float source representation (`0.0` → `"0.0"`), naive JS
-`JSON.parse` + `JSON.stringify` collapses to `"0"` and breaks signature
-verification. `verifier/canonical.js` includes a small JSON parser that
-preserves number tokens.
-
-## Architecture in one diagram
-
-```
-[ LangChain hiring agent ]
-        │  on_llm_start / on_llm_end / on_tool_start / on_tool_end
-        ▼
-[ PromptSealCallbackHandler ]
-        │  canonicalize → sha256 → Ed25519 sign
-        ▼
-[ SQLite: receipts table ]   ← parent_hash links into a hash chain
-        │  end of run
-        ▼
-[ Merkle build → root ]
-        │  web3.py self-send TX (data = 32-byte root)
-        ▼
-[ Base Sepolia anchor TX ]   (production target: ZetaChain mainnet)
-
-[ static verifier (browser) ]  ← paste receipt + proof + tx hash
-        │  recompute hash, verify Ed25519, walk proof, fetch on-chain root
-        ▼
-[ GREEN ✓  or  RED ✗ + which step failed ]
-```
-
-## Honest scope (this is hackathon code, not production)
-
-- **Anchor chain**: Base Sepolia testnet for hackathon convenience (free,
-  EVM-compatible). Production target is ZetaChain mainnet — same web3.py
-  code path.
-- **LLM**: OpenAI direct path is the path tested end-to-end; Bifrost path
-  works but currently 401s against the upstream Anthropic backend in our
-  dev environment.
-- **eIDAS / FRE 902(13) certification**: not implemented. The strategy doc
-  describes a Tier 3 product feature; the hackathon ships a PDF stub at
-  most.
-- **No hosted backend**: everything is CLI + a single static HTML page. No
-  authentication, no multi-tenant. The verifier UI uses no browser storage
-  (localStorage / IndexedDB / sessionStorage) — purely in-memory.
-- **No mainnet, ever, in this repo**: the deployer key in `.env` is meant
-  for a faucet-funded Base Sepolia wallet only.
-
-The `PromptSeal-Strategy.md` and `PromptSeal-Hackathon.md` documents in this
-repo are the product framing — useful context but not implemented features.
+| Phase | Milestone |
+|:--|:--|
+| M1-3 | Open-source Tier 1 SDK (LangChain + CrewAI + Google ADK adapters). Public verifier portal beta. Engage LangChain community via RFC #35691. |
+| M4-6 | Bitcoin / Ethereum mainnet anchor via ZetaChain control plane. Claude Agent SDK adapter. AutoGen outer-span adapter. SOC 2 Type I scoping. First law-firm opinion letter. FRE 902(13) certification template GA. |
+| M7-8 | Hosted verifier service GA. First 20 paying Tier 2 customers. |
+| M9-12 | QTSP partnership. First enterprise pilot. Series A pitch. |
 
 ## License
 
-MIT.
+MIT — Tier 1 SDK is and will remain open-source. Tier 2 and Tier 3 components are commercial.
+
+## See also
+
+[PromptSeal-Strategy.md](./PromptSeal-Strategy.md) — full strategy document, including detailed competitive analysis, customer segments, and architectural rationale.
+
+---
+
+**Math, not promises.**
