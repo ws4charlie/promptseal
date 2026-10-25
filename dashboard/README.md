@@ -1,7 +1,7 @@
 # PromptSeal Dashboard (v0.2)
 
 React + Vite + TypeScript dashboard for viewing PromptSeal evidence packs.
-See PromptSeal-v0.2-PLAN.md for full spec.
+See docs/PromptSeal-v0.2-PLAN.md for full spec.
 
 ## Quick start
 
