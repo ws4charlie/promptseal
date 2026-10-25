@@ -12,6 +12,22 @@ PromptSeal turns every AI agent action — every LLM call, every tool call, ever
 
 A regulator, court, insurer, or counterparty can verify what an agent did **without trusting the operator's servers, vendor, or word**. Math, not promises.
 
+## Status — what is implemented today
+
+| Capability | Status |
+|:--|:--|
+| LangChain callback capture (`llm_start/end`, `tool_start/end`, `error`, `final_decision` receipts) | Implemented |
+| Canonical JSON, Ed25519 signing, per-run hash chain (SQLite) | Implemented |
+| Per-run Merkle root anchored on **Base Sepolia (testnet)** | Implemented |
+| ERC-8004 agent registration (token #633 on Base Sepolia) | Implemented |
+| Vanilla-JS verifier, React dashboard, in-browser tamper test, self-contained evidence packs | Implemented |
+| Verifier reads the agent public key from the ERC-8004 registration | Not yet — the verifier currently uses the `public_key` embedded in the receipt and does not check the anchor tx sender |
+| Adapters for CrewAI, Google ADK, Claude Agent SDK, AutoGen; `human_override` and `sub_agent_handoff` co-signed events | Roadmap |
+| Multi-chain anchoring (Bitcoin, Ethereum, Solana) via ZetaChain | Roadmap |
+| Legal-grade tier (FRE 902 certification template, eIDAS QTSP, law-firm opinion) | Roadmap |
+
+Everything below that mentions a roadmap item is a design direction, not shipped code.
+
 ## Why this matters
 
 Today's AI logging stack (LangSmith, Langfuse, Arize, W&B) is excellent for *debugging* — but the traces it produces are **mutable**, **vendor-controlled**, and fail the first question a regulator or court asks:
@@ -30,7 +46,7 @@ PromptSeal is one answer to that gap — focused on what cryptographic primitive
 Three regulatory deadlines turn this gap into a buying budget over the next 18 months:
 
 - **EU AI Act Article 12 — Aug 2, 2026.** Mandatory automatic event logging for high-risk AI systems (hiring, credit, healthcare, biometrics, public services). Retention ≥6 months under Art. 19/26; 10 years for technical documentation under Art. 18. Penalties up to €15M or 3% global turnover (Art. 99). *Article 12 does not mandate cryptographic tamper-evidence — courtroom-grade litigation does. PromptSeal exceeds the regulatory floor by design.*
-- **US FRE 902(13) / 902(14).** Federal Rules of Evidence (2017) making electronic records **self-authenticating** — admissible without a live witness, via a qualified-person certification. Ed25519 + Merkle satisfies. PromptSeal ships the certification template. Hearsay handled separately under FRE 803(6).
+- **US FRE 902(13) / 902(14).** Federal Rules of Evidence (2017) making electronic records **self-authenticating** — admissible without a live witness, via a qualified-person certification. Ed25519 + Merkle satisfies. PromptSeal plans to ship a certification template (roadmap). Hearsay handled separately under FRE 803(6).
 - **EU eIDAS (910/2014).** Qualified electronic signatures and timestamps carry legal effect equal to handwritten signatures across the EU. Tier 3 white-labels a Qualified Trust Service Provider (DigiCert / GlobalSign) partner.
 
 ## How it works
@@ -38,8 +54,8 @@ Three regulatory deadlines turn this gap into a buying budget over the next 18 m
 Three principles drive the architecture:
 
 1. **Trustless verification.** Anyone with a public key and a chain explorer can verify a PromptSeal receipt. No PromptSeal account. No PromptSeal server. No PromptSeal trust.
-2. **SDK capture, multi-mode query.** Capture is SDK-only — the EU AI Act requires *automatic* recording, not after-the-fact reconstruction. Adapters are framework-agnostic: LangChain (BaseCallbackHandler), CrewAI (Event Listener), Google ADK (Plugin), Claude Agent SDK (RunHooks); AutoGen via OpenTelemetry outer span; vanilla HTTP middleware for custom stacks. Query is multi-mode: human dashboard, CLI, MCP server.
-3. **Identity binding via ERC-8004.** Each agent's signing key is bound to a public on-chain NFT (ERC-721) — the emerging on-chain agent identity standard, co-authored by MetaMask, Ethereum Foundation, Google, Coinbase. Verifiers pull the public key from NFT metadata. No key servers. No DNS-style trust.
+2. **SDK capture, multi-mode query.** Capture is SDK-only — the EU AI Act requires *automatic* recording, not after-the-fact reconstruction. The adapter design is framework-agnostic: LangChain (BaseCallbackHandler) is implemented; CrewAI (Event Listener), Google ADK (Plugin), Claude Agent SDK (RunHooks), AutoGen (OpenTelemetry outer span) and vanilla HTTP middleware are planned. Query today is the human dashboard; CLI and MCP server are planned.
+3. **Identity binding via ERC-8004.** Each agent's signing key is bound to a public on-chain NFT (ERC-721) — the emerging on-chain agent identity standard, co-authored by MetaMask, Ethereum Foundation, Google, Coinbase. The design lets verifiers pull the public key from the registration, with no key servers and no DNS-style trust. (Today the verifier uses the key embedded in the receipt; see Status.)
 
 ### Per-event flow
 
@@ -47,8 +63,8 @@ Three principles drive the architecture:
 Agent emits paired events at every decision boundary:
   llm_start  →  llm_end    (system prompt, messages, model, output, tokens)
   tool_start →  tool_end   (tool name, args, output)
-  human_override            (co-signed by agent key + approver key)
-  sub_agent_handoff         (co-signed by delegating + receiving keys)
+  human_override            (planned: co-signed by agent key + approver key)
+  sub_agent_handoff         (planned: co-signed by delegating + receiving keys)
 
 For each event:
   canonical_bytes(event) → SHA-256 → Ed25519 sign with the agent key
@@ -62,7 +78,7 @@ Per run:
   All receipt hashes → Merkle tree → root
   Root anchored on chain in one transaction.
 
-Verifier:
+Verifier (step 1 is the target design; the current verifier uses the receipt's embedded key):
   1. Pull agent public key from ERC-8004 NFT metadata (on chain)
   2. Recompute each receipt's canonical bytes + hash
   3. Verify signature with public key
@@ -74,7 +90,9 @@ Verifier:
 
 Most cryptographic-receipt projects pick one chain and lock the whole stack to it. PromptSeal does not.
 
-PromptSeal uses **ZetaChain as a chain-agnostic control plane**: the customer decides where their Merkle roots live based on their own jurisdictional, legal, and cost constraints — not ours.
+*Status: design direction. The current demo anchors to Base Sepolia only.*
+
+PromptSeal is designed to use **ZetaChain as a chain-agnostic control plane**: the customer decides where their Merkle roots live based on their own jurisdictional, legal, and cost constraints — not ours.
 
 - **Bitcoin** for the longest-precedent jurisdictional anchor. *Court in 2030 will not need to ask what Bitcoin is.*
 - **Ethereum mainnet** for permanence and the largest verifier ecosystem.
@@ -90,8 +108,8 @@ Second, **AI agent commerce is already cross-chain** (x402 on multiple L2s, AP2 
 
 A LangChain HR resume screener wired with PromptSeal. Six runs anchored to Base Sepolia, including:
 
-- **Alice Chen** — strong candidate (8 yoe Google L6) wrongly REJECTED. The events panel shows why: a known `gpt-4o-mini` quirk dropped the agent's tool call arguments mid-chain, so the scoring function received empty inputs. The cryptographic trail proves the error happened at the agent layer — not in the data, not in the model's reasoning, not in the operator's intent. **This is the case PromptSeal exists for.**
-- **Frank Liu** — strong candidate, correctly PASSED.
+- **Alice Chen** — strong candidate (PhD, Staff Engineer) wrongly REJECTED. The events panel shows why: a known `gpt-4o-mini` quirk dropped the agent's tool call arguments mid-chain, so the scoring function received empty inputs. The cryptographic trail proves the error happened at the agent layer — not in the data, not in the model's reasoning, not in the operator's intent. **This is the case PromptSeal exists for.**
+- **Frank Liu** — deep-infrastructure principal engineer with no React experience, PASSED by the agent.
 - **Carol Singh** — borderline candidate, AI judged HIRE. Defensible PASS.
 - **Bob, David, Emma** — additional outcomes across the spectrum.
 
@@ -102,13 +120,23 @@ Every run includes:
 
 ### Try it
 
+**Explore the recorded runs (no keys needed):**
+
 ```bash
 git clone https://github.com/ws4charlie/promptseal
+cd promptseal/dashboard
+npm install
+npm run dev                       # open http://localhost:5173
+```
+
+**Run the agent yourself** (needs an LLM API key, a funded Base Sepolia wallet and a registered agent):
+
+```bash
 cd promptseal
-./scripts/setup.sh                # installs Python + node deps, configures sqlite
-./scripts/demo_reset.py           # clean Phase C dataset (6 runs)
+python3.11 -m venv .venv && .venv/bin/pip install -e .
+cp .env.example .env              # fill in LLM + Base Sepolia keys
+.venv/bin/python scripts/01_register_agent.py   # one-time ERC-8004 registration
 ./scripts/demo_live.py res_007    # run the agent on a fresh candidate, live
-cd dashboard && npm run dev       # open http://localhost:5173
 ```
 
 Or just visit the [live deployment](https://prompt-seal.vercel.app).
@@ -147,7 +175,7 @@ The common thread: *a regulator or court might one day ask "show me what the age
 | Tracing / debugging | LangSmith, Langfuse, W&B, Arize | Mutable trace data for dev debug | Cryptographic, framework-agnostic, litigation-grade |
 | Governance / GRC | Credo AI, Holistic AI, FairNow | Policy + impact assessments | Vendor-controlled; we're independently verifiable |
 | Generic timestamping | OriginStamp, OpenTimestamps | Bitcoin / Ethereum hash anchoring | AI-agnostic; no agent schema, no certification template |
-| OSS AI signing | AgentMint, AgentLedger | Ed25519 + RFC 3161 receipts | Chain-locked, primitive-only; we ship Tier 3 + multi-chain via ZetaChain |
+| OSS AI signing | AgentMint, AgentLedger | Ed25519 + RFC 3161 receipts | Chain-locked, primitive-only; Tier 3 + multi-chain via ZetaChain are roadmap |
 | AI inventory / storage | FireTail, Astrix Security | Centralized vendor storage | Not independently verifiable without trusting them |
 | Agent protocol / identity | A2A (Google + LF), AP2 (Mastercard / Visa) | Identity + payment for agents | Not message-level evidence — PromptSeal complements |
 
@@ -157,7 +185,7 @@ PromptSeal sits beside this stack — not against it. We don't replace your obse
 
 | Tier | Audience | What it is | Status |
 |:--|:--|:--|:--|
-| **Tier 1 — SDK** | Developers | MIT-licensed, framework-agnostic adapters. Ed25519 signing, hash chain, default ZetaChain anchor. | Hackathon ship — this repo |
+| **Tier 1 — SDK** | Developers | MIT-licensed SDK. Ed25519 signing, hash chain, Merkle anchor (Base Sepolia today; LangChain adapter only). | Hackathon ship — this repo |
 | **Tier 2 — Hosted verifier** | Engineering / SecOps | Public verifier portal, archival service, alerts on chain mismatch, SOC 2 Type II. | Roadmap |
 | **Tier 3 — Legal-grade vault** | General Counsel / Compliance | 10-year retention SLA, FRE 902(13)/(14) certification, law-firm opinion letter, eIDAS QTSP partner. | Roadmap |
 
@@ -165,7 +193,7 @@ PromptSeal sits beside this stack — not against it. We don't replace your obse
 
 - **Agent:** LangChain (BaseCallbackHandler) — adapters planned for CrewAI, Google ADK, Claude Agent SDK, AutoGen (via OpenTelemetry), vanilla HTTP middleware
 - **Crypto:** Ed25519 signing, SHA-256 canonical hashing, Merkle batching
-- **Anchor:** ZetaChain control plane → Bitcoin / Ethereum / Solana / Base — customer-configurable
+- **Anchor:** Base Sepolia (testnet) today; ZetaChain-based multi-chain anchoring is on the roadmap
 - **Identity:** ERC-8004 (ERC-721) — Token [#633](https://sepolia.basescan.org/token/0x7177a6867296406881E20d6647232314736Dd09A?a=633) on Base Sepolia
 - **Dashboard:** TypeScript / React / Vite — self-contained HTML evidence pack mode (380 KB single file, offline-verifiable)
 - **SDK:** Python (Tier 1 ship); JS planned
@@ -198,7 +226,7 @@ MIT — Tier 1 SDK is and will remain open-source. Tier 2 and Tier 3 components 
 
 ## See also
 
-[PromptSeal-Strategy.md](./PromptSeal-Strategy.md) — full strategy document, including detailed competitive analysis, customer segments, and architectural rationale.
+[docs/PromptSeal-Strategy.md](./docs/PromptSeal-Strategy.md) — full strategy document, including detailed competitive analysis, customer segments, and architectural rationale.
 
 ---
 
