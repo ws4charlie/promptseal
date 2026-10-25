@@ -1,6 +1,6 @@
 """Build a chat-LLM client with priority: OpenAI direct → Bifrost → Anthropic direct.
 
-Bifrost is the company's internal LLM gateway (OpenAI-compatible /v1, HTTP
+Bifrost is an optional OpenAI-compatible LLM gateway (/v1, HTTP
 Basic auth, model prefix "anthropic/<model>"). Direct OpenAI and direct
 Anthropic are diagnostic/fallback paths.
 
