@@ -9,7 +9,7 @@ Usage (from the repo root):
     python eval/run_eval.py --models eval/models.json --repeats 3
     python eval/run_eval.py --dry-run            # no API calls, checks the pipeline
 
-API keys come from the environment only (OPENAI_API_KEY, ANTHROPIC_API_KEY). Nothing is
+API keys come from the environment only (OPENAI_API_KEY, ANTHROPIC_API_KEY, GOOGLE_API_KEY). Nothing is
 read from or written to disk about credentials.
 """
 from __future__ import annotations
@@ -47,14 +47,30 @@ def scored_view(sample: dict) -> dict:
 
 
 # --------------------------------------------------------------------------- providers
-def call_openai(model: str, system: str, user: str) -> dict:
+def request_options(spec: dict) -> dict:
+    """Per-model request options from models.json.
+
+    Temperature defaults to 0. Set "temperature": null for models that accept only the
+    default sampling (for example Claude 4.7 and later), and "extra_body" for
+    provider-specific fields the pinned SDK does not know (for example "thinking").
+    """
+    opts = {}
+    temperature = spec.get("temperature", 0)
+    if temperature is not None:
+        opts["temperature"] = temperature
+    if spec.get("extra_body"):
+        opts["extra_body"] = spec["extra_body"]
+    return opts
+
+
+def call_openai(spec: dict, system: str, user: str) -> dict:
     from openai import OpenAI  # lazy import
 
     client = OpenAI()
     t0 = time.perf_counter()
     resp = client.chat.completions.create(
-        model=model,
-        temperature=0,
+        model=spec["model"],
+        **request_options(spec),
         max_tokens=MAX_OUTPUT_TOKENS,
         messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
     )
@@ -69,14 +85,14 @@ def call_openai(model: str, system: str, user: str) -> dict:
     }
 
 
-def call_anthropic(model: str, system: str, user: str) -> dict:
+def call_anthropic(spec: dict, system: str, user: str) -> dict:
     import anthropic  # lazy import
 
     client = anthropic.Anthropic()
     t0 = time.perf_counter()
     resp = client.messages.create(
-        model=model,
-        temperature=0,
+        model=spec["model"],
+        **request_options(spec),
         max_tokens=MAX_OUTPUT_TOKENS,
         system=system,
         messages=[{"role": "user", "content": user}],
@@ -92,8 +108,9 @@ def call_anthropic(model: str, system: str, user: str) -> dict:
     }
 
 
-def call_mock(model: str, system: str, user: str) -> dict:
+def call_mock(spec: dict, system: str, user: str) -> dict:
     """Deterministic fake used by --dry-run and the tests. Makes no network calls."""
+    model = spec["model"]
     h = int(hashlib.sha256((model + user).encode()).hexdigest(), 16)
     rng = random.Random(h)
     scores = {
@@ -108,7 +125,37 @@ def call_mock(model: str, system: str, user: str) -> dict:
             "served_model": model}
 
 
-PROVIDERS = {"openai": call_openai, "anthropic": call_anthropic, "mock": call_mock}
+def call_google(spec: dict, system: str, user: str) -> dict:
+    from google import genai  # lazy import
+    from google.genai import types
+
+    opts = request_options(spec)
+    client = genai.Client()  # reads GOOGLE_API_KEY
+    t0 = time.perf_counter()
+    resp = client.models.generate_content(
+        model=spec["model"],
+        contents=user,
+        config=types.GenerateContentConfig(
+            system_instruction=system,
+            max_output_tokens=MAX_OUTPUT_TOKENS,
+            **({"temperature": opts["temperature"]} if "temperature" in opts else {}),
+            **opts.get("extra_body", {}),  # e.g. thinking_config
+        ),
+    )
+    dt = time.perf_counter() - t0
+    usage = resp.usage_metadata
+    return {
+        "raw": resp.text or "",
+        "latency_s": dt,
+        "input_tokens": getattr(usage, "prompt_token_count", None),
+        "output_tokens": getattr(usage, "candidates_token_count", None),
+        "served_model": getattr(resp, "model_version", None),
+    }
+
+
+PROVIDERS = {"openai": call_openai, "anthropic": call_anthropic, "google": call_google,
+             "mock": call_mock}
+KEY_ENV = {"openai": "OPENAI_API_KEY", "anthropic": "ANTHROPIC_API_KEY", "google": "GOOGLE_API_KEY"}
 
 
 # --------------------------------------------------------------------------- runner
@@ -120,7 +167,7 @@ def one_call(spec: dict, sample: dict, repeat: int, retries: int = 3) -> dict:
     last_err = None
     for attempt in range(retries):
         try:
-            out = fn(spec["model"], system, user)
+            out = fn(spec, system, user)
             rec.update(out)
             rec["error"] = None
             return rec
@@ -155,12 +202,11 @@ def main(argv: list[str] | None = None) -> int:
 
     models = json.loads(Path(args.models).read_text(encoding="utf-8"))
     if args.dry_run:
-        models = [{"name": m["name"], "provider": "mock", "model": m["model"]} for m in models]
+        models = [{**m, "provider": "mock"} for m in models]
     for m in models:
-        if m["provider"] == "openai" and not os.getenv("OPENAI_API_KEY") and not args.dry_run:
-            sys.exit("OPENAI_API_KEY is not set (needed for: %s)" % m["name"])
-        if m["provider"] == "anthropic" and not os.getenv("ANTHROPIC_API_KEY") and not args.dry_run:
-            sys.exit("ANTHROPIC_API_KEY is not set (needed for: %s)" % m["name"])
+        env = KEY_ENV.get(m["provider"])
+        if env and not os.getenv(env) and not args.dry_run:
+            sys.exit("%s is not set (needed for: %s)" % (env, m["name"]))
 
     sample_path = Path(args.samples)
     samples = json.loads(sample_path.read_text(encoding="utf-8"))
@@ -174,7 +220,7 @@ def main(argv: list[str] | None = None) -> int:
         "started_utc": datetime.now(timezone.utc).isoformat(),
         "models": models,
         "repeats": args.repeats,
-        "temperature": 0,
+        "temperature": "0 unless a model sets its own (see models)",
         "max_output_tokens": MAX_OUTPUT_TOKENS,
         "n_samples": len(samples),
         "samples_sha256": sha256_file(sample_path),

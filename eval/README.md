@@ -30,8 +30,8 @@ It uses the same prompt and the same strict JSON parsing as the agent
 
 ```bash
 export OPENAI_API_KEY=...      # only in your shell, never in a file
-export ANTHROPIC_API_KEY=...
-pip install openai anthropic
+export GOOGLE_API_KEY=...
+pip install openai anthropic google-genai
 
 python eval/run_eval.py --dry-run --repeats 1     # pipeline check, no API calls
 python eval/run_eval.py --repeats 3               # 3 models x 33 samples x 3 repeats = 297 calls

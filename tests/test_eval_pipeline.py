@@ -49,6 +49,12 @@ def test_scored_view_only_contains_scored_fields():
     assert set(rn.scored_view(s)) == set(SCORED_FIELDS)
 
 
+def test_request_options_default_and_overrides():
+    assert rn.request_options({"model": "m"}) == {"temperature": 0}
+    spec = {"model": "m", "temperature": None, "extra_body": {"thinking": {"type": "between_tools"}}}
+    assert rn.request_options(spec) == {"extra_body": {"thinking": {"type": "between_tools"}}}
+
+
 def _rec(model, sid, rep, t, c, a):
     return {"model": model, "sample_id": sid, "repeat": rep, "error": None,
             "raw": json.dumps({"technical_score": t, "culture_score": c, "ambiguity_score": a}),
