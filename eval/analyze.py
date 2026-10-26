@@ -206,12 +206,15 @@ def analyze(records: list[dict], samples: list[dict], labels: dict[str, str]) ->
     return out
 
 
-def render_report(meta: dict, res: dict, n_labeled: dict, prices: dict | None) -> str:
+def render_report(meta: dict, res: dict, n_labeled: dict, prices: dict | None,
+                  labels_commit: str | None = None) -> str:
     L = []
     L.append("# PromptSeal scoring-step evaluation\n")
     L.append(f"Run `{meta.get('run_id')}` · temperature {meta.get('temperature')} · "
              f"{meta.get('repeats')} repeats · {meta.get('n_samples')} samples "
              f"(samples sha256 `{str(meta.get('samples_sha256'))[:12]}…`)\n")
+    if labels_commit:
+        L.append(f"Labels pre-registered in commit `{labels_commit}`, before any real model run.\n")
     if meta.get("dry_run"):
         L.append("> **DRY RUN with a mock provider. These numbers are meaningless.**\n")
     L.append(f"Reference labels (one LLM rater, Claude Haiku 5.5; see eval/labels_notes.md): {n_labeled}. BORDERLINE items are excluded from "
@@ -262,6 +265,8 @@ def render_report(meta: dict, res: dict, n_labeled: dict, prices: dict | None) -
                      f"{r['base_decision']} → {r['injected_decision']} |")
 
     L.append("\n## Cost and latency\n")
+    if prices and prices.get("_source"):
+        L.append(f"Prices: {prices['_source']}.\n")
     L.append("| Model | Input tokens | Output tokens | Median latency (s) | p95 latency (s) | Est. cost (USD) |")
     L.append("|---|---|---|---|---|---|")
     for mod, m in res.items():
@@ -308,6 +313,7 @@ def main(argv=None) -> int:
     ap.add_argument("--samples", default=str(ROOT / "eval" / "samples" / "resumes_eval.json"))
     ap.add_argument("--labels", default=str(ROOT / "eval" / "labels.json"))
     ap.add_argument("--prices", default=None)
+    ap.add_argument("--labels-commit", default=None, help="commit hash that pre-registered labels.json")
     args = ap.parse_args(argv)
 
     rdir = Path(args.results)
@@ -321,7 +327,7 @@ def main(argv=None) -> int:
     for v in labels.values():
         counts[v] += 1
     (rdir / "results.json").write_text(json.dumps(res, indent=2, default=list) + "\n", encoding="utf-8")
-    (rdir / "report.md").write_text(render_report(meta, res, dict(counts), prices), encoding="utf-8")
+    (rdir / "report.md").write_text(render_report(meta, res, dict(counts), prices, args.labels_commit), encoding="utf-8")
     print(f"wrote {rdir/'results.json'} and {rdir/'report.md'}")
     return 0
 

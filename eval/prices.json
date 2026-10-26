@@ -1,0 +1,6 @@
+{
+  "_source": "https://developers.openai.com/api/docs/pricing (Standard tier, USD per 1M tokens, read 2026-10-25)",
+  "gpt-4o-mini": {"input_per_mtok": 0.15, "output_per_mtok": 0.60},
+  "gpt-4.1-mini": {"input_per_mtok": 0.40, "output_per_mtok": 1.60},
+  "gpt-4.1": {"input_per_mtok": 2.00, "output_per_mtok": 8.00}
+}
