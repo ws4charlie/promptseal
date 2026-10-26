@@ -1,0 +1,5 @@
+[
+  {"name": "claude-haiku-4-5", "provider": "anthropic", "model": "claude-haiku-4-5-20251001"},
+  {"name": "claude-sonnet-4-6", "provider": "anthropic", "model": "claude-sonnet-4-6"},
+  {"name": "gpt-4o-mini", "provider": "openai", "model": "gpt-4o-mini"}
+]

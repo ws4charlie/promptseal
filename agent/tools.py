@@ -16,6 +16,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.tools import tool
 
 from .llm import make_chat_llm
+from .scoring_prompt import SCORING_SYSTEM_PROMPT, build_user_message, parse_scores
 
 RESUMES_PATH = Path(__file__).parent / "data" / "resumes.json"
 
@@ -69,29 +70,12 @@ def score_candidate(
         temperature=_SCORING_TEMPERATURE,
     )
     messages = [
-        SystemMessage(content=(
-            "You are a senior technical interviewer. Score the candidate on three axes "
-            "(integers 1-10): technical_score, culture_score, ambiguity_score. "
-            "Return ONLY valid JSON with those three keys, no other text."
-        )),
-        HumanMessage(content=(
-            "Candidate resume:\n"
-            f"{json.dumps(parsed, indent=2, ensure_ascii=False)}"
-        )),
+        SystemMessage(content=SCORING_SYSTEM_PROMPT),
+        HumanMessage(content=build_user_message(parsed)),
     ]
     response = llm.invoke(messages)
     raw = response.content if isinstance(response.content, str) else str(response.content)
-    try:
-        scores = json.loads(raw)
-    except (ValueError, TypeError):
-        scores = {
-            "technical_score": 0,
-            "culture_score": 0,
-            "ambiguity_score": 10,
-            "_parse_error": True,
-            "raw": raw,
-        }
-    return scores
+    return parse_scores(raw)
 
 
 @tool
