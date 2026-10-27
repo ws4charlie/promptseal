@@ -1,0 +1,1687 @@
+{
+  "summary": {
+    "n_items": 60,
+    "jurors": {
+      "claude": {
+        "model": "anthropic/claude-sonnet-5.5",
+        "provider": "openrouter",
+        "served_models": [
+          "anthropic/claude-sonnet-5.5"
+        ],
+        "temperature": null
+      },
+      "gpt": {
+        "model": "gpt-4.1",
+        "provider": "openai",
+        "served_models": [
+          "gpt-4.1-2025-04-14"
+        ],
+        "temperature": 0
+      },
+      "gemini": {
+        "model": "google/gemini-2.5-pro",
+        "provider": "openrouter",
+        "served_models": [
+          "google/gemini-2.5-pro"
+        ],
+        "temperature": 0
+      }
+    },
+    "fleiss_kappa": 0.4824,
+    "cohen_kappa_pairwise": {
+      "claude-gpt": 0.5278,
+      "claude-gemini": 0.469,
+      "gpt-gemini": 0.5005
+    },
+    "label_counts": {
+      "BORDERLINE": 25,
+      "REJECT": 28,
+      "PASS": 7
+    },
+    "juror_label_counts": {
+      "claude": {
+        "BORDERLINE": 34,
+        "REJECT": 20,
+        "PASS": 6
+      },
+      "gpt": {
+        "BORDERLINE": 15,
+        "REJECT": 29,
+        "PASS": 16
+      },
+      "gemini": {
+        "BORDERLINE": 16,
+        "REJECT": 38,
+        "PASS": 6
+      }
+    },
+    "unanimous": 33,
+    "label_rule": "unanimous -> that label; 2 of 3 on PASS or REJECT with the third BORDERLINE -> majority; otherwise (PASS vs REJECT disagreement) -> BORDERLINE",
+    "calls": 196,
+    "spend_usd_from_tokens": 0.6489,
+    "spend_usd_reported_by_openrouter": 0.4927,
+    "system_prompt_sha256": "b6ee3ff762633b556daa14610512819f252704b6e2d425c94a22d40b1bdb1d5e"
+  },
+  "items": {
+    "cv_001": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "Strong seniority and 5+ years with leadership and architecture, but front-end production evidence is thin (backend, ETL, BI focus; Chrome extension only); no React/TypeScript mentioned.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "BORDERLINE",
+          "reason": "Strong backend and leadership, but front-end production experience is implied, not explicit; lacks clear mention of React/modern frontend frameworks.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "BORDERLINE",
+          "reason": "Candidate has strong backend and leadership experience, but there is no specific evidence of production front-end work with a modern framework like React.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 2,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": true
+    },
+    "cv_002": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "About 4 years of production full-stack work (Laravel, Vue, some React) meets requirement 1, but the text has no evidence of senior scope, ownership, mentoring, architecture, or measurable outcomes.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "BORDERLINE",
+          "reason": "4 years full-stack with PHP/JS, some React, but React experience is limited; no clear evidence of senior scope or architecture ownership.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "BORDERLINE",
+          "reason": "Meets years of experience and tech stack requirements, but lacks any detail on project scope, ownership, or mentorship to demonstrate senior-level impact.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 2,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": true
+    },
+    "cv_003": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "Solid React front-end experience over about 5 years, but no evidence of back-end work, senior scope, ownership, or mentoring; descriptions are vague with no outcomes.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Strong front-end React experience, but no evidence of back-end or full-stack production work or senior/ownership responsibilities.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "The resume shows only front-end experience. The Senior Full-Stack role requires production experience on both the front end and back end.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": false
+    },
+    "cv_004": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Six years in data science/ML with no evidence of production React/TypeScript front-end or web service development; experience is in a different discipline.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Experience is in data science and ML, not production web or service engineering; no evidence of front-end or back-end development.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "The candidate has six years of experience, but entirely in data science and machine learning, not full-stack software engineering.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_005": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "Meets 4 years and has solid back-end experience with design-to-delivery involvement, but front-end exposure is vague, with no measurable outcomes, specific systems, or clear senior ownership or mentoring evidence.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "BORDERLINE",
+          "reason": "4 years backend (Java, Go, Node.js) with some React/Angular, but frontend experience is vague and lacks clear production scope or senior evidence.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "BORDERLINE",
+          "reason": "Candidate claims 4 years of experience, but the resume is a short, vague paragraph with no concrete details about projects, roles, or senior scope.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": true
+    },
+    "cv_006": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "5 years full-stack with feature ownership and Node/GraphQL back end, but vague employers and dates, frontend-heavy, light on back-end depth, database (MongoDB, not relational), cloud and mentoring evidence.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "PASS",
+          "reason": "5 years' experience, production work on both front end (React/TypeScript) and back end (Node.js/Express), feature ownership and end-to-end delivery.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "PASS",
+          "reason": "Candidate has 5 years of experience, strong front-end skills with React/TypeScript, back-end experience with Node.js, and clear evidence of feature ownership end-to-end.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "PASS",
+      "unanimous": false
+    },
+    "cv_007": {
+      "jurors": {
+        "claude": {
+          "label": "PASS",
+          "reason": "12+ years in software, 8+ as team lead/architect, .NET Core backend and React frontend in production, co-founder owning end-to-end technical delivery including cloud deployment. Details are somewhat summarized.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "PASS",
+          "reason": "12+ years' experience, recent production work with React and .NET Core, led projects end-to-end, team lead/architect roles, cloud deployment experience.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "PASS",
+          "reason": "Over 10 years of experience, including team lead/architect roles. Recent experience designing and implementing full-stack projects with .NET Core and React.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "PASS",
+      "unanimous": true
+    },
+    "cv_008": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "Six years of front-end experience with a technical lead role on a component library, but no evidence of production back-end work; the stack exposure is one-sided.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Strong front-end experience but no evidence of back-end or full-stack production work; lacks senior full-stack scope.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "The resume shows only front-end experience. There is no evidence of any back-end development, which is a core requirement for a full-stack role.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": false
+    },
+    "cv_009": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "6 years with React/TypeScript front end and CTO-level architecture, but back-end evidence is mainly smart contracts and vague DevOps; no Python/server API or relational DB work, no measurable outcomes.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "PASS",
+          "reason": "6 years' experience, production React/TypeScript and back-end smart contracts, CTO role shows senior scope and system ownership.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "BORDERLINE",
+          "reason": "Strong front-end and web3 experience, but no mention of traditional back-end services (APIs, databases) as described in the job description.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_010": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "10+ years of web development with backend (Python/Django) focus, but no concrete front-end evidence, no measurable outcomes, and only vague claims of architecture scope.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "BORDERLINE",
+          "reason": "10+ years backend (Python/Django) but no concrete evidence of production front-end experience; senior scope implied but not detailed.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "The resume is extremely vague, lacks any concrete project details, and explicitly states a preference for backend work, indicating a poor fit for a full-stack role.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_011": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "Five years as a front-end developer with feature ownership and mentoring, but no stated back-end production experience, no specific technologies or measurable outcomes.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Only front-end experience is described; no evidence of back-end or full-stack production work.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "The resume only lists front-end experience. The role requires production experience on both the front end and back end.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": false
+    },
+    "cv_012": {
+      "jurors": {
+        "claude": {
+          "label": "PASS",
+          "reason": "10 years as full-stack on NodeJS/React with microservices; led monolith-to-microservices migration and authentication pipeline initiative, showing senior scope, though details are summary-level.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "PASS",
+          "reason": "10 years as fullstack engineer, production experience with NodeJS/React, led architecture changes and initiatives, worked on both front and back end.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "BORDERLINE",
+          "reason": "The resume claims 10 years of experience and senior scope, but lacks any specific project details, dates, or employers to substantiate these claims.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "PASS",
+      "unanimous": false
+    },
+    "cv_013": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Only about 2 years of experience, below the ~4 year requirement; one solo production project with full-stack work, but no evidence of senior scope, mentoring, or architecture leadership.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Only 2 years experience; lacks evidence of senior scope or mentoring, despite full-stack production work.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate has only 2 years of experience, which is below the 4+ years required for a senior role.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_014": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "Only 2 years of commercial work despite a 'Senior, 7 years' title (the rest is study). Covers both front end and back end, but with no evidence of ownership, mentoring or architecture.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "BORDERLINE",
+          "reason": "7 years total, but only 2 years of commercial experience; some React and NodeJS, but senior scope and end-to-end ownership are not clearly demonstrated.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate has only 2 years of professional experience, which is below the 4-year minimum for a senior role.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_015": {
+      "jurors": {
+        "claude": {
+          "label": "PASS",
+          "reason": "9 years of experience; React/Next.js front end plus Node.js services, SOA migration, Terraform/CI-CD, team lead and mentoring; clear senior scope. Python and a relational database are not mentioned.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "PASS",
+          "reason": "9 years' experience, production work on both React/TypeScript front end and Node.js back end, led teams, owned features, made architecture decisions.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "PASS",
+          "reason": "9 years of experience, strong React/Node.js full-stack background, and clear evidence of team leadership, mentorship, and architectural ownership (SOA migration, CI/CD).",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "PASS",
+      "unanimous": true
+    },
+    "cv_016": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Six years of experience, all in QA/testing, with no production front-end or back-end development work; the rubric's different-discipline rejection applies.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "All experience is in QA/testing; no evidence of production engineering on front end or back end, nor senior engineering scope.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate is a Senior QA Engineer with no software engineering or full-stack development experience listed. The role is for a developer, not a tester.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_017": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Only about 1 year of experience, with no concrete production details, no evidence of senior scope, and no ownership or leadership; falls well short of the 4-year requirement.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Only 1 year of professional experience; does not meet the minimum required for a senior role.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "The candidate has only one year of experience, which is far below the four years required for a senior role.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_018": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "5 years and a full-stack skill list with tech talks, but vague claims, no concrete projects or outcomes, and thin evidence of production back-end work or senior ownership.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "BORDERLINE",
+          "reason": "5 years experience, strong front-end (React, Vue), some back-end (Node, Laravel), but senior scope and production back-end evidence are vague.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "The resume contains only vague self-assessments and tech talk titles, with no concrete evidence of professional experience, projects, or senior-level scope.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_019": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "9 years claimed with React and MERN full-stack work and some team leadership, but project descriptions are short, mostly blockchain, with little production detail, outcomes, or backend depth.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "PASS",
+          "reason": "Over 9 years' experience, production work on both front end (React/Next.js) and back end (MERN, GraphQL, Hasura), team lead roles evident.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Resume lists only short-term projects, not professional employment. Experience and seniority cannot be verified. English level is listed as intermediate, below requirements.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_020": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "About 4 years of professional .NET work with React/Redux and backend experience, but the React exposure was about a year, mostly bug fixes and features, with thin evidence of ownership, leadership or architecture.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "PASS",
+          "reason": "4+ years experience, production work on both React front end and .NET back end, owned features, CI/CD, and environment management.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "BORDERLINE",
+          "reason": "Candidate has 4 years of experience, but only 1 year is full-stack with React. Senior scope evidence is thin, mostly describing tasks.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_021": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Only 1 year of experience, mostly academy, internship and personal projects; no evidence of professional production work on both stack sides or senior scope.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Only 1 year experience, mostly internships and personal projects; lacks senior scope and sufficient production experience on both front and back end.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate has only one year of experience, which is far below the four years required for a senior role.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_022": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Six years in QA leadership and testing; no production web or service development in front end or back end, which is a different discipline.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "All experience is in QA/testing, not software engineering; no production front-end or back-end development experience is shown.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate has six years of experience in QA, not software engineering. The role requires production full-stack development experience.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_023": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "Four years with PHP back-end and React front-end skills, but the resume is only a skills list with no roles, outcomes, or evidence of senior scope or ownership.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "BORDERLINE",
+          "reason": "4 years experience, production use of React and PHP/Laravel, but no clear evidence of senior scope or end-to-end ownership.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "BORDERLINE",
+          "reason": "Meets experience and tech stack requirements, but provides no project details or evidence of senior scope like ownership, mentorship, or architectural decisions.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": true
+    },
+    "cv_024": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Long experience is in data analytics and data science, with no evidence of production React/TypeScript front end or back-end service development; different discipline.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Extensive data/analytics leadership, but no evidence of production front-end or back-end web/service engineering experience; focus is on data infrastructure and ML.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "This is a data science and analytics resume. It shows no evidence of front-end or back-end web application development experience required for the role.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_025": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Experience is in project and account management; no evidence of hands-on production front-end or back-end engineering, which falls under the different-discipline rejection criterion.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Experience is in project/account management, not professional software engineering; no evidence of production front-end or back-end engineering work.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "The candidate has project management experience, not the required professional software engineering experience for this role.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_026": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Nine years of experience, but all in QA/testing (automation, manual, performance) with no evidence of production front-end or back-end software development.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Long QA experience but no evidence of production front-end or back-end engineering; all experience is in testing, not software development.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate has long experience in QA and testing, not software engineering. The role requires full-stack development experience, which is absent here.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_027": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Only 2.5 years of experience, below the ~4-year threshold; no evidence of senior scope, ownership, or measurable outcomes, though full-stack JS work is genuine.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Only 2.5 years of experience; does not meet the 4-year minimum for senior roles despite full-stack production work.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate has only 2.5 years of experience, which is below the 4+ years required for a senior role, and shows no evidence of senior scope.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_028": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "5 years, React/Node and leadership/mentoring evident, but backend evidence is vague and lacks specifics; Go/Ruby admitted not production-ready; no measurable outcomes.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "BORDERLINE",
+          "reason": "5 years experience, led projects, mentored juniors, React/Node.js listed, but backend production experience is vague; backend skills not clearly demonstrated.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "BORDERLINE",
+          "reason": "Claims 5 years of experience and senior scope (mentoring, leading), but provides no details, company names, or timelines. Lacks concrete evidence of production back-end work.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": true
+    },
+    "cv_029": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "About 3-3.5 years of experience, below the ~4 year bar. Strong React front end, but only 0.5 years of full-stack, and the senior-scope evidence is vague.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Only 0.5 years full-stack; mostly front-end. No clear evidence of senior scope or end-to-end ownership.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "BORDERLINE",
+          "reason": "Candidate has only 3.5 years of experience, less than the 4-year guideline, and only 0.5 years as a full-stack developer.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_030": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "Claims 5 years and broad full-stack skills with leadership, but no named employers, projects or measurable outcomes; mostly a keyword list, so evidence of production scope is vague.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "PASS",
+          "reason": "5 years' experience, production work on both front end (React/TypeScript) and back end (Python/Django/Flask), led projects and teams.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Resume is a list of technologies with no specific projects, roles, or timelines. It lacks concrete evidence of professional experience or senior scope.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_031": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "7 years of strong Python backend skills, but no front-end evidence, no stated senior scope or outcomes, and the candidate wants backend-only work.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Strong backend experience, but no evidence of production front-end work or full-stack ownership; resume explicitly states 'backend only'.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate explicitly states \"backend only\" and lists no front-end technologies, failing the full-stack requirement for production experience on both sides.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": false
+    },
+    "cv_032": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Only 2 years of experience, below the ~4 year threshold, with generic claims, no concrete projects, outcomes, or evidence of senior scope or end-to-end ownership.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Only 2 years experience; lacks senior scope and insufficient duration for required seniority.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate has only 2 years of experience, which is below the 4+ years required for a senior role. No evidence of senior scope.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_033": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Project manager with no hands-on production front-end or back-end engineering; experience is coordination and planning, a different discipline excluded by the job description.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Project management experience only; no evidence of professional front-end or back-end software engineering or production web/service development.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "The candidate is a Project Manager with no software engineering experience mentioned, which is a different discipline from the role being hired for.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_034": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Strong back-end/CLI Python experience, but no front-end production work at all; the tool is a CLI and the AWS project is serverless endpoints only. Fails the both-sides requirement.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Strong back-end experience, but no evidence of production front-end work (React, TypeScript, or equivalent) in any role.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate has strong back-end and DevOps experience but shows no evidence of front-end development, which is a core requirement for this full-stack role.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_035": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "Only 2.5 years, below the ~4 year bar, though it shows full-stack production work (Angular, Nest.js, PostgreSQL). Senior scope and ownership are not evidenced, and the text is vague.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Only 2.5 years experience; does not meet minimum required for senior role. No clear evidence of senior scope or mentoring.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate has only 2.5 years of experience, which is below the 4-year minimum for a senior role. English level is also listed as 'pre'.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": false
+    },
+    "cv_036": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "Strong back-end seniority (lead roles, high-load systems, 6 years), but no evidence of production front-end work beyond listing JavaScript; one-sided stack.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "BORDERLINE",
+          "reason": "6 years backend (Python, FastAPI, Flask), senior/lead roles, but no clear production front-end experience (React/TypeScript or equivalent) mentioned.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate has strong back-end experience but no mention of any front-end work, which is a core requirement for this full-stack role.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_037": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Long experience is in data science and research with no production front-end or web service development; algorithms in Python/SQL and C are not full-stack work.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Strong data science and algorithm experience, but no evidence of production front-end or full-stack web development.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate is a Data Scientist with no production front-end or back-end web/service development experience, which is required for this full-stack role.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_038": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Six years, but entirely in test automation (SDET) with no evidence of production front-end or back-end application development; the rubric treats QA as a different discipline.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Experience is in test automation, not production web or service development; no evidence of front-end or back-end feature ownership or architecture.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "The candidate's experience is entirely in test automation (SDET), not in full-stack product development as required by the role.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_039": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "8 years claimed and broad full-stack skills listed, but no concrete roles, projects, production evidence, or outcomes; senior scope unsubstantiated and the focus leans toward data/database work.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "BORDERLINE",
+          "reason": "Lists 8 years and both front/back-end techs, but lacks concrete production experience or senior ownership/mentoring evidence; skills are self-reported.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "This resume lists skills and preferences but contains no work history, projects, or evidence of professional experience to evaluate against the requirements.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_040": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Junior with about 1 year of experience; only course-style team projects, no professional production work on front end or back end, and no senior scope.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Only 1 year experience, no evidence of senior scope or production back-end work; projects appear to be entry-level or team coursework.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate has only one year of experience, far below the four-year requirement. The projects listed appear to be student or portfolio work, not professional.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_041": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "6 years of commercial React front-end work with some architecture planning and code review, but no stated back-end production experience and no measurable outcomes.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "6 years front-end (React) experience, but no evidence of back-end or full-stack production work; scope is limited to front-end.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "The resume describes only front-end experience. The role requires production experience on both the front end and back end.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": false
+    },
+    "cv_042": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "Four years of full-stack work with React and Node/NestJS, but only a project list with no ownership, leadership, architecture decisions, or measurable outcomes; English level listed as 'pre'.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "PASS",
+          "reason": "4 years' experience, production work on both React front end and Node.js back end, and evidence of end-to-end feature ownership.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "BORDERLINE",
+          "reason": "Meets years and tech stack, but lacks any detail on seniority, scope, or specific contributions. The projects are just a list without context.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_043": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "10 years of production full-stack work (PHP, JS, recent React) with product ownership hints, but no concrete outcomes, leadership or architecture evidence, and back end isn't Python/TypeScript-specific.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "BORDERLINE",
+          "reason": "10 years' experience, some React and full-stack work, but React/TypeScript and senior scope evidence are thin and not clearly production-level.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "BORDERLINE",
+          "reason": "Candidate has 10+ years of experience, but the resume is vague. It mentions React but lacks detail on seniority or specific full-stack project contributions.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": true
+    },
+    "cv_044": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "Claims 5 years of full-stack work (MERN, LAMP) and led a team, but the text is vague, with no employers, dates or clear production ownership, and cloud/CI-CD skills are lacking.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "PASS",
+          "reason": "5 years' experience, production work on both LAMP and MERN stacks, led a team, built and maintained full-stack web apps, React and Node.js used.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "BORDERLINE",
+          "reason": "Meets experience length and full-stack criteria, but lacks concrete evidence of senior scope like owning systems, making architecture decisions, or specific measurable outcomes.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_045": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "Full-stack production work with leadership claims, but real experience is about 1.5 years (May 2022 onward) despite '5 years'; overlapping roles and vague metrics make seniority doubtful.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "PASS",
+          "reason": "5 years' experience, production work on both front end (React/Next.js) and back end (Node.js/Express), led teams and owned features end to end.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate claims 5 years of experience, but the resume only shows about 2 years of professional work, which does not meet the seniority requirement.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_046": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "5 years full-stack (PHP/Node, React) with some infra ownership, but vague, no measurable outcomes, no TypeScript, mentoring or architecture-level evidence; senior scope thin.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "BORDERLINE",
+          "reason": "5 years experience, production work with React/Node.js and PHP, but senior scope and end-to-end ownership are not clearly demonstrated.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "BORDERLINE",
+          "reason": "Meets years of experience and full-stack criteria, but the resume lacks detail and provides no evidence of senior scope like ownership, leadership, or architecture.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": true
+    },
+    "cv_047": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "Claims 10 years with React/TypeScript and Node/PHP plus Director of Technology role, but no dated roles, concrete architecture ownership, or clear production details; mostly vague, self-promotional text.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "PASS",
+          "reason": "10+ years' experience, production work on both front end (React/TypeScript) and back end (Node.js, Laravel), senior scope (Director, mentoring, ownership).",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "BORDERLINE",
+          "reason": "Claims 10+ years of experience and senior scope, but provides no specific projects, employers, or dates to substantiate the claims.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_048": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "Six years of frontend experience with Vue (an equivalent framework), but backend limited to base-level Node.js, and senior scope is vague with no measurable outcomes or ownership evidence.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "6 years frontend experience, but no production backend work; Node.js only at base level, no evidence of senior or full-stack scope.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate is a Frontend Developer with only \"base level\" Node.js experience, lacking the required production back-end experience for a senior full-stack role.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": false
+    },
+    "cv_049": {
+      "jurors": {
+        "claude": {
+          "label": "PASS",
+          "reason": "10+ years; production React/TypeScript front end and NestJS back end; leads team, hexagonal architecture decisions, built an app from scratch. Python absent but other server-side languages are acceptable.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "PASS",
+          "reason": "10+ years' experience, production work on both React/TypeScript front end and back end (NestJS, Ruby), team lead and architecture responsibilities.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "PASS",
+          "reason": "Over 10 years of experience, with senior full-stack work in React/TypeScript and NestJS, including team leadership and architectural decisions (hexagonal architecture).",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "PASS",
+      "unanimous": true
+    },
+    "cv_050": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Zero years of experience; only personal and team course-style projects, no professional front-end or back-end production work, and no senior scope.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "No professional experience; only personal and team projects, mostly front end, no evidence of production back-end work or senior scope.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate explicitly states 0 years of professional experience, which does not meet the minimum requirement of 4 years for a senior role.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_051": {
+      "jurors": {
+        "claude": {
+          "label": "PASS",
+          "reason": "5 years of experience across Python/Django/Flask and Node.js backends plus React/Next.js frontends; built projects from scratch, mentors junior/mid FE developers, and drives architecture improvements.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "PASS",
+          "reason": "5 years' experience, production work with React, Node.js, Python/Django/Flask, mentored juniors, built projects end to end, architecture focus.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "PASS",
+          "reason": "Candidate has 5 years of experience, full-stack work with React, Node, and Python, and explicitly mentions mentoring junior and middle developers.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "PASS",
+      "unanimous": true
+    },
+    "cv_052": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "8 years claimed and broad front/back-end skills, but the text is a skills list with no concrete projects, ownership, mentoring, architecture decisions or measurable outcomes.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "BORDERLINE",
+          "reason": "Lists 8 years' experience and both front/back end skills, but lacks concrete evidence of senior scope or specific production ownership.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "This is a list of skills with no work history, project details, or evidence of professional experience. It is impossible to verify any claims.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_053": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Over 10 years in IT project management (SAP, migrations, escalation); no evidence of hands-on production front-end or back-end software development, which is a different discipline.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Long IT project management experience, but no evidence of professional software engineering or production front-end/back-end development.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "The candidate is an IT Project Manager, not a software engineer. The resume shows no hands-on development experience on either the front or back end.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_054": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "8 years with full-stack work (Node, React, REST APIs, code reviews, CI), but generic bullets lack measurable outcomes, architecture ownership, or mentoring evidence; no database or cloud detail.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "PASS",
+          "reason": "8 years' experience, production work on both front end (React/Angular) and back end (Node.js), code reviews and feature ownership indicate senior scope.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "BORDERLINE",
+          "reason": "Experience is listed as bullet points with no dates or company tenure. The claims are generic and lack specific evidence of senior-level scope.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_055": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "Claims 7 years and a broad React/Vue, Laravel, AWS stack, but it is only a skills list with no employers, projects, outcomes, or concrete evidence of senior scope or production ownership.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "BORDERLINE",
+          "reason": "Claims 7+ years and lists React, Vue, Laravel, AWS, but lacks concrete evidence of senior scope or end-to-end ownership in production.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Resume is a list of technologies without any description of professional roles, projects, or accomplishments. It reads like a generic freelance profile, not a resume.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": false
+    },
+    "cv_056": {
+      "jurors": {
+        "claude": {
+          "label": "PASS",
+          "reason": "6 years full-stack JS: React/Relay front end, Node/GraphQL microservices, CI/CD, Kubernetes, cloud; architecture, mentoring, and team lead of 5-7. Lacks metrics but covers all criteria.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "PASS",
+          "reason": "6 years' experience, production work with React and NodeJS, microservices, CI/CD, mentoring, and team leadership; meets senior full-stack criteria.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "PASS",
+          "reason": "Candidate has 6 years of experience, full-stack JS (React, Node.js), and evidence of senior scope including architecture, leadership, and mentoring.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "PASS",
+      "unanimous": true
+    },
+    "cv_057": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "About 1 year of experience, mostly freelance scripting, a course, and data analyst work; no production front-end or back-end service experience and no senior scope.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "Less than 2 years of professional experience, no production front-end work, and no evidence of senior or ownership responsibilities.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate has less than one year of professional software engineering experience and is looking for an entry-level role to gain experience.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_058": {
+      "jurors": {
+        "claude": {
+          "label": "REJECT",
+          "reason": "Entry-level with 0 years of experience; only course and personal projects, no production front-end or back-end work, and no senior scope.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "No professional engineering experience; only course and hobby projects listed, no production front-end or back-end work.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "Candidate is a junior developer with zero years of professional experience, applying for a senior role requiring at least four.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": true
+    },
+    "cv_059": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "10+ years and tech lead title, strong backend/Python and infra, but front end limited to listed Ember.js; no concrete projects, outcomes, or production evidence.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "BORDERLINE",
+          "reason": "Strong back-end and senior scope, but only Ember.js listed for front end; no clear production React/TypeScript or equivalent experience described.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "BORDERLINE",
+          "reason": "Candidate has 10+ years of experience and strong back-end skills, but front-end experience is limited to Ember.js, which is not a modern equivalent.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "BORDERLINE",
+      "unanimous": true
+    },
+    "cv_060": {
+      "jurors": {
+        "claude": {
+          "label": "BORDERLINE",
+          "reason": "5 years and strong front-end (React/TypeScript), but no evidence of back-end production work, no concrete ownership, leadership or architecture outcomes; text is vague.",
+          "served_model": "anthropic/claude-sonnet-5.5",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gpt": {
+          "label": "REJECT",
+          "reason": "5 years front-end experience with React/TypeScript, but no evidence of back-end or full-stack production experience or senior ownership.",
+          "served_model": "gpt-4.1-2025-04-14",
+          "attempts": 1,
+          "fenced": false
+        },
+        "gemini": {
+          "label": "REJECT",
+          "reason": "The resume only lists front-end experience. The role requires production experience on both the front end and back end.",
+          "served_model": "google/gemini-2.5-pro",
+          "attempts": 1,
+          "fenced": true
+        }
+      },
+      "label": "REJECT",
+      "unanimous": false
+    }
+  }
+}
