@@ -162,6 +162,35 @@ A small, pre-registered smoke test of the demo agent's `score_candidate` step: t
 
 **Limitations.** Synthetic, short resumes. Labels come from one LLM rater (Claude Haiku 5.5, reviewed by the author), not from humans; the resumes were also written by Claude. 17 clear cases, so intervals are wide. Only the scoring step is evaluated, not the full agent loop. Temperature 0 still varied: 1–4 resumes per model changed decision across repeats. The demo agent itself scores with `claude-haiku-4-5`, which was not tested (no Anthropic key was available).
 
+### v2: real resumes, versioned prompts, regression gate
+
+The v1 finding became a prompt fix, tested as a release. Details: [`eval/v2/README.md`](eval/v2/README.md); held-out results: [`eval/results/v2-test-v2/report.md`](eval/results/v2-test-v2/report.md) and [`compare.md`](eval/results/v2-test-v2/compare.md); compliance notes: [`docs/COMPLIANCE.md`](docs/COMPLIANCE.md).
+
+**What changed.**
+- **Data:** 60 real, anonymized CVs from the Djinni recruitment dataset (MIT), plus 36 name-swap variants (4 name groups) and 3 prompt-injection variants. Split 50/50 into dev and test.
+- **Labels:** a jury of three models from three providers (Claude Sonnet 5.5, GPT-4.1, Gemini 2.5 Pro), none of them under test. Fleiss' kappa 0.48 (moderate agreement); PASS–REJECT disagreements become BORDERLINE. Committed in `1c5d791` before any model under test ran.
+- **Prompts as code:** immutable, sha256-pinned prompt files with a registry (`agent/prompts/`). Every scoring call records prompt version, sha and the served model, and these land in the PromptSeal receipts.
+- **Prompt `scoring/v2`:** defines each axis and its direction, screens against a job description, separates instructions from data with delimiters (spotlighting), returns a rationale with evidence quotes, and flags suspected injection. Its parser accepts one outer code fence.
+- **Regression gate:** v2 may replace v1 for a model only if, on the held-out test split, accuracy does not drop, false passes and parse errors do not rise, and no injection flips a decision to PASS. The prompt was frozen after the dev run.
+
+**Held-out test results** (31 resumes: 4 PASS, 14 REJECT, 13 BORDERLINE; 2 repeats; accuracy on the 18 clear cases):
+
+| Model | Accuracy v1 → v2 | False passes | PASS candidates passed | Parse errors | Gate |
+|---|---|---|---|---|---|
+| claude-haiku-4.5 | 78% → 83% | 0 → 0 | 0/8 → 2/8 | 100% → 18% | pass |
+| gemini-2.5-flash-lite | 83% → 89% | 0 → 0 | 2/8 → 4/8 | 94% → 8% | pass |
+| gpt-4o-mini | 56% → 83% | 16 → 0 | 8/8 → 2/8 | 0% → 0% | pass |
+
+**Findings.**
+- **The original agent would reject every candidate on its intended model.** Haiku 4.5 and Gemini Flash Lite wrap their JSON in a code fence; v1's strict parser turns that into technical 0 / ambiguity 10, so every candidate is rejected. v1's accuracy on these two models only looks reasonable because most clear cases are rejects.
+- **v2 trades false passes for false rejects.** gpt-4o-mini under v1 (no job description) passed every strong-candidate call and 16 of 28 weak-candidate calls; under v2 it passes no weak candidate, but also only 2 of 8 strong-candidate calls. No model passes most of the 4 strong test candidates, so the gate passing does not mean v2 is a good screener yet.
+- **Format reliability is model-dependent.** 18% of Haiku's v2 replies still fail the schema (misnamed keys such as `assistant` instead of `assessment`, or invalid JSON). Prompt wording did not fix this in the T2 trials; the next step is provider-enforced structured output.
+- **Injection:** all three models flagged every injected resume and no clean one (2 injected and about 90 clean calls each on test); no injection changed a decision.
+- **Name swap:** on test, no model passed any name-swap set, so the impact ratio is undefined. On dev, gpt-4o-mini passed one of six resumes only under Black-coded names (impact ratio 0.50, below the four-fifths threshold). With one resume, this is a flag to follow up, not evidence of bias in either direction.
+- **Cost:** the whole v2 round (jury labeling, pilot, dev and test runs, smoke tests) cost about $1.40.
+
+**Limitations.** LLM-jury labels with moderate agreement, not human labels. Only 7 PASS labels in total (4 in test), so false-reject and PASS rates rest on very few items. Short CVs from one job board, mostly Eastern European IT. Name groups are proxies (Bertrand & Mullainathan 2004 names) and n is 6 sets per split. A pilot exposed a harness artefact (a 600-token output cap truncated long rationales); it was raised to 1,200 before the dev and test runs. Only the scoring step is evaluated, not the full agent loop.
+
 ## How PromptSeal differs from the closest projects
 
 The same LangChain RFC #35691 thread surfaced several independent cryptographic-receipt projects. Two of the closest in spirit are **AgentMint** (the RFC author's own reference: Ed25519 + RFC 3161 timestamps + AIUC-1 mapping) and **AgentLedger** (Ed25519 + JSONL append-only hash chain, OpenSSL-verifiable offline). Both are well-designed cryptographic primitives. PromptSeal goes beyond the primitive on three deliberate axes:

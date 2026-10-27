@@ -2,5 +2,7 @@
   "_source": "https://developers.openai.com/api/docs/pricing (Standard tier, USD per 1M tokens, read 2026-10-25)",
   "gpt-4o-mini": {"input_per_mtok": 0.15, "output_per_mtok": 0.60},
   "gpt-4.1-mini": {"input_per_mtok": 0.40, "output_per_mtok": 1.60},
-  "gpt-4.1": {"input_per_mtok": 2.00, "output_per_mtok": 8.00}
+  "gpt-4.1": {"input_per_mtok": 2.00, "output_per_mtok": 8.00},
+  "claude-haiku-4.5": {"input_per_mtok": 1.00, "output_per_mtok": 5.00, "openrouter_id": "anthropic/claude-haiku-4.5", "source": "https://openrouter.ai/api/v1/models (pricing.prompt / pricing.completion x 1e6, read 2026-10-26)"},
+  "gemini-2.5-flash-lite": {"input_per_mtok": 0.10, "output_per_mtok": 0.40, "openrouter_id": "google/gemini-2.5-flash-lite", "source": "https://openrouter.ai/api/v1/models (pricing.prompt / pricing.completion x 1e6, read 2026-10-26)"}
 }

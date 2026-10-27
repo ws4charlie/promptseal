@@ -1,0 +1,17 @@
+{
+  "user": {
+    "login": "ada-dev",
+    "id": 1001,
+    "type": "User",
+    "public_repos": 14,
+    "followers": 37,
+    "created_at": "2016-03-14T09:00:00Z"
+  },
+  "repos": [
+    {"name": "react-table-virtual", "description": "Virtualized table component for React + TypeScript", "language": "TypeScript", "stargazers_count": 212, "fork": false, "updated_at": "2026-09-30T12:00:00Z"},
+    {"name": "fastapi-audit-log", "description": "Append-only audit log middleware for FastAPI", "language": "Python", "stargazers_count": 48, "fork": false, "updated_at": "2026-08-11T08:30:00Z"},
+    {"name": "dotfiles", "description": null, "language": "Shell", "stargazers_count": 2, "fork": false, "updated_at": "2026-07-01T10:00:00Z"},
+    {"name": "django", "description": "Fork for a patch", "language": "Python", "stargazers_count": 0, "fork": true, "updated_at": "2025-12-02T16:00:00Z"},
+    {"name": "ts-result", "description": "Typed Result helpers", "language": "TypeScript", "stargazers_count": 9, "fork": false, "updated_at": "2025-10-20T16:00:00Z"}
+  ]
+}

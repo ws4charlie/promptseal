@@ -1,0 +1,11 @@
+{
+  "user": {
+    "login": "new-account",
+    "id": 1002,
+    "type": "User",
+    "public_repos": 0,
+    "followers": 0,
+    "created_at": "2026-10-01T00:00:00Z"
+  },
+  "repos": []
+}

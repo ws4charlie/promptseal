@@ -1,11 +1,17 @@
-"""Build a chat-LLM client with priority: OpenAI direct → Bifrost → Anthropic direct.
+"""Build a chat-LLM client with priority: OpenRouter → OpenAI direct → Bifrost → Anthropic direct.
 
+OpenRouter is an OpenAI-compatible gateway that serves the requested model
+(Claude, GPT, Gemini) under its own slugs; it is the only path that both
+honours the caller's `model` and works with one key for every provider.
 Bifrost is an optional OpenAI-compatible LLM gateway (/v1, HTTP
 Basic auth, model prefix "anthropic/<model>"). Direct OpenAI and direct
 Anthropic are diagnostic/fallback paths.
 
 Selection rule (first match wins):
-1. If OPENAI_API_KEY is set → ChatOpenAI against api.openai.com with the
+0. If OPENROUTER_API_KEY is set → ChatOpenAI against openrouter.ai with the
+   caller's `model` mapped to an OpenRouter slug (`openrouter_model`). The
+   response metadata's `model_name` is the model OpenRouter actually served.
+1. Else if OPENAI_API_KEY is set → ChatOpenAI against api.openai.com with the
    hardcoded model "gpt-4o-mini" (the caller-supplied `model` is ignored
    because OpenAI doesn't recognize Claude model strings). Diagnostic path
    for verifying the callback handler against a real LLM without Bifrost.
@@ -25,6 +31,24 @@ from langchain_openai import ChatOpenAI
 
 OPENAI_DIAGNOSTIC_MODEL = "gpt-4o-mini"
 
+OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+# Model ids used in this repo → OpenRouter slugs (verified against
+# GET https://openrouter.ai/api/v1/models on 2026-10-26). Ids that already
+# contain a "/" are treated as OpenRouter slugs and passed through.
+OPENROUTER_MODEL_SLUGS = {
+    "claude-haiku-4-5-20251001": "anthropic/claude-haiku-4.5",
+    "claude-haiku-4-5": "anthropic/claude-haiku-4.5",
+    "claude-sonnet-4-6": "anthropic/claude-sonnet-4.6",
+    "gpt-4o-mini": "openai/gpt-4o-mini",
+}
+
+
+def openrouter_model(model: str) -> str:
+    """Map a model id to its OpenRouter slug; unknown ids pass through unchanged."""
+    if "/" in model:
+        return model
+    return OPENROUTER_MODEL_SLUGS.get(model, model)
+
 
 def _bifrost_configured() -> bool:
     return bool(
@@ -36,6 +60,16 @@ def _bifrost_configured() -> bool:
 
 def make_chat_llm(*, model: str, temperature: float) -> BaseChatModel:
     """Return a chat-LLM client by env-var priority. See module docstring."""
+    openrouter_key = os.getenv("OPENROUTER_API_KEY")
+    if openrouter_key:
+        return ChatOpenAI(
+            model=openrouter_model(model),
+            temperature=temperature,
+            api_key=openrouter_key,
+            base_url=OPENROUTER_BASE_URL,
+            timeout=float(os.getenv("OPENROUTER_TIMEOUT", "60")),
+        )
+
     openai_api_key = os.getenv("OPENAI_API_KEY")
     if openai_api_key:
         # Diagnostic / fallback path. The caller-supplied `model` is ignored
@@ -67,6 +101,7 @@ def make_chat_llm(*, model: str, temperature: float) -> BaseChatModel:
 
     raise RuntimeError(
         "No LLM credentials configured. Set one of:\n"
+        "  - OPENROUTER_API_KEY (any provider, honours the requested model)\n"
         "  - OPENAI_API_KEY (diagnostic / fallback, uses gpt-4o-mini)\n"
         "  - BIFROST_BASE_URL + BIFROST_USERNAME + BIFROST_PASSWORD (preferred)\n"
         "  - ANTHROPIC_API_KEY (direct Anthropic API)\n"

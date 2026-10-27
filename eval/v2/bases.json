@@ -1,0 +1,542 @@
+[
+  {
+    "id": "cv_001",
+    "source": "djinni",
+    "source_id": "fda82414-8b2e-5901-8a1f-c24d88c309d4",
+    "stratum": "python_backend",
+    "name": "Allison Baker",
+    "name_group": "white_female",
+    "resume_text": "Title: Lead Software Engineer\nYears of experience: 5\nEnglish level: upper\n\n201906 - present: Product Owner (Technical), ***, UK\n• Lead and mentored team of 5 backend and frontend engineers\n• Developed ETL framework for automation of financial reporting (60+ reports per day generated and submitted)\n• Developed BI tool for data review and approval\n• Developed Report management platform used by whole company\n\n201901 - 201906: Team Lead, AnyMind Group, Thailand\n• Lead and mentored team of 4 backend and frontend engineers\n• Worked with Product Managers in directing and coordinating on business strategy, design and implementation of new features\n• Improved architecture and optimized the system to increase efficiency and handle additional workloads\n\n201804 - 201906: Senior Backend Engineer, AnyMind Group, Vietnam\n• Developed and maintained a sophisticated backend for the most used solution for web publishers AdAsia360\n• Integrated Google Ad Manager, more than 40 AdNetworks and other third-party services using API and scrapping • Wrote automated tests and created product documentation\n• Developed a Value CPM optimizer, a feature that increases web publisher revenue by 12%\n\n201706 - 201804: Project Manager, Clikque Technology Corporation\n• Planned product roadmap and managed individual deadlines and goals\n• Worked closely with Executives, Engineering, Design, and QA to define the project scope and objectives\n• Delivered highly detailed product requirements and implemented competitive insights\n\n201607 - 201804: Software Developer, Clikque Technology\n• Researched, designed, and implemented scalable applications for information identification, extraction, retrieval, and analysis\n• Developed an AI system that suggests relevant contacts for any input question in natural language\n• Architected, designed and developed a multifunctional messaging service\n• Built a search extension \"Clikque: search Google & your contacts\" for Chrome still being used today\nI'm not considering positions in outsourcing/outstaffing companies nor positions in Ukraine/Russia/EU. I'm currently based in London, UK."
+  },
+  {
+    "id": "cv_002",
+    "source": "djinni",
+    "source_id": "6fc36b39-fce2-5e2b-bcc2-9203e80907ab",
+    "stratum": "fullstack_mid",
+    "name": "Laurie Sullivan",
+    "name_group": "white_female",
+    "resume_text": "Title: Full Stack Web Developer [PHP/JS]\nYears of experience: 4\nEnglish level: fluent\n\nI am working as PHP/JS fullstack developer since 2019, got an experience with PHP Laravel, JS [both native JS, jQuery and JS frameworks VueJS, some React projects], CSS [both native CSS/Sass and frameworks - TailwindCSS, Bootstrap].\nAt some point of my work I helped QAs with test automation on WebdriverIO [JS], went through TDD development, worked with PHP CMS Typo3.\nSo my tasks got plenty variety during the last years and I am always openminded for new challenges and technologies."
+  },
+  {
+    "id": "cv_003",
+    "source": "djinni",
+    "source_id": "295808a3-62a2-5e06-83f7-f2488e7b6e45",
+    "stratum": "frontend_senior",
+    "name": "Jill O'Brien",
+    "name_group": "white_female",
+    "resume_text": "Title: Frontend Developer\nYears of experience: 5\nEnglish level: intermediate\n\nFeb 2019 - Until now\n3 years 10 months\nKazpost, JSC\nKazakhstan, post.kz\n\nFrontend-dev\nDevelopment of the front-end part of the commercial projects of the organization on React\n-------------\nOct 2021 - Sep 2022\n11 months\nFloboom, start-up\nKazakhstan, [removed]\n\nFrontend-dev\nDevelopment of the front-end part of the organization's projects on React with a mobile first approach.\n-------------\nFeb 2016 - Sep 2018\n2 years 8 months\nSunITy, web-studio\nKazakhstan, sunity.kz\n\nWeb-master, Frontend-dev\nDevelopment of websites on CMS Wordpress, teamwork, implementation of the latest technologies."
+  },
+  {
+    "id": "cv_004",
+    "source": "djinni",
+    "source_id": "90166046-3411-5d57-840b-cbcef75d83eb",
+    "stratum": "data",
+    "name": "Matthew O'Brien",
+    "name_group": "white_male",
+    "resume_text": "Title: Data Scientist\nYears of experience: 6\nEnglish level: upper\n\nAs a Data Science Competence Lead at JetSoftPro, I developed NLG and ABM projects, provided pre-sales support, and mentored trainees. At Powow.ai, I conducted data mining pipelines and implemented neural networks for text classification and language modelling tasks, while also introducing ML model experiments tracking and data version controlling using Neptune and DVC. As a Data Scientist at Honeycomb, I solved warehouse congestion challenges for Amazon sellers, implemented neural networks for text classification and language modelling tasks, and created Telegram and Facebook chatbots. At WorkNest, I solved object segmentation and recognition problems using classical computer vision algorithms and U-Net CNN for the detection of cancer cell metastasis in zebrafish embryos. Finally, I have a Bachelor's degree in Automation of Power Process and Systems Engineering from National Technical University of Ukraine."
+  },
+  {
+    "id": "cv_005",
+    "source": "djinni",
+    "source_id": "7752d741-4e4a-5882-9906-9b720133a3ca",
+    "stratum": "fullstack_mid",
+    "name": "Matthew Murray",
+    "name_group": "white_male",
+    "resume_text": "Title: Full-Stack Developer\nYears of experience: 4\nEnglish level: upper\n\nI am a Back-End developer with 4 years of experience. I consider myself a multi-technology developer, as I started my career in the era of microservices and had a lot of experience in development and delivering services in Java, Go, and Node.js, of course, with consideration given to choosing appropriate technology due to defined requirements. I was participating in the whole cycle of development, from designing systems to supplying the codebase and testing, and then pushing ready artifacts and images to private artifact storage and the Docker registry successively. By the way, Docker is my best friend. My main concerns during development are creating maintainable and robust systems with perfect performance while preserving all deadlines and business aspects. Also, despite Back-End is my main profile, I also have experience developing Front-End in React and Angular. More widely, I can tell in an interview."
+  },
+  {
+    "id": "cv_006",
+    "source": "djinni",
+    "source_id": "b064a843-84c4-5fb4-ad48-c459df46a1c8",
+    "stratum": "fullstack_senior",
+    "name": "Hakim Robinson",
+    "name_group": "black_male",
+    "resume_text": "Title: Full Stack Developer\nYears of experience: 5\nEnglish level: fluent\n\nImplemented the new onboarding flow for a company that decreased bounce-rate by 40% and increased %good% profile fills by 30%: interviews, user-stories, mockups, estimation, frontend and backend logic, tests, documentation\n\nImplemented new customer flow that made customer journey more smooth and enhanced product metrics: interviews, user-stories, mockups, estimation, frontend and backend logic, tests, documentation\n\nFeature ownership with superb results: from pitching feature ideas to their implementation.\n\nI have experience with Investigative interviews and product strategy.\n\nCreated a React Native app for dark kitchen with referral program and complex promotional programs.\nI am a frontend-heavy full-stack typescript engineer that is in love with software architecture and good product design.\n\nMost of the time my scope of work included all stages of the feature development: interviews, user-stories, mockups, estimation, developing frontend and backend logic, writing tests and documentation.\n\nHave a good experience with React.js and React Native.\n\nWorked with technologies: Typescript, React, ReactNative, NextJS, Remix.run, MobX, Redux, RTK, RTK-Query, Tailwind, NodeJs, Express, GraphQL, PrismaORM, MongoDB Jest, Playwright, Cypress, REST API, Github Actions, Docker"
+  },
+  {
+    "id": "cv_007",
+    "source": "djinni",
+    "source_id": "58f4463a-d78e-5c84-872e-9548cbbd28d0",
+    "stratum": "fullstack_senior",
+    "name": "Matthew Baker",
+    "name_group": "white_male",
+    "resume_text": "Title: Full Stack Developer / Team Lead\nYears of experience: more than 10\nEnglish level: fluent\n\nOver the past year successfully designed and implemented two startup projects  in .NET Core and React for the US market. Participated as a co-founder in both of them and covered all the technical aspects of the business. Including cloud deployment, multi-tenant hosting, high-load endurance, per-client customization, 3rd party integrations and more.\nIT professional with over 12 years of experience in software development. More than 8 years as a Team Lead / Architect. Primarily working on distributed enterprise solutions implemented with .NET stack and with rich user interface. Presently focused on .NET Core applications with cloud-oriented backend and/or SPA frontend.\nLooking for a Full Stack Developer / Lead position in a .NET project with React frontend. Angular frontend is also welcome but less desirable. Alternatively considering Developer / Lead position in .NET Core project with microservice architecture."
+  },
+  {
+    "id": "cv_008",
+    "source": "djinni",
+    "source_id": "f9d5f924-dcea-585b-9e64-ef377252a8b0",
+    "stratum": "frontend_senior",
+    "name": "Carrie Kelly",
+    "name_group": "white_female",
+    "resume_text": "Title: Front-end developer\nYears of experience: 6\nEnglish level: intermediate\n\nI took a leading technical role in the development of component library.\nMore than 6 years of experience in front-end development.\n4-year experience with Angular 2-12.\n\nGit, TypeScript, HTML5, SCSS, Angular 2 - 12, NgRx, RxJS, REST API, Bootstrap, ngx-bootstrap, Angular Material, AzureDevOps, Jira\n\nLast project was component library created from scratch(like Angular Material, ngx-bootstrap, Carbon design system)\nTo join a friendly and professional team with interesting projects, where I can increase my skills. To work with modern frameworks."
+  },
+  {
+    "id": "cv_009",
+    "source": "djinni",
+    "source_id": "12c96076-1172-5572-8a47-b608b06a71ca",
+    "stratum": "fullstack_senior",
+    "name": "Keisha Robinson",
+    "name_group": "black_female",
+    "resume_text": "Title: Full Stack Web Developer\nYears of experience: 6\nEnglish level: fluent\n\nMy typical work examples include these projects.\nCygnus Core\nCygnus Peripherals\nCygnus Dapp\nCygnus Front-end\nZakiro NFTs\nAzuki NFTs\nShinobi-inu NFTs\nBattle Punk Arena\nPunky DEX\n\n* Design the Cygnus protocol for leverage farming based on Impermax\n* Smart contracts in solidity on ethereum chain\n* Co-work with Starknet team to build the smart contracts in cairo * Build front-end for Cygnus (including DApp) with atomic-design and typescript\n* Web3 integration with smart contracts with ether.js and web3.js\n* Write secure test script and complete audit script\n* Build front-end (including mobile versions) for Punky DEX project.\n* Web3 integration with front-end and smart contract side with web3.js and ether.js\n* NFT auction code based on Metaplex candy machine clis in typescript\n* NFT asset creation with hashlips-art-engine in typescript\nAs a web3 developer, I have participated in several blockchain & website development for 6 years.\n[Roles]: Web3, Front-end web development, Web3 development for NFT, DeFi\n[Technical Stacks]:\n• Javascript, React.js, Typescript (5~7 years and ongoing) • Atomic Design and CSS styling (6 years and ongoing)\n• Ether.js, Web3.js, GraphQL and Ethereum Subgraphs (4 years and ongoing)\n• Solidity and Starknet Cairo (4 years and ongoing)\n• Metaplex and Candy Machine (2 years)\n• Professional DevOps engineering (AWS, GCP, Git, S3, Deploy management) (5 years) • Agile Development Methodologies\n[Work experience]: CTO at CygnusDAO 2020-present"
+  },
+  {
+    "id": "cv_010",
+    "source": "djinni",
+    "source_id": "2809897d-4fdb-5068-baa7-294cb17bc6af",
+    "stratum": "python_backend",
+    "name": "Tamika Washington",
+    "name_group": "black_female",
+    "resume_text": "Title: Senior Python/Django Developer, Computer Vision.\nYears of experience: more than 10\nEnglish level: pre\n\nI'm passionate developer with strong background in algorithms and system architecture.\n\nMore than 10 years of experience with development of web-based systems.\nWorked in many different domains (automotive, geolocation services, chatbots, e-commerce, marketing, recommendation systems, predictive maintenance, ETL).\n\nI've been working with clients from Norway, Sweden, USA, Canada, Germany, UK.\nI prefer working as a backend developer and make challenging projects that help me to evolve.\npart time product | startup"
+  },
+  {
+    "id": "cv_011",
+    "source": "djinni",
+    "source_id": "9cdd1895-74dc-5c1e-b5d6-9739ca235bf0",
+    "stratum": "frontend_senior",
+    "name": "Darnell Robinson",
+    "name_group": "black_male",
+    "resume_text": "Title: Front-end developer\nYears of experience: 5\nEnglish level: upper\n\nManaged to create complex features from scratch and to the end, by applying design patterns and following SOLID code principles. Gave a hand to the more junior developers and reviewed their code in order to make sure they deliver code according to project standards.\nI would like to join a team where I can apply my potential with challenging tasks, and make a key impact on the product by collaborating closely with stakeholders, design, and other team members"
+  },
+  {
+    "id": "cv_012",
+    "source": "djinni",
+    "source_id": "5a30d61e-42ab-5f19-a02b-5ed6c8fbc414",
+    "stratum": "fullstack_senior",
+    "name": "Aisha Jackson",
+    "name_group": "black_female",
+    "resume_text": "Title: Senior FullStack Developer\nYears of experience: 10\nEnglish level: fluent\n\nLast several years I was working with big NodeJS/React projects, some of them had microservices architecture. Got experience of creating technical documentation. The most challenging activities for me was upgrading monolith application to microservices, and leading the initiative of new authentication pipeline for big EA application\nDuring my career I was working mostly as a fullstack, more into a back-end. My main tech stack is NodeJS/React, but I'm open to new things. I've got experience in outsource, outstaff, startup, product companies, from being a single dev on a project to being a part of a huge enterprise team.  As an engineer I was involved in a development of a various applications, such as REST APIs, UIs, traffic processing microservices, authentication modules, etc. Have good experience in technical documentation creation.\nLooking for a JS Fullstack or Back-end role with NodeJS/React stack. Business domain does not matter, just seeking for an interesting project with challenging tasks"
+  },
+  {
+    "id": "cv_013",
+    "source": "djinni",
+    "source_id": "798038db-c493-5d27-9065-2b9b53ed02b9",
+    "stratum": "fullstack_mid",
+    "name": "Tremayne Washington",
+    "name_group": "black_male",
+    "resume_text": "Title: Full Stack Web Developer (Java and React JS)\nYears of experience: 2\nEnglish level: fluent\n\nWarehouse Management System\tApr-Sept. 2022\nSolely developed a full stack web application to fully automate warehouse management. The application is designed to track information of stored items, sold medical equipment and their service report, and display available spare parts for sale. The application is currently in production and used daily by an international medical supplier in Kazakhstan.\n\nTechnologies used:\nSpring Boot\nJDBC\nSpring Security\nHibernate\nRest API\nBootstrap\nPostgreSQL\nReact JS\nI am a Full-stack Developer with 2+ years of experience. Developed several web app projects to enhance workflow and increase efficiency by reducing paperwork. I adore bringing smart solutions for complex problems by developing user-friendly, fast, and secure web apps. Strongly skilled in object-oriented programming and highly motivated to build high-quality and robust Java code. My teaching experience revitalized my communication skill to be more positive and motivation oriented."
+  },
+  {
+    "id": "cv_014",
+    "source": "djinni",
+    "source_id": "3e814f15-4bad-5a63-8369-b505fe876711",
+    "stratum": "fullstack_senior",
+    "name": "Latoya Robinson",
+    "name_group": "black_female",
+    "resume_text": "Title: Senior Full Stack Developer\nYears of experience: 7\nEnglish level: upper\n\nHave studied 7 years as a programmer in college and then at university.\nHave 2 years of commercial development in a large company that is engaged in a web & mobile development (I've worked on a 9 different projects ranging from typical websites on wordpress to mobile applications using Ionic, highly loaded systems and SPAs).\nI have experience in a variety of frontend and backend technologies:\n\nDESIGN:\n- Technologies: CSS, SASS, Less\n- Frameworks: Twitter Bootstrap, Foundation\n\nJAVASCRIPT:\n- Technologies: ES5, ES6, ES7\n- Libraries and frameworks: JQuery, Angular 1, Vue 2, ReactJS, Redux, Socket.io, Axios, Lodash, Moment etc..\n- Assemblers: Gulp, Webpack\n\nSERVER SIDE:\n- Technologies: PHP, NodeJS\n- Libraries and frameworks: Laravel, ExpressJS\n\nDATABASES:\n- Technologies: MySQL, MongoDB, SQLite\n- ORMs: Eloquent, Mongoose\n\nMOBILE:\n- Frameworks: Ionic\n\nOTHER: GIT, AGILE, SCRUM, JIRA / Redmine\nI'm seeking job where I will be able to work on a interesting projects (not using CMS, but using different technologies to keep growing, to have ability to design architectures of projects myself and provide better quality of solutions)."
+  },
+  {
+    "id": "cv_015",
+    "source": "djinni",
+    "source_id": "d5365331-7422-579d-8a6a-2e84d40cce6d",
+    "stratum": "fullstack_senior",
+    "name": "Brendan Baker",
+    "name_group": "white_male",
+    "resume_text": "Title: Senior Full Stack Developer / Team Lead - React, Node.js\nYears of experience: 9\nEnglish level: upper\n\n- Development & ownership of big complex features, big refactorings in a large codebase\n- Lead activities, mentorship & team support\n- Significant performance improvements (code splitting, caching, progressive loading, improved WebVitals scores)\n- Mentored a C# dev from 0 to a decent React dev in 6 months\n- Integration of a State Machine to manage UI & logic of a very complex multistep form\n- Graceful migration from Javascript to Typescript (significantly reduced a number of common bugs in code by catching errors on compilation early, force interface oriented development)\n- Introducing unit & integration testing (with good testing practices such as TestDriver pattern, small maintainable tests)\n- Migration of a monolith application to service oriented architecture (SOA) in a monorepo\n- Added event-based (async) communication between services in SOA (delays non-essential tasks to background processing, improved real and perceived performance)\n- Code all infrastructure in Terraform (full production setup - k8s, networking, databases, etc etc - can be up & running in ~20 minutes on a fresh AWS (or whatever) account)\n- Dockerize applications in monorepo (to get rid of \"works on my machine\" and make deployments predictable)\n- Implemented full CI / CD process in Github Actions instead of Jenkins\n- SonarQube integration for automated code reviews\nTechnical qualifications:\n- Languages: Javascript/Typescript, NodeJS, HTML, CSS, SCSS, prior PHP experience\n- Frameworks: React, Next.js, Express.js\n- Build tools: webpack + babel custom setups, bundle size optimization\n- Devops / Infrastructure: DigitalOcean, Kubernetes, Docker, Terraform, Github Actions, SOA\n- Testing:  Jest (unit, integration), Testcafe / Cypress (e2e)\n\nLast projects (in descending order by time):\n#1\nTime: ~4 years\nRole: sr full-stack javascript developer / lead\nTechnologies: Javascript, Typescript, NodeJS, React, Next.js, Terraform, Docker, DigitalOcean, AWS\nTasks: develop new features, refactor old code, lead a team, help to evolve the platform both from DX and UI/UX perspective, make it more stable, scalable etc; unit, integration & e2e testing\n\n#2\nTime: ~1 year\nRole: sr frontend javascript developer\nTechnologies: Javascript, React\nTasks: create & maintain company-wide component library, develop a complex menu management tool UI sitting on top of C# backend, unit & integration testing\n\n#3\nTime: ~2 years\nRole: sr full-stack developer\nTechnologies: Javascript, React, NodeJS, PHP, Symfony, Drupal\nTasks: migrate old Drupal website to a custom NodeJS based static website generator, unit testing, minor tasks in React app development\n\nThere are older positions that involve Drupal, PHP, jQuery, etc technologies that are not really relevant anymore, but happy to tell about them if needed.\nWould like to work closely with blockchain development (I don't have blockchain development experience at the moment but eager to learn it).\n\nLooking for work/life balance, result oriented approach (vs time-oriented), prefer flat structure, less bureacracy and less useless meetings.\n\nWould like to work with professionals & smart people, ideal when there are learning opportunities."
+  },
+  {
+    "id": "cv_016",
+    "source": "djinni",
+    "source_id": "c9ecba08-e8fc-5b86-96f1-f745731d83fa",
+    "stratum": "qa",
+    "name": "Kareem Williams",
+    "name_group": "black_male",
+    "resume_text": "Title: Senior QA Engineer\nYears of experience: 6\nEnglish level: intermediate\n\nMore than 10 years of experience in trade. Has experience in managing the department. Since 2017, I switched to testing and do not stop there, I strive to become better and more professional.\nI am a Senior QA Engineer with experience testing mobile and web applications in retail management system, cloud and local infrastructure platforms, database management tools, highly loaded distributed systems.\n\nI have good skills in System Testing, including Functional Testing, Performance Testing, Scalability Testing, Reliability Testing, Configuration Testing, and Security Testing. I also have extensive experience working with databases such as MySQL, Oracle, and MSSQL, PostgreSQL.\n\n- 6 years experience in Software Testing and Quality Assurance;\n- Training new employees (mentoring/development of individual development plans for Intern/Junior QAs);\n- Organization of test process, ensuring control and creating of test reports;\n- Creating test design, reviewing and preparing test artifacts: checklists, test cases, bug reports, test summary reports, test data preparation;\n- Testing of client-server web applications (GUI and integration testing, regression), mobile. Cooperation with developers, analysts, technical support and managers;\n- Experience in Web and mobile (iOS, android) application testing;\n- Audit technical documentation;\n- Analyzing and solving end-user’s problem reports;\n- Understanding of the software development cycle, methodologies and testing methodologies;\n- Understanding of Agile principles.\n\nOperating Systems: Mac OS, Windows, iOS, Android, Linux.\nTicket systems: Jira, Trello, Mantis.\nTest Management Systems: TestRail, TestLink.\nTechnologies and Tools: CI/CD, SQL, Postman, Fiddler, Chrome DevTools, Git, Visual Studio Code, Charles, Fiddler, iTools, iTunes, Testflight, Kibana, Grafana.\nMy goal is to get a full-time position as a Senior QA Engineer in a testing team in a stable company that provides opportunities for continuous professional growth."
+  },
+  {
+    "id": "cv_017",
+    "source": "djinni",
+    "source_id": "eb77f823-c08a-5b1f-9fc3-32083673886e",
+    "stratum": "fullstack_junior",
+    "name": "Keisha Jones",
+    "name_group": "black_female",
+    "resume_text": "Title: Full Stack Developer\nYears of experience: 1\nEnglish level: intermediate\n\nDear Hiring Team,\n\n      I'm Anastasiia Hryhorovych, a proficient Full-Stack Developer with a year of hands-on experience in creating efficient and user-centric web applications. Over the past year, I've undertaken a diverse array of tasks and projects that have granted me exposure to a wide spectrum of technologies.\n\n      As I look to the future, my enthusiasm drives me to continually deepen my expertise in web development. I have a fervent desire to expand my proficiency with modern frameworks and technologies, particularly in advanced aspects of React and Node.js. Additionally, I am resolute in my pursuit of refining my skills in software architecture and cultivating effective teamwork practices.\n\n      In summary, I am a committed developer armed with a robust technical skill set and a dedication to ongoing professional enrichment.\n\n      Best regards,\n      Anastasiia Hryhorovych"
+  },
+  {
+    "id": "cv_018",
+    "source": "djinni",
+    "source_id": "cb9fac9a-fb15-5da0-a428-6451297ad41c",
+    "stratum": "fullstack_senior",
+    "name": "Rasheed Washington",
+    "name_group": "black_male",
+    "resume_text": "Title: Full Stack Web & Mobile Developer\nYears of experience: 5\nEnglish level: upper\n\nContribute to develop complex web platform in main developer position.\nSolved the challenges which others couldn't solve.\nGrow fast than what people expected from me even which I'm new.\nExperienced Web Developer adept in all stages of advanced web development.\nKnowledgeable in user interface, testing, and debugging processes.\nEquipped with a diverse and promising skill-set.\nProficient in an assortment of technologies, including ReactJS, React Native, VueJS, NodeJS, Laravel.\nAble to effectively self-manage during independent projects, as well as collaborate in a team setting.\nI have punctuality, responsibility, the ability to stay in touch at all times, ability to perform quickly and efficiently.\nWholly focused on client satisfaction and event success.\n\nTech talks:\n- «Modern UI under the hood»\nIncludes «UI concepts Yesterday, Today and Tomorrow» +\nFront-end side: Code-splitting, lazy-load, suspense; Loadable components; Apollo defer queries;\nBack-end side: Server Side Rendering / streaming / chunk rendering;\n- «React Native: Entry Level»\nIt includes briefly history and community review, main API things, shallow looking under the hood, why and when to choose, etc\nOptimized structure for the large app development\n- «UI concepts Yesterday, Today and Tomorrow»\nAbout different UI principles especially Optimistic UI, frameworks support it, reviews of this concept in Meteor JS,\nApollo Client and Relay combined with GraphQL, existed Redux ‘optimistic’ middlewares and writing by self the Optimistic UI Tool for Redux with supporting async actions\nlong-term work in the responsible position. Grow more with good teammate while solving challenges."
+  },
+  {
+    "id": "cv_019",
+    "source": "djinni",
+    "source_id": "f87e32a6-cf2f-5c49-aa4f-936cac0a5b83",
+    "stratum": "fullstack_senior",
+    "name": "Kristen O'Brien",
+    "name_group": "white_female",
+    "resume_text": "Title: Full Stack Web Developer\nYears of experience: 9\nEnglish level: intermediate\n\nI'm a Web and Blockchain developer.\nI have over 9 years experiences in the web development part and 3 years in Blockchain. Since taking part in many projects as a developer and team leader.\n\nMY PROJECTS\n- Quizdrop\nTechnology : Solidity, Blockchain/Defi, Next.js\nTeam member : 2.\nDescription : For 3 months, I developed Token using solidity and\nfrontend using Next.js as a blockchain and frontend developer.\nGot experience in blockchain.\n- CoolFocus App (Ongoing project)\nTechnology : React.js, Nextjs, GraphQL, Hasura, Postgresql\nTeam member : 2.\nDescription : Web-based software for nonprofit organizations to\nmanage Donors, Volunteers and Clients.\n-Swaport (Ongoing Project)\nTeam member : 1.\nDescription : Implementing swap, Stable, bridge logic on DBX\nchain using solidity and frontend using React.js\n- AnjiSwap\nTechnology : Solidity, Blockchain/DEX, React.js\nTeam member : 2.\nDescription : For 2 months, Implemented main anji swap logic\nusing solidity and frontend using React.js\n- JungleFreaks\nTechnology : Solidity, Blockchain/NFT(staking), React.js\nTeam member : a.\nDescription : For 1 month, Developed ERC-20, ERC-721A and\nStaking smart contract for an NFT staking project.\nAnd also Made a good website with React.js and Ether.js\n- BabyPunks\nTechnology : Solidity, Blockchain/NFT, React.js\nTeam member : 1.\nDescription : For 0.5 months, Made ERC-721A smart contract and\na simple website with React and Ether.js\n- Employeez Now\nTechnology : MERN Stack, AWS, Stripe API,\nTeam member: 4.\nDescription: Finished MVP version for 4 months as a full-stack web\ndeveloper. Mostly worked as a frontend developer.\n- Racing Manager\nTechnology : MERN Stack, AWS, Web Scraping,\nTeam member: 5.\nDescription: Led the team, worked in both of frontend and\nbackend, negotiated with clients, and resolved many issues, and\nfinished the project for 4 months.\n- Capital Game Studio\nTechnology : React/R"
+  },
+  {
+    "id": "cv_020",
+    "source": "djinni",
+    "source_id": "a5874cea-65ff-5368-ad4d-bd91ac9b8526",
+    "stratum": "fullstack_mid",
+    "name": "Tamika Jackson",
+    "name_group": "black_female",
+    "resume_text": "Title: Full Stack .NET Developer\nYears of experience: 4\nEnglish level: upper\n\nI have been working for Akvelon Ukraine since 2018. I started out here as a .NET intern and have participated in a couple of projects.\n\nI worked on a large-scale legacy .NET enterprise project called Traffic Control for about 2.5 years. The project aims to automate equipment operations at terminals. Be they rail, vessel, or Yard terminals alike. Most of my work was on backend side of things where I mainly fixed bugs, wrote unit tests and implemented a couple of features, but I also worked on WinForms/WPF client applications. Most of backend technology stack was built from ground up, even the client-server communication. The thing I liked the most is the real-time aspect of the project. This exposed me to the basics of reactivity through the usage of Rx.NET library that allows to manipulate streams of data. Working with streams in such a declarative way was pleasant. The project has about 15 years of history, so I gained a lot of experience while working with such a big codebase.\n\nBesides Traffic Control, I have also worked for about a year on an in-house project management solution as a full stack developer using React on frontend and modern .NET on backend. I think one might refer to me as a jack of all trades when it comes to this project. I fixed bugs, implemented new functionality, wrote tests, managed environments and CI/CD. I quite liked working with Redux state management library on the frontend and backend’s modern .NET version allowed me to use latest features of C#. I also quite liked working with MediatR library to separate read from write operations and latest versions of Entity Framework seemed to me efficient and easy to use. Working with Gitlab CI and deployment automation with Ansible was an interesting experience too. All in all, I’d say backend development is most interesting for me.\n\nThere were also small-time gigs like internal tools development (e.g., a browser extension written with Blazor WebAssembly using .NET 6) and a frontend accessibility project."
+  },
+  {
+    "id": "cv_021",
+    "source": "djinni",
+    "source_id": "12f17851-3a8f-524f-943d-560f179cb093",
+    "stratum": "fullstack_junior",
+    "name": "Greg Kelly",
+    "name_group": "white_male",
+    "resume_text": "Title: Full Stack Developer\nYears of experience: 1\nEnglish level: upper\n\nASP.NET MVC application - an online library (Academy)\nDeveloping Front-End part of the \"Car (Blablacar-Clone) project with React-Native(internship)\nDeveloping my own mobile application \"TicTacToe\" where I added the most frequent functionality of similar game applications, such as statistics, online play, authentication, profiles, chats, the game itself, game lobbies, rematches, notifications, game replays, and so on. While developing this application, I started to learn and apply microservice architecture, where later I needed to learn such technologies as gRPC, AMQP, Signal R, Redis. I also learned Redux and the Flux approach to writing React applications"
+  },
+  {
+    "id": "cv_022",
+    "source": "djinni",
+    "source_id": "f4620259-60e7-5c46-92b0-b728ee726f24",
+    "stratum": "qa",
+    "name": "Kristen McCarthy",
+    "name_group": "white_female",
+    "resume_text": "Title: QA Lead\nYears of experience: 6\nEnglish level: upper\n\nOptimized regression testing and reduce scope of testing in 40%.\nStarted and organized flow for BDD automation.\nI've experience in most various projects: medical, gambling, integration with social, hotels business and betting platforms, mobile video streaming.\nI used to perform tests on most popular platforms: WEB, iOS, Android. Leading distributed QA teams (5+ engineers, junior to senior specialists)\n- Experience in testing:\nweb client-server applications,\nmobile testing (guidelines for iOS and Android);\n- API testing by Postman;\n- leading team of 5 QAs;\n- experience in mentoring Junior QA;\n- automation by writing BDD test scenarios (Cucumber);\n- automation by using Katalon tool;\n- experience in developing and maintaining Test Plan, Test Summary Reports, test cases, traceability matrices, check lists, bug reports;\n- experience in analysis and testing requirements;\n- working in Agile team – take part in all activities: planning, grooming, retrospectives;\n- knowledge of TCP/IP/ HTTP protocol;\n- work with JSON and XML files;\n- knowledge of DB and SQL;\n- web technologies (HTML, CSS);\n- version control systems (Git, SVN);\n- CI tools – Jenkins;\n- using JIRA, Confluence;\n- Test Case Management: Test Rail.\nDevelopment as a leader and manager.\nIt is also desirable to have possibility to growth in test automation"
+  },
+  {
+    "id": "cv_023",
+    "source": "djinni",
+    "source_id": "a837cf31-5735-535d-8932-022c94ef5873",
+    "stratum": "fullstack_mid",
+    "name": "Jermaine Williams",
+    "name_group": "black_male",
+    "resume_text": "Title: Full Stack Developer: PHP Back-end, React Front-end, SEO\nYears of experience: 4\nEnglish level: intermediate\n\nProgramming:\nPHP, JavaScript, TypeScript\nHTML5, CSS3\nGO, Java, Smali Assembler\nUnit Testing\nOOP, MVC, SOLID, KISS, DRY principles\nFamiliar with PSR standards\n\nBack-end:\nLaravel, Lumen, Slim\nWordPress, OpenCart\nMySQL (MariaDB), PostgreSQL, SQLite\nMemcached,  Redis\nNginx, Apache\nREST APIs with Swagger\nOAuth, JWT, Token Auth\n\nFront-end:\nReactJS, Redux\nBabel\njQuery, jQuery UI\nWebpack, Vite\nChrome Extensions\nBootstrap, Tailwind\nBlade, Smarty\n\nSEO Tools:\nAhrefs, Serpstat, Majestic, SimilarWeb\nScreaming Frog, Netpeak Spider\nLink-building, PBN, Spamzilla\nGoogle Search Console, Google Analytics 4\nWeb Vitals, PageSpeed Insights, Schema Markup\n\nDevelopment Tools:\nPhpStorm, Postman\nMySQL Workbench\nGit, GitHub, GitLab, Bitbucket\nDocker, Docker Compose\nXdebug, Chrome DevTools\nFigma, Adobe Photoshop\n\nProject Management Tools:\nAsana\nTrello\nSlack\nToggl Track\nI aspire to work on engaging projects where my expertise can be leveraged to bring maximum value to the endeavor."
+  },
+  {
+    "id": "cv_024",
+    "source": "djinni",
+    "source_id": "7385af27-3c54-572c-8b25-d8a04773e3be",
+    "stratum": "data",
+    "name": "Neil Sullivan",
+    "name_group": "white_male",
+    "resume_text": "Title: Head of Data and Analytics\nYears of experience: more than 10\nEnglish level: upper\n\nThe biggest thing about me: get s&8 done, inspired by big ideas. Hard working and futuristic.\nCurrent role: Head of Data and Analytics\n\n- Established Data Academy, internal data upskilling project for PM/Engineering\n- Customer churn modeling helped to increase retention in many cases. (XGBoost, snowplow)\n- Trial conversion predictive model, influenced product decisions related to better customer acquisition. (XGBoost, pandas, seaborn)\n- Recommendation system POC\n  - change user behavior based on the previous user actions and desired future outcome\n\n- Emotion detection in text (BERT model, text classification)\n- Large scale textual analytics, helped to focus on the most important product areas:\n  - group customer qualitative feedback into meaningful topics (USE + HDBSCAN)\n  - text similarity clustering by using large pretrained language model (BERT, USE)\n- Anomaly detection and themes correlation for survey data\n- Product usage feature correlation\n- Keywords timeline trends project\n\nEstablished foundational cost effective company data infrastructure:\n- data warehouse: Redshift\n- real-time event collection platform: Snowplow\n- data modeling layer: DBT\n- data ingestion: singer.io, embulk, custom python scripts\n- data visualization layer: Redash, Jupyter Notebooks, dash custom python app (Graph Network viz)\n25+ dashboards for product usage and user behavior\nWould prefer to lead a small team to establish company data infrastructure and deliver data projects. Main interests are in machine learning, data science, recommendation systems. Might not work really well with low data maturity orgs. Good communication with technically skilled team members, Engineering team."
+  },
+  {
+    "id": "cv_025",
+    "source": "djinni",
+    "source_id": "c082e62c-6351-584c-bf86-c518ccf875a2",
+    "stratum": "project_manager",
+    "name": "Lakisha Jones",
+    "name_group": "black_female",
+    "resume_text": "Title: Project Manager\nYears of experience: 4\nEnglish level: fluent\n\nHi there,\nI have worked for over three years as a Project Manager and Account Manager in FinTech, Crypto, and FoodTech companies.\n\nKey Achievements:\n- Managed the largest FoodTech project in the country with 5 platforms on the production stage, with 50K active users.\n- Released from scratch three FinTech applications to production.\n- Managed three teams, from 5-8 engineers, QA, and designers.\n- Launched three co-marketing products, and closed 50 + deals, an average deal of 10K USDT."
+  },
+  {
+    "id": "cv_026",
+    "source": "djinni",
+    "source_id": "2f73d03a-7097-513a-8264-864ef983ec8d",
+    "stratum": "qa",
+    "name": "Sarah McCarthy",
+    "name_group": "white_female",
+    "resume_text": "Title: QA Engineer\nYears of experience: 9\nEnglish level: upper\n\nExperience in Automation testing using WebdriverIO, Python(PyTest);\nExperience in Perfomence testing using Jmeter;\nExperience in writing BDD tests\nExperience in Manual testing: Functional, UI, New feature, Regression, Exploratory, Documentation testing, Accessibility testing;\nWriting Bug reports in JIRA. Experience in SQL queries, API testing;\nUnderstanding of software development life cycle and models. Type of software testing;\nTest documentation creation (test plan, test suits, test cases, checklists, user-story);\nOccupied a group lead position;"
+  },
+  {
+    "id": "cv_027",
+    "source": "djinni",
+    "source_id": "ee88c190-be60-589e-b47d-9b71ca9045cd",
+    "stratum": "fullstack_mid",
+    "name": "Todd Kelly",
+    "name_group": "white_male",
+    "resume_text": "Title: Full Stack JS Developer\nYears of experience: 2.5\nEnglish level: intermediate\n\nOver the past 2.5 years of my professional journey, I have covered an impressive distance in the field of programming. Starting my career at \"Bold studio,\" I became a part of a small outsourcing company. As a Full Stack JS developer, I worked with tools such as React.js, Material UI, Node.js Express, crafting not only appealing interfaces but also efficient backend solutions.\n\nThe next stage of my professional growth is associated with \"Kozak agency.\" Here, I continue to work as a Full Stack JS developer, but now I deal with an even broader spectrum of technologies. My proficiency in React.js has deepened, and I've also mastered Angular (starting from version 7) while actively working with Node.js and NestJS. My ability to swiftly adapt to diverse technologies enables me to successfully implement various projects."
+  },
+  {
+    "id": "cv_028",
+    "source": "djinni",
+    "source_id": "5006635f-74fc-54ce-aabd-eb3f68627096",
+    "stratum": "fullstack_senior",
+    "name": "Emily Murphy",
+    "name_group": "white_female",
+    "resume_text": "Title: Frontend/Full stack Developer\nYears of experience: 5\nEnglish level: fluent\n\nRebuilt a CI system from the ground up.\nIntroduced microservices and a monitoring system.\nOptimized backend calls and transferred data volume.\nParticipated in hiring and mentored junior developers\nLead the project.\nAutomated processes in a team, freeing engineering time\nAdvocated for accessibility\nHTML, CSS, JavaScript.\n\nIn case you're a recruiter, here's some more keywords for you:\nReact, NodeJs, Cypress, Jest, Enzyme, RTL, Webpack, AWS, Docker, Git, Jira, Grafana, A-B testing, data-driven, accessibility, A11y\n\nSome GoLang, Ruby (not production-ready but I'll be able to find a common language with backenders)\nLooking for a place where I can learn new stuff. And some money would be great too.\nIdeally I'd prefer to work on a full stack project. CI/CD is a must (or you should be willing to introduce it)."
+  },
+  {
+    "id": "cv_029",
+    "source": "djinni",
+    "source_id": "f43138dc-07e9-5f4e-a22e-efdf2643ca91",
+    "stratum": "fullstack_mid",
+    "name": "Meredith Baker",
+    "name_group": "white_female",
+    "resume_text": "Title: Full Stack JS Developer\nYears of experience: 3\nEnglish level: upper\n\nSuccessful development from scratch and launch of a few large and medium sized projects in which I've been developing core features, such as authentication, user management, main pages and related functionalities, etc.\nI have 3.5 years of commercial experience with front-end and javascript, 0.5 years as full-stack. My experience mostly involves development in multi-cultural and remote teams of tightly scheduled products oriented on fast and successful launch. Projects I contributed related to delivery, law support, e-commerce, freelancing industries.\n I have been working with React/Redux, Next.js, Node.js, Express, Mongo DB, Docker also have experience with Vue/Vuex.\nTo work in highly-qualified team of enthusiastic people on challenging and fascinating projects, work in company which values contribution of its workers."
+  },
+  {
+    "id": "cv_030",
+    "source": "djinni",
+    "source_id": "3d33b91b-b2c7-5140-bd72-23f95c024860",
+    "stratum": "fullstack_senior",
+    "name": "Allison Sullivan",
+    "name_group": "white_female",
+    "resume_text": "Title: Full Stack Developer\nYears of experience: 5\nEnglish level: fluent\n\n- Successfully designed, developed, and delivered a wide range of software systems, including blockchain-based solutions, smart contracts, web3, and NFT marketplaces.\n - Proven ability to lead and work effectively in diverse team structures and utilize a variety of methodologies and technologies.\n - Demonstrated expertise in a wide range of programming languages and technologies, including Rust, Solidity, Python, Django, Flask, RESTful API, C++, C#, .NET, NET Core, ASP.NET, GoLang, HTML, CSS, JavaScript, TypeScript, React.js, Next.js, Gatsby.js, Vue, Bootstrap, Angular, Redux, jQuery, Node.js, Express, NestJS, KoaJS, Azure, Firebase, AWS, Jenkins, CI/CD, Git, Nginx, Docker, Kubernetes, Heroku, Netlify and more.\n - Strong problem-solving skills and ability to effectively troubleshoot and resolve issues in software systems.\n - Implemented and maintain robust, scalable, and secure systems with high level of availability and performance.\n - Led and managed multiple projects, ensuring that all deliverables were completed on time, within budget, and to the satisfaction of clients.\n - Consistently received positive feedback from clients and team members for the quality of my work and my ability to work well in a team and lead the team.\n - Built and maintained strong relationships with clients through clear and effective communication and a commitment to delivering high-quality work.\n - Continuously expanded my skill set and knowledge base by staying current with the latest technologies and industry best practices.\nI am an expert in blockchain and software development with a strong track record and over 5 years of experience. I possess extensive knowledge and experience in the design, development, testing, and management of software systems. Additionally, I am well-versed in blockchain technology, Smart Contracts, Web3, and NFT marketplaces.\n\nI have a wealth of experience working in diverse team structures and have strong problem-solving skills. My technical expertise encompasses a wide range of technologies, including:\n\n - Rust, Solidity, Cargo, VIM for blockchain and Smart Contract development\n - Web3.js, Solana, Ethereum, Smart Contracts, Truffle for blockchain development\n - Python, Django, Flask for back-end development\n - API Integration, RESTfulAPI for connecting to external services\n - MySQL, SQL Server, MongoDB for database management\n - C++, C#, .NET, NET Core, ASP.NET, GoLang for back-end development\n - HTML, CSS, JavaScript, TypeScript, React.js, Next.js,\nGatsby.js, Vue, Bootstrap, Angular, Redux, jQuery for front-end development\n - Node.js, Express, NestJS, KoaJS for back-end development\n - Azure, Firebase, AWS, Jenkins, CI/CD, Git, Nginx, Docker, Kubernetes, Heroku, Netlify for deployment and infrastructure management\n\nI am committed to delivering high-quality work, keeping abreast of the latest technologies and industry best practices, and continuously expanding my skill set in order to provide the best possible solutions for my clients."
+  },
+  {
+    "id": "cv_031",
+    "source": "djinni",
+    "source_id": "ab834d52-8b75-5736-98b3-2c35aa70dbf5",
+    "stratum": "python_backend",
+    "name": "Jamal Jackson",
+    "name_group": "black_male",
+    "resume_text": "Title: Python Developer\nYears of experience: 7\nEnglish level: intermediate\n\nMain specialization: python backend, web scraping/parsing, data mining, API automation and development.\n\nPython: Django, Flask, asyncio, Scrapy\nDBMS: MySQL, PostgreSQL, SQLite, NoSQL\nNoSQL: MongoDB, Redis\nTechnologies: Docker, GIT\nOther: RabbitMQ, Celery\nOS: Linux user since 2005 and system administration skills\nNetworks: a clear understanding of network protocols and technologies\n\nMaster's degree in Computer Science\n— backend only\n— fintech and crypto startup preferably\n— remote work with the possibility of relocation in the EU countries"
+  },
+  {
+    "id": "cv_032",
+    "source": "djinni",
+    "source_id": "1fc98a09-2b64-570d-aa8e-53bc3ab51876",
+    "stratum": "fullstack_mid",
+    "name": "Tanisha Jackson",
+    "name_group": "black_female",
+    "resume_text": "Title: Full Stack Web Developer\nYears of experience: 2\nEnglish level: intermediate\n\nI am a software engineer with 2 years of experience. During this time, I have worked with the Vue and React frameworks, used various state managers, used TypeScript, and am familiar with CSS libraries such as Tailwind and Bootstrap. I am also familiar with SSR development using Quasar or Nuxt/Next. On the backend, I work with Node.js using Express and MongoDB.\n\nI am a highly motivated and results-oriented individual with a strong passion for software development. I am proficient in a variety of programming languages and technologies, and I am always eager to learn new things. I am also a team player and I am always willing to help others.\n\nI am confident that I have the skills and experience necessary to be a valuable asset to your team. I am eager to learn more about your company and the role, and I am confident that I can make a significant contribution to your team.\n\nThank you for your time and consideration. I look forward to hearing from you soon."
+  },
+  {
+    "id": "cv_033",
+    "source": "djinni",
+    "source_id": "6ec496c5-11ac-5b76-ae9c-53598a9e31c6",
+    "stratum": "project_manager",
+    "name": "Jermaine Jackson",
+    "name_group": "black_male",
+    "resume_text": "Title: Project Manager\nYears of experience: 4\nEnglish level: intermediate\n\nAbout me.\nExperienced Project Manager with a proven track record of delivering complex hard/software development projects on time and within budget. Skilled in project management, team leadership, and problem-solving. Excellent communicator with a strong ability to coordinate with cross-functional teams.\n\nAbout work experience\nLed multiple hard/software development projects from concept to production, coordinating with cross-functional teams including mechanical engineering, electrical engineering, software development, and manufacturing\nManaged project schedules, budgets, and risks, ensuring timely and cost-effective delivery of high-quality products\nDeveloped and maintained project plans, status reports, and other project documentation Conducted regular team meetings and status updates, ensuring effective communication and collaboration among team members"
+  },
+  {
+    "id": "cv_034",
+    "source": "djinni",
+    "source_id": "fb9b07be-d600-5221-bf2c-62a2d5924eb7",
+    "stratum": "python_backend",
+    "name": "Leroy Washington",
+    "name_group": "black_male",
+    "resume_text": "Title: Python Developer\nYears of experience: 8\nEnglish level: intermediate\n\n[removed]\nFrom September 2021— To the present time (10 months)\nPosition: Python software developer\n\nAbout the project\nI have worked on SafetyVision project. SafetyVision has video recorders installed on many kinds of vehicles. Our team has built a web app to show vehicles on a map and to save and show video records from the vehicles with different info using AWS infrastructure.\n\nMy responsibilities\n- create endpoints (URLs) by AWS API Gateway\n- writing AWS lambdas as handlers for AWS API Gateway endpoints with Python\n- writing requests using AWS to AWS DynamoDB to get and store a data with Python\n- writing requests using AWS boto3 utility to AWS Cognito to authenticate users with Python\n- writing unit tests to cover\n\nWorkflow\n- daily meetings with the team\n- two week’s sprints by SCRUM\n- tasks management by JIRA\n- pull requests and code reviews\n\n[removed]\nFrom February 2018 — To August 2021 (3 years and 7 months)\nPosition: Python software developer\n\nAbout the project\nSQLBAK – is a CLI tool for DBMS management on deb and rpm Linux distros. SqlBak allows you to make automated backups and restores, compress backups and send the backups to clouds like OneDrive, Google Drive, Dropbox, S3, Azure and more. I have been involved in this project from the beginning and performed almost 90% of the work.\n\nMy responsibilities\n- design project infrastructure\n- add an opportunity to run the app as a daemon with multi processes\n- run the app when OS starts or restarts\n- add an ability to cooperate with the app via terminal by commands (CLI)\n- add full logging of all the errors, classes, methods, etc.\n- add the app’s version controlling\n- add a short logging of only apps’ errors\n- add an ability to install the tool on Debian, Ubuntu, Linux Mint, CentOS,\n- add an opportunity to create a connections to DBMS:\n- MySQL and MariaDB, MS SQL Server, PostgreSQL, MongoDB\n- add an ability to get databases names for different SQL servers: MySQL, MariaDB, MongoDB, PostgreSQL, MS SQL Server\nmake a full and incremental backup of MySQL DBMS\n- make a full backup of PostgreSQL, MongoDB DBMS\n- make a full, differential and incremental backups of MS SQL Server\n- add an opportunity to schedule backups\n- make restores of the backed up DBMS\n- setup and run automated tests using\n- building deb and rpm packages\n- deploying repositories with the packages to the server\n- running the packages in Docker containers\n- add an ability to auto upgrade the app\n- support users"
+  },
+  {
+    "id": "cv_035",
+    "source": "djinni",
+    "source_id": "9b26b89c-3923-5917-9c3f-0b4fa306ec87",
+    "stratum": "fullstack_mid",
+    "name": "Emily Ryan",
+    "name_group": "white_female",
+    "resume_text": "Title: Full Stack Developer\nYears of experience: 2.5\nEnglish level: pre\n\nMy work expirience:\n- development of SPA (Angular 2+, RxJS, Akita)\n- integration of video conferencing service\n- implementation of real-time chat using XMPP libraries\n- back-end development of highly loaded marketplace service, based on microservice architecture (Nest.js, PostgreSQL)\n- development of ReactNative apps (React, Redux, Mobx)\n- cross-platform apps development (Vue.js, Vuex, Quasar, Apache Cordova)"
+  },
+  {
+    "id": "cv_036",
+    "source": "djinni",
+    "source_id": "22b8650a-5493-59bb-906a-706d863b1933",
+    "stratum": "python_backend",
+    "name": "Jill Sullivan",
+    "name_group": "white_female",
+    "resume_text": "Title: Senior Python Software Engineer | Part-time\nYears of experience: 6\nEnglish level: upper\n\n2021-2022 - I have completed restructuring of IT department being in role Lead Developer.\n2019-2020 - I have developed teaser-system from zero. First time I was a part of a team. After 3 monthes I was promoted to lead of project. In next 3 monthes project was ready for production with 500rps average load.\n2018 - I have released sport platform with box-matches streaming. Average load on streams was about 150rps. About 100k unique users during one stream.\nWelcome!\nI'm a python software engineer with more than 6 years experience. I started with various hackathons, which grew into non-commercial machine learning startups, I have been in charge of developing highload back-end for an AdTech project, completed restructuring of IT department being in role Lead Developer and currently I'm Senior Software Engineer in International IT Company.\n\nSkills & technologies.\nSkills: Python (programming language), SQL, Javascript.\nFrameworks: Asyncio, FastAPI (preferable), Aiohttp, Flask, Django.\nDatabases: PostgreSQL (preferable), ClickHouse, MySQL, MongoDB.\nCache: Redis (preferable), Memcached.\nOthers: RabbitMQ, Kafka, ElasticSearch.\nServer utils: Gunicorn, Nginx.\nDevOps tools: Docker, Kubernetes, Drone-CI, Rancher, Portainer, Grafana, Kibana, Zabbix.\nDev tools: Git, Gitlab, PyCharm, DBeaver.\nI'm looking for part-time (~80-100h per month) remote in Product/Outsource company"
+  },
+  {
+    "id": "cv_037",
+    "source": "djinni",
+    "source_id": "619ed53d-71f0-57dd-b72e-04e7cb760c04",
+    "stratum": "data",
+    "name": "Kareem Jones",
+    "name_group": "black_male",
+    "resume_text": "Title: Data Scientist\nYears of experience: more than 10\nEnglish level: fluent\n\n1. At my last job: the decision making algorithms I created are implemented in production and help to detect mobile install fraud automatically.\n2. At my job at eScore Technologies:  developed new bookmaking strategies and investigated them via statistical simulation. The strategies potentially allowed to reduce bookmaker's risk significantly.\n3. At my job at the Institute of Radio Astronomy: Has developed new observational strategies for  statistical data processing at the world-largest radio telescope UTR-2. Implemented them into production code in C on Linux platform. These allowed to extract principally new information\nfrom the observational data.\nThe last job: Senior Data Scientist at Scalarr since August 2018 to April 2020. Developed anti-fraud algorithms\nfor fraud detection, data exploration and visualisation. Constructed customized statistical indexes for\ncompact description of large datasets. Implemented the algorithms in Python + SQL on Linux platform.\nThe algorithms made it possible to detect and explore potentially new types of fraud and to reduce false\npositive decisions via rigorous taking of statistical significance into account. Algorithms successfully\nwork in the production code. Also consulted team members on applied statistics and probability.\n\nThe job of interest unites: machine learning, statistics, programming/scripting\n1. Makes it possible for me to apply my passions and talents: machine learning, programming, statistics\n2. Requires non-standard approaches and tailor-made methods, not a routine reiteration of the same methodology."
+  },
+  {
+    "id": "cv_038",
+    "source": "djinni",
+    "source_id": "ce35ce8e-bf3b-5460-b649-81c2f5834bab",
+    "stratum": "qa",
+    "name": "Aisha Jones",
+    "name_group": "black_female",
+    "resume_text": "Title: Lead Software Developer Engineer in Test\nYears of experience: 6\nEnglish level: upper\n\nComplete automation coverage of products with a successful release into production. Automation as a product approach\nAs a Lead Software Developer Engineer in Test I worked on:\n * Building complete solutions for automation testing of different levels\n * Creation of documentation for complex frameworks\n * Configuration and support id CI/CD processes for project and teams\nLooking for opportunities to implement new ideas and try new technologies"
+  },
+  {
+    "id": "cv_039",
+    "source": "djinni",
+    "source_id": "576771cd-94f6-5a12-81b8-798165216c0f",
+    "stratum": "fullstack_senior",
+    "name": "Jay Kelly",
+    "name_group": "white_male",
+    "resume_text": "Title: Full Stack Developer, Oracle PL/SQL\nYears of experience: 8\nEnglish level: intermediate\n\nMy preferences in technologies for the future project:\n\nFront end: React.js./ React Native or Angular10+\nBack End: Python /  Node JS,\nDatabases: Oracle / MSSQL / DynamoDB / MongoDB\n\nMy work preferences and strengths  :\n1) I have deep knowledge of Oracle Database and PL/SQL programming.\n2) I have deep knowledge of JavaScript.\n3) I have deep knowledge of Python.\n4) I have deep knowledge of React.js/React Native and Angular 2+\n5) I enjoy making high-quality UI with ReactJS or Angular2+\n6) I like working with cloud technologies such as Amazon or Azure.\n7) I like developing REST API Web applications on Django or Flask.\n8) I like to improve the performance of SQL queries of Oracle and MSSQL databases.\n\nMy key skills :\nProgramming languages: Oracle PL/SQL, Python, Javascript, Typescript, SQL, T-SQL\nFrameworks: PySpark, Angular2+, Node.js, Django, SQL Alchemy, Scrapy\nLibraries: React.js\nCloud technologies: Amazon, Azure.\nData processing: Databriks, AWS Glue, Azure Data Factory.\nData preparation: building a Data/Delta Lake from scratch\nDatabases: Oracle/MsSql/PostgreSQL /MongoDB/DynamoDb/Cassandra\nTest Frameworks: Pytest/Unittest/ Mocha\nMessage brokers : Kafka, AWS Kinesis, SQS\nETL Tools: Informatica Power Center, Talend, Xplenty\nOther tools: VS Code, PyCharm, WebStorm, PHPStorm, PL/SQL Developer, Microsoft SQL Server Management Studio.\nI am looking for a Full-stack developer/Data Engeneer positions only."
+  },
+  {
+    "id": "cv_040",
+    "source": "djinni",
+    "source_id": "868cc60e-e6a2-5fc3-b3a9-42f99fea4a35",
+    "stratum": "fullstack_junior",
+    "name": "Neil Ryan",
+    "name_group": "white_male",
+    "resume_text": "Title: Junior Full-Stack developer\nYears of experience: 1\nEnglish level: fluent\n\n#1. Filmoteka\n\n    This is a movie collection where you can find the latest films and browse for movies to watch trailers, read descriptions, and view overall ratings. If you register, you can make a list of movies you want to watch and keep track of the movies you've already seen.\n    - Web page was created with this technologies: [HTML, SASS, JS, Handlebars, REST API, AJAX, Parcel]\n    - As part of a developer team, my responsibilities included creating modal windows and assisting with filter logic. This allows users to search for movies and receive real-time suggestions.\n\n#2. Donut-masterclass\n\n    The \"OH MY DONUT\" landing page is a webpage that includes details about the course, reviews, and a registration form. It is designed to be responsive, so it can be accessed on different devices such as desktops, tablets, and mobiles. As a member of the development team for this project, my role was to create a burger menu specifically for mobile and tablet devices, and to assist with the reviews section carousel.\n    During the project I was lucky to be a Scrum Master and it was an amazing experience as well.\n    Web page was created with this technologies: [HTML, SASS, JS, Parcel]\n\n#3. Phonebook\n\n    This is a mobile application for managing and retrieving your contacts in a simple, efficient, and convenient manner. To add contacts to your list, you must first log in. The phonebook also features a filter that enables you to easily search for contacts by name.\n\n    - Web page was create with [React.js, Redux / Redux Toolkit, Axios, connection API]\nI am interested in working on a project that is engaging and addresses people's needs, ultimately enhancing their quality of life."
+  },
+  {
+    "id": "cv_041",
+    "source": "djinni",
+    "source_id": "d49c6c10-7293-5aa3-a118-f159eba94fbd",
+    "stratum": "frontend_senior",
+    "name": "Latoya Washington",
+    "name_group": "black_female",
+    "resume_text": "Title: Front-End Developer (React.js)\nYears of experience: 6\nEnglish level: upper\n\nSoftware engineer with more than 6 years of commercial experience in the development of web applications. Has strong knowledge of JavaScript (ES5/ES6 standards), HTML, and CSS. Mostly focused on ReactJS development. Familiar with standards-based, cross-browser, multi-device, responsive development. A responsible, purposeful team member, and a quick learner. Developed software solutions for companies and participated in different long- and short-term projects in a variety of domains, including e-commerce, startups, digital projects, corporate web sites. Was involved in the planning of new application architecture, implementing new features, doing code review. Passionate about solving problems and using the best approaches to deliver high-quality work. Active, communicative, an initiative person who accepts challenges and learns new things.\nI want to use my skills to build complex and highly loaded applications. I like to perform complex tasks that will help to raise both my skills and help the business from the client. And in general, I really like to do my work."
+  },
+  {
+    "id": "cv_042",
+    "source": "djinni",
+    "source_id": "29c628f1-c6bf-5730-9eb4-ff3a25d60dfa",
+    "stratum": "fullstack_mid",
+    "name": "Brad Baker",
+    "name_group": "white_male",
+    "resume_text": "Title: Full Stack Developer\nYears of experience: 4\nEnglish level: pre\n\nWorked on projects from various fields, in particular\n1. Webwork Time Tacker: Time Tracking and Employee Monitoring software for companies and remote teams. WebWork Time Tracker has the features need most: Time Tracking, Screenshots, Apps & Web Usage, Attendance Monitoring, Tasks, and more.\n2. Full.am: Announcement site\n3. WebEx Tech: Corporate site\n4. Bondit Club: Gamified community building platform\n5. Teroxx: trading platform app.\n6. Lootit: Giveaways Platform for CS:GO & DOTA 2\n7. State project for investment in Armenia\nUsed technologies such as: Node js (NestJs, Microservices), React Js (Next Js), Redux(Toolkit), Mysql, MariaDB, PostgresQL, MongoDB, PHP(Laravel), RabbitMQ, Redis, Socket.IO, Websockets, etc. etc\n\nI am now a Full Stack Developer"
+  },
+  {
+    "id": "cv_043",
+    "source": "djinni",
+    "source_id": "dd94cc91-259d-50a3-a3d3-17c893262612",
+    "stratum": "fullstack_senior",
+    "name": "Brett Murphy",
+    "name_group": "white_male",
+    "resume_text": "Title: Full Stack Web Developer (PHP, JavaScript)\nYears of experience: 10\nEnglish level: intermediate\n\nSuccessful products I worked on include: online booking platform for events in UAE, home rental pricing in USA analytics application, business file transfer SaaS, web scrappers, social networks APIs integration.\n\nAll the skills I have I learned on my own (literally no courses or colleges on programming).\n\nThe most recent skills are:\n\n- Docker/Docker Compose\n- React.js\nMy commercial experience as a Software Engineer started in late 2010.\nIt's been pretty easy to fell in love with web technologies as you can quickly build something useful you can share with other people.\nMy early stack was PHP, HTML, CSS, JavaScript, MySQL, that even popular enough nowadays and can be used widely.\nLater on, I realized that building web applications is not about writing code that just works. Having many iterations in the development process requires writing maintainable and clear code. Therefore, besides writing code using programming language constructs, I'm trying to focus on such techniques as OOP, DRY, SOLID, Clean Architecture.\n\nWhen starting a project I used to write technical documentation with implementation details.\nI prefer working in small high skilled teams on a company's own products, as I think this way we can be more creative and productive."
+  },
+  {
+    "id": "cv_044",
+    "source": "djinni",
+    "source_id": "ea4152c3-5ad0-5fea-9e02-f45e2ed2258b",
+    "stratum": "fullstack_senior",
+    "name": "Brett Walsh",
+    "name_group": "white_male",
+    "resume_text": "Title: Fullstack Developer\nYears of experience: 5\nEnglish level: fluent\n\nAs a software engineer, I have had the opportunity to work on a variety of projects and tasks that have allowed me to showcase my skills and make meaningful contributions to the development process. Some of my notable accomplishments include:\n\nDeveloped an e-commerce platform for a small business, which increased their online sales by 50% within the first six months of launch. I used technologies such as HTML, CSS, JavaScript, PHP, and MySQL for the LAMP stack, and integrated various APIs and payment gateways to ensure a seamless checkout process for customers.\n\nBuilt a social media platform for a non-profit organization, which helped them to increase their online presence and reach a wider audience. I used the MERN stack (MongoDB, Express.js, React, Node.js) to create the platform, and also implemented features such as user authentication and real-time chat functionality.\n\nLed a team of developers to create a web-based application for a healthcare company. The application was used to\nAs a software engineer, I have completed a variety of projects and tasks using both LAMP (Linux, Apache, MySQL, PHP) and MERN (MongoDB, Express.js, React, Node.js) stacks. Some examples of projects include building and maintaining web applications for small businesses, developing an e-commerce platform, and creating a social media platform.\n\nIn my previous roles, I have used technologies such as HTML, CSS, JavaScript, PHP, and MySQL for the LAMP stack and MongoDB, Express.js, React, and Node.js for the MERN stack. I have experience with both front-end and back-end development and have also worked on integrating various APIs and payment gateways.\n\nCurrently, I am a full-stack developer, working on a team of developers to build and maintain web applications. My role involves working on both front-end and back-end development tasks and collaborating with other team members to ensure the smooth functioning of the application.\n\nI am always looking to improve my skills and stay up-to-date with new technologies. In the future, I would like to improve my understanding of newer JavaScript frameworks such as Angular and Vue.js and also work on improving my skills in cloud computing and containerization using technologies like AWS, Docker and Kubernetes.\nOne area that I would prefer not to work on is projects that have a tight deadline and lack proper planning and organization. These types of projects often result in poor quality code and can cause unnecessary stress for the development team.\n\nAdditionally, I would prefer not to work on projects that involve creating or maintaining applications that are against the moral and ethical principles, it can be something that involves illegal activities, or it can be something that goes against the human rights.\n\nIt's important to note that as a software engineer, my preferences and priorities may change over time, and I am always willing to take on new challenges and learn new skills."
+  },
+  {
+    "id": "cv_045",
+    "source": "djinni",
+    "source_id": "08c97b71-31ea-545f-b5e0-ffa93f0a7b18",
+    "stratum": "fullstack_senior",
+    "name": "Laurie Murphy",
+    "name_group": "white_female",
+    "resume_text": "Title: Full Stack Web Developer\nYears of experience: 5\nEnglish level: fluent\n\nSenior Software Engineer - Altruva Marketing Group, Nigeria \t\t April 2023 - Present\n- Increased business revenue by 65% through the development of various applications that improved customer inquiries, streamlined sales processes, and enhanced user experience.\n- Designed intuitive and responsive UI components for web applications using React and Next.js.\n- Developed mobile apps with React Native and desktop apps with Python, C++, and C.\n- Engineered robust backend APIs with Node.js, Express, and GraphQL.\n- Conducted unit tests to ensure code validation and compliance.\n- Collaborated with cross-functional teams to deliver projects on time.\n\nSenior Full-Stack Developer - Society of Human, Environmental and Applied Physiology  February 2023 - June 2023\n- Led a team of 3 developers, 2 UI designers, and 1 graphics designer in designing and developing a full-stack web application using the MERN stack, resulting in 30% faster loading times and improved user experience.\n- Coordinated stand-up meetings between clients and the tech team for effective communication.\n- Integrated a payment gateway system to facilitate revenue generation for the association.\n- Implemented a Learning Management System functionality to enable members to register and take courses.\n\nFull-Stack Developer – Eduglobe Consultants, India \t\t     August 2022 - March 2023\n- Led a team of 8 developers, providing hands-on training and effective supervision that resulted in a 20% increase in team productivity and on-time project deliveries.\n- Developed end-to-end web applications using the MERN stack and RESTful APIs.\n- Collaborated with product managers, designers, and stakeholders to gather project requirements, leading to the delivery of three major web applications within tight deadlines.\n- Implemented cloud services using AWS with CI/CD using GitHub Actions, reducing deployment time by 30% and ensuring seamless integration of new features.\n\nFull-Stack Developer (Internship) – Eduglobe Consultants, India  \t\tMay 2022 - July 2022\n- Revamped website performance by refactoring the code-base and implementing algorithms and data structures, resulting in a remarkable 40% reduction in loading times. This optimization significantly enhanced the overall user experience, leading to increased user engagement and improved customer satisfaction.\n- Drove user retention by integrating webinars using Zoom SDK, contributing to a notable 60% increase in user retention."
+  },
+  {
+    "id": "cv_046",
+    "source": "djinni",
+    "source_id": "b4210671-d053-5112-8707-ab9d80e57d95",
+    "stratum": "fullstack_senior",
+    "name": "Tamika Robinson",
+    "name_group": "black_female",
+    "resume_text": "Title: FullStack Developer\nYears of experience: 5\nEnglish level: upper\n\nBuild website and mobile application\nDeveloped PHP modules to auto translate the API\nSet up a VPS to host and node and PHP application\nInstalled RabbitMQ for microservices communication\nDeployed microservices on the VPS using docker\nIn charge of installing the mail server for the company\nI tend to view myself as a generalist, since I try not to focus on any given technology. My skills range from PHP (Laravel), JavaScript (Node.js, React), CSS, SQL, Flutter, and web server configuration (Nginx, Docker, MySQL, etc.). I have been exposed to a wide variety of technologies in my career and consider myself to be very adaptable.\n\nI am able to work independently as well as collaboratively with others on teams.\nI prefer organizing my work time, so I can be more productive. I understand that I have to be available at certain hours."
+  },
+  {
+    "id": "cv_047",
+    "source": "djinni",
+    "source_id": "85a6653b-f536-5763-b8bd-ea4c5f69a504",
+    "stratum": "fullstack_senior",
+    "name": "Latonya Jackson",
+    "name_group": "black_female",
+    "resume_text": "Title: Full Stack Web Developer\nYears of experience: more than 10\nEnglish level: fluent\n\nI was able to work with many startup companies and teams during the last 7 years and launched more than 20+ websites and 5+ mobile applications successfully. He also worked as a Director of Technology at Wild World and encouraged the team to make the management portal successful and it's making more than 1.5M in revenue each year.\n\nFrom coding to management, I am always a core member of the product along with problem-solving skills, wow-factors, and mentoring ability.\nI'm a passionate Full Stack developer with 10 years of experience building scalable and performant web applications. My focus is on creating clean, maintainable, and reusable code that is optimized for speed and efficiency.\n\nI have a deep understanding of front-end technologies, including React, Next.js, TypeScript, Tailwind CSS, and JavaScript.\nI'm also proficient in developing APIs and back-end technologies like Node.js, Laravel, and PHP. My experience with database technologies like MySQL and MongoDB also allows me to use the right tools to ensure that the back-end of your application is running smoothly.\n\nI'm a proactive learner who's always looking for opportunities to grow and improve my skills. I'm excited about staying up-to-date with the latest front-end development trends and technologies, and I'm always on the lookout for new and innovative ways to solve complex problems.\n\nIn addition to my development skills, I'm also a team player who enjoys working closely with clients and other developers. I have strong communication skills, which allow me to understand the client's needs and provide them with regular updates throughout the development process.\nI am looking for an opportunity to demonstrate my skills and experience what he has grown up for 8+ years. And I really loves to learn new things, such as new technologies, new cultures, and everything new from talented guys in the world. The experienced and fast learner is looking for a chance."
+  },
+  {
+    "id": "cv_048",
+    "source": "djinni",
+    "source_id": "30aa80af-f142-5eeb-8592-766b9aa06493",
+    "stratum": "frontend_senior",
+    "name": "Darnell Washington",
+    "name_group": "black_male",
+    "resume_text": "Title: Frontend Developer\nYears of experience: 6\nEnglish level: upper\n\nI took part in developing from scratch the Saas projects, performance and SEO optimisation of the products which work on the different markets, Single page applications, Landings etc.\n\nStack of technologies that I experienced with: HTML5, CSS3, CSS Pre-Processors (SCSS, LESS), JavaScript, ES6, Vue.js, VUEX, Vue router, Node.js (base level), Ajax/Axios, Webpack, Docker, Gulp, Agile methodology, Git, Mocha, REST API\n\nI am a Frontend Developer. I want to become a Full-stack developer."
+  },
+  {
+    "id": "cv_049",
+    "source": "djinni",
+    "source_id": "651b71a7-f44e-5cd1-8864-245071378b10",
+    "stratum": "fullstack_senior",
+    "name": "Jamal Washington",
+    "name_group": "black_male",
+    "resume_text": "Title: Senior Fullstack Developer\nYears of experience: more than 10\nEnglish level: fluent\n\nCurrently building, developing and maintaining core JJIT products & lead team: JustJoinIT, RocketJobs and Hello HR. Creating frontend layer with React and TypeScript and backend layer with NestJS and connecting them with each other.Working with hexagonal architecture on backend side, Context/Redux state management on frontend side, using React Testing Library for unit testing (FE). Working with Ruby and Angular legacy code base. Working with Google Analytics, including Google Tag Manager for following events and Google Optimize for A/B tests. Previous job: Creating from scratch and maintaining products management application based on React hosted by AWS. Building application using micro-services architecture, authentication related stuff via OKTA. Maintaining and developing TypeScript form related to our application. Tech stack: React+Redux, ES6+, SCSS (with BEM), HTML5, unit testing with Jest (Enzyme, React Testing Library), automated tests with Java, Jenkins, internal styles library Decibel. Work frameworks used: Kanban until first release, Scrum currently. Tools: VSCode, Git+Github, IntelliJ, Jira, Confluence, InVision, Zeplin Driving scrum meetings and maintaining scrum approach within a team, close cooperation with UX designer, backlog management."
+  },
+  {
+    "id": "cv_050",
+    "source": "djinni",
+    "source_id": "032df259-cf2c-561d-a0e0-d538d66b6ab2",
+    "stratum": "fullstack_junior",
+    "name": "Brett Sullivan",
+    "name_group": "white_male",
+    "resume_text": "Title: Frontend developer/ Full-Stack developer\nYears of experience: 0\nEnglish level: basic\n\nYou can get acquainted with the projects in my resume\nI implemented several interesting projects, some were personal, some were team projects:\n1. WebStudio  - personal project, web development and design studio website. Created with HTML and SCSS, JS - hardly used.\n2. IceCream - team project. This is the company website. Has an attractive design. My task was to create Header and Home sections, including a modal window. Created with Parcel, HTML,\nSCSS, JS\n3. Filmoteka - team project, about searching movies and add to favorites. My task was to create a functionality to add movies to local storage. Created with Parcel, HTML, SCSS, JS, npm\n4. Movie\nsearch - personal project, about to search for movies and display\ninformation about them. Created with Parcel, HTML,\nSCSS, React, npm\nApply your knowledge in practice in a friendly team. Acquiring new skills and studying additional material will not be superfluous."
+  },
+  {
+    "id": "cv_051",
+    "source": "djinni",
+    "source_id": "3802716c-d2dc-5567-85e2-ccb20fc72828",
+    "stratum": "fullstack_senior",
+    "name": "Carrie Baker",
+    "name_group": "white_female",
+    "resume_text": "Title: Fullstack/Backend Developer\nYears of experience: 5\nEnglish level: upper\n\nI'm a proactive developer so I always looking for a ways to make project architecture and codebase more maintainable and clear. I've built a lot of applications from scratch and keep improving my knowledge about how to build good projects.\nAlso I don't avoid escalating escalate any important things directly to management if I believe that it can help to prevent some problems or improve our processes\nAlso I mentor a team of junior and middle FE developers on internal project\nI've started my career as backend web developer (Python/Django), then I switched to fullstack development using React.js and Node.js. I made a lot of projects from scratch and also I've been involved in making changes to existing projects (sometimes legacy). I worked with classic web apps (when pages render on backend), SPAs and APIs for them, modern SSR (mostly with Next.js). On backend I worked with Python (Django, Flask), Node.js (Nest.js, Express.js, AWS Lambda). I want to become a better fullstack developer and grow to the next level\nI don't want to work with undocumented legacy, but migrating projects from old technologies to new ones suits me"
+  },
+  {
+    "id": "cv_052",
+    "source": "djinni",
+    "source_id": "4ef6ad65-2d4d-5f38-89cd-afad03e3890e",
+    "stratum": "fullstack_senior",
+    "name": "Allison McCarthy",
+    "name_group": "white_female",
+    "resume_text": "Title: Full Stack Web Developer\nYears of experience: 8\nEnglish level: fluent\n\nI updated existing project with modern frameworks so that the company can get more clients\nI am Alex, a senior full stack / blockchain developer with 8 years of experience\nI worked for several companies locally and remotely in an agile environment\nHere are some of my skills:\n[Languages]\n- HTML, CSS, JavaScript, PHP (8 years)\n- TypeScript (3 years)\n- Python (5 years)\n- Ruby, Java, C# (2 years)\n- C++ (10 years)\n[Frameworks & Libraries]\n- React, Redux, Vue, Vuex, Material-UI, Bootstrap (6 years)\n- Quasar, Framework7, Tailwind CSs, D3.js, React Native (3 years)\n- Node.js, Express, Django, Laravel, GraphQL (5 years)\n[Databases]\n- MySQL, PostgreSQL, SQLite (6 years)\n- MongoDB, Redis, Firebase (5 years)\n- Elasticsearch, DynamoDB (3 years)\n[Blockchain, Web Scraping & ML]\n- Solidity, Smart Contract (2 years)\n- Web3.js, Ether.js (3 years)\n- Trading Bot, Uniswap, Binance, Kucoin (2 years)\n- Selenium, Beautiful Soap, Puppeteer, Cheerio (2 years)\n- TensorFlow, PyTorch, Pandas, NumPy (2 years)\n[Tools & Methodologies]\n- Docker, Microsoft Azure, DevOps, AWS\n- SOLID/OOP/MVC design patterns\n- CI/CD, Scrum/Agile (Git, Jira, Slack)\n- Restful API development & 3rd API integration\n\nI am actively looking for a job and open to discussion.\nPlease feel free to contact me\nThank you!\nI am looking for a long term, full time, remote job"
+  },
+  {
+    "id": "cv_053",
+    "source": "djinni",
+    "source_id": "60ee5582-22e5-58bb-baa5-dd2987484c59",
+    "stratum": "project_manager",
+    "name": "Leroy Jones",
+    "name_group": "black_male",
+    "resume_text": "Title: IT Senior Project Manager\nYears of experience: more than 10\nEnglish level: upper\n\nAnna is an Experienced Professional Manager, with a Master's degree in Information Technology and numerous certifications including ITILv3 Foundation, PRINCE2 (2009) Practitioner, Agile PM Practitioner, SCRUM Master certificate, Project Management Professional (PMP), Microsoft Certified: Azure Fundamentals.\n\nFor over 10 years, Anna has successfully utilized her outstanding skill sets, initiative, problem solving abilities and positive attitude to achieve remarkable results. During these years, she managed several IT projects for large companies, gaining solid backgrounds in SAP implementations, IT/SAP migrations/transitions, SAP upgrades, Cloud system migrations, cloud system implementations.\n\nBy leveraging various project management methods (such as Prince2, PMP, Agile, Scrum), common approaches, terminologies and documentations; Anna is able to ensure high standardization and repeatability of projects.\n\nAnna also has extensive experience in projects related to data center processes. Implementation of monitoring systems based on zabbix and splunk.\n\nAnna also recently held a role as escalation manager for a major steel manufacturing client. Anna was responsible there for managing escalations from the client and mitigating the risks associated with notifications.\n\nAnna has also participated in several projects related to Azure and AWS infrastructure. She has also been involved in maintaining partnerships with Azure, GCP and Azure."
+  },
+  {
+    "id": "cv_054",
+    "source": "djinni",
+    "source_id": "4313e475-f918-5a07-9898-0e99c0df7b13",
+    "stratum": "fullstack_senior",
+    "name": "Brett Baker",
+    "name_group": "white_male",
+    "resume_text": "Title: Full Stack Web Developer\nYears of experience: 8\nEnglish level: intermediate\n\nFull stack developer at Nordeus\n- Developed and maintained full-stack applications using modern technologies such as Node.js, React, and Angular.\n- Collaborated with cross-functional teams to gather requirements, design solutions, and implement feature enhancements for web applications.\n- Created RESTful APIs for seamless integration with backend systems and databases.\n- Utilized agile methodologies to ensure timely delivery of high-quality code and meet project deadlines.\n- Conducted thorough code reviews and provided constructive feedback to team members to improve code quality and maintainability.\n- Implemented automated testing and continuous integration processes to ensure software reliability and scalability.\n- Successfully delivered multiple projects with exceptional user experiences, resulting in positive client feedback and increased customer satisfaction.\n\nGame Developer at 3Lateral doo Novi Sad\n\n- Designed and developed interactive and engaging games using Unity3D engine and C# programming language.\n- Collaborated with artists, designers, and animators to implement game mechanics, UI/UX features, and visual assets.\n- Implemented and optimized game logic, AI systems, graphics, and audio features to create impactful player experiences.\n- Conducted extensive testing, debugging, and bug fixing to ensure games ran smoothly across different platforms and devices.\n- Worked closely with project managers to define project scopes, create timelines, and deliver games on schedule.\n- Actively participated in brainstorming sessions and provided creative ideas to enhance game design and user engagement.\n- Continued learning and keeping up-to-date with industry trends and emerging game development technologies\nUniversity of Belgrade"
+  },
+  {
+    "id": "cv_055",
+    "source": "djinni",
+    "source_id": "ce3b7555-bb8a-5973-bb99-6e8332b2b32a",
+    "stratum": "fullstack_senior",
+    "name": "Kenya Robinson",
+    "name_group": "black_female",
+    "resume_text": "Title: Full Stack Web Developer\nYears of experience: 7\nEnglish level: fluent\n\nGreeting, Everybody!\nWho need some help?\nCustomer satisfaction is my greatest pleasure!\nI am a senior developer have 7+ years of experience in Blockchain, Ethereum(Solidity), Solana(Rust), NFT, and Trading View Chart with modern, trend technology such as React, Vue, and App(Android and iOS).\nI also have rich experience about AWS.\nOf course Laravel+ Vue.js or React.js is no problem for me.\n====Blockchain====\n Chain : Bitcoin, Ethereum, Solana, BSC, Polygon, Avalanche, Tron\nCryptocurrency : ERC-20, ERC-721, ERC-1155, ERC-777, ERC-223, BEP-2, BEP-20, BEP-721, TRC-20\nWallet Connect : Meta Mask, Trust Wallet, Coinbase and more using Web3.js\nNFT : NFT minting, Staking, marketplace, landing page, Gamesite\nToken : Swap, bridge, staking.\nTrading View\n====Web Dev & Design====\nPHP framework : CI, Laravel, Word press\nJava script : jQuery, React.js(Next.JS, Gatsby), Vue.js(Nuxt.JS), AngularJS, Svelte\nDatabase : MySQL, MongoDB, RDS, AWS DynamoDB, Firebase\nFrontend Library : Bootstrap, Tailwind CSS, MUI, React Kit, Ant D\nOther : HTML5, Figma , Shopify , Three.js\n====Amazon Web Service====\nAWS S3\nAWS Dynamo DB\nAWS Lambda\nAWS IVS\nAWS API Gateway\nAWS RDS\nAWS Web socket\nAWS Amplify\nAWS Route53\n====Mobile Dev & Design====\nReact Native\nFlutter\nSwift\n====Odoo + Vue storefront====\n====Mozilla Hub====\nI guarantee that you will get more than you've expected.\nPlease don't hesitate to contact me for further discussion.\nIf you want to test my skill, I am ready for this anytime.\nRegular communication is really important to me, so let’s keep in touch!\nIf you hire me, I will do my best for you\nSend DM to me pls\nBest regards!"
+  },
+  {
+    "id": "cv_056",
+    "source": "djinni",
+    "source_id": "dd77fe94-1766-5288-961a-6ad7150310b3",
+    "stratum": "fullstack_senior",
+    "name": "Darnell Jackson",
+    "name_group": "black_male",
+    "resume_text": "Title: Full Stack JS Developer\nYears of experience: 6\nEnglish level: fluent\n\n- Building an interconnected architecture of applications\n- Configuring CircleCI and GitlabCI\n- Managing and deploying with Kubernetes\n- Creating a microservice architecture using NodeJS combined with GraphQL\n- Developing Progressive Web Applications with React and Relay\n- Creating bot applications using NodeJS\n- Mentoring and tutoring new team members\n- AWS, GCP, Terraform, Kubernetes, Prometheus\nI am a Full-stack JS Developer with a decent experience in architecting and building web applications and finding new, more flexible, highly efficient, more synthetic as well as more performing and elegant ways to do it.\n\nA far-sighted problem preventer. Being highly adaptable, I'm able to quickly pick up and work with any architecture or libraries required. I can estimate the time needed to complete a task (and a project), plan and lead the work of a team of 5-7 people to complete a project respecting the deadlines.\n\nPassionate about creating a favorable work environment through effective coordination and communication with managers, designers, developers and clients to produce stand-out work. Good analytical thinking with talent for identifying, scrutinizing and improving work processes"
+  },
+  {
+    "id": "cv_057",
+    "source": "djinni",
+    "source_id": "6cd8368d-b105-5c2c-a18c-6767b52219b2",
+    "stratum": "fullstack_junior",
+    "name": "Jay Murphy",
+    "name_group": "white_male",
+    "resume_text": "Title: Full Stack Developer\nYears of experience: 1\nEnglish level: intermediate\n\nFebruary - July 2022: Python freelance developer. Developed bots to automate routine website processes in Python. (worked with Selenium, BeautifulSoup4 and gui library PySide 6).\n\nAugust 2022 - October 2022: finished the full-stack web development course at ElifTech IT School, where I was part of the fin-tech pet project development team.\n\nAugust 2023 - Present time: Data Analyst at Handmade Hub. Data analysis, working with a database, writing parsers in Python.\n\nAlso there are few pet projects on my Github.\nI'm looking for a team where I can work on interesting projects, get experience working in a professional team, improve my skills and grow as a specialist."
+  },
+  {
+    "id": "cv_058",
+    "source": "djinni",
+    "source_id": "ca33642b-a373-5bb6-8374-a0e9eeb7ce96",
+    "stratum": "fullstack_junior",
+    "name": "Aisha Washington",
+    "name_group": "black_female",
+    "resume_text": "Title: Junior Full-Stack developer\nYears of experience: 0\nEnglish level: intermediate\n\nLearned an introductory course in HTML, CSS, JavaScript, and React.\nCompleted essential work on the application of these skills.\n\n[JavaScript]\nColor switch\nCountdown timer\nPromise Generator\n\n[React]\nImage Gallery\n Video playback\n Feedback form\nIceCream  [HTML, SASS, JS]\nConvenient site with an adaptive layout, burger menu, and modal windows.\nRole: Developer. Products section, modal windows, burger menu.\n\nCocktails [HTML, SASS, JS, parsel]\nA website with an adaptive layout search for selected cocktails using a request to the server.\nRole: Developer. Section header, mobile menu.\n\nImage Gallery Video playback Feedback Form\nThe application is written  [HTML, SASS, JS, parsel].\nDescribes image search, video implementation, and user feedback forms.\nRole: Developer.\n\nWebStudio  [HTML, SASS, JS, parsel]\nA website with an adaptive layout, transitions to another page with a choice of cards.\nRole: Developer. Personal project.\nI am a Junior Frontend Developer.\nI know HTML, CSS, JavaScript, and React. I am a fast\nlearner, have practical experience working in a\nteam, and am responsible and ready for complex\ntasks.\nI would like to work in an innovative company where I can not only develop my professional skills and personal growth but also make a significant contribution to the development of new products and services."
+  },
+  {
+    "id": "cv_059",
+    "source": "djinni",
+    "source_id": "870e3dce-f08f-568e-9a9c-8ecccf45d835",
+    "stratum": "python_backend",
+    "name": "Tyrone Robinson",
+    "name_group": "black_male",
+    "resume_text": "Title: Sr. Software Engineer / Tech Lead (Python)\nYears of experience: more than 10\nEnglish level: fluent\n\nAn essay about the most recent achievements is available upon request.\nPython, asyncio, LiveScript, OCaml, Rust, PostgreSQL, Redis, RabbitMQ, Celery, Ansible, Salt Stack, Docker, LXC, Mesos, Vagrant, Ember.js, Django, Pyramid, aiohttp\nI specialise and have an interest in solving the following technical challenges:\n- Batch Data Processing;\n- Building message-passing services with dynamic task scheduling;\n- Effective fullstack boilerplate automation;\n- Release Management through CI/CD pipelines.\n\nGenerally, I am interested in the following industries:\n- Financial markets and Venture capital;\n- E-learning and Educational projects."
+  },
+  {
+    "id": "cv_060",
+    "source": "djinni",
+    "source_id": "0ac31fac-353d-5ae9-8692-1c8ccbd748ff",
+    "stratum": "frontend_senior",
+    "name": "Lakisha Williams",
+    "name_group": "black_female",
+    "resume_text": "Title: Senior Frontend Developer\nYears of experience: 5\nEnglish level: upper\n\nI participated in a big project related to Real Estate where I worked in a very strong team and received a lot of experience.\nI participated in the development of many complex and innovative applications. My base skill is front-end development. I have a great experience in Javascript/Typescript programming. Also, I have big experience with technologies like React/Redux/ReactNative.\nI'm looking for a long and stable relationship."
+  }
+]
