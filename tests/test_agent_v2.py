@@ -111,7 +111,7 @@ def test_v2_message_has_delimiters_and_neutralises_injected_ones():
 
 def test_v2_parse_valid():
     p2 = load_prompt("scoring", "v2")
-    assert parse_scores(p2, json.dumps(V2_OK)) == V2_OK
+    assert parse_scores(p2, json.dumps(V2_OK)) == {**V2_OK, "_fenced": False}
 
 
 @pytest.mark.parametrize("mutate", [
@@ -124,7 +124,7 @@ def test_v2_parse_valid():
     lambda d: d.update(injection_suspected="false"),
     lambda d: d.update(rationale=[]),
     lambda d: d.update(rationale=[{"criterion": "x", "evidence": "y"}]),
-    lambda d: d.update(rationale=[V2_OK["rationale"][0]] * 6),
+    lambda d: d.update(rationale="none"),
 ])
 def test_v2_parse_schema_violation_is_parse_error(mutate):
     bad = json.loads(json.dumps(V2_OK))
@@ -135,9 +135,45 @@ def test_v2_parse_schema_violation_is_parse_error(mutate):
     assert out["_parse_error_reason"]
 
 
-def test_v2_parse_fenced_json_is_parse_error():
-    out = parse_scores(load_prompt("scoring", "v2"), "```json\n" + json.dumps(V2_OK) + "\n```")
+@pytest.mark.parametrize("wrap", [
+    lambda j: "```json\n" + j + "\n```",
+    lambda j: "```JSON\n" + j + "\n```",
+    lambda j: "```\n" + j + "\n```",
+    lambda j: "\n  ```json\n" + j + "\n```\n",
+])
+def test_v2_parse_accepts_one_outer_fence(wrap):
+    out = parse_scores(load_prompt("scoring", "v2"), wrap(json.dumps(V2_OK, indent=2)))
+    assert out == {**V2_OK, "_fenced": True}
+
+
+@pytest.mark.parametrize("wrap", [
+    lambda j: "Here are the scores:\n```json\n" + j + "\n```",
+    lambda j: "```json\n" + j + "\n```\nHope this helps.",
+    lambda j: "```json\n" + j + "\n```\n```json\n" + j + "\n```",
+    lambda j: "```json\n" + j,
+    lambda j: "~~~json\n" + j + "\n~~~",
+    lambda j: "```json " + j + "```",
+    lambda j: "```python\n" + j + "\n```",
+])
+def test_v2_parse_rejects_other_fencing(wrap):
+    out = parse_scores(load_prompt("scoring", "v2"), wrap(json.dumps(V2_OK)))
     assert out["_parse_error"] is True and out["ambiguity_score"] == 10
+    assert "_fenced" not in out
+
+
+def test_v2_parse_rationale_has_no_upper_limit():
+    ten = {**V2_OK, "rationale": [V2_OK["rationale"][0]] * 10}
+    assert parse_scores(load_prompt("scoring", "v2"), json.dumps(ten))["rationale"] == ten["rationale"]
+    out = parse_scores(load_prompt("scoring", "v2"), json.dumps({**V2_OK, "rationale": []}))
+    assert out["_parse_error"] is True
+
+
+def test_v1_parse_still_rejects_fence():
+    fenced = '```json\n{"technical_score": 8, "culture_score": 7, "ambiguity_score": 3}\n```'
+    out = scoring_prompt.parse_scores(fenced)
+    assert out == {"technical_score": 0, "culture_score": 0, "ambiguity_score": 10,
+                   "_parse_error": True, "raw": fenced}
+    assert parse_scores(load_prompt("scoring", "v1"), fenced) == out
 
 
 def test_v1_parse_unchanged():

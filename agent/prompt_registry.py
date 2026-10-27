@@ -29,6 +29,9 @@ _DELIMITER_RE = re.compile(
     r"<\s*/?\s*(?:" + "|".join(_DELIMITER_TAGS) + r")\b[^<>]*>", re.IGNORECASE
 )
 
+# v2 accepts exactly one outer markdown fence: ``` or ```json, nothing outside it.
+_FENCE_RE = re.compile(r"\A```(?:json)?[ \t]*\n(.*)\n```\Z", re.DOTALL | re.IGNORECASE)
+
 _SCORE_KEYS = ("technical_score", "culture_score", "ambiguity_score")
 _RATIONALE_KEYS = ("criterion", "evidence", "assessment")
 
@@ -140,8 +143,8 @@ def _v2_schema_error(scores: Any) -> str | None:
         if not _is_int(scores.get(key)) or not 1 <= scores[key] <= 10:
             return f"{key} must be an integer 1-10"
     rationale = scores.get("rationale")
-    if not isinstance(rationale, list) or not 1 <= len(rationale) <= 5:
-        return "rationale must be a list of 1-5 items"
+    if not isinstance(rationale, list) or not rationale:
+        return "rationale must be a non-empty list"
     for item in rationale:
         if not isinstance(item, dict) or not all(isinstance(item.get(k), str) for k in _RATIONALE_KEYS):
             return "each rationale item needs string criterion, evidence, assessment"
@@ -150,20 +153,36 @@ def _v2_schema_error(scores: Any) -> str | None:
     return None
 
 
+def _unfence(raw: Any) -> tuple[Any, bool]:
+    """Strip exactly one outer ``` / ```json fence; anything else is returned unchanged."""
+    if not isinstance(raw, str):
+        return raw, False
+    m = _FENCE_RE.match(raw.strip())
+    if m is None or "```" in m.group(1):
+        return raw, False
+    return m.group(1), True
+
+
 def parse_scores(prompt: PromptVersion, raw: str) -> dict[str, Any]:
     """Strict parse, exactly as the agent does it.
 
-    Anything that is not a bare JSON object (for example JSON wrapped in a
-    markdown code fence) is a parse error, scored technical 0 / culture 0 /
-    ambiguity 10, which `decide` turns into a reject. For resume_text_v2 the
-    output must also match the v2 schema; a violation is a parse error too.
+    fields_v1: anything that is not a bare JSON object (for example JSON
+    wrapped in a markdown code fence) is a parse error, scored technical 0 /
+    culture 0 / ambiguity 10, which `decide` turns into a reject.
+    resume_text_v2: the reply may be wrapped in exactly one outer ``` or
+    ```json fence (recorded as `_fenced`); text outside it, a second fence or
+    an unclosed fence is a parse error. The output must also match the v2
+    schema; a violation is a parse error too.
     """
+    is_v2 = prompt.input_format == INPUT_FORMAT_RESUME_TEXT_V2
+    text, fenced = _unfence(raw) if is_v2 else (raw, False)
     try:
-        scores = json.loads(raw)
+        scores = json.loads(text)
     except (ValueError, TypeError):
         return _parse_failure(raw)
-    if prompt.input_format == INPUT_FORMAT_RESUME_TEXT_V2:
+    if is_v2:
         reason = _v2_schema_error(scores)
         if reason:
             return _parse_failure(raw, reason)
+        scores["_fenced"] = fenced
     return scores
