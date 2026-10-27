@@ -26,7 +26,7 @@ Messages are built by `agent/prompt_registry.py`, exactly as the agent's `score_
   `prompt_registry.parse_scores` (one outer fence accepted and recorded as `_fenced`; schema checked).
   The harness does not repair outputs. Haiku 4.5 fences its JSON, so expect v1 parse errors on Haiku:
   that is a real finding about the v1 agent.
-- Max output tokens: 300 for v1, 600 for v2 (rationale). Recorded in `run_meta.json`.
+- Max output tokens: 300 for v1, 1200 for v2 (rationale; 600 truncated Haiku and Gemini replies in the pilot). Recorded in `run_meta.json`.
 
 ## Running
 

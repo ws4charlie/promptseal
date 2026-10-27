@@ -40,7 +40,7 @@ from agent import prompt_registry  # noqa: E402
 from agent.scoring_prompt import SCORED_FIELDS  # noqa: E402
 
 MAX_OUTPUT_TOKENS = 300      # v1: three integers only
-MAX_OUTPUT_TOKENS_V2 = 600   # v2: scores plus a rationale with evidence quotes
+MAX_OUTPUT_TOKENS_V2 = 1200  # v2: scores plus a rationale; 600 truncated Haiku/Gemini replies in the pilot
 CHARS_PER_TOKEN = 3.5        # conservative input-token estimate for the budget check
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
