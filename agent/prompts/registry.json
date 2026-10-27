@@ -1,0 +1,18 @@
+{
+  "scoring": {
+    "active": "v2",
+    "versions": {
+      "v1": {
+        "file": "scoring/v1.md",
+        "sha256": "e922ceaf903f955475d66f034db72479d0f0bbe9cb34ad61ce5da48e2f1bbecd",
+        "input_format": "fields_v1"
+      },
+      "v2": {
+        "file": "scoring/v2.md",
+        "sha256": "d0959949c44254d17ad3087d8bec6dc0ddfb777b01878ca7baceef9250b3a48c",
+        "input_format": "resume_text_v2"
+      }
+    },
+    "model_overrides": {}
+  }
+}

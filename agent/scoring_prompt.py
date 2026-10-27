@@ -1,20 +1,18 @@
-"""The scoring prompt and output parsing used by the `score_candidate` tool.
+"""The v1 scoring prompt and output parsing (`scoring/v1` in the prompt registry).
 
-Kept free of LangChain imports so the evaluation harness (`eval/`) can run the
-exact same prompt and the exact same parsing rule as the agent, without
-installing the agent's dependencies. `agent/tools.py` imports from here, so
-there is a single source of truth.
+Kept free of LangChain imports so the v1 evaluation harness (`eval/`) can run the
+exact same prompt and the exact same parsing rule as the agent. The prompt text
+is loaded from `agent/prompts/scoring/v1.md` via `agent/prompt_registry.py`, the
+single source of truth; newer versions are used through the registry directly.
 """
 from __future__ import annotations
 
-import json
 from typing import Any
 
-SCORING_SYSTEM_PROMPT = (
-    "You are a senior technical interviewer. Score the candidate on three axes "
-    "(integers 1-10): technical_score, culture_score, ambiguity_score. "
-    "Return ONLY valid JSON with those three keys, no other text."
-)
+from . import prompt_registry
+
+SCORING_PROMPT_V1 = prompt_registry.load_prompt("scoring", "v1")
+SCORING_SYSTEM_PROMPT = SCORING_PROMPT_V1.text
 
 # Fields the agent passes to the scorer (see score_candidate's signature).
 SCORED_FIELDS = ("name", "yoe_react", "yoe_python", "education", "highlights")
@@ -22,7 +20,9 @@ SCORED_FIELDS = ("name", "yoe_react", "yoe_python", "education", "highlights")
 
 def build_user_message(parsed: dict[str, Any]) -> str:
     """The human-turn text sent to the scoring model."""
-    return "Candidate resume:\n" + json.dumps(parsed, indent=2, ensure_ascii=False)
+    return prompt_registry.build_user_message(
+        SCORING_PROMPT_V1, name=parsed.get("name", ""), job_description=None, fields=parsed
+    )
 
 
 def parse_scores(raw: str) -> dict[str, Any]:
@@ -32,17 +32,7 @@ def parse_scores(raw: str) -> dict[str, Any]:
     markdown code fence) is treated as a parse error and scored as
     technical 0 / culture 0 / ambiguity 10, which `decide` turns into a reject.
     """
-    try:
-        scores = json.loads(raw)
-    except (ValueError, TypeError):
-        return {
-            "technical_score": 0,
-            "culture_score": 0,
-            "ambiguity_score": 10,
-            "_parse_error": True,
-            "raw": raw,
-        }
-    return scores
+    return prompt_registry.parse_scores(SCORING_PROMPT_V1, raw)
 
 
 def decide_rule(technical_score: int, culture_score: int, ambiguity_score: int) -> str:
