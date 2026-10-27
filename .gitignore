@@ -37,3 +37,6 @@ notes/
 
 # OS
 .DS_Store
+
+# eval raw outputs (commit report.md deliberately instead)
+eval/results/*/calls.jsonl

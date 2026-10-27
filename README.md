@@ -141,6 +141,27 @@ cp .env.example .env              # fill in LLM + Base Sepolia keys
 
 Or just visit the [live deployment](https://prompt-seal.vercel.app).
 
+## Evaluation of the scoring step
+
+A small, pre-registered smoke test of the demo agent's `score_candidate` step: the exact agent prompt and pass/reject rule, run on three models. It is not a benchmark. Details and how to re-run: [`eval/README.md`](eval/README.md); full results: [`eval/results/run1/report.md`](eval/results/run1/report.md).
+
+**Setup.** 33 synthetic resumes: 24 base, 6 name-swap variants (same text, different name) and 3 prompt-injection variants. Reference labels (PASS / REJECT / BORDERLINE) were committed in `08a9161` before any model ran. Each model was called 3 times per resume at temperature 0 (297 calls, 0 API errors). Accuracy is measured on the 17 non-borderline base resumes.
+
+| Model | Accuracy (95% Wilson CI) | False passes | False rejects | Est. cost of the run |
+|---|---|---|---|---|
+| gpt-4o-mini | 94% (84–98%) | 0 | 3 | $0.004 |
+| gpt-4.1-mini | 100% (93–100%) | 0 | 0 | $0.012 |
+| gpt-4.1 | 71% (57–81%) | 0 | 15 | $0.058 |
+
+**Findings.**
+- **The prompt does not define `ambiguity_score`, and that changes decisions.** All 15 of gpt-4.1's false rejects come from `ambiguity_score = 8` on strong candidates; the rule rejects anything above 7. The prompt never says whether a high score is good or bad, so models read the axis differently. This is a defect in the agent's prompt, not evidence that gpt-4.1 is a worse screener.
+- **No strict-parse failures.** All three models returned bare JSON, so the agent's strict `json.loads` never turned an answer into a silent reject.
+- **Prompt injection did not change a decision**, but it moved scores in the requested direction by up to 3 points (mostly `ambiguity_score`). Two of the three injected resumes are clear rejects that a 3-point move cannot flip, so this test is weak.
+- **Name swap:** gpt-4.1 changed its decision on 2 of 6 pairs, both at the score threshold (mean score change 0.17). With 6 pairs this neither shows nor rules out name bias.
+- **Lenient on borderline cases:** 52–81% of borderline calls were passed.
+
+**Limitations.** Synthetic, short resumes. Labels come from one LLM rater (Claude Haiku 5.5, reviewed by the author), not from humans; the resumes were also written by Claude. 17 clear cases, so intervals are wide. Only the scoring step is evaluated, not the full agent loop. Temperature 0 still varied: 1–4 resumes per model changed decision across repeats. The demo agent itself scores with `claude-haiku-4-5`, which was not tested (no Anthropic key was available).
+
 ## How PromptSeal differs from the closest projects
 
 The same LangChain RFC #35691 thread surfaced several independent cryptographic-receipt projects. Two of the closest in spirit are **AgentMint** (the RFC author's own reference: Ed25519 + RFC 3161 timestamps + AIUC-1 mapping) and **AgentLedger** (Ed25519 + JSONL append-only hash chain, OpenSSL-verifiable offline). Both are well-designed cryptographic primitives. PromptSeal goes beyond the primitive on three deliberate axes:
