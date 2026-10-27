@@ -83,8 +83,8 @@ Scope: the LangChain hiring agent in `agent/` (`resume_parse → redact_pii → 
 - The eval harness records the same `prompt_version` / `prompt_sha256` and the served model per call in
   `calls.jsonl` and `run_meta.json`; labels were committed before any model under test ran
   (commit `1c5d791`).
-- Known quirk: `agent/llm.py:make_chat_llm` uses gpt-4o-mini whenever `OPENAI_API_KEY` is set,
-  regardless of the requested model. The `model_requested` / `model_served` pair in the receipt makes
+- Known quirk: when `OPENROUTER_API_KEY` is not set, `agent/llm.py:make_chat_llm` uses gpt-4o-mini
+  whenever `OPENAI_API_KEY` is set, regardless of the requested model. The `model_requested` / `model_served` pair in the receipt makes
   that visible; a production deployment should fail closed instead.
 
 ## 5. Security
